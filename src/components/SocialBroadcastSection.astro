@@ -25,6 +25,7 @@ interface Props {
 }
 
 const { social, download, currentLocale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section id="redes" class="py-20 lg:py-28 relative overflow-hidden">
@@ -170,7 +171,7 @@ const { social, download, currentLocale } = Astro.props;
           {download.description}
         </p>
         <a
-          href="/docs/CV-Javier-Saez.pdf"
+          href={`${base}/docs/CV-Javier-Saez.pdf`}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-gold-600 via-amber-500 to-gold-400 text-dark-950 font-bold text-base sm:text-lg shadow-2xl shadow-gold-500/30 hover:scale-105 active:scale-95 transition-all"
