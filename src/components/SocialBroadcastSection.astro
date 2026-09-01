@@ -1,0 +1,185 @@
+---
+import SocialIcons from './SocialIcons.astro';
+
+interface Props {
+  social: {
+    title: string;
+    subtitle: string;
+    description: string;
+    handle: string;
+    channels: Array<{
+      platform: string;
+      handle: string;
+      url: string;
+      description: string;
+      actionText: string;
+    }>;
+  };
+  download: {
+    title: string;
+    description: string;
+    button: string;
+    fileName: string;
+  };
+  currentLocale: 'es' | 'en';
+}
+
+const { social, download, currentLocale } = Astro.props;
+---
+
+<section id="redes" class="py-20 lg:py-28 relative overflow-hidden">
+  
+  <!-- Ambient background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-96 bg-gradient-radial from-red-600/10 via-pink-600/5 to-transparent blur-3xl pointer-events-none -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Title -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-300 text-xs font-semibold mb-3">
+        <SocialIcons name="video" class="w-4 h-4 text-gold-400" />
+        <span>{social.subtitle}</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
+        {social.title}
+      </h2>
+      <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+        {social.description}
+      </p>
+    </div>
+
+    <!-- Interactive Channels Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      
+      <!-- YouTube Card -->
+      <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-red-500/30 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 rounded-full blur-2xl pointer-events-none group-hover:bg-red-600/20 transition-all"></div>
+        
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center text-red-500 shadow-lg shadow-red-600/10">
+                <SocialIcons name="youtube" class="w-7 h-7" />
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-white">YouTube</h3>
+                <span class="text-xs font-mono text-slate-400">@javi_trombone</span>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-semibold">
+              {currentLocale === 'es' ? 'Vídeos & Recitales' : 'Videos & Recitals'}
+            </span>
+          </div>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+            {social.channels[0].description}
+          </p>
+
+          <!-- Visual Player Preview Component -->
+          <div class="rounded-2xl bg-dark-950/90 border border-dark-800 p-4 mb-8 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white shrink-0 shadow-md">
+              <SocialIcons name="video" class="w-6 h-6" />
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs font-bold text-slate-200 truncate">
+                {currentLocale === 'es' ? 'Canal Oficial de Javier Sáez' : 'Official Channel of Javier Sáez'}
+              </p>
+              <p class="text-[11px] text-slate-400">
+                {currentLocale === 'es' ? 'Interpretaciones, metales y repertorio solista' : 'Solo brass repertoire, concerts & pieces'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="https://youtube.com/@javi_trombone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-red-600/20 hover:scale-[1.01] active:scale-[0.99] transition-all"
+        >
+          <SocialIcons name="youtube" class="w-5 h-5" />
+          <span>{social.channels[0].actionText}</span>
+          <SocialIcons name="external" class="w-4 h-4 opacity-80" />
+        </a>
+      </div>
+
+      <!-- Instagram Card -->
+      <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-pink-500/30 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-pink-600/10 rounded-full blur-2xl pointer-events-none group-hover:bg-pink-600/20 transition-all"></div>
+        
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 p-[1.5px] shadow-lg shadow-pink-600/10">
+                <div class="w-full h-full bg-dark-950 rounded-2xl flex items-center justify-center text-pink-400">
+                  <SocialIcons name="instagram" class="w-6 h-6" />
+                </div>
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-white">Instagram</h3>
+                <span class="text-xs font-mono text-slate-400">@javi_trombone</span>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-pink-500/15 border border-pink-500/30 text-pink-300 text-xs font-semibold">
+              {currentLocale === 'es' ? 'Comunidad & Docencia' : 'Community & Pedagogy'}
+            </span>
+          </div>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+            {social.channels[1].description}
+          </p>
+
+          <!-- Visual Profile Preview Component -->
+          <div class="rounded-2xl bg-dark-950/90 border border-dark-800 p-4 mb-8 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 flex items-center justify-center text-white shrink-0 shadow-md">
+              <SocialIcons name="instagram" class="w-6 h-6" />
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs font-bold text-slate-200 truncate">@javi_trombone</p>
+              <p class="text-[11px] text-slate-400">
+                {currentLocale === 'es' ? 'Consejos técnicos, directos y actualidad musical' : 'Technical advice, live sessions & news'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="https://instagram.com/javi_trombone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:from-purple-500 hover:via-pink-500 hover:to-amber-400 text-white font-bold text-sm sm:text-base shadow-xl shadow-pink-600/20 hover:scale-[1.01] active:scale-[0.99] transition-all"
+        >
+          <SocialIcons name="instagram" class="w-5 h-5" />
+          <span>{social.channels[1].actionText}</span>
+          <SocialIcons name="external" class="w-4 h-4 opacity-80" />
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Full Width CV Download Banner -->
+    <div class="rounded-3xl bg-gradient-to-r from-dark-900 via-dark-850 to-dark-900 border border-gold-500/40 p-8 sm:p-12 shadow-2xl text-center relative overflow-hidden">
+      <div class="max-w-3xl mx-auto">
+        <div class="w-14 h-14 rounded-2xl bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-300 mx-auto mb-6 shadow-lg shadow-gold-500/10">
+          <SocialIcons name="download" class="w-7 h-7" />
+        </div>
+        <h3 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+          {download.title}
+        </h3>
+        <p class="text-slate-300 text-sm sm:text-base mb-8 leading-relaxed">
+          {download.description}
+        </p>
+        <a
+          href="/docs/CV-Javier-Saez.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-gold-600 via-amber-500 to-gold-400 text-dark-950 font-bold text-base sm:text-lg shadow-2xl shadow-gold-500/30 hover:scale-105 active:scale-95 transition-all"
+        >
+          <SocialIcons name="download" class="w-6 h-6 text-dark-950" />
+          <span>{download.button}</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "title": "Javier Sáez | Trombonista, Pedagogo e Investigador Musical",
+    "description": "Sitio web oficial y portfolio profesional de Javier Sáez: Trombonista, Tubista/Bombardinista, Pedagogo Musical e Investigador. Descubre su trayectoria académica, interpretativa y docente.",
+    "ogImage": "/images/javier-saez.jpg",
+    "locale": "es"
+  },
+  "nav": {
+    "presentation": "Presentación",
+    "academic": "Formación académica",
+    "masterclasses": "Formación continua y Masterclasses",
+    "performance": "Experiencia interpretativa",
+    "teaching": "Trayectoria docente",
+    "awards": "Premios",
+    "social": "Redes @javi_trombone",
+    "downloadCv": "Descargar CV (PDF)",
+    "contact": "Contacto",
+    "langSwitch": "EN"
+  },
+  "hero": {
+    "badge": "Trombonista & Pedagogo Musical",
+    "name": "Javier Sáez",
+    "tagline": "Trombonista, tubista/bombardinista, docente e investigador musical comprometido con la excelencia interpretativa y la pedagogía instrumental moderna.",
+    "ctaPrimary": "Descargar CV en PDF",
+    "ctaSecondary": "Explorar Trayectoria",
+    "ctaSocial": "Canal @javi_trombone",
+    "highlights": [
+      { "label": "Titulación de Posgrado", "value": "Triple Máster" },
+      { "label": "Grado Superior", "value": "Matrícula de Honor" },
+      { "label": "Experiencia Docente", "value": "+12 Años" },
+      { "label": "Especialidades", "value": "Trombón, Tuba & Bombardino" }
+    ]
+  },
+  "presentation": {
+    "title": "Presentación",
+    "subtitle": "Perfil Artístico y Pedagógico",
+    "paragraphs": [
+      "Javier Sáez inició sus estudios de trombón con Félix García en el Ateneo Musical «Schola Cantorum» de la Vall d'Uixó (Castellón). En 2009 concluyó las Enseñanzas Profesionales de Música en la especialidad de Trombón en el conservatorio profesional de dicha localidad con Premio Fin de Grado.",
+      "En 2013 obtuvo el Título Superior de Música en el Real Conservatorio Superior de Música de Madrid (RCSMM) bajo la dirección de José Enrique Cotolí, logrando la máxima calificación de Matrícula de Honor en el recital de fin de carrera. En 2018 completó asimismo las Enseñanzas Profesionales en la especialidad de Tuba con el bombardino en el Conservatorio Profesional de Música «Manuel de Falla» de Alcorcón, obteniendo nuevamente el Premio Fin de Grado.",
+      "Su perfil docente e investigador se fundamenta en una triple titulación de posgrado universitario: Máster en Formación del Profesorado (UCM, 2015), Máster en Pedagogía Musical (UNIR, 2022) y Máster en Pedagogía Instrumental (UAX, 2025). En el ámbito profesional, despliega una polifacética actividad interpretativa como solista, músico de cámara y orquestal, además de su consolidada labor docente en conservatorios y centros educativos."
+    ],
+    "quote": "«La pedagogía musical y la excelencia interpretativa son dos disciplinas inseparables que se nutren mutuamente en el escenario y en el aula.»"
+  },
+  "academic": {
+    "title": "Formación académica",
+    "subtitle": "Educación Superior y Posgrados Universitarios",
+    "tripleMaster": {
+      "title": "Triple Titulación de Posgrado",
+      "description": "Especialización pedagógica, didáctica e investigadora universitaria:",
+      "items": [
+        {
+          "degree": "Máster Universitario en Pedagogía Instrumental",
+          "institution": "Universidad Alfonso X el Sabio (UAX)",
+          "year": "2025",
+          "focus": "Investigación y metodologías avanzadas de enseñanza instrumental."
+        },
+        {
+          "degree": "Máster Universitario en Pedagogía Musical",
+          "institution": "Universidad Internacional de La Rioja (UNIR)",
+          "year": "2022",
+          "focus": "Diseño curricular, neuroeducación y didáctica musical contemporánea."
+        },
+        {
+          "degree": "Máster en Formación del Profesorado de ESO y Bachillerato",
+          "institution": "Universidad Complutense de Madrid (UCM)",
+          "year": "2015",
+          "focus": "Especialidad en Educación Musical, orientación pedagógica y docencia oficial."
+        }
+      ]
+    },
+    "higherDegrees": [
+      {
+        "degree": "Título Superior de Música en Interpretación (Trombón)",
+        "institution": "Real Conservatorio Superior de Música de Madrid (RCSMM)",
+        "year": "2013",
+        "honors": "Matrícula de Honor en Recital Fin de Carrera",
+        "professor": "Cátedra de José Enrique Cotolí",
+        "type": "Grado Superior Oficial"
+      },
+      {
+        "degree": "Enseñanzas Profesionales de Música (Tuba / Bombardino)",
+        "institution": "Conservatorio Profesional de Música «Manuel de Falla» de Alcorcón",
+        "year": "2018",
+        "honors": "Premio Fin de Grado",
+        "type": "Grado Profesional"
+      },
+      {
+        "degree": "Enseñanzas Profesionales de Música (Trombón)",
+        "institution": "Conservatorio Profesional de Música de La Vall d'Uixó (Castellón)",
+        "year": "2009",
+        "honors": "Premio Fin de Grado",
+        "professor": "Inicios con Félix García (Ateneo Musical «Schola Cantorum»)",
+        "type": "Grado Profesional"
+      }
+    ]
+  },
+  "masterclasses": {
+    "title": "Formación continua y Masterclasses",
+    "subtitle": "Perfeccionamiento con Solistas y Pedagogos de Prestigio Internacional",
+    "description": "Ha ampliado su formación en cursos internacionales de perfeccionamiento técnico, interpretación orquestal y clases magistrales con las figuras más reconocidas del metal:",
+    "teachers": [
+      { "name": "Gilles Millière", "role": "Solista Internacional y Pedagogo", "institution": "CNSM de París" },
+      { "name": "Thomas Horch", "role": "Trombón Solista", "institution": "Sinfónica de la Radio de Baviera (BRSO)" },
+      { "name": "Stephan Schulz", "role": "Trombón Bajo Solista", "institution": "Filarmónica de Berlín" },
+      { "name": "Walter Hilgers", "role": "Tubista Solista y Director", "institution": "German Brass / Hochschule Weimar" },
+      { "name": "John Kenny", "role": "Solista Internacional & Especialista Contemporáneo", "institution": "Royal Conservatoire of Scotland / Guildhall" },
+      { "name": "Mark Hampson", "role": "Trombón Bajo", "institution": "Mahler Chamber Orchestra" },
+      { "name": "Elíes Hernandis", "role": "Catedrático de Trombón", "institution": "Real Conservatorio Superior de Madrid" },
+      { "name": "Juan Bautista Abad", "role": "Trombón Solista", "institution": "Orquesta Sinfónica de Madrid (Teatro Real)" },
+      { "name": "Baltasar Perelló", "role": "Pedagogo y Solista de Trombón", "institution": "Conservatorio Superior de Castellón" },
+      { "name": "Ximo Vicedo", "role": "Trombón Solista", "institution": "Orquesta Sinfónica de RTVE" },
+      { "name": "Carlos Gil", "role": "Catedrático y Pedagogo de Trombón", "institution": "Conservatorio Superior de Valencia" },
+      { "name": "Indalecio Bonet", "role": "Miembro Fundador & Solista", "institution": "Spanish Brass" },
+      { "name": "Miguel Rivera", "role": "Trombón Solista y Pedagogo", "institution": "Orquesta Sinfónica de Galicia" }
+    ]
+  },
+  "performance": {
+    "title": "Experiencia interpretativa: orquestal, camerística y solista",
+    "subtitle": "Orquestas, Agrupaciones de Cámara y Actuaciones Solistas",
+    "soloSection": {
+      "title": "Como Solista",
+      "subtitle": "Interpretaciones Solistas con Orquesta y Bandas Sinfónicas",
+      "items": [
+        {
+          "work": "Concierto para trombón y banda militar",
+          "composer": "N. Rimsky-Korsakov",
+          "ensemble": "Banda Sinfónica del Ateneo Musical «Schola Cantorum»",
+          "year": "2006"
+        },
+        {
+          "work": "Concertino",
+          "composer": "L.-E. Larsson",
+          "ensemble": "Orquesta «La Perla de Moscú» (Rusia)",
+          "year": "2009"
+        },
+        {
+          "work": "Bolivar",
+          "composer": "E. Cook",
+          "ensemble": "Banda Municipal de Pinto",
+          "year": "2022"
+        }
+      ]
+    },
+    "chamberSection": {
+      "title": "Agrupaciones de Cámara de Metales",
+      "subtitle": "Formaciones Camerísticas y Brass Bands",
+      "items": [
+        {
+          "name": "«And The Brass»",
+          "period": "Desde 2013",
+          "type": "Low Brass Ensemble",
+          "description": "Ensemble especializado en metales graves (trombones, bombardinos y tubas) con repertorio que abarca desde la polifonía renacentista hasta arreglos modernos y jazz."
+        },
+        {
+          "name": "Madrid Brass Band",
+          "period": "Desde 2022",
+          "type": "Brass Band Británica Tradicional",
+          "description": "Formación de metales y percusión al estilo tradicional británico, interpretando obras originales de concurso y transcripciones virtuosas."
+        },
+        {
+          "name": "Nuit Brass Quintet",
+          "period": "Desde 2010",
+          "type": "Quinteto de Metales",
+          "description": "Quinteto de viento metal clásico y contemporáneo con participación en ciclos de conciertos y festivales."
+        },
+        {
+          "name": "Special Brass Quintet",
+          "period": "2009 – 2010",
+          "type": "Quinteto de Metales",
+          "description": "Formación camerística de metales con recitales y proyectos de difusión musical."
+        }
+      ]
+    },
+    "orchestralSection": {
+      "title": "Experiencia Orquestal y Grabaciones",
+      "recordingBadge": "Grabaciones y Sesiones de Banda Sonora",
+      "recordingTitle": "Grabaciones Audiovisuales con Mad4Strings",
+      "recordingText": "Participación en sesiones de grabación audiovisual para bandas sonoras de cine, televisión, producciones multimedia y plataformas internacionales con la orquesta de sesión Mad4Strings.",
+      "orchestrasTitle": "Orquestas y Agrupaciones Profesionales",
+      "orchestrasDescription": "Colaboraciones como trombonista y tubista en formaciones sinfónicas, ópera y música contemporánea de primer nivel:",
+      "orchestras": [
+        { "name": "Plural Ensemble", "tag": "Música Contemporánea" },
+        { "name": "Orquesta Sinfónica de RTVE (ORTVE)", "tag": "Sinfónica Nacional" },
+        { "name": "Orquesta Sinfónica de Madrid (OSM)", "tag": "Titular del Teatro Real" },
+        { "name": "Orquesta de la Comunidad de Madrid (ORCAM)", "tag": "Sinfónica y Zarzuela" },
+        { "name": "Orquesta de Extremadura (OEX)", "tag": "Sinfónica" },
+        { "name": "Orquesta Sinfónica Verum", "tag": "Temporada Sinfónica" },
+        { "name": "Film Symphony Orchestra (FSO)", "tag": "Música de Cine" },
+        { "name": "Orquesta Filarmonía de Madrid", "tag": "Auditorio Nacional" },
+        { "name": "Orquesta Sinfónica Ciudad de Getafe (OSCG)", "tag": "Sinfónica" },
+        { "name": "Orquesta Sinfónica «Alma Mahler» de Rivas-Vaciamadrid", "tag": "Sinfónica" }
+      ]
+    }
+  },
+  "teaching": {
+    "title": "Trayectoria docente",
+    "subtitle": "Vocación Pedagógica e Institucional",
+    "description": "Una sólida trayectoria en la enseñanza instrumental, dirección de agrupaciones y formación de alumnado en conservatorios y escuelas oficiales de música:",
+    "positions": [
+      {
+        "period": "2023 – Actualidad",
+        "role": "Profesor de Música",
+        "institution": "Escuela-Conservatorio Profesional de Música «Manuel Rodríguez Sales» de Leganés",
+        "description": "Docencia oficial de viento metal, preparación técnica de alumnos y dirección de ensambles instrumentales."
+      },
+      {
+        "period": "2017 – 2023",
+        "role": "Profesor de Viento Metal",
+        "institution": "Escuela Municipal de Música del Ayuntamiento de Pinto",
+        "description": "Impartición de clases individuales y colectivas de trombón, bombardino y tuba, fomentando la práctica de conjunto."
+      },
+      {
+        "period": "2013 – 2016",
+        "role": "Profesor de Música",
+        "institution": "Escuelas Municipales de Música del Ayuntamiento de Madrid",
+        "description": "Formación musical instrumental y desarrollo de agrupaciones de viento metal en diversos centros municipales."
+      },
+      {
+        "period": "Desde 2013",
+        "role": "Colaboración Docente",
+        "institution": "Colegio Americano de Madrid (American School of Madrid)",
+        "description": "Colaboración pedagógica, talleres y actividades formativas de viento metal en entorno educativo internacional."
+      }
+    ]
+  },
+  "awards": {
+    "title": "Premios y Reconocimientos",
+    "subtitle": "Distinciones Académicas y en Concursos",
+    "items": [
+      {
+        "year": "2018",
+        "award": "Premio Fin de Grado",
+        "category": "Enseñanzas Profesionales de Tuba / Bombardino",
+        "institution": "Conservatorio Profesional de Música «Manuel de Falla» de Alcorcón"
+      },
+      {
+        "year": "2013",
+        "award": "Matrícula de Honor",
+        "category": "Recital Fin de Carrera - Grado Superior de Música (Trombón)",
+        "institution": "Real Conservatorio Superior de Música de Madrid (RCSMM)"
+      },
+      {
+        "year": "2010",
+        "award": "Tercer Premio",
+        "category": "Concurso de Quintetos de Viento Metal",
+        "institution": "Benimodo (Valencia)"
+      },
+      {
+        "year": "2009",
+        "award": "Premio Fin de Grado",
+        "category": "Enseñanzas Profesionales de Trombón",
+        "institution": "Conservatorio Profesional de Música de La Vall d'Uixó"
+      },
+      {
+        "year": "2008",
+        "award": "Tercer Premio (Categoría B)",
+        "category": "V Concurso de Jóvenes Intérpretes «Villa de Castellnovo»",
+        "institution": "Castellnovo (Castellón)"
+      }
+    ]
+  },
+  "social": {
+    "title": "Redes y Canales Digitales",
+    "subtitle": "Difusión Audiovisual & Comunidad (@javi_trombone)",
+    "description": "Sigue las interpretaciones, contenidos pedagógicos, directos y novedades en las plataformas oficiales de Javier Sáez.",
+    "handle": "@javi_trombone",
+    "channels": [
+      {
+        "platform": "YouTube",
+        "handle": "@javi_trombone",
+        "url": "https://youtube.com/@javi_trombone",
+        "description": "Grabaciones audiovisuales, recitales, piezas para trombón solista y ensambles de metales.",
+        "actionText": "Suscribirse en YouTube"
+      },
+      {
+        "platform": "Instagram",
+        "handle": "@javi_trombone",
+        "url": "https://instagram.com/javi_trombone",
+        "description": "Día a día pedagógico, directos de ensayos, fragmentos orquestales y técnicas de estudio.",
+        "actionText": "Seguir en Instagram"
+      }
+    ]
+  },
+  "download": {
+    "title": "¿Deseas consultar el Currículum Vitae completo?",
+    "description": "Descarga el documento oficial en formato PDF para obtener un desglose pormenorizado de titulaciones, repertorio y trayectoria artística.",
+    "button": "Descargar CV en PDF",
+    "fileName": "CV - Javier Sáez (PDF)"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "tagline": "Trombonista, Tubista/Bombardinista y Pedagogo Musical",
+    "quickLinks": "Enlaces Rápidos",
+    "connect": "Conectar",
+    "languages": "Idiomas",
+    "spanish": "Español",
+    "english": "English"
+  }
+}

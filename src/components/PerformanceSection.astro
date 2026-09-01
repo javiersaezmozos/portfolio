@@ -1,0 +1,198 @@
+---
+import SocialIcons from './SocialIcons.astro';
+
+interface Props {
+  performance: {
+    title: string;
+    subtitle: string;
+    soloSection: {
+      title: string;
+      subtitle: string;
+      items: Array<{
+        work: string;
+        composer: string;
+        ensemble: string;
+        year: string;
+      }>;
+    };
+    chamberSection: {
+      title: string;
+      subtitle: string;
+      items: Array<{
+        name: string;
+        period: string;
+        type: string;
+        description: string;
+      }>;
+    };
+    orchestralSection: {
+      title: string;
+      recordingBadge: string;
+      recordingTitle: string;
+      recordingText: string;
+      orchestrasTitle: string;
+      orchestrasDescription: string;
+      orchestras: Array<{
+        name: string;
+        tag: string;
+      }>;
+    };
+  };
+  currentLocale: 'es' | 'en';
+}
+
+const { performance, currentLocale } = Astro.props;
+---
+
+<section id="experiencia-interpretativa" class="py-20 lg:py-28 bg-dark-900/50 border-t border-dark-800/80 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-4xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-300 text-xs font-semibold mb-3">
+        <SocialIcons name="music" class="w-4 h-4 text-gold-400" />
+        <span>{performance.subtitle}</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+        {performance.title}
+      </h2>
+    </div>
+
+    <!-- 1. Como Solista -->
+    <div class="mb-20">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-6 h-[2px] bg-gold-400"></div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">
+          {performance.soloSection.title}
+        </h3>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {performance.soloSection.items.map((solo) => (
+          <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-dark-850 to-dark-900 border border-gold-500/30 hover:border-gold-400/60 shadow-xl transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="px-2.5 py-1 rounded-md bg-gold-500/15 border border-gold-500/30 text-gold-300 text-xs font-bold font-mono">
+                  {solo.year}
+                </span>
+                <SocialIcons name="sparkles" class="w-4 h-4 text-gold-400 group-hover:scale-110 transition-transform" />
+              </div>
+              <h4 class="font-serif text-xl font-bold text-white group-hover:text-gold-200 transition-colors mb-1.5 leading-snug">
+                {solo.work}
+              </h4>
+              <p class="text-xs font-semibold uppercase tracking-wider text-gold-400 mb-4">
+                {solo.composer}
+              </p>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 pt-4 border-t border-dark-750 flex items-center gap-2">
+              <span class="text-slate-400">{currentLocale === 'es' ? 'Acompañamiento:' : 'With:'}</span>
+              <span class="font-medium text-slate-200">{solo.ensemble}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 2. Agrupaciones de Cámara de Metales -->
+    <div class="mb-20">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-6 h-[2px] bg-gold-400"></div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">
+          {performance.chamberSection.title}
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {performance.chamberSection.items.map((grp) => (
+          <div class="p-6 sm:p-8 rounded-2xl bg-dark-900/90 border border-dark-800 hover:border-gold-500/40 shadow-lg transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-gold-400 px-2.5 py-1 rounded bg-dark-850 border border-dark-700">
+                  {grp.type}
+                </span>
+                <span class="text-xs font-bold font-mono px-2.5 py-1 rounded bg-dark-800 text-slate-300 border border-dark-700">
+                  {grp.period}
+                </span>
+              </div>
+              <h4 class="font-serif text-xl sm:text-2xl font-bold text-white group-hover:text-gold-200 transition-colors mb-3">
+                {grp.name}
+              </h4>
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed mt-2 pt-3 border-t border-dark-850">
+              {grp.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 3. Experiencia Orquestal y Grabaciones -->
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-6 h-[2px] bg-gold-400"></div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">
+          {performance.orchestralSection.title}
+        </h3>
+      </div>
+
+      <!-- Featured Banner: Mad4Strings -->
+      <div class="mb-10">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-dark-850 via-dark-900 to-dark-850 border border-gold-500/30 p-6 sm:p-10 shadow-2xl">
+          <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-amber-500/10 to-transparent pointer-events-none"></div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="max-w-2xl">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-gold-500/15 border border-gold-500/30 text-gold-300 text-xs font-bold uppercase tracking-wider mb-3">
+                <SocialIcons name="video" class="w-3.5 h-3.5" />
+                {performance.orchestralSection.recordingBadge}
+              </span>
+              <h4 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
+                {performance.orchestralSection.recordingTitle}
+              </h4>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                {performance.orchestralSection.recordingText}
+              </p>
+            </div>
+
+            <div class="shrink-0 flex items-center gap-3">
+              <a
+                href="#redes"
+                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-dark-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-gold-500/20"
+              >
+                <SocialIcons name="youtube" class="w-4 h-4 text-dark-950" />
+                <span>{currentLocale === 'es' ? 'Ver Canal @javi_trombone' : 'Watch @javi_trombone'}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orchestras Grid -->
+      <div>
+        <p class="text-sm text-slate-400 mb-6">
+          {performance.orchestralSection.orchestrasDescription}
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {performance.orchestralSection.orchestras.map((item) => (
+            <div class="p-5 rounded-2xl bg-dark-950/80 border border-dark-800 hover:border-gold-500/40 hover:bg-dark-900 transition-all flex items-center justify-between gap-4 group">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-dark-850 border border-dark-700 flex items-center justify-center text-gold-400 group-hover:border-gold-500/30 transition-colors shrink-0">
+                  <SocialIcons name="orchestra" class="w-4 h-4" />
+                </div>
+                <span class="font-serif font-bold text-sm sm:text-base text-slate-200 group-hover:text-gold-200 transition-colors">
+                  {item.name}
+                </span>
+              </div>
+              <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-dark-850 text-slate-400 border border-dark-800 shrink-0">
+                {item.tag}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import AcademicSection from '../../components/AcademicSection.astro';
+import MasterclassesSection from '../../components/MasterclassesSection.astro';
+import PerformanceSection from '../../components/PerformanceSection.astro';
+import TeachingSection from '../../components/TeachingSection.astro';
+import AwardsSection from '../../components/AwardsSection.astro';
+import SocialBroadcastSection from '../../components/SocialBroadcastSection.astro';
+import enData from '../../data/en.json';
+---
+
+<Layout
+  meta={enData.meta}
+  nav={enData.nav}
+  footer={enData.footer}
+  currentLocale="en"
+>
+  <Hero
+    hero={enData.hero}
+    presentation={enData.presentation}
+    currentLocale="en"
+  />
+
+  <AcademicSection
+    academic={enData.academic}
+    currentLocale="en"
+  />
+
+  <MasterclassesSection
+    masterclasses={enData.masterclasses}
+    currentLocale="en"
+  />
+
+  <PerformanceSection
+    performance={enData.performance}
+    currentLocale="en"
+  />
+
+  <TeachingSection
+    teaching={enData.teaching}
+    currentLocale="en"
+  />
+
+  <AwardsSection
+    awards={enData.awards}
+    currentLocale="en"
+  />
+
+  <SocialBroadcastSection
+    social={enData.social}
+    download={enData.download}
+    currentLocale="en"
+  />
+</Layout>

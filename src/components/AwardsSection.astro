@@ -1,0 +1,68 @@
+---
+import SocialIcons from './SocialIcons.astro';
+
+interface Props {
+  awards: {
+    title: string;
+    subtitle: string;
+    items: Array<{
+      year: string;
+      award: string;
+      category: string;
+      institution: string;
+    }>;
+  };
+  currentLocale: 'es' | 'en';
+}
+
+const { awards, currentLocale } = Astro.props;
+---
+
+<section id="premios" class="py-20 lg:py-28 bg-dark-900/40 border-t border-dark-800/80 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Title -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-300 text-xs font-semibold mb-3">
+        <SocialIcons name="award" class="w-4 h-4 text-gold-400" />
+        <span>{awards.subtitle}</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+        {awards.title}
+      </h2>
+    </div>
+
+    <!-- Awards Grid / Timeline -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {awards.items.map((aw) => (
+        <div class="p-6 sm:p-8 rounded-2xl bg-dark-900/90 border border-dark-800 hover:border-gold-500/50 shadow-lg hover:shadow-gold-500/10 transition-all flex flex-col justify-between group relative overflow-hidden">
+          
+          <!-- Gold corner glow on hover -->
+          <div class="absolute -right-10 -bottom-10 w-28 h-28 bg-amber-500/5 group-hover:bg-amber-500/15 rounded-full blur-xl transition-all"></div>
+
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <span class="px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 border border-gold-500/30 text-xs font-bold font-mono">
+                {aw.year}
+              </span>
+              <SocialIcons name="award" class="w-6 h-6 text-gold-400 group-hover:scale-110 transition-transform" />
+            </div>
+
+            <h3 class="font-serif text-xl font-bold text-white group-hover:text-gold-200 transition-colors mb-2">
+              {aw.award}
+            </h3>
+
+            <p class="text-xs sm:text-sm font-semibold text-gold-400/90 mb-3">
+              {aw.category}
+            </p>
+          </div>
+
+          <p class="text-xs text-slate-400 border-t border-dark-850 pt-3 mt-4">
+            {aw.institution}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
