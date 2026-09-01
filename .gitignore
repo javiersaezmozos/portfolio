@@ -1,0 +1,15 @@
+# Build & dependency outputs
+dist/
+.astro/
+node_modules/
+.node/
+
+# Environment and OS files
+.env
+.env.*
+.DS_Store
+*.local
+
+# Editor directories
+.vscode/
+.idea/

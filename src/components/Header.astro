@@ -1,0 +1,244 @@
+---
+import SocialIcons from './SocialIcons.astro';
+
+interface Props {
+  nav: {
+    presentation: string;
+    academic: string;
+    masterclasses: string;
+    performance: string;
+    teaching: string;
+    awards: string;
+    social: string;
+    downloadCv: string;
+    contact?: string;
+    langSwitch: string;
+  };
+  currentLocale: 'es' | 'en';
+}
+
+const { nav, currentLocale } = Astro.props;
+const otherLocale = currentLocale === 'es' ? 'en' : 'es';
+---
+
+<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-dark-950/80 border-b border-dark-800/80 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand / Logo -->
+      <a href={`/${currentLocale}`} class="group flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-lg p-1">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 via-gold-500 to-amber-200 p-[1.5px] shadow-lg shadow-gold-500/10 group-hover:shadow-gold-500/30 transition-shadow">
+          <div class="w-full h-full bg-dark-950 rounded-full flex items-center justify-center">
+            <span class="font-serif font-bold text-gold-400 text-lg tracking-wider">JS</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-lg font-bold tracking-tight text-slate-100 group-hover:text-gold-300 transition-colors">
+            Javier Sáez
+          </span>
+          <span class="text-[11px] font-medium tracking-widest text-gold-400/90 uppercase">
+            {currentLocale === 'es' ? 'Trombonista & Pedagogo' : 'Trombonist & Pedagogue'}
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden xl:flex items-center gap-5 text-sm font-medium text-slate-300" aria-label="Main Navigation">
+        <a href="#presentacion" class="hover:text-gold-400 transition-colors py-2">{nav.presentation}</a>
+        <a href="#formacion-academica" class="hover:text-gold-400 transition-colors py-2">{nav.academic}</a>
+        <a href="#masterclasses" class="hover:text-gold-400 transition-colors py-2">{nav.masterclasses}</a>
+        <a href="#experiencia-interpretativa" class="hover:text-gold-400 transition-colors py-2">{nav.performance}</a>
+        <a href="#trayectoria-docente" class="hover:text-gold-400 transition-colors py-2">{nav.teaching}</a>
+        <a href="#premios" class="hover:text-gold-400 transition-colors py-2">{nav.awards}</a>
+        <a href="#redes" class="hover:text-gold-400 transition-colors py-2 flex items-center gap-1.5 text-gold-400/90">
+          <SocialIcons name="video" class="w-4 h-4 text-gold-400" />
+          <span>{nav.social}</span>
+        </a>
+      </nav>
+
+      <!-- Right Action Bar -->
+      <div class="hidden lg:flex items-center gap-4">
+        
+        <!-- Social Icons (@javi_trombone) -->
+        <div class="flex items-center gap-2 pr-3 border-r border-dark-800">
+          <a
+            href="https://instagram.com/javi_trombone"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 text-slate-400 hover:text-pink-400 hover:bg-dark-850 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-gold-500"
+            title="Instagram @javi_trombone"
+            aria-label="Instagram @javi_trombone"
+          >
+            <SocialIcons name="instagram" class="w-5 h-5" />
+          </a>
+          <a
+            href="https://youtube.com/@javi_trombone"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 text-slate-400 hover:text-red-500 hover:bg-dark-850 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-gold-500"
+            title="YouTube @javi_trombone"
+            aria-label="YouTube @javi_trombone"
+          >
+            <SocialIcons name="youtube" class="w-5 h-5" />
+          </a>
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-dark-900 border border-dark-700/80 rounded-full p-1 text-xs font-semibold">
+          <a
+            href="/es"
+            class={`px-3 py-1 rounded-full transition-all ${
+              currentLocale === 'es'
+                ? 'bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-sm'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+            aria-label="Cambiar idioma a Español"
+          >
+            ES
+          </a>
+          <a
+            href="/en"
+            class={`px-3 py-1 rounded-full transition-all ${
+              currentLocale === 'en'
+                ? 'bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-sm'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+            aria-label="Switch language to English"
+          >
+            EN
+          </a>
+        </div>
+
+        <!-- Download CV Button -->
+        <a
+          href="/docs/CV-Javier-Saez.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-dark-850 hover:bg-dark-800 text-gold-300 hover:text-gold-200 border border-gold-500/30 hover:border-gold-400/60 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-gold-500"
+        >
+          <SocialIcons name="download" class="w-4 h-4 text-gold-400" />
+          <span>{nav.downloadCv}</span>
+        </a>
+
+      </div>
+
+      <!-- Mobile Menu Button and Controls -->
+      <div class="flex items-center gap-3 lg:hidden">
+        <!-- Mobile Language Switcher -->
+        <div class="flex items-center bg-dark-900 border border-dark-700 rounded-full p-0.5 text-xs font-semibold">
+          <a
+            href="/es"
+            class={`px-2.5 py-0.5 rounded-full ${
+              currentLocale === 'es' ? 'bg-gold-500 text-dark-950 font-bold' : 'text-slate-400'
+            }`}
+          >
+            ES
+          </a>
+          <a
+            href="/en"
+            class={`px-2.5 py-0.5 rounded-full ${
+              currentLocale === 'en' ? 'bg-gold-500 text-dark-950 font-bold' : 'text-slate-400'
+            }`}
+          >
+            EN
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="p-2.5 rounded-lg text-slate-300 hover:text-white bg-dark-900 border border-dark-800 focus:outline-none focus:ring-2 focus:ring-gold-500"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú de navegación"
+        >
+          <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-2xl px-4 pt-4 pb-6 space-y-4">
+    <div class="flex flex-col space-y-3 text-base font-medium">
+      <a href="#presentacion" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.presentation}</a>
+      <a href="#formacion-academica" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.academic}</a>
+      <a href="#masterclasses" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.masterclasses}</a>
+      <a href="#experiencia-interpretativa" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.performance}</a>
+      <a href="#trayectoria-docente" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.teaching}</a>
+      <a href="#premios" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.awards}</a>
+      <a href="#redes" class="mobile-nav-link text-gold-400 py-2 flex items-center gap-2 border-b border-dark-900 font-semibold">
+        <SocialIcons name="video" class="w-5 h-5 text-gold-400" />
+        <span>{nav.social}</span>
+      </a>
+    </div>
+
+    <!-- Mobile Social and Download Actions -->
+    <div class="pt-4 flex flex-col gap-3">
+      <a
+        href="/docs/CV-Javier-Saez.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-lg shadow-gold-500/20"
+      >
+        <SocialIcons name="download" class="w-5 h-5" />
+        <span>{nav.downloadCv}</span>
+      </a>
+
+      <div class="flex items-center justify-around pt-2 border-t border-dark-900">
+        <a
+          href="https://instagram.com/javi_trombone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 text-sm text-slate-400 hover:text-pink-400 py-2"
+        >
+          <SocialIcons name="instagram" class="w-5 h-5" />
+          <span>Instagram @javi_trombone</span>
+        </a>
+        <a
+          href="https://youtube.com/@javi_trombone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 text-sm text-slate-400 hover:text-red-500 py-2"
+        >
+          <SocialIcons name="youtube" class="w-5 h-5" />
+          <span>YouTube @javi_trombone</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-icon-open');
+  const closeIcon = document.getElementById('menu-icon-close');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (toggleBtn && menu && openIcon && closeIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+      menu.classList.toggle('hidden');
+      openIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
