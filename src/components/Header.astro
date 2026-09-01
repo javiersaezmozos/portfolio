@@ -10,7 +10,6 @@ interface Props {
     teaching: string;
     awards: string;
     social: string;
-    downloadCv: string;
     contact?: string;
     langSwitch: string;
   };
@@ -44,7 +43,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden xl:flex items-center gap-5 text-sm font-medium text-slate-300" aria-label="Main Navigation">
+      <nav class="hidden xl:flex items-center gap-6 text-sm font-medium text-slate-300" aria-label="Main Navigation">
         <a href="#presentacion" class="hover:text-gold-400 transition-colors py-2">{nav.presentation}</a>
         <a href="#formacion-academica" class="hover:text-gold-400 transition-colors py-2">{nav.academic}</a>
         <a href="#masterclasses" class="hover:text-gold-400 transition-colors py-2">{nav.masterclasses}</a>
@@ -87,17 +86,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <!-- Language Switcher -->
         <div class="flex items-center bg-dark-900 border border-dark-700/80 rounded-full p-1 text-xs font-semibold">
           <a
-            href={`${base}/es`}
-            class={`px-3 py-1 rounded-full transition-all ${
-              currentLocale === 'es'
-                ? 'bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-            aria-label="Cambiar idioma a Español"
-          >
-            ES
-          </a>
-          <a
             href={`${base}/en`}
             class={`px-3 py-1 rounded-full transition-all ${
               currentLocale === 'en'
@@ -108,18 +96,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           >
             EN
           </a>
+          <a
+            href={`${base}/es`}
+            class={`px-3 py-1 rounded-full transition-all ${
+              currentLocale === 'es'
+                ? 'bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-sm'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+            aria-label="Cambiar idioma a Español"
+          >
+            ES
+          </a>
         </div>
-
-        <!-- Download CV Button -->
-        <a
-          href={`${base}/docs/CV-Javier-Saez.pdf`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-dark-850 hover:bg-dark-800 text-gold-300 hover:text-gold-200 border border-gold-500/30 hover:border-gold-400/60 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-gold-500"
-        >
-          <SocialIcons name="download" class="w-4 h-4 text-gold-400" />
-          <span>{nav.downloadCv}</span>
-        </a>
 
       </div>
 
@@ -128,20 +116,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <!-- Mobile Language Switcher -->
         <div class="flex items-center bg-dark-900 border border-dark-700 rounded-full p-0.5 text-xs font-semibold">
           <a
-            href={`${base}/es`}
-            class={`px-2.5 py-0.5 rounded-full ${
-              currentLocale === 'es' ? 'bg-gold-500 text-dark-950 font-bold' : 'text-slate-400'
-            }`}
-          >
-            ES
-          </a>
-          <a
             href={`${base}/en`}
             class={`px-2.5 py-0.5 rounded-full ${
               currentLocale === 'en' ? 'bg-gold-500 text-dark-950 font-bold' : 'text-slate-400'
             }`}
           >
             EN
+          </a>
+          <a
+            href={`${base}/es`}
+            class={`px-2.5 py-0.5 rounded-full ${
+              currentLocale === 'es' ? 'bg-gold-500 text-dark-950 font-bold' : 'text-slate-400'
+            }`}
+          >
+            ES
           </a>
         </div>
 
@@ -181,38 +169,26 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </a>
     </div>
 
-    <!-- Mobile Social and Download Actions -->
-    <div class="pt-4 flex flex-col gap-3">
+    <!-- Mobile Social Actions -->
+    <div class="pt-2 flex items-center justify-around border-t border-dark-900">
       <a
-        href={`${base}/docs/CV-Javier-Saez.pdf`}
+        href="https://instagram.com/javi_trombone"
         target="_blank"
         rel="noopener noreferrer"
-        class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-lg shadow-gold-500/20"
+        class="flex items-center gap-2 text-sm text-slate-400 hover:text-pink-400 py-2"
       >
-        <SocialIcons name="download" class="w-5 h-5" />
-        <span>{nav.downloadCv}</span>
+        <SocialIcons name="instagram" class="w-5 h-5" />
+        <span>Instagram</span>
       </a>
-
-      <div class="flex items-center justify-around pt-2 border-t border-dark-900">
-        <a
-          href="https://instagram.com/javi_trombone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-2 text-sm text-slate-400 hover:text-pink-400 py-2"
-        >
-          <SocialIcons name="instagram" class="w-5 h-5" />
-          <span>Instagram @javi_trombone</span>
-        </a>
-        <a
-          href="https://youtube.com/@javi_trombone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-2 text-sm text-slate-400 hover:text-red-500 py-2"
-        >
-          <SocialIcons name="youtube" class="w-5 h-5" />
-          <span>YouTube @javi_trombone</span>
-        </a>
-      </div>
+      <a
+        href="https://youtube.com/@javi_trombone"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 text-sm text-slate-400 hover:text-red-500 py-2"
+      >
+        <SocialIcons name="youtube" class="w-5 h-5" />
+        <span>YouTube</span>
+      </a>
     </div>
   </div>
 </header>
