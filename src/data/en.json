@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Javier Sáez | Trombonist, Music Pedagogue & Researcher",
-    "description": "Official website and professional portfolio of Javier Sáez: Trombonist, Euphonium/Tubist, Music Pedagogue and Researcher. Discover his academic, performance and teaching career.",
+    "description": "Official website and professional portfolio of Javier Sáez: Trombonist, Euphonium Player, Music Pedagogue and Researcher. Discover his academic, performance and teaching career.",
     "ogImage": "/images/javier-saez.jpg",
     "locale": "en"
   },
@@ -13,22 +13,21 @@
     "teaching": "Teaching Career",
     "awards": "Awards",
     "social": "@javi_trombone Channels",
-    "downloadCv": "Download CV (PDF)",
     "contact": "Contact",
     "langSwitch": "ES"
   },
   "hero": {
     "badge": "Trombonist & Music Pedagogue",
     "name": "Javier Sáez",
-    "tagline": "Trombonist, tubist/euphonium player, music educator, and researcher dedicated to performance excellence and modern brass pedagogy.",
-    "ctaPrimary": "Download CV (PDF)",
-    "ctaSecondary": "Explore Career",
+    "tagline": "Trombonist, euphonium player, music educator, and researcher committed to performance excellence and contemporary instrumental pedagogical methodologies.",
+    "ctaPrimary": "Explore Career",
+    "ctaSecondary": "Academic Background",
     "ctaSocial": "@javi_trombone Channel",
     "highlights": [
       { "label": "Postgraduate Education", "value": "Triple Master's" },
       { "label": "Higher Degree", "value": "Graduated with Honors" },
       { "label": "Teaching Experience", "value": "+12 Years" },
-      { "label": "Specialties", "value": "Trombone, Tuba & Euphonium" }
+      { "label": "Specialties", "value": "Trombone & Euphonium" }
     ]
   },
   "presentation": {
@@ -281,15 +280,9 @@
       }
     ]
   },
-  "download": {
-    "title": "Looking for the full Curriculum Vitae?",
-    "description": "Download the official PDF document for a detailed breakdown of qualifications, repertoire, and artistic achievements.",
-    "button": "Download CV (PDF)",
-    "fileName": "CV - Javier Sáez (PDF)"
-  },
   "footer": {
     "rights": "All rights reserved.",
-    "tagline": "Trombonist, Euphonium/Tubist & Music Pedagogue",
+    "tagline": "Trombonist, Euphonium Player & Music Pedagogue",
     "quickLinks": "Quick Links",
     "connect": "Connect",
     "languages": "Languages",

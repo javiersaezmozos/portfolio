@@ -15,17 +15,10 @@ interface Props {
       actionText: string;
     }>;
   };
-  download: {
-    title: string;
-    description: string;
-    button: string;
-    fileName: string;
-  };
   currentLocale: 'es' | 'en';
 }
 
-const { social, download, currentLocale } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { social, currentLocale } = Astro.props;
 ---
 
 <section id="redes" class="py-20 lg:py-28 relative overflow-hidden">
@@ -50,7 +43,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
 
     <!-- Interactive Channels Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       
       <!-- YouTube Card -->
       <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-red-500/30 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden">
@@ -156,30 +149,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </a>
       </div>
 
-    </div>
-
-    <!-- Full Width CV Download Banner -->
-    <div class="rounded-3xl bg-gradient-to-r from-dark-900 via-dark-850 to-dark-900 border border-gold-500/40 p-8 sm:p-12 shadow-2xl text-center relative overflow-hidden">
-      <div class="max-w-3xl mx-auto">
-        <div class="w-14 h-14 rounded-2xl bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-300 mx-auto mb-6 shadow-lg shadow-gold-500/10">
-          <SocialIcons name="download" class="w-7 h-7" />
-        </div>
-        <h3 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-          {download.title}
-        </h3>
-        <p class="text-slate-300 text-sm sm:text-base mb-8 leading-relaxed">
-          {download.description}
-        </p>
-        <a
-          href={`${base}/docs/CV-Javier-Saez.pdf`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-gold-600 via-amber-500 to-gold-400 text-dark-950 font-bold text-base sm:text-lg shadow-2xl shadow-gold-500/30 hover:scale-105 active:scale-95 transition-all"
-        >
-          <SocialIcons name="download" class="w-6 h-6 text-dark-950" />
-          <span>{download.button}</span>
-        </a>
-      </div>
     </div>
 
   </div>

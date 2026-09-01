@@ -60,15 +60,6 @@ const currentYear = 2026;
           >
             <SocialIcons name="youtube" class="w-5 h-5" />
           </a>
-          <a
-            href={`${base}/docs/CV-Javier-Saez.pdf`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="p-2.5 rounded-xl bg-dark-900 text-slate-300 hover:text-gold-400 hover:bg-dark-850 border border-dark-800 transition-all"
-            aria-label="Descargar CV PDF"
-          >
-            <SocialIcons name="download" class="w-5 h-5" />
-          </a>
         </div>
       </div>
 
@@ -90,7 +81,6 @@ const currentYear = 2026;
           <li><a href="#trayectoria-docente" class="hover:text-gold-400 transition-colors">{nav.teaching}</a></li>
           <li><a href="#premios" class="hover:text-gold-400 transition-colors">{nav.awards}</a></li>
           <li><a href="#redes" class="hover:text-gold-400 transition-colors">{nav.social}</a></li>
-          <li><a href={`${base}/docs/CV-Javier-Saez.pdf`} target="_blank" class="hover:text-gold-400 transition-colors">{nav.downloadCv}</a></li>
         </ul>
       </div>
 
@@ -99,18 +89,18 @@ const currentYear = 2026;
         <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{footer.languages}</h4>
         <div class="flex flex-col space-y-2 text-sm">
           <a
-            href={`${base}/es`}
-            class={`flex items-center gap-2 ${currentLocale === 'es' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
-          >
-            <span>🇪🇸</span>
-            <span>{footer.spanish}</span>
-          </a>
-          <a
             href={`${base}/en`}
             class={`flex items-center gap-2 ${currentLocale === 'en' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
           >
             <span>🇬🇧</span>
             <span>{footer.english}</span>
+          </a>
+          <a
+            href={`${base}/es`}
+            class={`flex items-center gap-2 ${currentLocale === 'es' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
+          >
+            <span>🇪🇸</span>
+            <span>{footer.spanish}</span>
           </a>
         </div>
       </div>

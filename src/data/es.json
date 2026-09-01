@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Javier Sáez | Trombonista, Pedagogo e Investigador Musical",
-    "description": "Sitio web oficial y portfolio profesional de Javier Sáez: Trombonista, Tubista/Bombardinista, Pedagogo Musical e Investigador. Descubre su trayectoria académica, interpretativa y docente.",
+    "description": "Sitio web oficial y portfolio profesional de Javier Sáez: Trombonista, Bombardinista, Pedagogo Musical e Investigador. Descubre su trayectoria académica, interpretativa y docente.",
     "ogImage": "/images/javier-saez.jpg",
     "locale": "es"
   },
@@ -13,22 +13,21 @@
     "teaching": "Trayectoria docente",
     "awards": "Premios",
     "social": "Redes @javi_trombone",
-    "downloadCv": "Descargar CV (PDF)",
     "contact": "Contacto",
     "langSwitch": "EN"
   },
   "hero": {
     "badge": "Trombonista & Pedagogo Musical",
     "name": "Javier Sáez",
-    "tagline": "Trombonista, tubista/bombardinista, docente e investigador musical comprometido con la excelencia interpretativa y la pedagogía instrumental moderna.",
-    "ctaPrimary": "Descargar CV en PDF",
-    "ctaSecondary": "Explorar Trayectoria",
+    "tagline": "Trombonista, bombardinista, docente e investigador musical comprometido con la excelencia interpretativa y las nuevas corrientes pedagógicas instrumentales.",
+    "ctaPrimary": "Explorar Trayectoria",
+    "ctaSecondary": "Formación Académica",
     "ctaSocial": "Canal @javi_trombone",
     "highlights": [
       { "label": "Titulación de Posgrado", "value": "Triple Máster" },
       { "label": "Grado Superior", "value": "Matrícula de Honor" },
       { "label": "Experiencia Docente", "value": "+12 Años" },
-      { "label": "Especialidades", "value": "Trombón, Tuba & Bombardino" }
+      { "label": "Especialidades", "value": "Trombón & Bombardino" }
     ]
   },
   "presentation": {
@@ -281,15 +280,9 @@
       }
     ]
   },
-  "download": {
-    "title": "¿Deseas consultar el Currículum Vitae completo?",
-    "description": "Descarga el documento oficial en formato PDF para obtener un desglose pormenorizado de titulaciones, repertorio y trayectoria artística.",
-    "button": "Descargar CV en PDF",
-    "fileName": "CV - Javier Sáez (PDF)"
-  },
   "footer": {
     "rights": "Todos los derechos reservados.",
-    "tagline": "Trombonista, Tubista/Bombardinista y Pedagogo Musical",
+    "tagline": "Trombonista, Bombardinista y Pedagogo Musical",
     "quickLinks": "Enlaces Rápidos",
     "connect": "Conectar",
     "languages": "Idiomas",

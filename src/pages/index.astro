@@ -1,19 +1,19 @@
 ---
-// Redirección relativa compatible con Vercel, GitHub Pages y dominios personalizados
+// Relative redirect defaulting to English (/en/)
 ---
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0;url=./es/">
+  <meta http-equiv="refresh" content="0;url=./en/">
   <script is:inline>
     const currentPath = window.location.pathname.replace(/\/+$/, '');
-    window.location.replace(currentPath + '/es/');
+    window.location.replace(currentPath + '/en/');
   </script>
-  <title>Javier Sáez | Redirigiendo...</title>
+  <title>Javier Sáez | Redirecting...</title>
 </head>
 <body style="background-color: #0a0d12; color: #f2e5c8; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
-  <p>Redirigiendo a <a href="./es/" style="color: #d4af37;">Javier Sáez Portfolio</a>...</p>
+  <p>Redirecting to <a href="./en/" style="color: #d4af37;">Javier Sáez Portfolio</a>...</p>
 </body>
 </html>
