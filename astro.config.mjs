@@ -4,6 +4,8 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
+  site: 'https://javiersaezmozos.github.io',
+  base: process.env.VERCEL ? '/' : '/portfolio',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
@@ -11,6 +13,5 @@ export default defineConfig({
       prefixDefaultLocale: true,
       redirectToDefaultLocale: true
     }
-  },
-  site: 'https://javi-trombone.github.io'
+  }
 });

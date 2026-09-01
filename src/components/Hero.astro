@@ -21,6 +21,7 @@ interface Props {
 }
 
 const { hero, presentation, currentLocale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section id="presentacion" class="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden">
@@ -43,7 +44,7 @@ const { hero, presentation, currentLocale } = Astro.props;
           <!-- Image container -->
           <div class="relative rounded-2xl overflow-hidden bg-dark-900 border border-gold-500/30 shadow-2xl">
             <img
-              src="/images/javier-saez.jpg"
+              src={`${base}/images/javier-saez.jpg`}
               alt="Javier Sáez - Trombonista y Pedagogo Musical"
               class="w-full h-auto object-cover object-center aspect-[4/5] transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
               loading="eager"
@@ -107,7 +108,7 @@ const { hero, presentation, currentLocale } = Astro.props;
         <div class="flex flex-wrap items-center gap-4 mb-10">
           <!-- Primary PDF Download -->
           <a
-            href="/docs/CV-Javier-Saez.pdf"
+            href={`${base}/docs/CV-Javier-Saez.pdf`}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-gold-600 via-amber-500 to-gold-400 text-dark-950 font-bold text-sm sm:text-base shadow-xl shadow-gold-500/20 hover:shadow-gold-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
