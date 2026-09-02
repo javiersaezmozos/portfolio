@@ -30,6 +30,11 @@ interface Props {
       recordingBadge: string;
       recordingTitle: string;
       recordingText: string;
+      featuredRecordings?: Array<{
+        title: string;
+        category: string;
+        platform: string;
+      }>;
       orchestrasTitle: string;
       orchestrasDescription: string;
       orchestras: Array<{
@@ -135,34 +140,53 @@ const { performance, currentLocale } = Astro.props;
         </h3>
       </div>
 
-      <!-- Featured Banner: Mad4Strings -->
+      <!-- Featured Banner: Mad4Strings and Soundtracks -->
       <div class="mb-10">
         <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-dark-850 via-dark-900 to-dark-850 border border-gold-500/30 p-6 sm:p-10 shadow-2xl">
           <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-amber-500/10 to-transparent pointer-events-none"></div>
 
-          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div class="max-w-2xl">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-gold-500/15 border border-gold-500/30 text-gold-300 text-xs font-bold uppercase tracking-wider mb-3">
-                <SocialIcons name="video" class="w-3.5 h-3.5" />
-                {performance.orchestralSection.recordingBadge}
-              </span>
-              <h4 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
-                {performance.orchestralSection.recordingTitle}
-              </h4>
-              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                {performance.orchestralSection.recordingText}
-              </p>
+          <div class="relative z-10 flex flex-col gap-6">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div class="max-w-2xl">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-gold-500/15 border border-gold-500/30 text-gold-300 text-xs font-bold uppercase tracking-wider mb-3">
+                  <SocialIcons name="video" class="w-3.5 h-3.5" />
+                  {performance.orchestralSection.recordingBadge}
+                </span>
+                <h4 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
+                  {performance.orchestralSection.recordingTitle}
+                </h4>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  {performance.orchestralSection.recordingText}
+                </p>
+              </div>
+
+              <div class="shrink-0 flex items-center gap-3">
+                <a
+                  href="#redes"
+                  class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-dark-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-gold-500/20"
+                >
+                  <SocialIcons name="youtube" class="w-4 h-4 text-dark-950" />
+                  <span>{currentLocale === 'es' ? 'Ver Canal @javi_trombone' : 'Watch @javi_trombone'}</span>
+                </a>
+              </div>
             </div>
 
-            <div class="shrink-0 flex items-center gap-3">
-              <a
-                href="#redes"
-                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-dark-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-gold-500/20"
-              >
-                <SocialIcons name="youtube" class="w-4 h-4 text-dark-950" />
-                <span>{currentLocale === 'es' ? 'Ver Canal @javi_trombone' : 'Watch @javi_trombone'}</span>
-              </a>
-            </div>
+            <!-- Specific Soundtracks and Album Highlights -->
+            {performance.orchestralSection.featuredRecordings && (
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-dark-750">
+                {performance.orchestralSection.featuredRecordings.map((rec) => (
+                  <div class="p-4 rounded-xl bg-dark-950/80 border border-dark-800 flex items-center justify-between gap-3">
+                    <div>
+                      <p class="font-serif font-bold text-white text-base">«{rec.title}»</p>
+                      <p class="text-xs text-slate-400">{rec.category}</p>
+                    </div>
+                    <span class="px-2.5 py-1 rounded bg-dark-850 text-gold-400 border border-dark-700 text-xs font-semibold shrink-0">
+                      {rec.platform}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
