@@ -36,7 +36,7 @@
     "paragraphs": [
       "Javier Sáez inició sus estudios de trombón con Félix García en el Ateneo Musical «Schola Cantorum» de la Vall d'Uixó (Castellón). En 2009 concluyó las Enseñanzas Profesionales de Música en la especialidad de Trombón en el conservatorio profesional de dicha localidad con Premio Fin de Grado.",
       "En 2013 obtuvo el Título Superior de Música en el Real Conservatorio Superior de Música de Madrid (RCSMM) bajo la dirección de José Enrique Cotolí, logrando la máxima calificación de Matrícula de Honor en el recital de fin de carrera. En 2018 completó asimismo las Enseñanzas Profesionales en la especialidad de Tuba con el bombardino en el Conservatorio Profesional de Música «Manuel de Falla» de Alcorcón, obteniendo nuevamente el Premio Fin de Grado.",
-      "Su perfil docente e investigador se fundamenta en una triple titulación de posgrado universitario: Máster en Formación del Profesorado (UCM, 2015), Máster en Pedagogía Musical (UNIR, 2022) y Máster en Pedagogía Instrumental (UAX, 2025). En el ámbito profesional, despliega una polifacética actividad interpretativa como solista, músico de cámara y orquestal, además de su consolidada labor docente en conservatorios y centros educativos."
+      "Su perfil docente e investigador se fundamenta en una triple titulación de posgrado universitario: Máster en Formación del Profesorado (UCM, 2015), Máster en Pedagogía Musical (UNIR, 2022) y Máster en Pedagogía Instrumental (UAX, 2025). En el ámbito profesional, ha participado en la grabación de destacadas bandas sonoras como «Otros Mundos» para Movistar+ o «Klaus» para Netflix, y en álbumes discográficos como «Incendios» de Conchita con Mad4Strings, compaginando colaboraciones orquestales con su labor docente en conservatorios."
     ],
     "quote": "«La pedagogía musical y la excelencia interpretativa son dos disciplinas inseparables que se nutren mutuamente en el escenario y en el aula.»"
   },
@@ -172,11 +172,16 @@
     },
     "orchestralSection": {
       "title": "Experiencia Orquestal y Grabaciones",
-      "recordingBadge": "Grabaciones y Sesiones de Banda Sonora",
-      "recordingTitle": "Grabaciones Audiovisuales con Mad4Strings",
-      "recordingText": "Participación en sesiones de grabación audiovisual para bandas sonoras de cine, televisión, producciones multimedia y plataformas internacionales con la orquesta de sesión Mad4Strings.",
+      "recordingBadge": "Bandas Sonoras & Grabaciones de Estudio",
+      "recordingTitle": "Grabaciones Audiovisuales y Discográficas con Mad4Strings",
+      "recordingText": "Participación en sesiones de grabación para bandas sonoras cinematográficas y producciones de televisión y streaming internacional, destacando «Klaus» (Netflix) y «Otros Mundos» (Movistar+), así como en álbumes de estudio como «Incendios» de Conchita junto a la prestigiosa orquesta de sesión Mad4Strings.",
+      "featuredRecordings": [
+        { "title": "Klaus", "category": "Banda Sonora Original", "platform": "Netflix" },
+        { "title": "Otros Mundos", "category": "Banda Sonora Serie", "platform": "Movistar+" },
+        { "title": "Incendios", "category": "Álbum de Estudio", "platform": "Conchita" }
+      ],
       "orchestrasTitle": "Orquestas y Agrupaciones Profesionales",
-      "orchestrasDescription": "Colaboraciones como trombonista y tubista en formaciones sinfónicas, ópera y música contemporánea de primer nivel:",
+      "orchestrasDescription": "Colaboraciones como trombonista y bombardinista en formaciones sinfónicas, ópera y música contemporánea de primer nivel:",
       "orchestras": [
         { "name": "Plural Ensemble", "tag": "Música Contemporánea" },
         { "name": "Orquesta Sinfónica de RTVE (ORTVE)", "tag": "Sinfónica Nacional" },

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Javier Sáez | Trombonist, Music Pedagogue & Researcher",
-    "description": "Official website and professional portfolio of Javier Sáez: Trombonist, Euphonium Player, Music Pedagogue and Researcher. Discover his academic, performance and teaching career.",
+    "description": "Official website and professional portfolio of Javier Sáez: Trombonist, Euphonium Player, Music Pedagogue and Researcher. Discover his academic background, performance career, and teaching experience.",
     "ogImage": "/images/javier-saez.jpg",
     "locale": "en"
   },
@@ -11,7 +11,7 @@
     "masterclasses": "Continuing Education & Masterclasses",
     "performance": "Performance Experience",
     "teaching": "Teaching Career",
-    "awards": "Awards",
+    "awards": "Awards & Recognitions",
     "social": "@javi_trombone Channels",
     "contact": "Contact",
     "langSwitch": "ES"
@@ -34,18 +34,18 @@
     "title": "Presentation",
     "subtitle": "Artistic and Pedagogical Profile",
     "paragraphs": [
-      "Javier Sáez began his trombone studies under Félix García at the Ateneo Musical «Schola Cantorum» in la Vall d'Uixó (Castellón). In 2009, he completed his Professional Music Studies in Trombone at the local conservatory, graduating with the Extraordinary Graduation Prize (Premio Fin de Grado).",
+      "Javier Sáez began his trombone studies under Félix García at the Ateneo Musical «Schola Cantorum» in la Vall d'Uixó (Castellón, Spain). In 2009, he completed his Professional Music Studies in Trombone at the local conservatory, graduating with the Extraordinary Graduation Prize (Premio Fin de Grado).",
       "In 2013, he earned his Bachelor of Music (Higher Degree) in Trombone Performance at the Real Conservatorio Superior de Música de Madrid (RCSMM) under José Enrique Cotolí, graduating with Honors (Matrícula de Honor) in his final degree recital. In 2018, he further completed his Professional Music Studies in Tuba and Euphonium at the «Manuel de Falla» Professional Music Conservatory in Alcorcón, once again receiving the Extraordinary Graduation Prize.",
-      "His pedagogical and research background is built upon a triple master’s degree profile: Master's in Teacher Training (UCM, 2015), Master's in Music Pedagogy (UNIR, 2022), and Master's in Instrumental Pedagogy (UAX, 2025). In the professional circuit, he displays versatile performing activity as a soloist, chamber musician, and orchestral artist, alongside his extensive teaching work across conservatories and music schools."
+      "His pedagogical and research profile is built upon a triple university master's degree: Master's in Teacher Training (UCM, 2015), Master's in Music Pedagogy (UNIR, 2022), and Master's in Instrumental Pedagogy (UAX, 2025). In the professional circuit, he has participated in the recording of prominent soundtracks such as «Otros Mundos» for Movistar+ and «Klaus» for Netflix, as well as studio albums including «Incendios» by Conchita with Mad4Strings, while balancing symphonic orchestral collaborations with an established teaching career."
     ],
     "quote": "«Music pedagogy and artistic performance excellence are inseparable disciplines that nurture each other on the concert stage and in the classroom.»"
   },
   "academic": {
-    "title": "Formación académica",
-    "subtitle": "Higher Music Degrees and University Master's Degrees",
+    "title": "Academic Background",
+    "subtitle": "Higher Music Education and Postgraduate University Degrees",
     "tripleMaster": {
       "title": "Triple Postgraduate Master's Degree",
-      "description": "University pedagogical, didactic, and musicological research specialization:",
+      "description": "University specialization in instrumental pedagogy, music didactics, and educational research:",
       "items": [
         {
           "degree": "Master's Degree in Instrumental Pedagogy",
@@ -94,9 +94,9 @@
     ]
   },
   "masterclasses": {
-    "title": "Formación continua y Masterclasses",
-    "subtitle": "Advanced Training with Internationally Renowned Soloists and Pedagogues",
-    "description": "He has complemented his training through advanced courses and international masterclasses led by acclaimed brass virtuosos and masters:",
+    "title": "Continuing Education and Masterclasses",
+    "subtitle": "Advanced Masterclasses with Internationally Renowned Soloists and Pedagogues",
+    "description": "He has expanded his training through international advanced courses, orchestral performance masterclasses, and specialized seminars led by acclaimed brass masters:",
     "teachers": [
       { "name": "Gilles Millière", "role": "International Soloist & Pedagogue", "institution": "CNSM Paris" },
       { "name": "Thomas Horch", "role": "Principal Trombone", "institution": "Bavarian Radio Symphony Orchestra (BRSO)" },
@@ -114,11 +114,11 @@
     ]
   },
   "performance": {
-    "title": "Experiencia interpretativa: orquestal, camerística y solista",
-    "subtitle": "Orchestras, Chamber Ensembles & Soloist Performances",
+    "title": "Performance Experience: Orchestral, Chamber & Soloist",
+    "subtitle": "Symphonic Orchestras, Chamber Formations & Soloist Performances",
     "soloSection": {
       "title": "As a Soloist",
-      "subtitle": "Soloist Concerts with Symphony Orchestra & Bands",
+      "subtitle": "Soloist Appearances with Symphony Orchestra and Concert Bands",
       "items": [
         {
           "work": "Concerto for Trombone and Military Band",
@@ -142,7 +142,7 @@
     },
     "chamberSection": {
       "title": "Brass Chamber Ensembles",
-      "subtitle": "Chamber Formations and Brass Bands",
+      "subtitle": "Chamber Ensembles and British Brass Bands",
       "items": [
         {
           "name": "«And The Brass»",
@@ -171,12 +171,17 @@
       ]
     },
     "orchestralSection": {
-      "title": "Orchestral Experience and Recordings",
-      "recordingBadge": "Soundtrack Sessions & Audiovisual Production",
-      "recordingTitle": "Audiovisual Recording Sessions with Mad4Strings",
-      "recordingText": "Participation in scoring sessions and audiovisual recordings for motion picture soundtracks, television, multimedia productions, and international streaming platforms with the premier session orchestra Mad4Strings.",
+      "title": "Orchestral Experience & Audiovisual Recordings",
+      "recordingBadge": "Soundtracks & Studio Recordings",
+      "recordingTitle": "Audiovisual and Album Recording Sessions with Mad4Strings",
+      "recordingText": "Participation in scoring sessions and audiovisual recordings for motion picture soundtracks, television, and international streaming platforms—including «Klaus» (Netflix) and «Otros Mundos» (Movistar+)—as well as commercial album releases such as «Incendios» by Conchita with the premier session orchestra Mad4Strings.",
+      "featuredRecordings": [
+        { "title": "Klaus", "category": "Original Soundtrack", "platform": "Netflix" },
+        { "title": "Otros Mundos", "category": "Original Soundtrack", "platform": "Movistar+" },
+        { "title": "Incendios", "category": "Studio Album", "platform": "Conchita" }
+      ],
       "orchestrasTitle": "Professional Orchestras & Ensembles",
-      "orchestrasDescription": "Performances and collaborations as trombonist and tubist with leading symphonic, opera, and contemporary ensembles:",
+      "orchestrasDescription": "Performances and collaborations as a trombonist and euphonium player with leading symphonic, opera, and contemporary ensembles:",
       "orchestras": [
         { "name": "Plural Ensemble", "tag": "Contemporary Music" },
         { "name": "Spanish Radio and Television Symphony Orchestra (ORTVE)", "tag": "National Symphony" },
@@ -192,8 +197,8 @@
     }
   },
   "teaching": {
-    "title": "Trayectoria docente",
-    "subtitle": "Pedagogical Career & Institutional Teaching",
+    "title": "Teaching Career",
+    "subtitle": "Institutional Teaching & Pedagogical Experience",
     "description": "A distinguished track record in instrumental education, brass ensemble direction, and student preparation across official music conservatories and schools:",
     "positions": [
       {
@@ -223,7 +228,7 @@
     ]
   },
   "awards": {
-    "title": "Premios y Reconocimientos",
+    "title": "Awards & Recognitions",
     "subtitle": "Academic Distinctions and Competition Laurels",
     "items": [
       {
@@ -259,7 +264,7 @@
     ]
   },
   "social": {
-    "title": "Redes y Canales Digitales",
+    "title": "Digital Channels & Media",
     "subtitle": "Audiovisual Broadcast & Community (@javi_trombone)",
     "description": "Follow official performances, pedagogical insights, rehearsal streams, and updates on Javier Sáez's platforms.",
     "handle": "@javi_trombone",
