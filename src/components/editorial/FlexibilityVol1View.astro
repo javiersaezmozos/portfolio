@@ -1,0 +1,467 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TrilogyBook3D from '../TrilogyBook3D.astro';
+import SheetMusicViewer from '../SheetMusicViewer.astro';
+import esData from '../../data/es.json';
+import enData from '../../data/en.json';
+import { getVol1Faqs, getVol1Syllabus } from '../../data/methods-flexibility';
+import { getMethodsPaths, type SupportedLocale } from '../../utils/i18n-routes';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isEs = locale === 'es';
+const siteData = isEs ? esData : enData;
+const paths = getMethodsPaths(locale, base);
+const syllabusLevels = getVol1Syllabus(locale);
+const faqs = getVol1Faqs(locale);
+
+const amazonDomain = isEs ? 'amazon.es' : 'amazon.com';
+const kdpUrl = `https://www.${amazonDomain}/s?k=Javier+Saez+Mozos+Trombon+Flexibilidad`;
+const kindleUrl = `https://www.${amazonDomain}/s?k=Javier+Saez+Mozos+Trombon+Flexibilidad+Kindle`;
+
+const vol1Meta = isEs
+  ? {
+      title: 'Trombón Flexibilidad · Volumen 1 (Elemental) · Amazon KDP y Kindle | Javier Sáez',
+      description:
+        'Ficha técnica y comercial de «Trombón · Flexibilidad · Volumen 1 (Elemental, hasta Fa4)» de Javier Sáez Mozos. Disponible en el lanzamiento exclusivamente en Amazon KDP (Tapa Blanda) y Amazon Kindle.',
+      ogImage: '/images/metodos/portada-duo-trombot.jpg',
+      locale: 'es',
+    }
+  : {
+      title: 'Trombone Flexibility · Volume 1 (Elementary) · Amazon KDP & Kindle | Javier Sáez',
+      description:
+        'Technical & commercial sheet for «Trombone · Flexibility · Volume 1 (Elementary, up to F4)» by Javier Sáez Mozos. Launch exclusive on Amazon KDP (Paperback) and Amazon Kindle.',
+      ogImage: '/images/metodos/portada-duo-trombot.jpg',
+      locale: 'en',
+    };
+
+const bookSchema = isEs
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Book',
+      name: 'Trombón · Flexibilidad · Volumen 1 (Elemental)',
+      alternateName: 'Colección Metales Nobles · Volumen 1 (Cobre)',
+      author: {
+        '@type': 'Person',
+        name: 'Javier Sáez Mozos',
+        url: 'https://www.javisaez.com/es',
+      },
+      bookEdition: '1.ª Edición (Amazon KDP & Amazon Kindle)',
+      bookFormat: ['https://schema.org/Paperback', 'https://schema.org/EBook'],
+      inLanguage: 'es',
+      abridged: false,
+      description:
+        'Método progresivo e interactivo de flexibilidad para trombón (Nivel Elemental, 2.º a 4.º de Enseñanzas Elementales, hasta Fa4) con 12 bloques pedagógicos, 120 ejercicios en espejo, 12 estudios melódicos y 15 códigos QR hacia videopartituras con TromBot IA.',
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'Book',
+      name: 'Trombone · Flexibility · Volume 1 (Elementary)',
+      alternateName: 'Noble Metals Collection · Volume 1 (Copper)',
+      author: {
+        '@type': 'Person',
+        name: 'Javier Sáez Mozos',
+        url: 'https://www.javisaez.com/en',
+      },
+      bookEdition: '1st Edition (Amazon KDP & Amazon Kindle)',
+      bookFormat: ['https://schema.org/Paperback', 'https://schema.org/EBook'],
+      inLanguage: 'es',
+      abridged: false,
+      description:
+        'Progressive and interactive trombone flexibility method (Elementary Level, up to F4) featuring 12 pedagogical blocks, 120 mirror exercises, 12 melodic etudes, and 15 QR codes linking to interactive video scores with TromBot AI (multilingual subtitles ES/EN/DE/IT).',
+    };
+
+const copy = isEs
+  ? {
+      home: 'Inicio',
+      methods: 'Métodos',
+      trilogy: 'Trilogía Flexibilidad',
+      current: 'Volumen 1 · Elemental',
+      metalPill: 'Volumen 1 · Cobre Acústico (#E89758)',
+      launchPill: 'Lanzamiento Exclusivo en Amazon',
+      titleLine1: 'Trombón · Flexibilidad ',
+      titleLine2: 'Volumen 1 · Nivel Elemental',
+      lead1: 'Método progresivo e interactivo diseñado para los cursos ',
+      leadStrong1: '2.º, 3.º y 4.º de Enseñanzas Elementales',
+      lead2: ' (registro inicial hasta el ',
+      leadStrong2: '6.º parcial, Fa₄',
+      lead3: '). Combina el grabado musical de gran tamaño (',
+      leadStrong3: 'rastral de 7,0 mm en fuente SMuFL Leland',
+      lead4: ') con la asistencia pedagógica de ',
+      leadStrong4: 'TromBot',
+      lead5: ' y 15 accesos QR a videopartituras con subtítulos en 4 idiomas.',
+      specs: [
+        { k: 'Tesitura', v: 'Sib₂ a Fa₄', accent: true },
+        { k: 'Estructura', v: '3 Niveles · 12 Bloques', accent: false },
+        { k: 'Rastral / Formato', v: '7,0 mm · US Letter', accent: false },
+        { k: 'Ecosistema QR', v: '15 QR · ES/EN/DE/IT', accent: false },
+      ],
+      standTitle: 'Ergonomía de atril garantizada:',
+      standBodyPrefix: ' La edición impresa de Amazon KDP incorpora un ',
+      standBodyHighlight: 'margen interior de seguridad de 20 mm',
+      standBodySuffix:
+        ' para evitar que ninguna clave o nota quede oculta en el pliegue central del libro, y un interior en tinta 100 % negra pura sin tramas grises para máxima legibilidad bajo iluminación de escenario o aula.',
+      boxEyebrow: 'Canales Oficiales de Lanzamiento',
+      boxTitle: 'Adquirir Volumen 1 en Amazon',
+      boxSub:
+        'En el lanzamiento, el método está disponible exclusivamente en Amazon KDP (formato físico) y Amazon Kindle (formato digital).',
+      kdpBadge: 'Edición Impresa Oficial',
+      kdpTitle: 'Amazon KDP · Tapa Blanda (Paperback)',
+      kdpBullets: [
+        '• Cubierta en acabado Cobre sobre Grafito Acústico (#1A1B1E) con lomo de colección.',
+        '• Papel blanco de alto gramaje con margen interior de 20 mm para atril.',
+        '• Envío directo con logística Amazon Prime según tu país.',
+      ],
+      kdpBtn: 'Comprar Tapa Blanda en Amazon KDP',
+      kindleBadge: 'Descarga Inmediata',
+      kindleTitle: 'Amazon Kindle · Edición Digital',
+      kindleBullets: [
+        '• Maquetación fija de alta definición idéntica al libro impreso para iPad, tablets y app Kindle.',
+        '• Enlaces interactivos directos y códigos QR hacia las 15 videopartituras Adilo.',
+        '• Disponibilidad instantánea en cualquier tienda internacional de Amazon.',
+      ],
+      kindleBtn: 'Comprar Edición Digital en Amazon Kindle',
+      alreadyBought: '¿Ya lo has comprado en Amazon?',
+      registerLink: 'Registrar ejemplar →',
+      syllabusEyebrow: 'Arquitectura Pedagógica · 12 Bloques Progresivos',
+      syllabusTitle: 'Índice Curricular del Volumen 1 (2.º a 4.º de EE.EE.)',
+      syllabusDesc1: 'Cada bloque pedagógico consta de ',
+      syllabusDescStrong1: '10 ejercicios dobles en espejo',
+      syllabusDesc2:
+        ' (practicables desde la 1.ª hasta la 7.ª posición para interiorizar la correspondencia mecánica y auditiva) seguidos de ',
+      syllabusDescStrong2: '1 estudio melódico integrador',
+      syllabusDesc3: ' y su código QR de videopartitura.',
+      testQr: 'Probar ruta QR →',
+      faqEyebrow: 'Resolución de Dudas · Lanzamiento en Amazon',
+      faqTitle: 'Preguntas Frecuentes (Amazon KDP y Amazon Kindle)',
+    }
+  : {
+      home: 'Home',
+      methods: 'Methods',
+      trilogy: 'Flexibility Trilogy',
+      current: 'Volume 1 · Elementary',
+      metalPill: 'Volume 1 · Acoustic Copper (#E89758)',
+      launchPill: 'Exclusive Launch on Amazon',
+      titleLine1: 'Trombone · Flexibility ',
+      titleLine2: 'Volume 1 · Elementary Level',
+      lead1: 'Progressive and interactive method crafted for ',
+      leadStrong1: 'Elementary Conservatory Studies (Years 2–4)',
+      lead2: ' (initial register up to the ',
+      leadStrong2: '6th partial, F₄',
+      lead3: '). Combines oversized music engraving (',
+      leadStrong3: '7.0 mm rastral in SMuFL Leland',
+      lead4: ') with pedagogical guidance from ',
+      leadStrong4: 'TromBot',
+      lead5: ' and 15 QR accesses to interactive video scores with 4-language subtitles.',
+      specs: [
+        { k: 'Range', v: 'Bb₂ to F₄', accent: true },
+        { k: 'Structure', v: '3 Levels · 12 Blocks', accent: false },
+        { k: 'Rastral / Trim', v: '7.0 mm · US Letter', accent: false },
+        { k: 'QR Ecosystem', v: '15 QR · ES/EN/DE/IT', accent: false },
+      ],
+      standTitle: 'Guaranteed music-stand ergonomics:',
+      standBodyPrefix: ' The Amazon KDP print edition incorporates a ',
+      standBodyHighlight: '20 mm inner safety gutter margin',
+      standBodySuffix:
+        ' so clefs and notes never disappear into the center fold, paired with crisp 100% pure black vector ink for high contrast under stage or practice-room lighting.',
+      boxEyebrow: 'Official Launch Channels',
+      boxTitle: 'Get Volume 1 on Amazon',
+      boxSub:
+        'At launch, the method is exclusively available on Amazon KDP (Paperback) and Amazon Kindle (Digital Print Replica).',
+      kdpBadge: 'Official Print Edition',
+      kdpTitle: 'Amazon KDP · Paperback',
+      kdpBullets: [
+        '• Copper foil aesthetic on Acoustic Graphite (#1A1B1E) cover with signature spine badge.',
+        '• Crisp white stock featuring a 20 mm stand-safe inner gutter margin.',
+        '• Worldwide fulfillment via Amazon Prime logistics.',
+      ],
+      kdpBtn: 'Buy Paperback on Amazon KDP',
+      kindleBadge: 'Instant Access',
+      kindleTitle: 'Amazon Kindle · Digital Edition',
+      kindleBullets: [
+        '• Fixed-layout Print Replica mastering identical to the physical book for iPad, tablets & Kindle app.',
+        '• Direct clickable links and QR codes routing to all 15 ad-free Adilo video scores.',
+        '• Instant delivery across all international Amazon Kindle stores.',
+      ],
+      kindleBtn: 'Buy Digital Edition on Amazon Kindle',
+      alreadyBought: 'Already bought your copy on Amazon?',
+      registerLink: 'Register copy →',
+      syllabusEyebrow: 'Pedagogical Architecture · 12 Progressive Blocks',
+      syllabusTitle: 'Volume 1 Curriculum Syllabus (Years 2–4)',
+      syllabusDesc1: 'Each pedagogical block consists of ',
+      syllabusDescStrong1: '10 double mirror exercises',
+      syllabusDesc2:
+        ' (playable from 1st through 7th slide position to build mechanical and aural consistency) followed by ',
+      syllabusDescStrong2: '1 integrative melodic etude',
+      syllabusDesc3: ' and its corresponding video-score QR code.',
+      testQr: 'Test QR route →',
+      faqEyebrow: 'FAQ · Amazon Launch Editions',
+      faqTitle: 'Frequently Asked Questions (Amazon KDP & Kindle)',
+    };
+---
+
+<Layout
+  meta={vol1Meta}
+  nav={siteData.nav}
+  footer={siteData.footer}
+  currentLocale={locale}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(bookSchema)} />
+
+  <main id="main-vol1-content" class="bg-gradient-auditorium min-h-screen pt-6 pb-24 text-white">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <nav aria-label="Breadcrumbs" class="py-3 text-xs text-slate-400">
+        <ol class="breadcrumb-list flex flex-wrap items-center">
+          <li>
+            <a href={paths.home} class="hover:text-copper-light transition-colors focus:outline-none focus:underline">
+              {copy.home}
+            </a>
+          </li>
+          <li>
+            <a href={paths.catalog} class="hover:text-copper-light transition-colors focus:outline-none focus:underline">
+              {copy.methods}
+            </a>
+          </li>
+          <li>
+            <a href={paths.trilogy} class="hover:text-copper-light transition-colors focus:outline-none focus:underline">
+              {copy.trilogy}
+            </a>
+          </li>
+          <li>
+            <a href={paths.vol1} aria-current="page" class="font-medium text-slate-200">
+              {copy.current}
+            </a>
+          </li>
+        </ol>
+      </nav>
+
+      <section aria-labelledby="vol1-hero-heading" class="mt-4 rounded-3xl border border-copper/40 bg-graphite-surface/85 p-6 sm:p-10 shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <span class="inline-flex items-center gap-2 rounded-full border border-copper/50 bg-copper/15 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-copper-light">
+                <span class="h-2 w-2 rounded-full bg-copper"></span>
+                {copy.metalPill}
+              </span>
+              <span class="inline-flex items-center rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-mono text-emerald-300">
+                {copy.launchPill}
+              </span>
+            </div>
+
+            <h1 id="vol1-hero-heading" class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
+              {copy.titleLine1}<span class="block text-copper-light mt-1">{copy.titleLine2}</span>
+            </h1>
+
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              {copy.lead1}<strong class="text-white">{copy.leadStrong1}</strong>{copy.lead2}<strong class="text-copper-light">{copy.leadStrong2}</strong>{copy.lead3}<strong class="text-white">{copy.leadStrong3}</strong>{copy.lead4}<strong class="text-white">{copy.leadStrong4}</strong>{copy.lead5}
+            </p>
+
+            <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {copy.specs.map((item) => (
+                <div class="rounded-xl border border-white/10 bg-graphite-deep/80 p-3">
+                  <dt class="text-[11px] font-mono uppercase text-slate-400">{item.k}</dt>
+                  <dd class={`mt-1 text-sm font-bold ${item.accent ? 'text-copper-light' : 'text-white'}`}>{item.v}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div class="rounded-2xl border border-white/10 bg-graphite-deep/60 p-4 text-xs text-slate-300 leading-relaxed">
+              <strong class="text-white font-semibold">{copy.standTitle}</strong>
+              {copy.standBodyPrefix}
+              <strong class="text-copper-light">{copy.standBodyHighlight}</strong>
+              {copy.standBodySuffix}
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 rounded-2xl border border-copper/50 bg-graphite-deep/95 p-6 shadow-metal-copper space-y-5">
+            <div class="border-b border-white/10 pb-4">
+              <span class="text-[11px] font-mono uppercase tracking-widest text-copper-light">
+                {copy.boxEyebrow}
+              </span>
+              <h2 class="mt-1 font-serif text-xl font-bold text-white">
+                {copy.boxTitle}
+              </h2>
+              <p class="mt-1 text-xs text-slate-400">
+                {copy.boxSub}
+              </p>
+            </div>
+
+            <article class="rounded-xl border border-copper/45 bg-copper/10 p-4 space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="inline-block rounded bg-copper px-2 py-0.5 text-[10px] font-mono font-bold uppercase text-graphite-deep">
+                    {copy.kdpBadge}
+                  </span>
+                  <h3 class="mt-1.5 font-serif text-base font-bold text-white">
+                    {copy.kdpTitle}
+                  </h3>
+                </div>
+                <span class="text-xs font-mono text-copper-light">US Letter</span>
+              </div>
+              <ul class="space-y-1.5 text-xs text-slate-300">
+                {copy.kdpBullets.map((b) => <li>{b}</li>)}
+              </ul>
+              <a
+                href={kdpUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-copper px-4 py-3 text-xs font-bold text-graphite-deep shadow-md hover:bg-copper-light transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+              >
+                <span>{copy.kdpBtn}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article class="rounded-xl border border-white/15 bg-graphite-surface/90 p-4 space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="inline-block rounded border border-copper/40 bg-copper/15 px-2 py-0.5 text-[10px] font-mono font-semibold uppercase text-copper-light">
+                    {copy.kindleBadge}
+                  </span>
+                  <h3 class="mt-1.5 font-serif text-base font-bold text-white">
+                    {copy.kindleTitle}
+                  </h3>
+                </div>
+                <span class="text-xs font-mono text-slate-400">Print Replica</span>
+              </div>
+              <ul class="space-y-1.5 text-xs text-slate-300">
+                {copy.kindleBullets.map((b) => <li>{b}</li>)}
+              </ul>
+              <a
+                href={kindleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-copper/60 bg-copper/20 px-4 py-3 text-xs font-bold text-white hover:bg-copper/30 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+              >
+                <span>{copy.kindleBtn}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-3 text-xs">
+              <span class="text-slate-400">{copy.alreadyBought}</span>
+              <a
+                href={paths.register}
+                class="font-mono font-semibold text-copper-light hover:underline"
+              >
+                {copy.registerLink}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <TrilogyBook3D initialVolume={1} locale={locale} showControls={true} />
+
+    <SheetMusicViewer locale={locale} />
+
+    <section aria-labelledby="vol1-syllabus-heading" class="mx-auto max-w-6xl px-4 sm:px-6 mt-12">
+      <div class="rounded-3xl border border-graphite-border bg-graphite-surface/80 p-6 sm:p-10">
+        <div class="max-w-3xl">
+          <span class="text-xs font-mono uppercase tracking-widest text-copper-light">
+            {copy.syllabusEyebrow}
+          </span>
+          <h2 id="vol1-syllabus-heading" class="mt-1 font-serif text-2xl sm:text-3xl font-bold text-white">
+            {copy.syllabusTitle}
+          </h2>
+          <p class="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+            {copy.syllabusDesc1}<strong class="text-white">{copy.syllabusDescStrong1}</strong>{copy.syllabusDesc2}<strong class="text-white">{copy.syllabusDescStrong2}</strong>{copy.syllabusDesc3}
+          </p>
+        </div>
+
+        <div class="mt-8 space-y-4">
+          {syllabusLevels.map((lvl, idx) => (
+            <details
+              open={idx === 0}
+              class="group rounded-2xl border border-white/10 bg-graphite-deep/85 p-5 transition-colors open:border-copper/45"
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-base sm:text-lg font-bold text-white focus:outline-none">
+                <span>
+                  {lvl.level}
+                  <span class="block font-sans text-xs font-normal text-copper-light mt-0.5">
+                    {lvl.range}
+                  </span>
+                </span>
+                <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-xs text-copper-light transition-transform group-open:rotate-180">
+                  ▼
+                </span>
+              </summary>
+
+              <div class="mt-4 border-t border-white/10 pt-4 space-y-4">
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  {lvl.summary}
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {lvl.blocks.map((b) => (
+                    <article class="rounded-xl border border-white/10 bg-graphite-surface/70 p-4 flex flex-col justify-between gap-2">
+                      <div>
+                        <div class="flex items-center justify-between gap-2">
+                          <span class="font-mono text-[11px] text-copper-light">
+                            QR: /e/{b.code}
+                          </span>
+                          <a
+                            href={`${base}/e/${b.code}`}
+                            class="text-[11px] font-mono text-slate-300 hover:text-copper-light underline"
+                          >
+                            {copy.testQr}
+                          </a>
+                        </div>
+                        <h3 class="mt-1 font-serif text-sm font-bold text-white">
+                          {b.title}
+                        </h3>
+                        <p class="mt-1 text-xs text-slate-300">
+                          {b.detail}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="vol1-faq-heading" class="mx-auto max-w-6xl px-4 sm:px-6 mt-12">
+      <div class="rounded-3xl border border-graphite-border bg-graphite-surface/80 p-6 sm:p-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-copper-light">
+          {copy.faqEyebrow}
+        </span>
+        <h2 id="vol1-faq-heading" class="mt-1 font-serif text-2xl sm:text-3xl font-bold text-white">
+          {copy.faqTitle}
+        </h2>
+
+        <div class="mt-6 space-y-3">
+          {faqs.map((faq) => (
+            <details class="group rounded-2xl border border-white/10 bg-graphite-deep/80 p-5 open:border-copper/40">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm sm:text-base font-bold text-white focus:outline-none">
+                <span>{faq.question}</span>
+                <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 text-xs text-copper-light transition-transform group-open:rotate-180">
+                  ▼
+                </span>
+              </summary>
+              <p class="mt-3 border-t border-white/10 pt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .breadcrumb-list li:not(:first-child)::before {
+    content: "/" / "";
+    padding-inline: 0.6rem;
+    color: #64748b;
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import SocialIcons from './SocialIcons.astro';
+import { getAlternateLocalePath, getMethodsPaths } from '../utils/i18n-routes';
 
 interface Props {
   nav: {
@@ -9,6 +10,7 @@ interface Props {
     performance: string;
     teaching: string;
     awards: string;
+    methods?: string;
     social: string;
     contact?: string;
     langSwitch: string;
@@ -17,8 +19,11 @@ interface Props {
 }
 
 const { nav, currentLocale } = Astro.props;
-const otherLocale = currentLocale === 'es' ? 'en' : 'es';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const localeHome = `${base}/${currentLocale}`;
+const methodsHref = getMethodsPaths(currentLocale, base).trilogy;
+const esSwitchHref = getAlternateLocalePath(Astro.url.pathname, 'es', base);
+const enSwitchHref = getAlternateLocalePath(Astro.url.pathname, 'en', base);
 ---
 
 <header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-dark-950/80 border-b border-dark-800/80 transition-all duration-300">
@@ -43,14 +48,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden xl:flex items-center gap-6 text-sm font-medium text-slate-300" aria-label="Main Navigation">
-        <a href="#presentacion" class="hover:text-gold-400 transition-colors py-2">{nav.presentation}</a>
-        <a href="#formacion-academica" class="hover:text-gold-400 transition-colors py-2">{nav.academic}</a>
-        <a href="#masterclasses" class="hover:text-gold-400 transition-colors py-2">{nav.masterclasses}</a>
-        <a href="#experiencia-interpretativa" class="hover:text-gold-400 transition-colors py-2">{nav.performance}</a>
-        <a href="#trayectoria-docente" class="hover:text-gold-400 transition-colors py-2">{nav.teaching}</a>
-        <a href="#premios" class="hover:text-gold-400 transition-colors py-2">{nav.awards}</a>
-        <a href="#redes" class="hover:text-gold-400 transition-colors py-2 flex items-center gap-1.5 text-gold-400/90">
+      <nav class="hidden xl:flex items-center gap-5 text-sm font-medium text-slate-300" aria-label="Main Navigation">
+        <a href={`${localeHome}/#presentacion`} class="hover:text-gold-400 transition-colors py-2">{nav.presentation}</a>
+        <a href={`${localeHome}/#formacion-academica`} class="hover:text-gold-400 transition-colors py-2">{nav.academic}</a>
+        <a href={`${localeHome}/#masterclasses`} class="hover:text-gold-400 transition-colors py-2">{nav.masterclasses}</a>
+        <a href={`${localeHome}/#experiencia-interpretativa`} class="hover:text-gold-400 transition-colors py-2">{nav.performance}</a>
+        <a href={`${localeHome}/#trayectoria-docente`} class="hover:text-gold-400 transition-colors py-2">{nav.teaching}</a>
+        <a href={`${localeHome}/#premios`} class="hover:text-gold-400 transition-colors py-2">{nav.awards}</a>
+        <a
+          href={methodsHref}
+          class="inline-flex items-center gap-1.5 rounded-full border border-copper/40 bg-copper/10 px-3 py-1 text-copper-light hover:bg-copper/20 hover:text-white transition-colors"
+        >
+          <span>{nav.methods || (currentLocale === 'es' ? 'Métodos' : 'Methods')}</span>
+        </a>
+        <a href={`${localeHome}/#redes`} class="hover:text-gold-400 transition-colors py-2 flex items-center gap-1.5 text-gold-400/90">
           <SocialIcons name="video" class="w-4 h-4 text-gold-400" />
           <span>{nav.social}</span>
         </a>
@@ -86,7 +97,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <!-- Language Switcher -->
         <div class="flex items-center bg-dark-900 border border-dark-700/80 rounded-full p-1 text-xs font-semibold">
           <a
-            href={`${base}/en`}
+            href={enSwitchHref}
             class={`px-3 py-1 rounded-full transition-all ${
               currentLocale === 'en'
                 ? 'bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-sm'
@@ -97,7 +108,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             EN
           </a>
           <a
-            href={`${base}/es`}
+            href={esSwitchHref}
             class={`px-3 py-1 rounded-full transition-all ${
               currentLocale === 'es'
                 ? 'bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 font-bold shadow-sm'
@@ -116,7 +127,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <!-- Mobile Language Switcher -->
         <div class="flex items-center bg-dark-900 border border-dark-700 rounded-full p-0.5 text-xs font-semibold">
           <a
-            href={`${base}/en`}
+            href={enSwitchHref}
             class={`px-2.5 py-0.5 rounded-full ${
               currentLocale === 'en' ? 'bg-gold-500 text-dark-950 font-bold' : 'text-slate-400'
             }`}
@@ -124,7 +135,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             EN
           </a>
           <a
-            href={`${base}/es`}
+            href={esSwitchHref}
             class={`px-2.5 py-0.5 rounded-full ${
               currentLocale === 'es' ? 'bg-gold-500 text-dark-950 font-bold' : 'text-slate-400'
             }`}
@@ -157,13 +168,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <!-- Mobile Drawer Menu -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-2xl px-4 pt-4 pb-6 space-y-4">
     <div class="flex flex-col space-y-3 text-base font-medium">
-      <a href="#presentacion" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.presentation}</a>
-      <a href="#formacion-academica" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.academic}</a>
-      <a href="#masterclasses" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.masterclasses}</a>
-      <a href="#experiencia-interpretativa" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.performance}</a>
-      <a href="#trayectoria-docente" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.teaching}</a>
-      <a href="#premios" class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.awards}</a>
-      <a href="#redes" class="mobile-nav-link text-gold-400 py-2 flex items-center gap-2 border-b border-dark-900 font-semibold">
+      <a href={`${localeHome}/#presentacion`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.presentation}</a>
+      <a href={`${localeHome}/#formacion-academica`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.academic}</a>
+      <a href={`${localeHome}/#masterclasses`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.masterclasses}</a>
+      <a href={`${localeHome}/#experiencia-interpretativa`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.performance}</a>
+      <a href={`${localeHome}/#trayectoria-docente`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.teaching}</a>
+      <a href={`${localeHome}/#premios`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.awards}</a>
+      <a href={methodsHref} class="mobile-nav-link text-copper-light hover:text-white py-2 border-b border-dark-900 font-semibold">
+        {nav.methods || (currentLocale === 'es' ? 'Métodos' : 'Methods')} · Trombón Flexibilidad
+      </a>
+      <a href={`${localeHome}/#redes`} class="mobile-nav-link text-gold-400 py-2 flex items-center gap-2 border-b border-dark-900 font-semibold">
         <SocialIcons name="video" class="w-5 h-5 text-gold-400" />
         <span>{nav.social}</span>
       </a>

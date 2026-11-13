@@ -1,0 +1,470 @@
+---
+import registroI18n from '../data/registro-i18n.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const webhookUrl = import.meta.env.PUBLIC_REGISTRO_WEBHOOK_URL || '';
+const defaultCopy = registroI18n.es;
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Ejemplar · Trombón Flexibilidad | Javier Sáez</title>
+    <meta
+      name="description"
+      content="Portal oficial de validación y activación de ejemplares para el método Trombón Flexibilidad de Javier Sáez Mozos."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-graphite-base text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+    <!-- Barra superior minimalista con selector de los 4 idiomas del libro -->
+    <header class="border-b border-graphite-border bg-graphite-deep/90 backdrop-blur-md">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <a
+          href={`${base}/es/metodos/flexibilidad`}
+          data-back-link
+          class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-copper-light hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400 rounded px-2 py-1"
+        >
+          <span aria-hidden="true">←</span>
+          <span data-i18n="backLink">{defaultCopy.backLink}</span>
+        </a>
+
+        <nav aria-label="Idioma de registro" class="flex items-center gap-1 rounded-full bg-graphite-surface p-1 border border-graphite-border text-xs font-semibold">
+          {(['es', 'en', 'de', 'it'] as const).map((code) => (
+            <button
+              type="button"
+              data-lang-btn={code}
+              aria-pressed={code === 'es' ? 'true' : 'false'}
+              class={`px-2.5 py-1 rounded-full uppercase transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400 ${
+                code === 'es'
+                  ? 'bg-copper text-dark-950 font-bold'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              {code}
+            </button>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-grow py-10 sm:py-14 px-4 sm:px-6 bg-gradient-auditorium">
+      <div class="mx-auto max-w-2xl">
+        <div class="rounded-2xl bg-graphite-surface/95 border border-copper/30 p-6 sm:p-10 shadow-2xl">
+          <!-- Cabecera Editorial -->
+          <div class="border-b border-white/10 pb-6">
+            <span
+              data-i18n="badge"
+              class="inline-block rounded-full border border-copper/40 bg-copper/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-copper-light"
+            >
+              {defaultCopy.badge}
+            </span>
+            <h1
+              data-i18n="title"
+              class="mt-3 font-serif text-2xl sm:text-3xl font-bold text-white"
+            >
+              {defaultCopy.title}
+            </h1>
+            <p
+              data-i18n="subtitle"
+              class="mt-1 font-serif italic text-sm sm:text-base text-copper"
+            >
+              {defaultCopy.subtitle}
+            </p>
+            <p
+              data-i18n="intro"
+              class="mt-3 text-sm text-slate-300 leading-relaxed"
+            >
+              {defaultCopy.intro}
+            </p>
+          </div>
+
+          <!-- Formulario Accesible de Activación -->
+          <form id="registro-form" class="mt-6 space-y-5" data-webhook-url={webhookUrl}>
+            <!-- Nombre completo -->
+            <div class="field">
+              <label for="reg-name" data-i18n="nameLabel" class="block text-sm font-medium text-slate-100">
+                {defaultCopy.nameLabel}
+              </label>
+              <span id="reg-name-hint" data-i18n="nameHint" class="block text-xs text-slate-400 mt-0.5 mb-1.5">
+                {defaultCopy.nameHint}
+              </span>
+              <input
+                id="reg-name"
+                name="name"
+                type="text"
+                required
+                minlength="2"
+                autocomplete="name"
+                aria-invalid="false"
+                aria-describedby="reg-name-hint"
+                data-error="reg-name-error"
+                class="w-full rounded-xl bg-graphite-deep border border-graphite-border px-4 py-2.5 text-sm text-white focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+              />
+              <div id="reg-name-error" class="error-msg mt-1.5 text-xs text-red-400">
+                <span role="img" aria-label="Error">❌</span>{' '}
+                <span data-i18n="nameError">{defaultCopy.nameError}</span>
+              </div>
+            </div>
+
+            <!-- Correo electrónico -->
+            <div class="field">
+              <label for="reg-email" data-i18n="emailLabel" class="block text-sm font-medium text-slate-100">
+                {defaultCopy.emailLabel}
+              </label>
+              <span id="reg-email-hint" data-i18n="emailHint" class="block text-xs text-slate-400 mt-0.5 mb-1.5">
+                {defaultCopy.emailHint}
+              </span>
+              <input
+                id="reg-email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                aria-invalid="false"
+                aria-describedby="reg-email-hint"
+                data-error="reg-email-error"
+                class="w-full rounded-xl bg-graphite-deep border border-graphite-border px-4 py-2.5 text-sm text-white focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+              />
+              <div id="reg-email-error" class="error-msg mt-1.5 text-xs text-red-400">
+                <span role="img" aria-label="Error">❌</span>{' '}
+                <span data-i18n="emailError">{defaultCopy.emailError}</span>
+              </div>
+            </div>
+
+            <!-- Edición de lanzamiento: Amazon KDP o Kindle -->
+            <div class="field">
+              <label for="reg-channel" data-i18n="channelLabel" class="block text-sm font-medium text-slate-100 mb-1.5">
+                {defaultCopy.channelLabel}
+              </label>
+              <select
+                id="reg-channel"
+                name="channel"
+                required
+                aria-invalid="false"
+                class="w-full rounded-xl bg-graphite-deep border border-graphite-border px-4 py-2.5 text-sm text-white focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+              >
+                {defaultCopy.channelOptions.map((opt) => (
+                  <option value={opt.value}>{opt.label}</option>
+                ))}
+              </select>
+            </div>
+
+            <!-- Número de pedido de Amazon -->
+            <div class="field">
+              <label for="reg-order" data-i18n="orderLabel" class="block text-sm font-medium text-slate-100">
+                {defaultCopy.orderLabel}
+              </label>
+              <span id="reg-order-hint" data-i18n="orderHint" class="block text-xs text-slate-400 mt-0.5 mb-1.5">
+                {defaultCopy.orderHint}
+              </span>
+              <input
+                id="reg-order"
+                name="orderId"
+                type="text"
+                required
+                minlength="6"
+                aria-invalid="false"
+                aria-describedby="reg-order-hint"
+                data-error="reg-order-error"
+                class="w-full rounded-xl bg-graphite-deep border border-graphite-border px-4 py-2.5 text-sm font-mono text-white focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+              />
+              <div id="reg-order-error" class="error-msg mt-1.5 text-xs text-red-400">
+                <span role="img" aria-label="Error">❌</span>{' '}
+                <span data-i18n="orderError">{defaultCopy.orderError}</span>
+              </div>
+            </div>
+
+            <!-- Notas opcionales -->
+            <div class="field">
+              <label for="reg-notes" data-i18n="notesLabel" class="block text-sm font-medium text-slate-100">
+                {defaultCopy.notesLabel}
+              </label>
+              <span id="reg-notes-hint" data-i18n="notesHint" class="block text-xs text-slate-400 mt-0.5 mb-1.5">
+                {defaultCopy.notesHint}
+              </span>
+              <textarea
+                id="reg-notes"
+                name="notes"
+                rows="2"
+                aria-describedby="reg-notes-hint"
+                class="w-full rounded-xl bg-graphite-deep border border-graphite-border px-4 py-2 text-sm text-white focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+              ></textarea>
+            </div>
+
+            <!-- Consentimiento RGPD -->
+            <div class="field pt-1">
+              <div class="flex items-start gap-3">
+                <input
+                  id="reg-gdpr"
+                  name="gdpr"
+                  type="checkbox"
+                  required
+                  aria-invalid="false"
+                  data-error="reg-gdpr-error"
+                  class="mt-1 h-4 w-4 rounded border-graphite-border bg-graphite-deep text-copper focus:ring-2 focus:ring-copper"
+                />
+                <label for="reg-gdpr" data-i18n="gdprLabel" class="text-xs text-slate-300 leading-relaxed cursor-pointer">
+                  {defaultCopy.gdprLabel}
+                </label>
+              </div>
+              <div id="reg-gdpr-error" class="error-msg mt-1.5 text-xs text-red-400">
+                <span role="img" aria-label="Error">❌</span>{' '}
+                <span data-i18n="gdprError">{defaultCopy.gdprError}</span>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="reg-submit-btn"
+              data-i18n="submitBtn"
+              class="w-full rounded-xl bg-gradient-copper px-5 py-3 text-sm font-bold text-dark-950 shadow-metal-copper transition-transform hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-gold-400"
+            >
+              {defaultCopy.submitBtn}
+            </button>
+          </form>
+
+          <!-- Panel de confirmación tras envío vía webhook -->
+          <div
+            id="reg-success-box"
+            hidden
+            class="mt-6 rounded-xl border border-emerald-500/40 bg-emerald-950/30 p-5 text-sm space-y-2"
+          >
+            <h2 data-i18n="successTitle" class="font-serif text-lg font-bold text-emerald-300">
+              {defaultCopy.successTitle}
+            </h2>
+            <p data-i18n="successText" class="text-slate-200 leading-relaxed">
+              {defaultCopy.successText}
+            </p>
+          </div>
+
+          <!-- Panel fallback por correo si el webhook aún no está desplegado -->
+          <div
+            id="reg-fallback-box"
+            hidden
+            class="mt-6 rounded-xl border border-copper/40 bg-copper/10 p-5 text-sm space-y-3"
+          >
+            <h2 data-i18n="fallbackTitle" class="font-serif text-lg font-bold text-copper-light">
+              {defaultCopy.fallbackTitle}
+            </h2>
+            <p data-i18n="fallbackText" class="text-slate-200 leading-relaxed">
+              {defaultCopy.fallbackText}
+            </p>
+            <a
+              id="reg-mailto-link"
+              href="mailto:info@javisaez.com"
+              data-i18n="fallbackBtn"
+              class="inline-flex items-center justify-center rounded-xl bg-gradient-copper px-4 py-2.5 text-xs font-bold text-dark-950"
+            >
+              {defaultCopy.fallbackBtn}
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script id="registro-i18n-data" type="application/json" set:html={JSON.stringify(registroI18n)} />
+
+    <style>
+      .error-msg {
+        display: none;
+      }
+
+      input:user-invalid,
+      select:user-invalid {
+        border-color: #ef4444;
+      }
+
+      input:user-invalid + .error-msg,
+      .field:has(input:user-invalid) .error-msg {
+        display: block;
+      }
+
+      input:user-valid {
+        border-color: rgba(16, 185, 129, 0.55);
+      }
+    </style>
+
+    <script>
+      function initRegistroPage() {
+        try {
+          const dataEl = document.getElementById('registro-i18n-data');
+          if (!dataEl?.textContent) return;
+          const dict = JSON.parse(dataEl.textContent) as Record<string, any>;
+
+          const langBtns = document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]');
+          const channelSelect = document.getElementById('reg-channel') as HTMLSelectElement | null;
+          const form = document.getElementById('registro-form') as HTMLFormElement | null;
+          const submitBtn = document.getElementById('reg-submit-btn') as HTMLButtonElement | null;
+          const successBox = document.getElementById('reg-success-box');
+          const fallbackBox = document.getElementById('reg-fallback-box');
+          const mailtoLink = document.getElementById('reg-mailto-link') as HTMLAnchorElement | null;
+
+          // Live region accesible para anunciar errores de campo al perder foco
+          const announcer = document.createElement('div');
+          announcer.setAttribute('aria-live', 'polite');
+          announcer.className = 'sr-only';
+          document.body.appendChild(announcer);
+
+          let currentLang = 'es';
+
+          const applyLang = (lang: string) => {
+            const safeLang = dict[lang] ? lang : 'es';
+            currentLang = safeLang;
+            const copy = dict[safeLang];
+            document.documentElement.lang = safeLang;
+
+            document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+              const key = el.dataset.i18n;
+              if (key && typeof copy[key] === 'string') {
+                el.textContent = copy[key];
+              }
+            });
+
+            if (channelSelect && Array.isArray(copy.channelOptions)) {
+              const prevVal = channelSelect.value;
+              channelSelect.innerHTML = '';
+              copy.channelOptions.forEach((opt: { value: string; label: string }) => {
+                const optionEl = document.createElement('option');
+                optionEl.value = opt.value;
+                optionEl.textContent = opt.label;
+                channelSelect.appendChild(optionEl);
+              });
+              if (prevVal) channelSelect.value = prevVal;
+            }
+
+            langBtns.forEach((btn) => {
+              const active = btn.dataset.langBtn === safeLang;
+              btn.setAttribute('aria-pressed', String(active));
+              btn.classList.toggle('bg-copper', active);
+              btn.classList.toggle('text-dark-950', active);
+              btn.classList.toggle('font-bold', active);
+              btn.classList.toggle('text-slate-300', !active);
+            });
+          };
+
+          const params = new URLSearchParams(window.location.search);
+          const urlLang = params.get('lang') || '';
+          const browserLang = (navigator.language || 'es').slice(0, 2).toLowerCase();
+          applyLang(dict[urlLang] ? urlLang : dict[browserLang] ? browserLang : 'es');
+
+          langBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const nextLang = btn.dataset.langBtn || 'es';
+              applyLang(nextLang);
+              const nextUrl = new URL(window.location.href);
+              nextUrl.searchParams.set('lang', nextLang);
+              window.history.replaceState({}, '', nextUrl.toString());
+            });
+          });
+
+          // Sincronización ARIA con :user-invalid
+          const syncFieldAria = (field: HTMLInputElement | HTMLSelectElement) => {
+            const invalid = field.matches(':user-invalid');
+            field.setAttribute('aria-invalid', String(invalid));
+            const errorId = field.dataset.error;
+            if (!errorId) return;
+
+            const described = (field.getAttribute('aria-describedby') || '')
+              .split(/\s+/)
+              .filter((id) => id && id !== errorId);
+            if (invalid) {
+              described.push(errorId);
+              const errorText = document.getElementById(errorId)?.textContent?.trim();
+              if (errorText) announcer.textContent = errorText;
+            }
+            if (described.length) {
+              field.setAttribute('aria-describedby', described.join(' '));
+            } else {
+              field.removeAttribute('aria-describedby');
+            }
+          };
+
+          form?.querySelectorAll<HTMLInputElement | HTMLSelectElement>('input, select').forEach((field) => {
+            field.addEventListener('blur', () => syncFieldAria(field));
+            field.addEventListener('input', () => {
+              if (field.getAttribute('aria-invalid') === 'true') {
+                syncFieldAria(field);
+              }
+            });
+          });
+
+          form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+              const formData = new FormData(form);
+              const payload = {
+                name: String(formData.get('name') || ''),
+                email: String(formData.get('email') || ''),
+                channel: String(formData.get('channel') || 'amazon-kdp'),
+                orderId: String(formData.get('orderId') || ''),
+                notes: String(formData.get('notes') || ''),
+                lang: currentLang,
+                submittedAt: new Date().toISOString(),
+              };
+
+              // Preparar siempre el enlace mailto de respaldo por si no hay webhook o falla la red
+              const subject = encodeURIComponent(
+                `[Registro Vol. 1] ${payload.orderId} - ${payload.name}`
+              );
+              const body = encodeURIComponent(
+                `Nombre: ${payload.name}\nEmail: ${payload.email}\nEdición: ${payload.channel}\nPedido Amazon: ${payload.orderId}\nIdioma: ${payload.lang}\nNotas: ${payload.notes}`
+              );
+              if (mailtoLink) {
+                mailtoLink.href = `mailto:info@javisaez.com?subject=${subject}&body=${body}`;
+              }
+
+              const webhook = form.dataset.webhookUrl || '';
+              if (webhook) {
+                if (submitBtn) {
+                  submitBtn.disabled = true;
+                  submitBtn.textContent = dict[currentLang]?.sendingBtn || 'Enviando...';
+                }
+
+                // text/plain evita el preflight CORS OPTIONS que Google Apps Script rechaza
+                const res = await fetch(webhook, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                  body: JSON.stringify(payload),
+                });
+
+                if (!res.ok) {
+                  throw new Error(`HTTP ${res.status}`);
+                }
+
+                const result = await res.json().catch(() => null);
+                if (result && result.ok === false) {
+                  throw new Error(result.error || 'Webhook error');
+                }
+
+                form.setAttribute('hidden', '');
+                successBox?.removeAttribute('hidden');
+              } else {
+                fallbackBox?.removeAttribute('hidden');
+              }
+            } catch (err) {
+              console.error('[Registro] Error enviando solicitud:', err);
+              fallbackBox?.removeAttribute('hidden');
+            } finally {
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = dict[currentLang]?.submitBtn || 'Validar ejemplar';
+              }
+            }
+          });
+        } catch (err) {
+          console.error('[Registro] Fallo al inicializar página de registro:', err);
+        }
+      }
+
+      initRegistroPage();
+    </script>
+  </body>
+</html>

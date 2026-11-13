@@ -1,0 +1,709 @@
+---
+interface Props {
+  locale?: 'es' | 'en';
+}
+
+const { locale = 'es' } = Astro.props;
+
+const partials = [
+  {
+    partial: 2,
+    volume: 1,
+    metal: 'copper',
+    hex: '#E89758',
+    baseMidi: 46, // Bb2
+    baseFreq440: 116.54,
+    vowel: 'Oh / Ah',
+    centsInfo: '0 cents · Base estable',
+    notesByPos: ['Sib₂', 'La₂', 'Lab₂', 'Sol₂', 'Solb₂', 'Fa₂', 'Mi₂'],
+    pedagogyEs: 'Sonido amplio, garganta abierta («El bostezo») y embocadura centrada sin rigidez en las comisuras.',
+    pedagogyEn: 'Broad tone, open throat ("The yawn") and centered embouchure without corner tension.',
+  },
+  {
+    partial: 3,
+    volume: 1,
+    metal: 'copper',
+    hex: '#E89758',
+    baseMidi: 53, // F3
+    baseFreq440: 174.61,
+    vowel: 'Ah',
+    centsInfo: '+2 cents · Quinta justa pura',
+    notesByPos: ['Fa₃', 'Mi₃', 'Mib₃', 'Re₃', 'Reb₃', 'Do₃', 'Si₂'],
+    pedagogyEs: 'Primer salto de flexibilidad. Mantén la columna de aire continua sin cortar con la lengua al subir desde el 2.º parcial.',
+    pedagogyEn: 'First flexibility interval. Keep a continuous air column without tongue interruption when slurring from the 2nd partial.',
+  },
+  {
+    partial: 4,
+    volume: 1,
+    metal: 'copper',
+    hex: '#E89758',
+    baseMidi: 58, // Bb3
+    baseFreq440: 233.08,
+    vowel: 'Ah → Eh',
+    centsInfo: '0 cents · Octava de referencia',
+    notesByPos: ['Sib₃', 'La₃', 'Lab₃', 'Sol₃', 'Solb₃', 'Fa₃', 'Mi₃'],
+    pedagogyEs: 'Eje del Nivel 1. El paso de Ah a Eh eleva suavemente el dorso de la lengua, acelerando el aire por efecto Venturi.',
+    pedagogyEn: 'Core of Level 1. Shifting from Ah to Eh gently raises the tongue arch, accelerating the air stream via the Venturi effect.',
+  },
+  {
+    partial: 5,
+    volume: 1,
+    metal: 'copper',
+    hex: '#E89758',
+    baseMidi: 62, // D4
+    baseFreq440: 293.66,
+    vowel: 'Eh',
+    centsInfo: '−14 cents (Serie armónica natural)',
+    notesByPos: ['Re₄', 'Do♯₄', 'Do₄', 'Si₃', 'Sib₃', 'La₃', 'Lab₃'],
+    pedagogyEs: 'Techo del Nivel 2. Acústicamente el 5.º parcial natural queda bajo (−14 cents); requiere oído activo y ligero ajuste de vara.',
+    pedagogyEn: 'Ceiling of Level 2. Acoustically the natural 5th partial sits flat (−14 cents); requires active ear and slight slide adjustment.',
+  },
+  {
+    partial: 6,
+    volume: 1,
+    metal: 'copper',
+    hex: '#E89758',
+    baseMidi: 65, // F4
+    baseFreq440: 349.23,
+    vowel: 'Ee',
+    centsInfo: '+2 cents (Teórico) · Vigilar tendencia alta',
+    notesByPos: ['Fa₄', 'Mi₄', 'Mib₄', 'Re₄', 'Reb₄', 'Do₄', 'Si₃'],
+    pedagogyEs: 'Techo del Volumen 1 (Nivel 3). Cero presión contra la boquilla: pronuncia «Ee» interiormente y proyecta aire rápido y focalizado.',
+    pedagogyEn: 'Volume 1 Ceiling (Level 3). Zero mouthpiece pressure: shape an inner "Ee" vowel and project a fast, focused air column.',
+  },
+  {
+    partial: 8,
+    volume: 2,
+    metal: 'silver',
+    hex: '#F1F2F4',
+    baseMidi: 70, // Bb4
+    baseFreq440: 466.16,
+    vowel: 'Ee+',
+    centsInfo: '0 cents · Registro Intermedio (Vol. 2)',
+    notesByPos: ['Sib₄', 'La₄', 'Lab₄', 'Sol₄', 'Solb₄', 'Fa₄', 'Mi₄'],
+    pedagogyEs: 'Volumen 2 (Plata): agilidad en semicorcheas, intervalos quebrados y consolidación del registro agudo con brillo tímbrico.',
+    pedagogyEn: 'Volume 2 (Silver): sixteenth-note agility, broken intervals, and bright upper-register consolidation.',
+  },
+  {
+    partial: 12,
+    volume: 2,
+    metal: 'silver',
+    hex: '#F1F2F4',
+    baseMidi: 82, // Bb5
+    baseFreq440: 932.33,
+    vowel: 'Ee (Focal)',
+    centsInfo: 'Techo del Volumen 2 · Hasta Sib₅',
+    notesByPos: ['Sib₅', 'La₅', 'Lab₅', 'Sol₅', 'Solb₅', 'Fa₅', 'Mi₅'],
+    pedagogyEs: 'Frontera del Volumen 2 Intermedio. Dominio muscular elástico y control micro-milimétrico de la abertura labial.',
+    pedagogyEn: 'Volume 2 Intermediate boundary. Elastic muscular mastery and micro-millimetric aperture control.',
+  },
+  {
+    partial: 16,
+    volume: 3,
+    metal: 'gold',
+    hex: '#F9D658',
+    baseMidi: 89, // F6
+    baseFreq440: 1396.91,
+    vowel: 'Í (Láser)',
+    centsInfo: 'Techo del Volumen 3 · Hasta Fa₆',
+    notesByPos: ['Fa₆', 'Mi₆', 'Mib₆', 'Re₆', 'Reb₆', 'Do₆', 'Si₅'],
+    pedagogyEs: 'Volumen 3 (Oro Regio): virtuosismo solista y registro sobreagudo de concierto con máxima eficiencia acústica.',
+    pedagogyEn: 'Volume 3 (Regal Gold): solo virtuosity and concert extreme high register with maximum acoustic efficiency.',
+  },
+];
+
+const slidePositions = [
+  { pos: 1, fund: 'Sib', semitones: 0 },
+  { pos: 2, fund: 'La', semitones: -1 },
+  { pos: 3, fund: 'Lab', semitones: -2 },
+  { pos: 4, fund: 'Sol', semitones: -3 },
+  { pos: 5, fund: 'Solb', semitones: -4 },
+  { pos: 6, fund: 'Fa', semitones: -5 },
+  { pos: 7, fund: 'Mi', semitones: -6 },
+];
+---
+
+<section
+  class="harmonic-acoustic-lab relative w-full py-12"
+  data-harmonic-root
+  data-locale={locale}
+>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="rounded-2xl bg-graphite-surface/95 border border-graphite-border p-6 sm:p-8 shadow-2xl">
+      
+      <!-- CABECERA DEL LABORATORIO ACÚSTICO -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/10 pb-6">
+        <div>
+          <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-copper">
+            <span class="h-2 w-2 rounded-full bg-copper"></span>
+            {locale === 'es' ? 'Laboratorio Acústico Interactivo · Web Audio API' : 'Interactive Acoustic Lab · Web Audio API'}
+          </span>
+          <h2 class="mt-2 font-serif text-2xl sm:text-3xl font-bold text-white">
+            {locale === 'es'
+              ? 'La Serie Armónica de la Trilogía (Sib₂ → Fa₆)'
+              : 'The Trilogy Harmonic Series (B♭₂ → F₆)'}
+          </h2>
+          <p class="mt-1.5 max-w-2xl text-sm text-slate-300">
+            {locale === 'es'
+              ? 'Pulsa cualquier parcial armónico para escuchar su altura real sintetizada con timbre de metal cálido y observa cómo la posición de vara y las vocales interiores (Ah, Eh, Ee) gobiernan la flexibilidad.'
+              : 'Click any harmonic partial to hear its real pitch synthesized with warm brass timbre and observe how slide position and inner vowels (Ah, Eh, Ee) govern flexibility.'}
+          </p>
+        </div>
+
+        <!-- Controles Globales de Audio: Arpegio Ligado, Afinación 440/442 Hz y Silencio -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            data-play-slur-btn
+            class="inline-flex items-center gap-2 rounded-xl bg-gradient-copper px-4 py-2.5 text-xs font-bold text-dark-950 shadow-metal-copper transition-transform hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-gold-400"
+            style="translate: 0px; rotate: 0deg; scale: 1;"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <span data-slur-btn-text>
+              {locale === 'es' ? 'Tocar Ligado Vol. 1 (Ah → Ee)' : 'Play Vol. 1 Lip Slur (Ah → Ee)'}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            data-pitch-standard-btn
+            aria-pressed="true"
+            class="rounded-xl bg-graphite-deep border border-graphite-border px-3 py-2.5 text-xs font-mono text-slate-200 hover:border-copper/50 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+          >
+            La₄ = <span data-pitch-hz>442</span> Hz
+          </button>
+
+          <button
+            type="button"
+            data-mute-btn
+            aria-pressed="false"
+            class="rounded-xl bg-graphite-deep border border-graphite-border px-3 py-2.5 text-xs font-medium text-slate-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+          >
+            <span data-mute-label>{locale === 'es' ? 'Audio Activo' : 'Audio On'}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SELECTOR DE LAS 7 POSICIONES DE VARA + TROMBÓN VECTORIAL ANIMADO -->
+      <div class="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-graphite-deep/90 rounded-xl p-4 border border-white/5">
+        <div class="lg:col-span-5">
+          <p id="slide-pos-group-label" class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+            {locale === 'es' ? 'Posición de la Vara Corredera (1.ª a 7.ª):' : 'Trombone Slide Position (1st to 7th):'}
+          </p>
+          <div
+            role="group"
+            aria-labelledby="slide-pos-group-label"
+            class="grid grid-cols-7 gap-1.5"
+          >
+            {slidePositions.map((sp) => (
+              <button
+                type="button"
+                data-slide-pos-btn={sp.pos}
+                data-semitones={sp.semitones}
+                data-fund={sp.fund}
+                aria-pressed={sp.pos === 1 ? 'true' : 'false'}
+                class={`slide-pos-btn flex flex-col items-center justify-center rounded-lg py-2 px-1 border text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400 ${
+                  sp.pos === 1
+                    ? 'border-copper bg-copper/20 text-white font-bold'
+                    : 'border-graphite-border bg-graphite-surface/60 text-slate-300 hover:bg-graphite-surface'
+                }`}
+              >
+                <span class="font-serif text-sm">{sp.pos}.ª</span>
+                <span class="text-[10px] font-mono text-slate-400">{sp.fund}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Ilustración técnica vectorial de la vara desplazándose en tiempo real -->
+        <div class="lg:col-span-7 flex flex-col justify-center">
+          <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1 px-1">
+            <span>
+              {locale === 'es' ? 'Extensión física de la vara:' : 'Physical slide extension:'}{' '}
+              <strong data-slide-pos-readout class="text-copper-light">1.ª Posición (Fundamental Sib)</strong>
+            </span>
+            <span data-active-freq-readout class="text-gold-300 font-semibold">
+              233,1 Hz · Sib₃
+            </span>
+          </div>
+
+          <div class="relative w-full overflow-hidden rounded-lg bg-[#141619] border border-white/10 p-3">
+            <svg viewBox="0 0 650 76" class="w-full h-14" aria-hidden="true">
+              <!-- Campana y cuerpo fijo del trombón -->
+              <g transform="translate(8, 6)">
+                <path d="M 0 8 Q 30 16 45 30 L 45 36 Q 30 50 0 58 L 0 56 Q 25 45 38 33 Q 25 21 0 10 Z" fill="#E89758"/>
+                <ellipse cx="2" cy="33" rx="2.5" ry="24" fill="#D98A5B"/>
+                <path d="M 45 31 L 78 31 Q 92 31 92 18 Q 92 5 78 5 L 40 5" fill="none" stroke="#E89758" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M 45 35 L 78 35 Q 95 35 95 46 Q 95 56 80 56 L 55 56" fill="none" stroke="#E89758" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="62" y1="5" x2="62" y2="31" stroke="#D98A5B" stroke-width="2.5"/>
+                <circle cx="62" cy="18" r="4.5" fill="#E89758"/>
+              </g>
+
+              <!-- Tubos interiores fijos (plateados) -->
+              <line x1="102" y1="24" x2="430" y2="24" stroke="#B8BFC6" stroke-width="2" opacity="0.65"/>
+              <line x1="102" y1="52" x2="430" y2="52" stroke="#B8BFC6" stroke-width="2" opacity="0.65"/>
+
+              <!-- Marcas de referencia de las 7 posiciones -->
+              {[0, 1, 2, 3, 4, 5, 6].map((idx) => (
+                <g transform={`translate(${125 + idx * 32}, 0)`}>
+                  <line x1="0" y1="14" x2="0" y2="62" stroke="#2E323A" stroke-width="1" stroke-dasharray="2,2"/>
+                  <text x="0" y="72" fill="#64748B" font-size="8" font-family="monospace" text-anchor="middle">
+                    {idx + 1}ª
+                  </text>
+                </g>
+              ))}
+
+              <!-- Vara exterior corredera animada (se desplaza +32px por posición) -->
+              <g data-svg-slide-outer style="transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);">
+                <line x1="115" y1="23" x2="415" y2="23" stroke="#E89758" stroke-width="3.2" stroke-linecap="round"/>
+                <line x1="115" y1="53" x2="415" y2="53" stroke="#E89758" stroke-width="3.2" stroke-linecap="round"/>
+                <!-- Puente de sujeción de la mano derecha -->
+                <line x1="125" y1="23" x2="125" y2="53" stroke="#F9D658" stroke-width="3"/>
+                <circle cx="125" cy="38" r="4" fill="#F9D658"/>
+                <!-- Codo derecho de la vara -->
+                <path d="M 415 23 Q 435 23 435 38 Q 435 53 415 53" fill="none" stroke="#E89758" stroke-width="3.2"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESCALA INTERACTIVA DE PARCIALES ARMÓNICOS (VOL 1 COBRE / VOL 2 PLATA / VOL 3 ORO) -->
+      <div class="mt-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <span class="text-xs font-mono uppercase tracking-wider text-slate-400">
+            {locale === 'es'
+              ? 'Haz clic en cada parcial para hacer sonar el armónico:'
+              : 'Click each partial to trigger the harmonic pitch:'}
+          </span>
+          <div class="flex items-center gap-4 text-[11px] font-medium">
+            <span class="flex items-center gap-1.5 text-copper">
+              <span class="h-2.5 w-2.5 rounded-full bg-copper"></span>
+              Vol. 1 Elemental (Hasta Fa₄)
+            </span>
+            <span class="flex items-center gap-1.5 text-silver">
+              <span class="h-2.5 w-2.5 rounded-full bg-silver"></span>
+              Vol. 2 Intermedio (Hasta Sib₅)
+            </span>
+            <span class="flex items-center gap-1.5 text-gold-regal">
+              <span class="h-2.5 w-2.5 rounded-full bg-gold-regal"></span>
+              Vol. 3 Avanzado (Hasta Fa₆)
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
+          {partials.map((p, index) => (
+            <button
+              type="button"
+              data-partial-btn={p.partial}
+              data-base-freq={p.baseFreq440}
+              data-notes={JSON.stringify(p.notesByPos)}
+              data-vowel={p.vowel}
+              data-cents={p.centsInfo}
+              data-pedagogy={locale === 'es' ? p.pedagogyEs : p.pedagogyEn}
+              data-vol={p.volume}
+              data-hex={p.hex}
+              aria-pressed={index === 2 ? 'true' : 'false'}
+              style={`--partial-color: ${p.hex}; translate: 0px; rotate: 0deg; scale: 1;`}
+              class={`partial-card group relative flex flex-col justify-between rounded-xl border p-3 text-left transition-all focus:outline-none focus:ring-2 focus:ring-gold-400 ${
+                index === 2
+                  ? 'border-copper bg-copper/15 shadow-metal-copper'
+                  : 'border-graphite-border bg-graphite-deep/80 hover:border-white/30 hover:bg-graphite-deep'
+              }`}
+            >
+              <!-- Cabecera: N.º de Parcial y Volumen -->
+              <div class="flex items-center justify-between w-full">
+                <span class="font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                  {p.partial}.º Parcial
+                </span>
+                <span
+                  class="rounded px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase"
+                  style={`background-color: ${p.hex}22; color: ${p.hex};`}
+                >
+                  V{p.volume}
+                </span>
+              </div>
+
+              <!-- Nota musical principal dinámica según la posición de vara -->
+              <div class="my-3">
+                <span
+                  data-partial-note
+                  class="block font-serif text-2xl font-bold text-white group-hover:scale-105 transition-transform origin-left"
+                >
+                  {p.notesByPos[0]}
+                </span>
+                <span
+                  data-partial-freq
+                  class="block font-mono text-[11px] text-slate-400 mt-0.5"
+                >
+                  {p.baseFreq440.toFixed(1)} Hz
+                </span>
+              </div>
+
+              <!-- Vocal interior de TromBot -->
+              <div class="w-full border-t border-white/10 pt-2 flex items-center justify-between">
+                <span class="text-[10px] text-slate-400">Vocal:</span>
+                <span
+                  class="font-serif italic text-xs font-bold"
+                  style={`color: ${p.hex};`}
+                >
+                  «{p.vowel}»
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- TARJETA DE DIAGNÓSTICO PEDAGÓGICO DE TROMBOT IA -->
+      <div class="mt-6 rounded-xl bg-gradient-to-r from-graphite-deep via-[#1E2127] to-graphite-deep border border-copper/30 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <!-- Icono Visor Canónico de TromBot (^ ^ + IA) -->
+          <div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 rounded-xl bg-graphite-surface border border-copper/40 shadow-inner">
+            <span class="font-mono text-xs font-bold text-cyan-300 leading-none tracking-tighter">^ ^</span>
+            <span class="mt-1 rounded-full border border-copper/50 px-1.5 py-0.2 text-[8px] font-serif font-bold text-copper-light">
+              IA
+            </span>
+          </div>
+
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="font-serif text-xs font-bold uppercase tracking-wider text-copper-light">
+                {locale === 'es' ? 'Consejo de TromBot · ' : 'TromBot Tip · '}
+              </span>
+              <span data-Inspector-title class="font-serif text-sm font-bold text-white">
+                4.º Parcial (Sib₃) · Vocal «Ah → Eh»
+              </span>
+              <span
+                data-inspector-cents
+                class="rounded-full bg-white/10 px-2 py-0.5 font-mono text-[10px] text-slate-300"
+              >
+                0 cents · Octava de referencia
+              </span>
+            </div>
+            <p data-inspector-pedagogy class="mt-1 text-xs sm:text-sm text-slate-300 leading-relaxed">
+              {locale === 'es'
+                ? partials[2].pedagogyEs
+                : partials[2].pedagogyEn}
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          data-replay-active-btn
+          class="flex-shrink-0 rounded-lg border border-copper/40 bg-copper/10 hover:bg-copper/20 px-3.5 py-2 text-xs font-semibold text-copper-light transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+        >
+          {locale === 'es' ? 'Escuchar nota de referencia' : 'Hear reference pitch'}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Motor Acústico Compartido con Web Audio API (Timbre de Trombón Tenor)
+  class TromboneAcousticEngine {
+    private ctx: AudioContext | null = null;
+    public isMuted: boolean = false;
+    public pitchStandard: number = 442; // Estándar sinfónico europeo en España
+
+    private ensureContext(): AudioContext | null {
+      try {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+          if (!AudioCtx) {
+            console.warn('[TromboneAcousticEngine] Web Audio API no soportada en este navegador.');
+            return null;
+          }
+          this.ctx = new AudioCtx();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume().catch((e) => console.warn('[TromboneAcousticEngine] No se pudo reanudar AudioContext:', e));
+        }
+        return this.ctx;
+      } catch (err) {
+        console.error('[TromboneAcousticEngine] Error inicializando AudioContext:', err);
+        return null;
+      }
+    }
+
+    public playBrassTone(freq440: number, durationSec: number = 0.85, startTimeOffset: number = 0): void {
+      if (this.isMuted) return;
+      try {
+        const ctx = this.ensureContext();
+        if (!ctx) return;
+
+        // Ajuste según diapasón seleccionado (440 Hz vs 442 Hz)
+        const targetFreq = freq440 * (this.pitchStandard / 440);
+        const now = ctx.currentTime + startTimeOffset;
+
+        // Serie de Fourier representativa de un trombón tenor (riqueza en armónicos 1..8)
+        const real = new Float32Array([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        const imag = new Float32Array([0, 1.0, 0.88, 0.72, 0.50, 0.34, 0.21, 0.12, 0.06]);
+        const brassWave = ctx.createPeriodicWave(real, imag, { disableNormalization: false });
+
+        const oscMain = ctx.createOscillator();
+        const oscSub = ctx.createOscillator();
+        oscMain.setPeriodicWave(brassWave);
+        oscSub.type = 'triangle';
+
+        oscMain.frequency.setValueAtTime(targetFreq, now);
+        oscSub.frequency.setValueAtTime(targetFreq, now);
+        oscSub.detune.setValueAtTime(2.5, now); // Calidez acústica de columna de aire real
+
+        // Filtro formante de campana de latón (se abre suavemente en el ataque)
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        const baseCutoff = Math.min(targetFreq * 3.2, 2200);
+        const peakCutoff = Math.min(targetFreq * 6.5, 4200);
+        filter.frequency.setValueAtTime(baseCutoff, now);
+        filter.frequency.exponentialRampToValueAtTime(peakCutoff, now + 0.08);
+        filter.frequency.exponentialRampToValueAtTime(baseCutoff * 1.35, now + durationSec);
+        filter.Q.setValueAtTime(1.8, now);
+
+        // Envolvente ADSR libre de chasquidos (Click-free exponential ramp)
+        const gainNode = ctx.createGain();
+        gainNode.gain.setValueAtTime(0.0001, now);
+        gainNode.gain.linearRampToValueAtTime(0.24, now + 0.045);
+        gainNode.gain.exponentialRampToValueAtTime(0.16, now + durationSec * 0.65);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + durationSec);
+
+        oscMain.connect(filter);
+        oscSub.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        oscMain.start(now);
+        oscSub.start(now);
+        oscMain.stop(now + durationSec + 0.02);
+        oscSub.stop(now + durationSec + 0.02);
+      } catch (err) {
+        console.error('[TromboneAcousticEngine] Error reproduciendo nota de trombón:', err);
+      }
+    }
+  }
+
+  // Exponer instancia global segura para que el visor de partituras también pueda usarla
+  const globalWindow = window as unknown as { __tromboneEngine?: TromboneAcousticEngine };
+  if (!globalWindow.__tromboneEngine) {
+    globalWindow.__tromboneEngine = new TromboneAcousticEngine();
+  }
+
+  function initHarmonicSelector() {
+    try {
+      const engine = globalWindow.__tromboneEngine || new TromboneAcousticEngine();
+      const roots = document.querySelectorAll<HTMLElement>('[data-harmonic-root]');
+
+      roots.forEach((root) => {
+        if (root.dataset.initialized === 'true') return;
+        root.dataset.initialized = 'true';
+
+        const locale = root.dataset.locale === 'en' ? 'en' : 'es';
+        const slideBtns = root.querySelectorAll<HTMLButtonElement>('[data-slide-pos-btn]');
+        const partialBtns = root.querySelectorAll<HTMLButtonElement>('[data-partial-btn]');
+        const svgSlideOuter = root.querySelector<SVGGElement>('[data-svg-slide-outer]');
+        const slidePosReadout = root.querySelector<HTMLElement>('[data-slide-pos-readout]');
+        const activeFreqReadout = root.querySelector<HTMLElement>('[data-active-freq-readout]');
+
+        const inspectorTitle = root.querySelector<HTMLElement>('[data-Inspector-title]');
+        const inspectorCents = root.querySelector<HTMLElement>('[data-inspector-cents]');
+        const inspectorPedagogy = root.querySelector<HTMLElement>('[data-inspector-pedagogy]');
+
+        const playSlurBtn = root.querySelector<HTMLButtonElement>('[data-play-slur-btn]');
+        const pitchBtn = root.querySelector<HTMLButtonElement>('[data-pitch-standard-btn]');
+        const pitchHzSpan = root.querySelector<HTMLElement>('[data-pitch-hz]');
+        const muteBtn = root.querySelector<HTMLButtonElement>('[data-mute-btn]');
+        const muteLabel = root.querySelector<HTMLElement>('[data-mute-label]');
+        const replayActiveBtn = root.querySelector<HTMLButtonElement>('[data-replay-active-btn]');
+
+        let currentSlidePos = 1; // 1 a 7
+        let currentSemitoneOffset = 0; // 0 a -6
+        let activePartialIndex = 2; // Por defecto 4.º parcial (Sib3)
+
+        const getTransposedFreq = (baseFreq440: number): number => {
+          return baseFreq440 * Math.pow(2, currentSemitoneOffset / 12);
+        };
+
+        const updateAllPartialCards = () => {
+          try {
+            partialBtns.forEach((btn, idx) => {
+              const baseFreq = parseFloat(btn.dataset.baseFreq || '233.08');
+              const notes: string[] = JSON.parse(btn.dataset.notes || '["Sib₃"]');
+              const noteForPos = notes[currentSlidePos - 1] || notes[0];
+              const actualFreq = getTransposedFreq(baseFreq) * (engine.pitchStandard / 440);
+
+              const noteEl = btn.querySelector<HTMLElement>('[data-partial-note]');
+              const freqEl = btn.querySelector<HTMLElement>('[data-partial-freq]');
+              if (noteEl) noteEl.textContent = noteForPos;
+              if (freqEl) freqEl.textContent = `${actualFreq.toFixed(1)} Hz`;
+
+              if (idx === activePartialIndex) {
+                if (activeFreqReadout) {
+                  activeFreqReadout.textContent = `${actualFreq.toFixed(1)} Hz · ${noteForPos}`;
+                }
+                if (inspectorTitle) {
+                  inspectorTitle.textContent = `${btn.dataset.partialBtn}.º Parcial (${noteForPos}) · Vocal «${btn.dataset.vowel}»`;
+                }
+              }
+            });
+          } catch (err) {
+            console.error('[HarmonicAcousticSelector] Error actualizando tarjetas de parciales:', err);
+          }
+        };
+
+        const selectPartial = (index: number, playAudio: boolean = true) => {
+          try {
+            activePartialIndex = index;
+            const targetBtn = partialBtns[index];
+            if (!targetBtn) return;
+
+            partialBtns.forEach((btn, i) => {
+              const isSelected = i === index;
+              btn.setAttribute('aria-pressed', String(isSelected));
+              btn.classList.toggle('border-copper', isSelected);
+              btn.classList.toggle('bg-copper/15', isSelected);
+              btn.classList.toggle('shadow-metal-copper', isSelected);
+              btn.classList.toggle('border-graphite-border', !isSelected);
+              btn.classList.toggle('bg-graphite-deep/80', !isSelected);
+            });
+
+            const baseFreq = parseFloat(targetBtn.dataset.baseFreq || '233.08');
+            const notes: string[] = JSON.parse(targetBtn.dataset.notes || '["Sib₃"]');
+            const noteName = notes[currentSlidePos - 1] || notes[0];
+            const transposedFreq440 = getTransposedFreq(baseFreq);
+            const displayFreq = transposedFreq440 * (engine.pitchStandard / 440);
+
+            if (activeFreqReadout) {
+              activeFreqReadout.textContent = `${displayFreq.toFixed(1)} Hz · ${noteName}`;
+            }
+            if (inspectorTitle) {
+              inspectorTitle.textContent = `${targetBtn.dataset.partialBtn}.º Parcial (${noteName}) · Vocal «${targetBtn.dataset.vowel}»`;
+            }
+            if (inspectorCents) {
+              inspectorCents.textContent = targetBtn.dataset.cents || '';
+            }
+            if (inspectorPedagogy) {
+              inspectorPedagogy.textContent = targetBtn.dataset.pedagogy || '';
+            }
+
+            if (playAudio) {
+              engine.playBrassTone(transposedFreq440, 0.9);
+            }
+          } catch (err) {
+            console.error('[HarmonicAcousticSelector] Error seleccionando parcial:', err);
+          }
+        };
+
+        // Eventos en los botones de parciales
+        partialBtns.forEach((btn, idx) => {
+          btn.addEventListener('click', () => selectPartial(idx, true));
+        });
+
+        // Eventos en los botones de posición de vara (1.ª a 7.ª)
+        slideBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            try {
+              currentSlidePos = parseInt(btn.dataset.slidePosBtn || '1', 10);
+              currentSemitoneOffset = parseInt(btn.dataset.semitones || '0', 10);
+              const fund = btn.dataset.fund || 'Sib';
+
+              slideBtns.forEach((b) => {
+                const active = b === btn;
+                b.setAttribute('aria-pressed', String(active));
+                b.classList.toggle('border-copper', active);
+                b.classList.toggle('bg-copper/20', active);
+                b.classList.toggle('text-white', active);
+                b.classList.toggle('font-bold', active);
+                b.classList.toggle('border-graphite-border', !active);
+                b.classList.toggle('bg-graphite-surface/60', !active);
+              });
+
+              // Desplazar gráficamente la vara corredera en el SVG (32px por posición)
+              if (svgSlideOuter) {
+                const shiftPx = (currentSlidePos - 1) * 32;
+                svgSlideOuter.style.transform = `translateX(${shiftPx}px)`;
+              }
+
+              if (slidePosReadout) {
+                slidePosReadout.textContent =
+                  locale === 'es'
+                    ? `${currentSlidePos}.ª Posición (Serie de ${fund})`
+                    : `Position ${currentSlidePos} (${fund} Series)`;
+              }
+
+              updateAllPartialCards();
+              selectPartial(activePartialIndex, true);
+            } catch (err) {
+              console.error('[HarmonicAcousticSelector] Error cambiando posición de vara:', err);
+            }
+          });
+        });
+
+        // Tocar arpegio ligado de flexibilidad del Volumen 1 (Parciales 2 -> 3 -> 4 -> 5 -> 6)
+        playSlurBtn?.addEventListener('click', () => {
+          try {
+            const vol1Indices = [0, 1, 2, 3, 4, 3, 2, 1, 0];
+            vol1Indices.forEach((partialIdx, step) => {
+              const btn = partialBtns[partialIdx];
+              if (!btn) return;
+              const baseFreq = parseFloat(btn.dataset.baseFreq || '116.54');
+              const freq = getTransposedFreq(baseFreq);
+              engine.playBrassTone(freq, 0.36, step * 0.32);
+
+              window.setTimeout(() => {
+                selectPartial(partialIdx, false);
+              }, step * 320);
+            });
+          } catch (err) {
+            console.error('[HarmonicAcousticSelector] Error ejecutando ligado de flexibilidad:', err);
+          }
+        });
+
+        // Alternar diapasón 442 Hz / 440 Hz
+        pitchBtn?.addEventListener('click', () => {
+          try {
+            engine.pitchStandard = engine.pitchStandard === 442 ? 440 : 442;
+            if (pitchHzSpan) pitchHzSpan.textContent = String(engine.pitchStandard);
+            updateAllPartialCards();
+            selectPartial(activePartialIndex, true);
+          } catch (err) {
+            console.error('[HarmonicAcousticSelector] Error cambiando diapasón:', err);
+          }
+        });
+
+        // Silenciar / Activar Audio
+        muteBtn?.addEventListener('click', () => {
+          try {
+            engine.isMuted = !engine.isMuted;
+            muteBtn.setAttribute('aria-pressed', String(engine.isMuted));
+            if (muteLabel) {
+              muteLabel.textContent = engine.isMuted
+                ? locale === 'es'
+                  ? 'Audio Silenciado'
+                  : 'Audio Muted'
+                : locale === 'es'
+                  ? 'Audio Activo'
+                  : 'Audio On';
+            }
+          } catch (err) {
+            console.error('[HarmonicAcousticSelector] Error alternando silencio:', err);
+          }
+        });
+
+        replayActiveBtn?.addEventListener('click', () => {
+          selectPartial(activePartialIndex, true);
+        });
+      });
+    } catch (err) {
+      console.error('[HarmonicAcousticSelector] Fallo crítico al inicializar:', err);
+    }
+  }
+
+  initHarmonicSelector();
+  document.addEventListener('astro:page-load', initHarmonicSelector);
+</script>

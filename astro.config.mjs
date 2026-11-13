@@ -3,6 +3,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.javisaez.com',
   integrations: [tailwind()],
   base: process.env.VERCEL ? '/' : '/portfolio',
   i18n: {

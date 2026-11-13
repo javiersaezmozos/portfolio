@@ -1,0 +1,938 @@
+---
+interface Props {
+  initialVolume?: 1 | 2 | 3;
+  locale?: 'es' | 'en';
+  showControls?: boolean;
+}
+
+const {
+  initialVolume = 1,
+  locale = 'es',
+  showControls = true,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const volumes = [
+  {
+    id: 1,
+    code: 'copper',
+    badgeEs: 'VOLUMEN 1 · ELEMENTAL',
+    badgeEn: 'VOLUME 1 · ELEMENTARY',
+    subtitleEs: 'Desarrollo de la flexibilidad labial hasta Fa₄',
+    subtitleEn: 'Lip flexibility development up to F₄',
+    courseEs: '2.º a 4.º EE.EE. · 12 Lecciones + Estudios',
+    courseEn: 'Elementary Grade · 12 Lessons + Etudes',
+    spineLabel: 'FLEXIBILIDAD · TROMBÓN 1 · JAVIER SÁEZ MOZOS',
+    metalNameEs: 'Cobre / Bronce Cálido',
+    metalNameEn: 'Warm Copper / Bronze',
+    hexPrimary: '#E89758',
+    hexSecondary: '#D98A5B',
+    hexShadow: '#9E472A',
+    statusEs: 'Edición Activa · Lanzamiento',
+    statusEn: 'Active Edition · Available',
+  },
+  {
+    id: 2,
+    code: 'silver',
+    badgeEs: 'VOLUMEN 2 · INTERMEDIO',
+    badgeEn: 'VOLUME 2 · INTERMEDIATE',
+    subtitleEs: 'Desarrollo de la flexibilidad labial hasta Sib₅',
+    subtitleEn: 'Lip flexibility development up to B♭₅',
+    courseEs: 'Enseñanzas Profesionales · Agilidad y Semicorcheas',
+    courseEn: 'Intermediate Grade · Agility & Sixteenth Notes',
+    spineLabel: 'FLEXIBILIDAD · TROMBÓN 2 · JAVIER SÁEZ MOZOS',
+    metalNameEs: 'Plata / Platino Acerado',
+    metalNameEn: 'Brushed Silver / Platinum',
+    hexPrimary: '#F1F2F4',
+    hexSecondary: '#D6DBDF',
+    hexShadow: '#8E959D',
+    statusEs: 'En preparación · Reserva de aviso',
+    statusEn: 'In preparation · Waitlist open',
+  },
+  {
+    id: 3,
+    code: 'gold',
+    badgeEs: 'VOLUMEN 3 · AVANZADO',
+    badgeEn: 'VOLUME 3 · ADVANCED',
+    subtitleEs: 'Desarrollo de la flexibilidad labial hasta Fa₆',
+    subtitleEn: 'Lip flexibility development up to F₆',
+    courseEs: 'Superior y Perfeccionamiento · Registro de Concierto',
+    courseEn: 'Advanced & Conservatory · Concert High Register',
+    spineLabel: 'FLEXIBILIDAD · TROMBÓN 3 · JAVIER SÁEZ MOZOS',
+    metalNameEs: 'Oro / Dorado Regio',
+    metalNameEn: 'Regal Gold / Brass',
+    hexPrimary: '#F9D658',
+    hexSecondary: '#E5C148',
+    hexShadow: '#A88428',
+    statusEs: 'En preparación · Reserva de aviso',
+    statusEn: 'In preparation · Waitlist open',
+  },
+];
+
+const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0];
+---
+
+<section
+  class="trilogy-book-showcase relative w-full py-8 select-none"
+  data-book-3d-root
+  data-initial-volume={initialVolume}
+  data-locale={locale}
+  style={`--active-metal: ${initialVolData.hexPrimary}; --active-metal-secondary: ${initialVolData.hexSecondary}; --active-metal-shadow: ${initialVolData.hexShadow}; --pointer-x: 0.5; --pointer-y: 0.35; --sheen-pos: 50%;`}
+>
+  <!-- Luz volumétrica de auditorio reactiva al volumen activo -->
+  <div
+    class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden"
+    aria-hidden="true"
+  >
+    <div
+      data-book-aura
+      class="h-[420px] w-[420px] rounded-full opacity-25 blur-[110px] transition-colors duration-700"
+      style={`background: radial-gradient(circle, ${initialVolData.hexPrimary} 0%, transparent 70%);`}
+    ></div>
+  </div>
+
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      
+      <!-- COLUMNA IZQUIERDA: Escenario 3D Interactivo -->
+      <div class="lg:col-span-7 flex flex-col items-center justify-center">
+        
+        <!-- Escena con perspectiva física de 1400px -->
+        <div
+          class="book-stage relative flex items-center justify-center py-6 px-4 sm:px-10 cursor-grab active:cursor-grabbing"
+          data-book-stage
+        >
+          <!-- Sombra de contacto sobre el suelo del escenario -->
+          <div
+            class="book-floor-shadow pointer-events-none absolute bottom-2 h-8 w-64 sm:w-72 rounded-full bg-black/80 blur-xl transition-transform duration-300"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Cuerpo 3D del Libro (US Letter proporción 215.9 x 279.4 mm -> ~1 : 1.294) -->
+          <div
+            class="book-3d-object relative w-[270px] h-[350px] sm:w-[320px] sm:h-[414px]"
+            data-book-object
+            data-binding="kdp"
+            data-metal={initialVolData.code}
+          >
+            <!-- 1. CUBIERTA FRONTAL (Cara Z+) -->
+            <div class="book-face book-front rounded-r-[4px] overflow-hidden bg-graphite-base border border-white/15">
+              
+              <!-- Textura analógica de grano de imprenta -->
+              <div class="book-grain pointer-events-none absolute inset-0 z-20 opacity-[0.04] mix-blend-overlay" aria-hidden="true"></div>
+
+              <!-- Haz de luz especular dinámico (Foil Sheen) -->
+              <div
+                class="book-specular-sheen pointer-events-none absolute inset-0 z-30 opacity-0 transition-opacity duration-300"
+                data-book-sheen
+                aria-hidden="true"
+              ></div>
+
+              <!-- Hendidura de bisagra de encuadernación KDP (a 10mm del lomo) -->
+              <div
+                data-kdp-crease
+                class="pointer-events-none absolute inset-y-0 left-[11px] z-25 w-[2px] bg-gradient-to-r from-black/60 via-white/10 to-transparent"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Perforaciones y anillas Wire-O (visibles en modo Espiral España) -->
+              <div
+                data-spiral-rings
+                class="pointer-events-none absolute inset-y-3 left-0 z-40 hidden w-5 flex-col justify-between py-1"
+                aria-hidden="true"
+              >
+                {Array.from({ length: 18 }).map(() => (
+                  <div class="relative flex items-center">
+                    <span class=" -ml-2.5 h-[6px] w-5 rounded-full bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 shadow-md border border-white/30"></span>
+                    <span class="h-[5px] w-[5px] rounded-full bg-black/90 border border-white/20"></span>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Ilustración canónica de fondo: Estudiante + TromBot IA -->
+              <div class="relative h-full w-full flex flex-col justify-between p-5 sm:p-6 z-10">
+                <img
+                  src={`${base}/images/metodos/portada-duo-trombot.jpg`}
+                  alt={locale === 'es'
+                    ? 'Cubierta oficial de Trombón Flexibilidad: estudiante de trombón junto al asistente pedagógico TromBot IA en escenario grafito'
+                    : 'Official cover of Trombone Flexibility: trombone student alongside pedagogical assistant TromBot AI on a graphite stage'}
+                  class="pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom brightness-95 contrast-105"
+                  loading="eager"
+                  decoding="async"
+                />
+
+                <!-- Gradiente superior e inferior para garantizar contraste editorial de la tipografía metálica -->
+                <div
+                  class="pointer-events-none absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-[#08090B] via-[#08090B]/92 to-transparent"
+                  aria-hidden="true"
+                ></div>
+                <div
+                  class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#08090B]/90 to-transparent"
+                  aria-hidden="true"
+                ></div>
+
+                <!-- Marco de filete fino metálico interior -->
+                <div
+                  data-metal-frame
+                  class="pointer-events-none absolute inset-2.5 rounded-[2px] border opacity-35 transition-colors duration-500"
+                  style={`border-color: ${initialVolData.hexPrimary};`}
+                  aria-hidden="true"
+                ></div>
+
+                <!-- BLOQUE SUPERIOR: Jerarquía exacta de cubierta_completa.pdf -->
+                <div class="relative z-20 text-center pt-1">
+                  <p class="font-serif text-[10.5px] sm:text-xs font-medium tracking-[0.12em] text-white/95 mb-1.5">
+                    Javier Sáez Mozos
+                  </p>
+
+                  <!-- Título principal con efecto Foil Metálico 3 paradas + Brillo Especular -->
+                  <p
+                    data-book-main-title
+                    class="book-metallic-title font-serif text-2xl sm:text-[27px] font-bold tracking-[0.18em] uppercase leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
+                    data-metal-variant={initialVolData.code}
+                  >
+                    FLEXIBILIDAD
+                  </p>
+
+                  <p class="mt-0.5 font-serif text-[9px] sm:text-[10px] font-semibold tracking-[0.28em] text-slate-100 uppercase">
+                    {locale === 'es' ? 'MÉTODO DE TROMBÓN' : 'TROMBONE METHOD'}
+                  </p>
+
+                  <!-- Cartela de Volumen y Nivel -->
+                  <div class="mt-2 flex items-center justify-center">
+                    <span
+                      data-book-badge
+                      class="inline-block font-serif text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-500"
+                      style={`color: ${initialVolData.hexPrimary};`}
+                    >
+                      {locale === 'es' ? initialVolData.badgeEs : initialVolData.badgeEn}
+                    </span>
+                  </div>
+
+                  <!-- Descriptor curricular de tesitura -->
+                  <p
+                    data-book-subtitle
+                    class="mt-1 font-serif italic text-[9px] sm:text-[10px] text-slate-200 tracking-wide transition-colors duration-500"
+                  >
+                    {locale === 'es' ? initialVolData.subtitleEs : initialVolData.subtitleEn}
+                  </p>
+                </div>
+
+                <!-- PIE DISCRETO SOBRE EL ESCENARIO DE PORTADA -->
+                <div class="relative z-20 text-center pb-0.5">
+                  <span class="inline-block rounded-full border border-white/15 bg-black/55 px-2.5 py-0.5 font-sans text-[8px] uppercase tracking-[0.18em] text-slate-300/90 backdrop-blur-sm">
+                    {locale === 'es' ? 'Colección Metales Nobles · QR + TromBot' : 'Noble Metals Collection · QR + TromBot'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. LOMO FÍSICO (Cara X- · 26px simulando ~6mm escalado para visibilidad en atril) -->
+            <div
+              class="book-face book-spine flex flex-col items-center justify-between py-4 bg-[#141518] border-y border-l border-white/15"
+              aria-hidden="true"
+            >
+              <!-- Pastilla geométrica metálica superior (4 x 12 mm proporción) -->
+              <div
+                data-spine-pill
+                class="w-2.5 h-6 rounded-[1px] shadow-sm transition-colors duration-500"
+                style={`background: linear-gradient(180deg, ${initialVolData.hexShadow} 0%, ${initialVolData.hexPrimary} 50%, ${initialVolData.hexSecondary} 100%);`}
+              ></div>
+
+              <!-- Texto vertical del lomo girado 90° -->
+              <div class=" book-spine-text font-sans text-[7.5px] font-medium tracking-[0.2em] text-slate-200/90 uppercase whitespace-nowrap">
+                <span data-spine-label>{initialVolData.spineLabel}</span>
+              </div>
+
+              <!-- Sello editorial inferior -->
+              <div class="text-[7px] font-serif font-bold text-slate-400 tracking-widest">
+                JSM
+              </div>
+            </div>
+
+            <!-- 3. CORTE DERECHO DE HOJAS (Cara X+ · Papel marfil 100g con micro-estrías de pliegos) -->
+            <div class="book-face book-pages-right" aria-hidden="true"></div>
+
+            <!-- 4. CORTE SUPERIOR E INFERIOR DE HOJAS (Caras Y- / Y+) -->
+            <div class="book-face book-pages-top" aria-hidden="true"></div>
+            <div class="book-face book-pages-bottom" aria-hidden="true"></div>
+
+            <!-- 5. CONTRACUBIERTA (Cara Z- · Replica fiel de cubierta_completa.pdf pág. 2) -->
+            <div
+              class="book-face book-back rounded-l-[4px] bg-[#0B0C0E] border border-white/10 p-5 flex flex-col justify-between"
+              aria-hidden="true"
+            >
+              <div class="text-center border-b border-white/10 pb-2.5">
+                <p class="font-serif text-sm font-bold tracking-[0.18em] text-copper uppercase">
+                  FLEXIBILIDAD
+                </p>
+                <p class="mt-0.5 font-serif text-[7.5px] tracking-[0.2em] text-white uppercase">
+                  {locale === 'es' ? 'MÉTODO DE TROMBÓN · VOLUMEN 1 (ELEMENTAL)' : 'TROMBONE METHOD · VOLUME 1 (ELEMENTARY)'}
+                </p>
+                <p class="mt-1 font-serif text-[8px] text-copper-light leading-snug">
+                  {locale === 'es'
+                    ? 'La guía estructurada para iniciar y desarrollar tu flexibilidad labial hasta Fa₄'
+                    : 'The structured guide to build and develop your lip flexibility up to F₄'}
+                </p>
+              </div>
+
+              <div class="space-y-2 my-auto py-2 text-[8.2px] leading-relaxed text-slate-200 font-serif">
+                <p>
+                  {locale === 'es'
+                    ? 'Moverse ágilmente entre armónicos sin forzar la embocadura es posible cuando el aire se convierte en el motor y los labios responden con elasticidad.'
+                    : 'Moving fluidly across harmonics without forcing the embouchure becomes natural when airflow drives the sound and the lips respond with elasticity.'}
+                </p>
+                <ul class="space-y-1 text-[7.8px] text-slate-300 font-sans">
+                  <li>
+                    <span class="text-copper">✦</span>{' '}
+                    <strong class="text-white">{locale === 'es' ? 'Grabaciones y práctica interactiva:' : 'Recordings & interactive study:'}</strong>{' '}
+                    {locale === 'es' ? '15 códigos QR con videopartituras.' : '15 QR codes linking to video scores.'}
+                  </li>
+                  <li>
+                    <span class="text-copper">✦</span>{' '}
+                    <strong class="text-white">{locale === 'es' ? 'Progresión Curricular en 3 Niveles:' : '3-Level Curriculum:'}</strong>{' '}
+                    {locale === 'es' ? 'Sib₂–Fa₃–Sib₃ · +Re₄ · +Fa₄.' : 'Bb₂–F₃–Bb₃ · +D₄ · +F₄.'}
+                  </li>
+                  <li>
+                    <span class="text-copper">✦</span>{' '}
+                    <strong class="text-white">{locale === 'es' ? 'Asistente pedagógico TromBot:' : 'TromBot Pedagogue:'}</strong>{' '}
+                    {locale === 'es' ? 'Pautas visuales para el estudio en casa.' : 'Visual guidance for home practice.'}
+                  </li>
+                </ul>
+                <p class="pt-1 text-center font-serif italic text-[8.5px] text-copper-light">
+                  {locale === 'es'
+                    ? '¡Construye una embocadura fuerte y flexible haciendo que el aire trabaje para ti!'
+                    : 'Build a strong, flexible embouchure by letting the air do the work for you!'}
+                </p>
+              </div>
+
+              <div class="flex items-end justify-between border-t border-white/10 pt-2">
+                <div class="text-[7px] font-mono text-slate-400 space-y-0.5">
+                  <p>AMAZON KDP &amp; KINDLE</p>
+                  <p>US LETTER · MARGEN 20 MM</p>
+                  <p>WWW.JAVISAEZ.COM</p>
+                </div>
+                <!-- Simulación código ISBN KDP -->
+                <div class="h-9 w-14 rounded-[2px] bg-white p-1 flex flex-col justify-between items-center">
+                  <div class="w-full h-5 bg-[repeating-linear-gradient(90deg,#111_0px,#111_1px,transparent_1px,transparent_3px)]"></div>
+                  <span class="text-[5.5px] font-mono text-black leading-none">ISBN KDP</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Barra de estado de interacción 3D + Botón accesible de Pausa (WCAG 2.2.2) -->
+        <div class="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-graphite-surface/90 border border-graphite-border px-3 py-1">
+            <span class="h-2 w-2 rounded-full bg-copper animate-pulse" data-status-dot></span>
+            <span data-interaction-hint>
+              {locale === 'es'
+                ? 'Mueve el cursor o inclina para ver el reflejo metálico y el lomo'
+                : 'Move pointer or tilt to inspect metallic foil reflection & spine'}
+            </span>
+          </span>
+
+          <button
+            type="button"
+            data-toggle-flip
+            aria-pressed="false"
+            class="rounded-full bg-graphite-surface hover:bg-dark-800 border border-graphite-border px-3 py-1 text-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+          >
+            {locale === 'es' ? 'Girar contraportada (180°)' : 'Flip back cover (180°)'}
+          </button>
+
+          <button
+            type="button"
+            data-toggle-motion
+            class="rounded-full bg-graphite-surface hover:bg-dark-800 border border-graphite-border px-3 py-1 text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+          >
+            {locale === 'es' ? 'Pausar giro 3D' : 'Pause 3D motion'}
+          </button>
+        </div>
+      </div>
+
+      <!-- COLUMNA DERECHA: Selector de Aleación (Vol. 1, 2, 3) y Comparador KDP vs Espiral -->
+      {showControls && (
+        <div class="lg:col-span-5 flex flex-col justify-center space-y-6">
+          
+          <div>
+            <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-copper-light">
+              {locale === 'es' ? 'Ingeniería Editorial · Inspección 3D' : 'Editorial Engineering · 3D Inspection'}
+            </span>
+            <h2 class="mt-2 font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              {locale === 'es'
+                ? 'Tres Metales Nobles, Una Progresión Acústica'
+                : 'Three Noble Metals, One Acoustic Progression'}
+            </h2>
+            <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+              {locale === 'es'
+                ? 'Selecciona cada volumen para inspeccionar su aleación tipográfica y comprobar el lomo de la edición impresa en Amazon KDP o el margen interior de seguridad de 20 mm para atril y Amazon Kindle.'
+                : 'Select each volume to inspect its typographic alloy and check the Amazon KDP paperback spine or the 20 mm inner safety margin for music stands and Amazon Kindle.'}
+            </p>
+          </div>
+
+          <!-- Selector de Volumen (Tablist accesible con indicador de borde según modern-web-guidance `tabs`) -->
+          <div>
+            <p id="trilogy-vol-tabs-label" class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+              {locale === 'es' ? '1. Seleccionar Volumen de la Trilogía:' : '1. Select Trilogy Volume:'}
+            </p>
+            <div
+              role="tablist"
+              aria-labelledby="trilogy-vol-tabs-label"
+              class="grid grid-cols-3 gap-2 rounded-xl bg-graphite-deep p-1.5 border border-graphite-border"
+            >
+              {volumes.map((vol) => (
+                <button
+                  type="button"
+                  role="tab"
+                  id={`tab-vol-${vol.id}`}
+                  aria-selected={vol.id === initialVolume ? 'true' : 'false'}
+                  data-vol-tab={vol.id}
+                  data-vol-code={vol.code}
+                  data-vol-badge={locale === 'es' ? vol.badgeEs : vol.badgeEn}
+                  data-vol-subtitle={locale === 'es' ? vol.subtitleEs : vol.subtitleEn}
+                  data-vol-course={locale === 'es' ? vol.courseEs : vol.courseEn}
+                  data-vol-metal-name={locale === 'es' ? vol.metalNameEs : vol.metalNameEn}
+                  data-vol-status={locale === 'es' ? vol.statusEs : vol.statusEn}
+                  data-vol-spine={vol.spineLabel}
+                  data-vol-hex={vol.hexPrimary}
+                  data-vol-hex-sec={vol.hexSecondary}
+                  data-vol-hex-shadow={vol.hexShadow}
+                  class="vol-tab-btn relative flex flex-col items-start rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                  style={`--tab-accent: ${vol.hexPrimary};`}
+                >
+                  <span class="flex items-center gap-1.5 text-xs font-bold text-white">
+                    <span
+                      class="h-2.5 w-2.5 rounded-full border border-white/30"
+                      style={`background: ${vol.hexPrimary};`}
+                    ></span>
+                    <span>Vol. {vol.id}</span>
+                  </span>
+                  <span class="mt-0.5 text-[11px] text-slate-400">
+                    {vol.id === 1 ? 'Hasta Fa₄' : vol.id === 2 ? 'Hasta Sib₅' : 'Hasta Fa₆'}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <!-- Panel de especificaciones dinámicas del volumen activo -->
+          <div
+            role="tabpanel"
+            aria-labelledby={`tab-vol-${initialVolume}`}
+            data-vol-tabpanel
+            class="rounded-xl bg-graphite-surface/90 border border-graphite-border p-4 space-y-3 shadow-lg"
+          >
+            <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+              <div>
+                <span
+                  data-panel-metal-label
+                  class="text-xs font-mono uppercase tracking-wider"
+                  style={`color: ${initialVolData.hexPrimary};`}
+                >
+                  {locale === 'es' ? initialVolData.metalNameEs : initialVolData.metalNameEn}
+                </span>
+                <h3 data-panel-title class="font-serif text-lg font-bold text-white">
+                  {locale === 'es' ? initialVolData.badgeEs : initialVolData.badgeEn}
+                </h3>
+              </div>
+              <span
+                data-panel-status
+                class="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium text-slate-200"
+              >
+                {locale === 'es' ? initialVolData.statusEs : initialVolData.statusEn}
+              </span>
+            </div>
+
+            <dl class="grid grid-cols-2 gap-3 text-xs">
+              <div>
+                <dt class="text-slate-400">{locale === 'es' ? 'Tesitura objetivo' : 'Target Range'}</dt>
+                <dd data-panel-subtitle class="mt-0.5 font-medium text-slate-100">
+                  {locale === 'es' ? initialVolData.subtitleEs : initialVolData.subtitleEn}
+                </dd>
+              </div>
+              <div>
+                <dt class="text-slate-400">{locale === 'es' ? 'Etapa recomendada' : 'Recommended Stage'}</dt>
+                <dd data-panel-course class="mt-0.5 font-medium text-slate-100">
+                  {locale === 'es' ? initialVolData.courseEs : initialVolData.courseEn}
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Comparador táctil: Encuadernación KDP vs Vista de Atril (Margen 20 mm) -->
+          <div>
+            <p class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+              {locale === 'es' ? '2. Simulador de Edición y Atril:' : '2. Edition & Music-Stand Simulator:'}
+            </p>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button
+                type="button"
+                data-binding-btn="kdp"
+                aria-pressed="true"
+                class="binding-btn flex flex-col items-start rounded-xl border border-copper/50 bg-copper/10 p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+              >
+                <span class="text-xs font-bold text-white">
+                  {locale === 'es' ? 'Amazon KDP (Tapa Blanda)' : 'Amazon KDP (Paperback)'}
+                </span>
+                <span class="mt-1 text-[11px] text-slate-300 leading-snug">
+                  {locale === 'es'
+                    ? 'Edición impresa oficial con lomo encolado y pastilla metálica de 4×12 mm.'
+                    : 'Official print edition with perfect-bound spine and 4×12 mm metallic badge.'}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                data-binding-btn="spiral"
+                aria-pressed="false"
+                class="binding-btn flex flex-col items-start rounded-xl border border-graphite-border bg-graphite-surface/60 hover:bg-graphite-surface p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+              >
+                <span class="text-xs font-bold text-white">
+                  {locale === 'es' ? 'Amazon Kindle / Margen 20 mm' : 'Amazon Kindle / 20 mm Margin'}
+                </span>
+                <span class="mt-1 text-[11px] text-slate-300 leading-snug">
+                  {locale === 'es'
+                    ? 'Edición digital Print Replica y reserva de 20 mm para lectura limpia en atril.'
+                    : 'Print Replica digital edition & 20 mm inner reserve for clean music-stand reading.'}
+                </span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Escenario con perspectiva 3D real */
+  .book-stage {
+    perspective: 1400px;
+  }
+
+  /* Objeto 3D con identidad de transformación explícita (modern-web-guidance: individual-transform-properties) */
+  .book-3d-object {
+    transform-style: preserve-3d;
+    translate: 0px 0px;
+    rotate: 0deg;
+    scale: 1;
+    transform: rotateX(4deg) rotateY(-18deg);
+    transition: transform 0.18s ease-out, scale 0.3s ease;
+    will-change: transform;
+  }
+
+  /* Flotación suave solo cuando el usuario no solicita reducir movimiento (modern-web-guidance: motion) */
+  @media (prefers-reduced-motion: no-preference) {
+    .book-3d-object:not([data-motion-paused="true"]):not([data-pointer-active="true"]) {
+      animation: bookFloat 6s ease-in-out infinite;
+    }
+  }
+
+  @keyframes bookFloat {
+    0%, 100% {
+      translate: 0px 0px;
+    }
+    50% {
+      translate: 0px -8px;
+    }
+  }
+
+  .book-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+  }
+
+  /* Cara frontal desplazada +14px en Z (espesor total 28px) */
+  .book-front {
+    transform: translateZ(14px);
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.85),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  /* Contracubierta desplazada -14px en Z */
+  .book-back {
+    transform: rotateY(180deg) translateZ(14px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+  }
+
+  /* Lomo izquierdo (ancho 28px = de -14px a +14px en Z) */
+  .book-spine {
+    width: 28px;
+    left: -14px;
+    transform: rotateY(-90deg);
+  }
+
+  .book-spine-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* Corte derecho de páginas (papel blanco marfil con micro-estrías de hojas) */
+  .book-pages-right {
+    width: 26px;
+    right: -13px;
+    left: auto;
+    top: 3px;
+    bottom: 3px;
+    transform: rotateY(90deg);
+    background:
+      repeating-linear-gradient(
+        90deg,
+        #f5f2eb 0px,
+        #f5f2eb 1.5px,
+        #ded9ce 1.5px,
+        #ded9ce 2.5px
+      );
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.35);
+  }
+
+  .book-pages-top {
+    height: 26px;
+    top: -13px;
+    bottom: auto;
+    left: 2px;
+    right: 3px;
+    transform: rotateX(90deg);
+    background:
+      repeating-linear-gradient(
+        0deg,
+        #f5f2eb 0px,
+        #f5f2eb 1.5px,
+        #ded9ce 1.5px,
+        #ded9ce 2.5px
+      );
+  }
+
+  .book-pages-bottom {
+    height: 26px;
+    bottom: -13px;
+    top: auto;
+    left: 2px;
+    right: 3px;
+    transform: rotateX(-90deg);
+    background:
+      repeating-linear-gradient(
+        0deg,
+        #e8e3d8 0px,
+        #e8e3d8 1.5px,
+        #cdc7ba 1.5px,
+        #cdc7ba 2.5px
+      );
+  }
+
+  /* Estampación metálica tridimensional para el titular FLEXIBILIDAD */
+  .book-metallic-title {
+    background-size: 200% 200%;
+    background-position: var(--sheen-pos, 50%) 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .book-metallic-title[data-metal-variant="copper"] {
+    background-image: linear-gradient(
+      115deg,
+      #9E472A 0%,
+      #D98A5B 30%,
+      #FFF3E6 48%,
+      #E89758 55%,
+      #B85D32 85%,
+      #9E472A 100%
+    );
+  }
+
+  .book-metallic-title[data-metal-variant="silver"] {
+    background-image: linear-gradient(
+      115deg,
+      #8E959D 0%,
+      #D6DBDF 30%,
+      #FFFFFF 49%,
+      #F1F2F4 56%,
+      #B8BFC6 85%,
+      #8E959D 100%
+    );
+  }
+
+  .book-metallic-title[data-metal-variant="gold"] {
+    background-image: linear-gradient(
+      115deg,
+      #A88428 0%,
+      #E5C148 30%,
+      #FFFDF0 49%,
+      #F9D658 56%,
+      #D8A935 85%,
+      #A88428 100%
+    );
+  }
+
+  /* Haz de luz especular sobre la portada cuando interactúa el puntero */
+  .book-specular-sheen {
+    background: radial-gradient(
+      380px circle at calc(var(--pointer-x, 0.5) * 100%) calc(var(--pointer-y, 0.35) * 100%),
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(232, 151, 88, 0.12) 32%,
+      transparent 70%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  /* Indicador de pestaña seleccionada mediante pseudo-elemento con borde (modern-web-guidance: tabs) */
+  .vol-tab-btn[aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+
+  .vol-tab-btn[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    inset: auto 8px 0 8px;
+    border-block-end: 3px solid var(--tab-accent, #E89758);
+  }
+</style>
+
+<script>
+  function initTrilogyBook3D() {
+    try {
+      const roots = document.querySelectorAll<HTMLElement>('[data-book-3d-root]');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      roots.forEach((root) => {
+        if (root.dataset.initialized === 'true') return;
+        root.dataset.initialized = 'true';
+
+        const locale = root.dataset.locale === 'en' ? 'en' : 'es';
+        const stage = root.querySelector<HTMLElement>('[data-book-stage]');
+        const bookObject = root.querySelector<HTMLElement>('[data-book-object]');
+        const sheen = root.querySelector<HTMLElement>('[data-book-sheen]');
+        const aura = root.querySelector<HTMLElement>('[data-book-aura]');
+        const mainTitle = root.querySelector<HTMLElement>('[data-book-main-title]');
+        const badge = root.querySelector<HTMLElement>('[data-book-badge]');
+        const subtitle = root.querySelector<HTMLElement>('[data-book-subtitle]');
+        const metalFrame = root.querySelector<HTMLElement>('[data-metal-frame]');
+        const spinePill = root.querySelector<HTMLElement>('[data-spine-pill]');
+        const spineLabel = root.querySelector<HTMLElement>('[data-spine-label]');
+        const kdpCrease = root.querySelector<HTMLElement>('[data-kdp-crease]');
+        const spiralRings = root.querySelector<HTMLElement>('[data-spiral-rings]');
+
+        const flipBtn = root.querySelector<HTMLButtonElement>('[data-toggle-flip]');
+        const motionBtn = root.querySelector<HTMLButtonElement>('[data-toggle-motion]');
+        const volTabs = root.querySelectorAll<HTMLButtonElement>('[data-vol-tab]');
+        const tabPanel = root.querySelector<HTMLElement>('[data-vol-tabpanel]');
+        const bindingBtns = root.querySelectorAll<HTMLButtonElement>('[data-binding-btn]');
+
+        const panelMetalLabel = root.querySelector<HTMLElement>('[data-panel-metal-label]');
+        const panelTitle = root.querySelector<HTMLElement>('[data-panel-title]');
+        const panelStatus = root.querySelector<HTMLElement>('[data-panel-status]');
+        const panelSubtitle = root.querySelector<HTMLElement>('[data-panel-subtitle]');
+        const panelCourse = root.querySelector<HTMLElement>('[data-panel-course]');
+
+        if (!stage || !bookObject) return;
+
+        let isFlipped = false;
+        let isMotionPaused = prefersReducedMotion;
+
+        if (isMotionPaused) {
+          bookObject.dataset.motionPaused = 'true';
+          if (motionBtn) {
+            motionBtn.textContent = locale === 'es' ? 'Reanudar giro 3D' : 'Resume 3D motion';
+          }
+        }
+
+        // Control de inclinación 3D por puntero
+        const updateBookTransform = (rotX: number, rotY: number) => {
+          try {
+            const baseFlip = isFlipped ? 180 : 0;
+            bookObject.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${(rotY + baseFlip).toFixed(2)}deg)`;
+          } catch (err) {
+            console.warn('[TrilogyBook3D] Error aplicando transformación 3D:', err);
+          }
+        };
+
+        stage.addEventListener('pointermove', (e: PointerEvent) => {
+          if (isMotionPaused) return;
+          try {
+            const rect = stage.getBoundingClientRect();
+            const relX = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+            const relY = Math.min(Math.max((e.clientY - rect.top) / rect.height, 0), 1);
+
+            const rotY = (relX - 0.5) * 38; // -19° a +19°
+            const rotX = (0.5 - relY) * 24; // -12° a +12°
+
+            bookObject.dataset.pointerActive = 'true';
+            root.style.setProperty('--pointer-x', relX.toFixed(3));
+            root.style.setProperty('--pointer-y', relY.toFixed(3));
+            root.style.setProperty('--sheen-pos', `${(relX * 100).toFixed(1)}%`);
+
+            if (sheen) sheen.style.opacity = '1';
+            updateBookTransform(rotX, rotY);
+          } catch (err) {
+            console.warn('[TrilogyBook3D] Error procesando puntero:', err);
+          }
+        });
+
+        stage.addEventListener('pointerleave', () => {
+          try {
+            delete bookObject.dataset.pointerActive;
+            if (sheen) sheen.style.opacity = '0';
+            root.style.setProperty('--sheen-pos', '50%');
+            updateBookTransform(4, -18);
+          } catch (err) {
+            console.warn('[TrilogyBook3D] Error al restaurar postura 3D:', err);
+          }
+        });
+
+        // Giro de 180° para ver la contraportada y el lomo
+        flipBtn?.addEventListener('click', () => {
+          try {
+            isFlipped = !isFlipped;
+            flipBtn.setAttribute('aria-pressed', String(isFlipped));
+            updateBookTransform(4, isFlipped ? 18 : -18);
+          } catch (err) {
+            console.error('[TrilogyBook3D] Error al girar cubierta:', err);
+          }
+        });
+
+        // Pausa accesible de movimiento (WCAG 2.2.2)
+        motionBtn?.addEventListener('click', () => {
+          try {
+            isMotionPaused = !isMotionPaused;
+            if (isMotionPaused) {
+              bookObject.dataset.motionPaused = 'true';
+              if (sheen) sheen.style.opacity = '0';
+              updateBookTransform(0, 0);
+              motionBtn.textContent = locale === 'es' ? 'Reanudar giro 3D' : 'Resume 3D motion';
+            } else {
+              delete bookObject.dataset.motionPaused;
+              updateBookTransform(4, -18);
+              motionBtn.textContent = locale === 'es' ? 'Pausar giro 3D' : 'Pause 3D motion';
+            }
+          } catch (err) {
+            console.error('[TrilogyBook3D] Error al alternar movimiento:', err);
+          }
+        });
+
+        // Selector de Volumen (1 = Cobre, 2 = Plata, 3 = Oro)
+        const selectVolumeTab = (selectedBtn: HTMLButtonElement) => {
+          try {
+            volTabs.forEach((btn) => {
+              const isSelected = btn === selectedBtn;
+              btn.setAttribute('aria-selected', String(isSelected));
+            });
+
+            const code = selectedBtn.dataset.volCode || 'copper';
+            const hex = selectedBtn.dataset.volHex || '#E89758';
+            const hexSec = selectedBtn.dataset.volHexSec || '#D98A5B';
+            const hexShadow = selectedBtn.dataset.volHexShadow || '#9E472A';
+
+            bookObject.dataset.metal = code;
+            if (mainTitle) mainTitle.dataset.metalVariant = code;
+
+            root.style.setProperty('--active-metal', hex);
+            root.style.setProperty('--active-metal-secondary', hexSec);
+            root.style.setProperty('--active-metal-shadow', hexShadow);
+
+            if (aura) {
+              aura.style.background = `radial-gradient(circle, ${hex} 0%, transparent 70%)`;
+            }
+            if (badge) {
+              badge.textContent = selectedBtn.dataset.volBadge || '';
+              badge.style.color = hex;
+              badge.style.borderColor = `${hex}66`;
+            }
+            if (subtitle) {
+              subtitle.textContent = selectedBtn.dataset.volSubtitle || '';
+              subtitle.style.color = hexSec;
+            }
+            if (metalFrame) {
+              metalFrame.style.borderColor = hex;
+            }
+            if (spinePill) {
+              spinePill.style.background = `linear-gradient(180deg, ${hexShadow} 0%, ${hex} 50%, ${hexSec} 100%)`;
+            }
+            if (spineLabel) {
+              spineLabel.textContent = selectedBtn.dataset.volSpine || '';
+            }
+            if (tabPanel && selectedBtn.id) {
+              tabPanel.setAttribute('aria-labelledby', selectedBtn.id);
+            }
+            if (panelMetalLabel) {
+              panelMetalLabel.textContent = selectedBtn.dataset.volMetalName || '';
+              panelMetalLabel.style.color = hex;
+            }
+            if (panelTitle) {
+              panelTitle.textContent = selectedBtn.dataset.volBadge || '';
+            }
+            if (panelStatus) {
+              panelStatus.textContent = selectedBtn.dataset.volStatus || '';
+            }
+            if (panelSubtitle) {
+              panelSubtitle.textContent = selectedBtn.dataset.volSubtitle || '';
+            }
+            if (panelCourse) {
+              panelCourse.textContent = selectedBtn.dataset.volCourse || '';
+            }
+          } catch (err) {
+            console.error('[TrilogyBook3D] Error cambiando volumen:', err);
+          }
+        };
+
+        volTabs.forEach((btn, idx) => {
+          btn.addEventListener('click', () => selectVolumeTab(btn));
+          btn.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+              e.preventDefault();
+              const dir = e.key === 'ArrowRight' ? 1 : -1;
+              const nextIdx = (idx + dir + volTabs.length) % volTabs.length;
+              const nextBtn = volTabs[nextIdx];
+              if (nextBtn) {
+                nextBtn.focus();
+                selectVolumeTab(nextBtn);
+              }
+            }
+          });
+        });
+
+        // Simulador KDP vs Espiral Metálica
+        bindingBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            try {
+              const mode = btn.dataset.bindingBtn || 'kdp';
+              bindingBtns.forEach((b) => {
+                const active = b === btn;
+                b.setAttribute('aria-pressed', String(active));
+                b.classList.toggle('border-copper/50', active);
+                b.classList.toggle('bg-copper/10', active);
+                b.classList.toggle('border-graphite-border', !active);
+                b.classList.toggle('bg-graphite-surface/60', !active);
+              });
+
+              bookObject.dataset.binding = mode;
+              if (mode === 'spiral') {
+                spiralRings?.classList.remove('hidden');
+                spiralRings?.classList.add('flex');
+                kdpCrease?.classList.add('hidden');
+              } else {
+                spiralRings?.classList.add('hidden');
+                spiralRings?.classList.remove('flex');
+                kdpCrease?.classList.remove('hidden');
+              }
+            } catch (err) {
+              console.error('[TrilogyBook3D] Error cambiando encuadernación:', err);
+            }
+          });
+        });
+      });
+    } catch (err) {
+      console.error('[TrilogyBook3D] Fallo crítico de inicialización:', err);
+    }
+  }
+
+  initTrilogyBook3D();
+  document.addEventListener('astro:page-load', initTrilogyBook3D);
+</script>

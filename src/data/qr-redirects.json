@@ -1,0 +1,119 @@
+{
+  "v1-n1": {
+    "volume": 1,
+    "level": 1,
+    "title": "Nivel 1 · Bienvenida y Parciales Esenciales (Sib₂–Fa₃–Sib₃)",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n1-l1": {
+    "volume": 1,
+    "level": 1,
+    "lesson": 1,
+    "title": "Nivel 1 · Lección 1: Iniciación y toma de contacto",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n1-l2": {
+    "volume": 1,
+    "level": 1,
+    "lesson": 2,
+    "title": "Nivel 1 · Lección 2: Hacia las negras",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n1-l3": {
+    "volume": 1,
+    "level": 1,
+    "lesson": 3,
+    "title": "Nivel 1 · Lección 3: Añadiendo corcheas",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n1-amp": {
+    "volume": 1,
+    "level": 1,
+    "lesson": "ampliacion",
+    "title": "Nivel 1 · Ampliación: Tresillos",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n2": {
+    "volume": 1,
+    "level": 2,
+    "title": "Nivel 2 · Bienvenida y Extensión hasta el 5.º Parcial (Re₄)",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n2-l1": {
+    "volume": 1,
+    "level": 2,
+    "lesson": 1,
+    "title": "Nivel 2 · Lección 1: Hacia las negras",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n2-l2": {
+    "volume": 1,
+    "level": 2,
+    "lesson": 2,
+    "title": "Nivel 2 · Lección 2: Añadiendo corcheas",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n2-l3": {
+    "volume": 1,
+    "level": 2,
+    "lesson": 3,
+    "title": "Nivel 2 · Lección 3: Hacia los tresillos",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n2-amp": {
+    "volume": 1,
+    "level": 2,
+    "lesson": "ampliacion",
+    "title": "Nivel 2 · Ampliación: Semicorcheas",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n3": {
+    "volume": 1,
+    "level": 3,
+    "title": "Nivel 3 · Bienvenida y Extensión hasta el 6.º Parcial (Fa₄)",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n3-l1": {
+    "volume": 1,
+    "level": 3,
+    "lesson": 1,
+    "title": "Nivel 3 · Lección 1: De la negra a la corchea",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n3-l2": {
+    "volume": 1,
+    "level": 3,
+    "lesson": 2,
+    "title": "Nivel 3 · Lección 2: Hacia los tresillos",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n3-l3": {
+    "volume": 1,
+    "level": 3,
+    "lesson": 3,
+    "title": "Nivel 3 · Lección 3: Hacia las semicorcheas",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  },
+  "v1-n3-amp": {
+    "volume": 1,
+    "level": 3,
+    "lesson": "ampliacion",
+    "title": "Nivel 3 · Ampliación: Retos finales",
+    "targetUrl": "",
+    "status": "pending_adilo"
+  }
+}

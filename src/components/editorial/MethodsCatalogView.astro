@@ -1,0 +1,266 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import esData from '../../data/es.json';
+import enData from '../../data/en.json';
+import { getTrilogyVolumes } from '../../data/methods-flexibility';
+import { getMethodsPaths, type SupportedLocale } from '../../utils/i18n-routes';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isEs = locale === 'es';
+const siteData = isEs ? esData : enData;
+const paths = getMethodsPaths(locale, base);
+const volumes = getTrilogyVolumes(locale, base);
+
+const catalogMeta = isEs
+  ? {
+      title: 'Métodos y Publicaciones Didácticas · Colección Metales Nobles | Javier Sáez',
+      description:
+        'Catálogo de métodos pedagógicos y publicaciones para trombón de Javier Sáez Mozos. Trilogía «Trombón · Flexibilidad» disponible en Amazon KDP (Tapa Blanda) y Amazon Kindle.',
+      ogImage: '/images/metodos/portada-duo-trombot.jpg',
+      locale: 'es',
+    }
+  : {
+      title: 'Methods & Pedagogical Publications · Noble Metals Collection | Javier Sáez',
+      description:
+        'Catalog of pedagogical trombone methods and publications by Javier Sáez Mozos. «Trombone · Flexibility» Trilogy available on Amazon KDP (Paperback) and Amazon Kindle.',
+      ogImage: '/images/metodos/portada-duo-trombot.jpg',
+      locale: 'en',
+    };
+
+const copy = isEs
+  ? {
+      homeLabel: 'Inicio',
+      currentBreadcrumb: 'Métodos y Publicaciones',
+      eyebrow: 'Colección Editorial Metales Nobles',
+      h1: 'Publicaciones Didácticas y Ecosistema Digital para Trombón',
+      leadPrefix:
+        'Obras pedagógicas diseñadas bajo estándares de grabado musical de alta precisión (SMuFL Leland y tipografía Baskerville), combinadas con videopartituras interactivas y el asistente virtual ',
+      leadMid: '. En su lanzamiento oficial, las ediciones están disponibles exclusivamente a través de ',
+      leadChannel1: 'Amazon KDP (Tapa Blanda)',
+      leadConj: ' y ',
+      leadChannel2: 'Amazon Kindle (Edición Digital)',
+      ctaPrimary: 'Ver Ficha del Volumen 1 (Amazon KDP / Kindle)',
+      ctaSecondary: 'Explorar Simulador 3D y Laboratorio Acústico',
+      postSaleEyebrow: 'Servicio Postventa Editorial',
+      postSaleTitle: '¿Ya tienes tu ejemplar de Amazon KDP o Kindle?',
+      postSaleBody:
+        'Registra tu edición impresa o digital para recibir el material complementario descargable, avisos de erratas y actualizaciones de las videopartituras.',
+      postSaleBtn: 'Activar Ejemplar en /registro',
+      seriesEyebrow: 'Serie Principal · 3 Volúmenes Progresivos',
+      seriesHeading: 'Trilogía «Trombón · Flexibilidad»',
+      seriesLink: 'Ver experiencia interactiva completa de la trilogía →',
+      stagePrefix: 'Etapa recomendada: ',
+      cardSecondary: 'Probar Visor de Partitura y Audio',
+    }
+  : {
+      homeLabel: 'Home',
+      currentBreadcrumb: 'Methods & Publications',
+      eyebrow: 'Noble Metals Editorial Collection',
+      h1: 'Pedagogical Publications & Digital Ecosystem for Trombone',
+      leadPrefix:
+        'Pedagogical editions engraved under high-precision music notation standards (SMuFL Leland and Baskerville typography), paired with interactive video scores and virtual assistant ',
+      leadMid: '. At official launch, editions are exclusively available through ',
+      leadChannel1: 'Amazon KDP (Paperback)',
+      leadConj: ' and ',
+      leadChannel2: 'Amazon Kindle (Digital Edition)',
+      ctaPrimary: 'View Volume 1 Sheet (Amazon KDP / Kindle)',
+      ctaSecondary: 'Explore 3D Book & Acoustic Lab',
+      postSaleEyebrow: 'Editorial After-Sales Service',
+      postSaleTitle: 'Already own an Amazon KDP or Kindle copy?',
+      postSaleBody:
+        'Register your print or digital edition to receive downloadable supplementary materials, errata alerts, and interactive video-score updates.',
+      postSaleBtn: 'Activate Copy at /registro',
+      seriesEyebrow: 'Flagship Series · 3 Progressive Volumes',
+      seriesHeading: '«Trombone · Flexibility» Trilogy',
+      seriesLink: 'View full interactive trilogy experience →',
+      stagePrefix: 'Recommended stage: ',
+      cardSecondary: 'Try Sheet Music Viewer & Audio Lab',
+    };
+---
+
+<Layout
+  meta={catalogMeta}
+  nav={siteData.nav}
+  footer={siteData.footer}
+  currentLocale={locale}
+>
+  <main id="main-catalog-content" class="bg-gradient-auditorium min-h-screen pt-6 pb-24 text-white">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <nav aria-label="Breadcrumbs" class="py-3 text-xs text-slate-400">
+        <ol class="breadcrumb-list flex flex-wrap items-center">
+          <li>
+            <a href={paths.home} class="hover:text-copper-light transition-colors focus:outline-none focus:underline">
+              {copy.homeLabel}
+            </a>
+          </li>
+          <li>
+            <a href={paths.catalog} aria-current="page" class="font-medium text-slate-200">
+              {copy.currentBreadcrumb}
+            </a>
+          </li>
+        </ol>
+      </nav>
+
+      <header class="mt-6 rounded-3xl border border-graphite-border bg-graphite-surface/75 p-6 sm:p-10 shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-8 space-y-4">
+            <span class="inline-flex items-center gap-2 rounded-full border border-copper/40 bg-copper/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-copper-light">
+              {copy.eyebrow}
+            </span>
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
+              {copy.h1}
+            </h1>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl">
+              {copy.leadPrefix}
+              <strong class="text-white">TromBot IA</strong>
+              {copy.leadMid}
+              <strong class="text-copper-light">{copy.leadChannel1}</strong>
+              {copy.leadConj}
+              <strong class="text-copper-light">{copy.leadChannel2}</strong>.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a
+                href={paths.vol1}
+                class="inline-flex items-center gap-2 rounded-xl bg-copper px-5 py-3 text-xs sm:text-sm font-bold text-graphite-deep shadow-lg hover:bg-copper-light transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+              >
+                <span>{copy.ctaPrimary}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href={paths.trilogy}
+                class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-xs sm:text-sm font-medium text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+              >
+                <span>{copy.ctaSecondary}</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="lg:col-span-4 rounded-2xl border border-copper/35 bg-graphite-deep/90 p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-copper-light">
+                {copy.postSaleEyebrow}
+              </span>
+              <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <h2 class="font-serif text-lg font-bold text-white">
+              {copy.postSaleTitle}
+            </h2>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              {copy.postSaleBody}
+            </p>
+            <a
+              href={paths.register}
+              class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-copper/50 bg-copper/15 px-4 py-2.5 text-xs font-bold text-copper-light hover:bg-copper/25 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+            >
+              <span>{copy.postSaleBtn}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </aside>
+        </div>
+      </header>
+
+      <section aria-labelledby="trilogy-catalog-heading" class="mt-14">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-mono uppercase tracking-widest text-copper-light">
+              {copy.seriesEyebrow}
+            </p>
+            <h2 id="trilogy-catalog-heading" class="mt-1 font-serif text-2xl sm:text-3xl font-bold text-white">
+              {copy.seriesHeading}
+            </h2>
+          </div>
+          <a
+            href={paths.trilogy}
+            class="text-xs font-mono uppercase tracking-wider text-copper-light hover:underline"
+          >
+            {copy.seriesLink}
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {volumes.map((vol) => (
+            <article
+              class={`flex flex-col justify-between rounded-2xl border bg-graphite-surface/85 p-6 shadow-xl transition-colors ${vol.borderClass}`}
+            >
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span
+                    class={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-mono uppercase tracking-wider ${vol.badgeClass}`}
+                  >
+                    <span
+                      class="h-2 w-2 rounded-full"
+                      style={`background-color: ${vol.hex};`}
+                    ></span>
+                    {vol.metal}
+                  </span>
+                  <span class="text-[11px] font-mono text-slate-400">
+                    {vol.status}
+                  </span>
+                </div>
+
+                <h3 class="mt-4 font-serif text-xl font-bold text-white">
+                  {vol.title}
+                </h3>
+                <p class="mt-1 text-xs font-medium" style={`color: ${vol.hex};`}>
+                  {vol.range}
+                </p>
+                <p class="mt-1 text-xs text-slate-400">
+                  {copy.stagePrefix}{vol.courses}
+                </p>
+
+                <ul class="mt-5 space-y-2.5 border-t border-white/10 pt-4 text-xs text-slate-300">
+                  {vol.specs.map((spec) => (
+                    <li class="flex items-start gap-2">
+                      <span class="mt-0.5 text-copper-light" aria-hidden="true">•</span>
+                      <span>{spec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-white/10 flex flex-col gap-2.5">
+                {vol.available ? (
+                  <>
+                    <a
+                      href={vol.slug}
+                      class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-copper px-4 py-2.5 text-xs font-bold text-graphite-deep hover:bg-copper-light transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+                    >
+                      <span>{vol.ctaCatalog}</span>
+                      <span aria-hidden="true">→</span>
+                    </a>
+                    <a
+                      href={paths.trilogy}
+                      class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-white/10 transition-colors"
+                    >
+                      <span>{copy.cardSecondary}</span>
+                    </a>
+                  </>
+                ) : (
+                  <a
+                    href={vol.slug}
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-medium text-slate-200 hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+                  >
+                    <span>{vol.ctaCatalog}</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .breadcrumb-list li:not(:first-child)::before {
+    content: "/" / "";
+    padding-inline: 0.6rem;
+    color: #64748b;
+  }
+</style>

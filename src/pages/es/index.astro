@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/Hero.astro';
+import FeaturedMethodSection from '../../components/FeaturedMethodSection.astro';
 import AcademicSection from '../../components/AcademicSection.astro';
 import MasterclassesSection from '../../components/MasterclassesSection.astro';
 import PerformanceSection from '../../components/PerformanceSection.astro';
@@ -21,6 +22,8 @@ import esData from '../../data/es.json';
     presentation={esData.presentation}
     currentLocale="es"
   />
+
+  <FeaturedMethodSection currentLocale="es" />
 
   <AcademicSection
     academic={esData.academic}

@@ -1,5 +1,22 @@
 {
   "framework": "astro",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/register",
+      "destination": "/registro?lang=en",
+      "permanent": true
+    },
+    {
+      "source": "/anmeldung",
+      "destination": "/registro?lang=de",
+      "permanent": true
+    },
+    {
+      "source": "/registrazione",
+      "destination": "/registro?lang=it",
+      "permanent": true
+    }
+  ]
 }

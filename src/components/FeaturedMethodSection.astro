@@ -1,0 +1,242 @@
+---
+import SocialIcons from './SocialIcons.astro';
+import { getMethodsPaths } from '../utils/i18n-routes';
+
+interface Props {
+  currentLocale: 'es' | 'en';
+}
+
+const { currentLocale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isEs = currentLocale === 'es';
+const paths = getMethodsPaths(currentLocale, base);
+
+const vol1Url = paths.vol1;
+const trilogyUrl = paths.trilogy;
+const catalogUrl = paths.catalog;
+const registerUrl = paths.register;
+
+const copy = isEs
+  ? {
+      eyebrow: 'Nueva Publicación Pedagógica · Colección Metales Nobles',
+      heading: 'Trombón · Flexibilidad — Volumen 1 (Elemental)',
+      subheading:
+        'Un método progresivo diseñado para Enseñanzas Elementales (2.º a 4.º curso, hasta Fa₄) con videopartituras interactivas y el asistente pedagógico TromBot.',
+      badge: 'Lanzamiento Oficial en Amazon KDP y Amazon Kindle',
+      highlights: [
+        '3 Niveles y 12 Bloques: 120 ejercicios dobles en espejo (1.ª–7.ª posición) + 12 estudios melódicos.',
+        'Grabado musical SMuFL Leland de 7,0 mm y tipografía Baskerville con margen interior de 20 mm para atril.',
+        '15 Códigos QR interactivos hacia videopartituras en alta definición sin anuncios (subtítulos ES/EN/DE/IT).',
+      ],
+      editionsLabel: 'Ediciones disponibles en el lanzamiento:',
+      editionKdp: 'Amazon KDP · Tapa Blanda',
+      editionKindle: 'Amazon Kindle · Digital Print Replica',
+      ctaPrimary: 'Ver Ficha y Comprar en Amazon',
+      ctaSecondary: 'Probar Visor 3D y Audio',
+      ctaRegister: 'Activar Ejemplar (/registro)',
+      coverAuthor: 'Javier Sáez Mozos',
+      coverTitle: 'FLEXIBILIDAD',
+      coverSubtitle: 'MÉTODO DE TROMBÓN',
+      coverVol: 'VOLUMEN 1 · ELEMENTAL',
+      coverDesc: 'Desarrollo progresivo de la flexibilidad labial hasta Fa₄',
+      imgAlt:
+        'Portada de Flexibilidad Método de Trombón Volumen 1 Elemental: joven trombonista junto a TromBot IA',
+    }
+  : {
+      eyebrow: 'New Pedagogical Publication · Noble Metals Collection',
+      heading: 'Trombone · Flexibility — Volume 1 (Elementary)',
+      subheading:
+        'A progressive method designed for elementary conservatory studies (up to F₄) featuring interactive video scores and the pedagogical assistant TromBot.',
+      badge: 'Official Launch on Amazon KDP & Amazon Kindle',
+      highlights: [
+        '3 Levels & 12 Blocks: 120 double mirror exercises (1st–7th slide position) + 12 melodic etudes.',
+        '7.0 mm SMuFL Leland engraving and Baskerville typography with a 20 mm inner music-stand safety margin.',
+        '15 interactive QR codes linking to ad-free HD video scores with subtitles in ES, EN, DE, and IT.',
+      ],
+      editionsLabel: 'Available launch editions:',
+      editionKdp: 'Amazon KDP · Paperback',
+      editionKindle: 'Amazon Kindle · Print Replica Digital',
+      ctaPrimary: 'View Edition & Buy on Amazon',
+      ctaSecondary: 'Try 3D Book & Audio Lab',
+      ctaRegister: 'Activate Copy (/registro)',
+      coverAuthor: 'Javier Sáez Mozos',
+      coverTitle: 'FLEXIBILIDAD',
+      coverSubtitle: 'TROMBONE METHOD',
+      coverVol: 'VOLUME 1 · ELEMENTARY',
+      coverDesc: 'Progressive development of lip flexibility up to F₄',
+      imgAlt:
+        'Cover of Flexibility Trombone Method Volume 1 Elementary featuring a young trombonist with TromBot AI',
+    };
+---
+
+<section
+  id="publicaciones"
+  aria-labelledby="featured-method-heading"
+  class="py-16 lg:py-24 bg-dark-950/90 border-t border-dark-800/80 relative overflow-hidden"
+>
+  <!-- Resplandor ambiental en tono Cobre Acústico -->
+  <div
+    class="pointer-events-none absolute -top-24 right-1/4 h-72 w-72 rounded-full bg-copper/10 blur-3xl -z-10"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <article class="rounded-3xl border border-copper/35 bg-gradient-to-br from-[#1A1B1E] via-[#131417] to-dark-950 p-6 sm:p-10 lg:p-12 shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <!-- Columna Izquierda: Maqueta Editorial de Cubierta Real -->
+        <div class="lg:col-span-4 flex justify-center">
+          <div class="featured-book-wrap group relative w-full max-w-[270px]">
+            <div
+              class="featured-book-card relative aspect-[216/280] w-full rounded-r-md rounded-l-[3px] overflow-hidden bg-[#08090B] border border-copper/40 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.9),0_0_28px_-6px_rgba(232,151,88,0.28)] flex flex-col justify-between p-4 sm:p-5"
+            >
+              <!-- Simulación sutil de lomo izquierdo -->
+              <div
+                class="pointer-events-none absolute inset-y-0 left-0 w-2 bg-gradient-to-r from-black/80 via-white/10 to-transparent z-30"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Ilustración canónica -->
+              <img
+                src={`${base}/images/metodos/portada-duo-trombot.jpg`}
+                alt={copy.imgAlt}
+                class="pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom brightness-95 contrast-105"
+                loading="lazy"
+                decoding="async"
+                width="540"
+                height="700"
+              />
+
+              <!-- Degradado superior legible -->
+              <div
+                class="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#08090B] via-[#08090B]/92 to-transparent"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Cabecera tipográfica exacta de cubierta_completa.pdf -->
+              <div class="relative z-20 text-center pt-1">
+                <p class="font-serif text-[10px] font-medium tracking-[0.12em] text-white/95 mb-1">
+                  {copy.coverAuthor}
+                </p>
+                <p class="font-serif text-xl sm:text-2xl font-bold tracking-[0.16em] uppercase bg-gradient-to-b from-[#F2B383] via-[#E89758] to-[#9E472A] bg-clip-text text-transparent drop-shadow">
+                  {copy.coverTitle}
+                </p>
+                <p class="mt-0.5 font-serif text-[9px] font-semibold tracking-[0.26em] text-slate-100 uppercase">
+                  {copy.coverSubtitle}
+                </p>
+                <p class="mt-1.5 font-serif text-[10px] font-bold tracking-[0.18em] text-copper uppercase">
+                  {copy.coverVol}
+                </p>
+                <p class="mt-1 font-serif italic text-[9px] text-slate-200 leading-snug">
+                  {copy.coverDesc}
+                </p>
+              </div>
+
+              <!-- Sello inferior discreto -->
+              <div class="relative z-20 text-center">
+                <span class="inline-block rounded-full border border-copper/40 bg-black/70 px-2.5 py-0.5 font-mono text-[8px] uppercase tracking-wider text-copper-light backdrop-blur-sm">
+                  Amazon KDP · Kindle
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Descripción, Especificaciones y Acciones -->
+        <div class="lg:col-span-8 space-y-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="inline-flex items-center gap-2 rounded-full border border-copper/45 bg-copper/10 px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-copper-light">
+              <SocialIcons name="music" class="w-3.5 h-3.5 text-copper" />
+              <span>{copy.eyebrow}</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/35 bg-emerald-500/10 px-3 py-1 text-[11px] font-mono text-emerald-300">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              {copy.badge}
+            </span>
+          </div>
+
+          <div>
+            <h2
+              id="featured-method-heading"
+              class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight"
+            >
+              {copy.heading}
+            </h2>
+            <p class="mt-2.5 text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+              {copy.subheading}
+            </p>
+          </div>
+
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-300 border-t border-white/10 pt-4">
+            {copy.highlights.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <span class="mt-1 text-copper font-bold" aria-hidden="true">✦</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Etiquetas de formato de lanzamiento -->
+          <div class="flex flex-wrap items-center gap-2 text-[11px] font-mono text-slate-300">
+            <span class="text-slate-400">{copy.editionsLabel}</span>
+            <span class="rounded-md border border-copper/40 bg-copper/10 px-2.5 py-1 text-copper-light">
+              {copy.editionKdp}
+            </span>
+            <span class="rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-slate-200">
+              {copy.editionKindle}
+            </span>
+          </div>
+
+          <!-- Botones de acción explícitos (sin envolver toda la tarjeta en <a>) -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href={vol1Url}
+              class="inline-flex items-center gap-2 rounded-xl bg-copper px-5 py-3 text-xs sm:text-sm font-bold text-graphite-deep shadow-lg hover:bg-copper-light transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+            >
+              <span>{copy.ctaPrimary}</span>
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              href={trilogyUrl}
+              class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-xs sm:text-sm font-medium text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+            >
+              <span>{copy.ctaSecondary}</span>
+            </a>
+
+            <a
+              href={registerUrl}
+              class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono text-copper-light hover:underline focus:outline-none focus:ring-2 focus:ring-gold-400 rounded"
+            >
+              <span>{copy.ctaRegister}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href={catalogUrl}
+              class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+            >
+              <span>{isEs ? 'Catálogo Completo (Vol. 1–3)' : 'Full Trilogy Catalog (Vol. 1–3)'}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .featured-book-wrap {
+    perspective: 1100px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .featured-book-card {
+      transform: rotateY(-8deg) rotateX(2deg);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .featured-book-wrap:hover .featured-book-card {
+      transform: rotateY(0deg) rotateX(0deg) translateY(-4px);
+    }
+  }
+</style>

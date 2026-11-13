@@ -1,0 +1,96 @@
+---
+import qrRedirects from '../../data/qr-redirects.json';
+
+interface QrEntry {
+  volume: number;
+  level: number;
+  lesson?: number | string;
+  title: string;
+  targetUrl: string;
+  status: string;
+}
+
+export function getStaticPaths() {
+  const entries = Object.entries(qrRedirects as Record<string, QrEntry>);
+  return entries.map(([codigo, info]) => ({
+    params: { codigo },
+    props: { codigo, info },
+  }));
+}
+
+interface Props {
+  codigo: string;
+  info: QrEntry;
+}
+
+const { codigo, info } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const hasTarget = Boolean(info.targetUrl && info.targetUrl.trim().length > 0);
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{info.title} · Trombón Flexibilidad</title>
+    {hasTarget && <meta http-equiv="refresh" content={`0;url=${info.targetUrl}`} />}
+    {hasTarget && (
+      <script is:inline define:vars={{ targetUrl: info.targetUrl }}>
+        window.location.replace(targetUrl);
+      </script>
+    )}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-graphite-base text-slate-100 font-sans antialiased min-h-screen flex items-center justify-center p-4 bg-gradient-auditorium">
+    <main class="w-full max-w-lg rounded-2xl bg-graphite-surface/95 border border-copper/35 p-6 sm:p-8 shadow-2xl text-center space-y-5">
+      <div class="inline-flex items-center gap-2 rounded-full border border-copper/40 bg-copper/10 px-3 py-1 font-mono text-xs text-copper-light uppercase tracking-wider">
+        Código QR · {codigo}
+      </div>
+
+      <h1 class="font-serif text-xl sm:text-2xl font-bold text-white leading-snug">
+        {info.title}
+      </h1>
+
+      {hasTarget ? (
+        <div class="space-y-4">
+          <p class="text-sm text-slate-300">
+            Redirigiendo a la videopartitura interactiva en la plataforma oficial...
+          </p>
+          <a
+            href={info.targetUrl}
+            class="inline-flex items-center justify-center rounded-xl bg-gradient-copper px-5 py-3 text-sm font-bold text-dark-950 shadow-metal-copper"
+          >
+            Abrir videopartitura ahora
+          </a>
+        </div>
+      ) : (
+        <div class="space-y-4">
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Este recurso interactivo está vinculado al <strong>Volumen 1 · Elemental</strong>. Para acceder a las videopartituras con tu ejemplar de Amazon KDP o Kindle, valida primero tu compra en el portal oficial de registro.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <a
+              href={`${base}/registro`}
+              class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-gradient-copper px-5 py-2.5 text-sm font-bold text-dark-950 shadow-metal-copper"
+            >
+              Activar mi ejemplar
+            </a>
+            <a
+              href={`${base}/es/metodos/flexibilidad`}
+              class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-graphite-border bg-graphite-deep px-5 py-2.5 text-sm font-medium text-slate-200 hover:border-copper/50 transition-colors"
+            >
+              Explorar laboratorio del método
+            </a>
+          </div>
+        </div>
+      )}
+    </main>
+  </body>
+</html>
