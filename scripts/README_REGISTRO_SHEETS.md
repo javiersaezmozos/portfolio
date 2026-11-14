@@ -1,33 +1,31 @@
-# Configuración del Webhook de `/registro` en Google Sheets (0 €/mes)
+# Configuración de `/registro` Antifraude + Gemini Vision + Google Sheets (0 €/mes)
 
-Este sistema conecta el formulario estático [`src/pages/registro.astro`](../src/pages/registro.astro) con una hoja de cálculo de Google Drive mediante Google Apps Script, manteniendo el alojamiento en Vercel 100 % estático y sin coste fijo mensual.
+Este sistema conecta [`src/pages/registro.astro`](../src/pages/registro.astro) con Google Sheets, Google Drive y Gemini Vision (`gemini-2.5-flash`) mediante Google Apps Script:
 
-## 1. Abrir la hoja de cálculo creada y desplegar Apps Script
+- Aprueba y responde **automáticamente** en su idioma (`es`, `en`, `de`, `it`) cuando Gemini confirma un recibo auténtico.
+- Guarda todas las capturas en una carpeta privada de Google Drive (`Recibos_Trombon_Flexibilidad`).
+- Bloquea **duplicados** por número de pedido normalizado y por huella **SHA-256** de la imagen.
+- Envía a tu correo **únicamente los casos dudosos** (o si no hay clave configurada) con la foto adjunta para revisión manual.
 
-1. Abre la hoja ya creada y preconfigurada en tu Google Drive (`javiersaezmozos@gmail.com`):
-   - **URL directa**: https://docs.google.com/spreadsheets/d/1OJuf5EixstUJioKyWk5vRciyMIDXk6wpmNR2DoI-XF8/edit
-   - Pestaña preparada: `Registros_Vol1` (9 columnas congeladas y estilizadas, acceso privado solo para tu cuenta).
-2. En el menú superior abre **Extensiones → Apps Script**.
-3. Borra el código de ejemplo y pega el contenido completo de [`google-apps-script-registro.gs`](./google-apps-script-registro.gs).
-4. Guarda el proyecto (`Cmd + S`).
-5. Pulsa **Implementar → Nueva implementación**:
-   - Tipo: **Aplicación web**
-   - Ejecutar como: **Yo**
-   - Quién tiene acceso: **Cualquier usuario**
-6. Autoriza los permisos la primera vez (*Configuración avanzada → Ir a proyecto no seguro*) y copia la **URL de la aplicación web** (termina en `/exec`).
+## 1. Actualizar el código en Google Apps Script
 
-## 2. Configurar la variable de entorno sin exponerla en Git
+1. Abre tu hoja de cálculo:
+   - https://docs.google.com/spreadsheets/d/1OJuf5EixstUJioKyWk5vRciyMIDXk6wpmNR2DoI-XF8/edit
+2. Entra en **Extensiones → Apps Script** y reemplaza todo el código por el de [`google-apps-script-registro.gs`](./google-apps-script-registro.gs).
+3. Pulsa **Guardar (`Cmd + S`)**.
 
-- **En Vercel** (Producción y Preview):
-  - Añade la variable de entorno `PUBLIC_REGISTRO_WEBHOOK_URL` con la URL `/exec` copiada y redespliega el proyecto.
-- **En local** (opcional para pruebas):
-  - Crea `.env` en la raíz de `web-cv` (el archivo `.gitignore` ya excluye `.env` y `.env.*`):
-    ```bash
-    PUBLIC_REGISTRO_WEBHOOK_URL="https://script.google.com/macros/s/TU_ID_DE_DESPLIEGUE/exec"
-    ```
+## 2. Configurar las Propiedades del Script (Privadas, nunca en el código)
 
-## 3. Notas de seguridad y funcionamiento
+En el editor de Apps Script, abre el icono de rueda dentada **Configuración del proyecto** (menú izquierdo) → abajo en **Propiedades del script → Añadir propiedad del script**:
 
-- El cliente envía `Content-Type: text/plain;charset=utf-8` para realizar una petición CORS simple sin *preflight* `OPTIONS`, evitando el bloqueo habitual de Google Apps Script en navegadores.
-- Cada envío entra bajo `LockService` para prevenir sobrescritura de filas ante envíos simultáneos, y aplica `sanitizeCell()` frente a inyección de fórmulas (`=`, `+`, `-`, `@`) en Google Sheets.
-- Si `PUBLIC_REGISTRO_WEBHOOK_URL` no está definida o falla la conexión, `/registro` muestra automáticamente un botón `mailto:info@javisaez.com` precargado con todos los datos validados.
+1. **`GEMINI_API_KEY`**: Pega tu clave gratuita obtenida en [Google AI Studio](https://aistudio.google.com/apikey).
+2. **`ADMIN_REVIEW_EMAIL`** *(opcional)*: `orders@javisaez.com` (una vez creada la redirección en DonDominio hacia tu Gmail; si no se añade, usará automáticamente tu cuenta `javiersaezmozos@gmail.com`).
+
+## 3. Publicar nueva versión en Apps Script
+
+Cada vez que modifiques el código en Apps Script debes actualizar la implementación para que la web use la versión nueva (conservando la misma URL `/exec` de Vercel):
+
+1. Pulsa **Implementar → Gestionar implementaciones**.
+2. Pulsa el icono del **lápiz (Editar)** arriba a la derecha de tu implementación activa.
+3. En **Versión**, selecciona **Nueva versión** y pulsa **Implementar**.
+4. Acepta los nuevos permisos de **Google Drive** y **Correo (MailApp)** si te los solicita la primera vez.

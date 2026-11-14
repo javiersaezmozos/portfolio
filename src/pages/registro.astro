@@ -182,6 +182,44 @@ const defaultCopy = registroI18n.es;
               </div>
             </div>
 
+            <!-- Captura / foto del recibo de compra (optimizada en cliente para Gemini + Drive) -->
+            <div class="field">
+              <label for="reg-receipt" data-i18n="receiptLabel" class="block text-sm font-medium text-slate-100">
+                {defaultCopy.receiptLabel}
+              </label>
+              <span id="reg-receipt-hint" data-i18n="receiptHint" class="block text-xs text-slate-400 mt-0.5 mb-1.5">
+                {defaultCopy.receiptHint}
+              </span>
+              <input
+                id="reg-receipt"
+                name="receipt"
+                type="file"
+                accept="image/*"
+                required
+                aria-invalid="false"
+                aria-describedby="reg-receipt-hint"
+                data-error="reg-receipt-error"
+                class="w-full rounded-xl bg-graphite-deep border border-graphite-border px-3 py-2 text-xs sm:text-sm text-slate-200 file:mr-3 file:rounded-lg file:border-0 file:bg-copper/20 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-copper-light hover:file:bg-copper/30 focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+              />
+              <p id="reg-receipt-status" hidden class="mt-1.5 text-xs font-mono text-emerald-300"></p>
+              <div id="reg-receipt-error" class="error-msg mt-1.5 text-xs text-red-400">
+                <span role="img" aria-label="Error">❌</span>{' '}
+                <span data-i18n="receiptError">{defaultCopy.receiptError}</span>
+              </div>
+            </div>
+
+            <!-- Campo trampa Honeypot invisible para humanos (bloqueo de bots sin CAPTCHA) -->
+            <div class="sr-only" aria-hidden="true">
+              <label for="reg-website">Website</label>
+              <input
+                id="reg-website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
             <!-- Notas opcionales -->
             <div class="field">
               <label for="reg-notes" data-i18n="notesLabel" class="block text-sm font-medium text-slate-100">
@@ -231,7 +269,21 @@ const defaultCopy = registroI18n.es;
             </button>
           </form>
 
-          <!-- Panel de confirmación tras envío vía webhook -->
+          <!-- Panel de verificación automática aprobada por Gemini -->
+          <div
+            id="reg-approved-box"
+            hidden
+            class="mt-6 rounded-xl border border-emerald-500/50 bg-emerald-950/35 p-5 text-sm space-y-2"
+          >
+            <h2 data-i18n="approvedTitle" class="font-serif text-lg font-bold text-emerald-300">
+              {defaultCopy.approvedTitle}
+            </h2>
+            <p data-i18n="approvedText" class="text-slate-200 leading-relaxed">
+              {defaultCopy.approvedText}
+            </p>
+          </div>
+
+          <!-- Panel de confirmación en revisión manual (ticket dudoso o sin API Key) -->
           <div
             id="reg-success-box"
             hidden
@@ -245,7 +297,21 @@ const defaultCopy = registroI18n.es;
             </p>
           </div>
 
-          <!-- Panel fallback por correo si el webhook aún no está desplegado -->
+          <!-- Panel de aviso ante pedido o imagen ya registrados previamente -->
+          <div
+            id="reg-duplicate-box"
+            hidden
+            class="mt-6 rounded-xl border border-amber-500/50 bg-amber-950/30 p-5 text-sm space-y-2"
+          >
+            <h2 data-i18n="duplicateTitle" class="font-serif text-lg font-bold text-amber-300">
+              {defaultCopy.duplicateTitle}
+            </h2>
+            <p data-i18n="duplicateText" class="text-slate-200 leading-relaxed">
+              {defaultCopy.duplicateText}
+            </p>
+          </div>
+
+          <!-- Panel fallback por correo si el webhook falla o no está configurado -->
           <div
             id="reg-fallback-box"
             hidden
@@ -259,7 +325,7 @@ const defaultCopy = registroI18n.es;
             </p>
             <a
               id="reg-mailto-link"
-              href="mailto:info@javisaez.com"
+              href="mailto:orders@javisaez.com"
               data-i18n="fallbackBtn"
               class="inline-flex items-center justify-center rounded-xl bg-gradient-copper px-4 py-2.5 text-xs font-bold text-dark-950"
             >
@@ -293,6 +359,102 @@ const defaultCopy = registroI18n.es;
     </style>
 
     <script>
+      interface CompressedReceipt {
+        receiptBase64: string;
+        receiptMime: string;
+        receiptName: string;
+        sizeKb: number;
+      }
+
+      /**
+       * Comprime la captura/foto del recibo en navegador (máx 1400 px JPEG) para asegurar
+       * envíos rápidos desde móvil y compatibilidad con Apps Script + Gemini Vision.
+       */
+      async function compressReceiptImage(file: File): Promise<CompressedReceipt> {
+        if (!file.type.startsWith('image/')) {
+          throw new Error('Unsupported file type: image required');
+        }
+
+        const safeName = (file.name || 'recibo.jpg').replace(/\.[^.]+$/, '') + '.jpg';
+
+        const readAsDataUrl = (f: File): Promise<string> =>
+          new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(String(reader.result || ''));
+            reader.onerror = () => reject(new Error('File read error'));
+            reader.readAsDataURL(f);
+          });
+
+        try {
+          let bitmap: ImageBitmap | null = null;
+          let imgEl: HTMLImageElement | null = null;
+          let width = 0;
+          let height = 0;
+
+          if (typeof createImageBitmap === 'function') {
+            bitmap = await createImageBitmap(file);
+            width = bitmap.width;
+            height = bitmap.height;
+          } else {
+            const rawUrl = await readAsDataUrl(file);
+            imgEl = await new Promise<HTMLImageElement>((resolve, reject) => {
+              const img = new Image();
+              img.onload = () => resolve(img);
+              img.onerror = () => reject(new Error('Image decode failed'));
+              img.src = rawUrl;
+            });
+            width = imgEl.naturalWidth || imgEl.width;
+            height = imgEl.naturalHeight || imgEl.height;
+          }
+
+          const maxEdge = 1400;
+          const scale = Math.min(1, maxEdge / Math.max(width, height, 1));
+          const targetW = Math.max(1, Math.round(width * scale));
+          const targetH = Math.max(1, Math.round(height * scale));
+
+          const canvas = document.createElement('canvas');
+          canvas.width = targetW;
+          canvas.height = targetH;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) throw new Error('Canvas 2D context unavailable');
+
+          if (bitmap) {
+            ctx.drawImage(bitmap, 0, 0, targetW, targetH);
+            bitmap.close();
+          } else if (imgEl) {
+            ctx.drawImage(imgEl, 0, 0, targetW, targetH);
+          }
+
+          const jpegDataUrl = canvas.toDataURL('image/jpeg', 0.78);
+          const base64 = jpegDataUrl.split(',')[1] || '';
+          const sizeKb = Math.max(1, Math.round((base64.length * 3) / 4 / 1024));
+
+          if (sizeKb > 4096) {
+            throw new Error('Compressed image exceeds 4 MB limit');
+          }
+
+          return {
+            receiptBase64: base64,
+            receiptMime: 'image/jpeg',
+            receiptName: safeName,
+            sizeKb,
+          };
+        } catch (compressionErr) {
+          console.warn('[Registro] Compresión en canvas no disponible, usando lectura directa:', compressionErr);
+          if (file.size > 3 * 1024 * 1024) {
+            throw compressionErr;
+          }
+          const rawDataUrl = await readAsDataUrl(file);
+          const base64 = rawDataUrl.split(',')[1] || '';
+          return {
+            receiptBase64: base64,
+            receiptMime: file.type || 'image/jpeg',
+            receiptName: file.name || 'recibo.jpg',
+            sizeKb: Math.max(1, Math.round(file.size / 1024)),
+          };
+        }
+      }
+
       function initRegistroPage() {
         try {
           const dataEl = document.getElementById('registro-i18n-data');
@@ -301,11 +463,16 @@ const defaultCopy = registroI18n.es;
 
           const langBtns = document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]');
           const channelSelect = document.getElementById('reg-channel') as HTMLSelectElement | null;
+          const receiptInput = document.getElementById('reg-receipt') as HTMLInputElement | null;
+          const receiptStatus = document.getElementById('reg-receipt-status');
           const form = document.getElementById('registro-form') as HTMLFormElement | null;
           const submitBtn = document.getElementById('reg-submit-btn') as HTMLButtonElement | null;
+          const approvedBox = document.getElementById('reg-approved-box');
           const successBox = document.getElementById('reg-success-box');
+          const duplicateBox = document.getElementById('reg-duplicate-box');
           const fallbackBox = document.getElementById('reg-fallback-box');
           const mailtoLink = document.getElementById('reg-mailto-link') as HTMLAnchorElement | null;
+          const backLink = document.querySelector<HTMLAnchorElement>('[data-back-link]');
 
           // Live region accesible para anunciar errores de campo al perder foco
           const announcer = document.createElement('div');
@@ -314,12 +481,17 @@ const defaultCopy = registroI18n.es;
           document.body.appendChild(announcer);
 
           let currentLang = 'es';
+          let cachedReceipt: CompressedReceipt | null = null;
 
           const applyLang = (lang: string) => {
             const safeLang = dict[lang] ? lang : 'es';
             currentLang = safeLang;
             const copy = dict[safeLang];
             document.documentElement.lang = safeLang;
+
+            if (backLink) {
+              backLink.href = safeLang === 'en' ? '/en/methods/flexibility' : '/es/metodos/flexibilidad';
+            }
 
             document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
               const key = el.dataset.i18n;
@@ -365,6 +537,30 @@ const defaultCopy = registroI18n.es;
             });
           });
 
+          // Pre-compresión inmediata al elegir captura de recibo
+          receiptInput?.addEventListener('change', async () => {
+            cachedReceipt = null;
+            const file = receiptInput.files?.[0];
+            if (!file) {
+              receiptStatus?.setAttribute('hidden', '');
+              return;
+            }
+            try {
+              const compressed = await compressReceiptImage(file);
+              cachedReceipt = compressed;
+              if (receiptStatus) {
+                const readyLabel = dict[currentLang]?.receiptReady || 'Captura lista';
+                receiptStatus.textContent = `✓ ${readyLabel} (${compressed.sizeKb} KB)`;
+                receiptStatus.removeAttribute('hidden');
+              }
+            } catch (err) {
+              console.error('[Registro] Imagen inválida:', err);
+              receiptInput.value = '';
+              receiptStatus?.setAttribute('hidden', '');
+              syncFieldAria(receiptInput);
+            }
+          });
+
           // Sincronización ARIA con :user-invalid
           const syncFieldAria = (field: HTMLInputElement | HTMLSelectElement) => {
             const invalid = field.matches(':user-invalid');
@@ -400,34 +596,46 @@ const defaultCopy = registroI18n.es;
             e.preventDefault();
             try {
               const formData = new FormData(form);
+              const file = receiptInput?.files?.[0];
+              if (!file) {
+                if (receiptInput) syncFieldAria(receiptInput);
+                return;
+              }
+
+              if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = dict[currentLang]?.sendingBtn || 'Analizando...';
+              }
+
+              const receiptData = cachedReceipt || (await compressReceiptImage(file));
+
               const payload = {
                 name: String(formData.get('name') || ''),
                 email: String(formData.get('email') || ''),
                 channel: String(formData.get('channel') || 'amazon-kdp'),
                 orderId: String(formData.get('orderId') || ''),
                 notes: String(formData.get('notes') || ''),
+                website: String(formData.get('website') || ''), // Honeypot
                 lang: currentLang,
                 submittedAt: new Date().toISOString(),
+                receiptBase64: receiptData.receiptBase64,
+                receiptMime: receiptData.receiptMime,
+                receiptName: receiptData.receiptName,
               };
 
-              // Preparar siempre el enlace mailto de respaldo por si no hay webhook o falla la red
+              // Preparar siempre el enlace mailto de respaldo
               const subject = encodeURIComponent(
                 `[Registro Vol. 1] ${payload.orderId} - ${payload.name}`
               );
               const body = encodeURIComponent(
-                `Nombre: ${payload.name}\nEmail: ${payload.email}\nEdición: ${payload.channel}\nPedido Amazon: ${payload.orderId}\nIdioma: ${payload.lang}\nNotas: ${payload.notes}`
+                `Nombre: ${payload.name}\nEmail: ${payload.email}\nEdición: ${payload.channel}\nPedido Amazon: ${payload.orderId}\nIdioma: ${payload.lang}\nNotas: ${payload.notes}\n\n(Adjunta aquí la captura del recibo)`
               );
               if (mailtoLink) {
-                mailtoLink.href = `mailto:info@javisaez.com?subject=${subject}&body=${body}`;
+                mailtoLink.href = `mailto:orders@javisaez.com?subject=${subject}&body=${body}`;
               }
 
               const webhook = form.dataset.webhookUrl || '';
               if (webhook) {
-                if (submitBtn) {
-                  submitBtn.disabled = true;
-                  submitBtn.textContent = dict[currentLang]?.sendingBtn || 'Enviando...';
-                }
-
                 // text/plain evita el preflight CORS OPTIONS que Google Apps Script rechaza
                 const res = await fetch(webhook, {
                   method: 'POST',
@@ -439,13 +647,20 @@ const defaultCopy = registroI18n.es;
                   throw new Error(`HTTP ${res.status}`);
                 }
 
-                const result = await res.json().catch(() => null);
+                const result = (await res.json().catch(() => null)) as { ok?: boolean; verdict?: string; error?: string } | null;
                 if (result && result.ok === false) {
                   throw new Error(result.error || 'Webhook error');
                 }
 
                 form.setAttribute('hidden', '');
-                successBox?.removeAttribute('hidden');
+                const verdict = result?.verdict || 'DUDOSO';
+                if (verdict === 'APROBADO') {
+                  approvedBox?.removeAttribute('hidden');
+                } else if (verdict === 'DUPLICADO') {
+                  duplicateBox?.removeAttribute('hidden');
+                } else {
+                  successBox?.removeAttribute('hidden');
+                }
               } else {
                 fallbackBox?.removeAttribute('hidden');
               }
