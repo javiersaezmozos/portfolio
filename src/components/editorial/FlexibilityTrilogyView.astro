@@ -24,7 +24,7 @@ const trilogyMetaMap: Record<SupportedLocale, { title: string; description: stri
   es: {
     title: 'Método de Flexibilidad para Trombón · Colección Metodología de Flexibilidad | Javier Sáez',
     description:
-      'Método progresivo e interactivo de flexibilidad para trombón de Javier Sáez Mozos. Volumen 1 Elemental (Cobre, hasta Fa4) disponible en Amazon KDP y Amazon Kindle, y Volumen 2 Intermedio (Plata, hasta Sib5).',
+      'Método progresivo e interactivo de flexibilidad para trombón de Javier Sáez Mozos. Volumen 1 Elemental (Cobre, hasta Fa4) disponible en Amazon KDP y Kindle, y Volumen 2 Intermedio (Plata, hasta Sib5).',
     ogImage: '/images/metodos/portada-duo-trombot.jpg',
     locale: 'es',
   },
@@ -51,7 +51,12 @@ const trilogyMetaMap: Record<SupportedLocale, { title: string; description: stri
   },
 };
 
-const copyMap: Record<SupportedLocale, {
+interface MethodPillar {
+  title: string;
+  desc: string;
+}
+
+interface CopyEntry {
   home: string;
   methods: string;
   current: string;
@@ -63,62 +68,254 @@ const copyMap: Record<SupportedLocale, {
   compEyebrow: string;
   compTitle: string;
   compCatalogLink: string;
-}> = {
+  pillars: MethodPillar[];
+  teachersEyebrow: string;
+  teachersTitle: string;
+  teachersSubtitle: string;
+  teachersVol1Badge: string;
+  teachersVol1Title: string;
+  teachersVol1Points: string[];
+  teachersVol2Badge: string;
+  teachersVol2Title: string;
+  teachersVol2Points: string[];
+  teachersContactTag: string;
+  teachersContactText: string;
+  teachersContactBtn: string;
+  teachersMailto: string;
+}
+
+const copyMap: Record<SupportedLocale, CopyEntry> = {
   es: {
     home: 'Inicio',
     methods: 'Métodos',
     current: 'Método de Flexibilidad',
-    eyebrow: 'COLECCIÓN METODOLOGÍA DE FLEXIBILIDAD · JAVIER SÁEZ MOZOS',
+    eyebrow: 'MÉTODO DE FLEXIBILIDAD PARA TROMBÓN · JAVIER SÁEZ MOZOS',
     h1: 'Trombón · Flexibilidad',
     subtitle:
-      'Un método progresivo y didáctico con videopartituras interactivas integradas y asistencia pedagógica de TromBot IA. Lanzamiento del Volumen 1 exclusivo en Amazon KDP (Tapa Blanda) y Amazon Kindle.',
-    ctaVol1: 'Ficha y Compra del Volumen 1 (Amazon KDP / Kindle)',
+      'Sistema didáctico progresivo con videopartituras interactivas y tutor TromBot IA. Volumen 1 disponible en Amazon KDP y Kindle; Volumen 2 en preparación.',
+    ctaVol1: 'Comprar Volumen 1 en Amazon',
     ctaRegister: 'Activar Ejemplar (/registro)',
-    compEyebrow: 'Hoja de Ruta de la Colección Metodología de Flexibilidad',
-    compTitle: 'Arquitectura de los Volúmenes',
+    compEyebrow: 'Plan de Estudio Progresivo',
+    compTitle: 'Comparativa: Volumen 1 vs Volumen 2',
     compCatalogLink: 'Ver catálogo completo de publicaciones →',
+    pillars: [
+      {
+        title: 'Emisión sin fatiga',
+        desc: 'Progresión anatómica por posiciones fijas para dominar los armónicos sin tensión en la embocadura.',
+      },
+      {
+        title: 'Videopartituras QR',
+        desc: 'Escaneo directo con móvil o tablet para ver y escuchar cada ejercicio con sonido real de referencia.',
+      },
+      {
+        title: 'Tutor TromBot IA',
+        desc: 'Asistencia pedagógica interactiva para estructurar tu rutina diaria y resolver dudas técnicas.',
+      },
+      {
+        title: 'Ergonomía de atril',
+        desc: 'Notación profesional Leland a 7 mm con márgenes amplios aptos para encuadernación en espiral.',
+      },
+    ],
+    teachersEyebrow: 'PROFESORES Y CONSERVATORIOS',
+    teachersTitle: 'Adopción Curricular en Conservatorios y Escuelas de Música',
+    teachersSubtitle:
+      'Una metodología estructurada y contrastada en el aula para potenciar la flexibilidad, el sonido y la resistencia de los alumnos sin forzar la embocadura.',
+    teachersVol1Badge: 'Enseñanzas Elementales',
+    teachersVol1Title: 'Volumen 1 · 2.º a 4.º EE.EE. (Cobre)',
+    teachersVol1Points: [
+      'Progresión del 1.º al 6.º armónico (hasta Fa₄) con posiciones fijas para asentar la embocadura.',
+      '120 ejercicios dobles en espejo (1.ª a 7.ª posición) y 12 estudios melódicos aplicados.',
+      'Videopartituras interactivas con código QR para garantizar un estudio guiado y riguroso en casa.',
+      'Prevención activa de sobrepresión labial desde los primeros cursos instrumentales.',
+    ],
+    teachersVol2Badge: 'Enseñanzas Profesionales',
+    teachersVol2Title: 'Volumen 2 · 1.º a 4.º EE.PP. (Plata)',
+    teachersVol2Points: [
+      'Expansión al registro agudo hasta el 8.º armónico (Sib₅) y agilidad interválica avanzada.',
+      'Integración técnica del transpositor en Fa y coordinación aérea en dinámicas contrastadas.',
+      'Estudios de concierto de dificultad intermedia ideales para audiciones y exámenes de paso de grado.',
+      'Consolidación de la columna de aire para afrontar el repertorio orquestal y solístico.',
+    ],
+    teachersContactTag: 'CONSULTAS PEDAGÓGICAS Y PEDIDOS DE AULA',
+    teachersContactText:
+      '¿Deseas programar el método en tu centro educativo, resolver dudas curriculares o tramitar un pedido conjunto para tu aula de trombón?',
+    teachersContactBtn: 'Escribir a orders@javisaez.com',
+    teachersMailto:
+      'mailto:orders@javisaez.com?subject=Consulta%20Docente%20/%20Adopci%C3%B3n%20en%20Conservatorio%20-%20M%C3%A9todo%20Flexibilidad',
   },
   en: {
     home: 'Home',
     methods: 'Methods',
     current: 'Flexibility Method',
-    eyebrow: 'FLEXIBILITY METHODOLOGY COLLECTION · JAVIER SÁEZ MOZOS',
+    eyebrow: 'TROMBONE FLEXIBILITY METHOD · JAVIER SÁEZ MOZOS',
     h1: 'Trombone · Flexibility',
     subtitle:
-      'A progressive didactic method with integrated interactive video scores and TromBot AI pedagogical guidance. Exclusive Volume 1 launch on Amazon KDP (Paperback) and Amazon Kindle.',
-    ctaVol1: 'Volume 1 Sheet & Buy on Amazon (KDP / Kindle)',
+      'Progressive didactic system with interactive video scores and TromBot AI tutor. Volume 1 available on Amazon KDP & Kindle; Volume 2 in preparation.',
+    ctaVol1: 'Buy Volume 1 on Amazon',
     ctaRegister: 'Activate Copy (/registro)',
-    compEyebrow: 'Flexibility Methodology Collection Roadmap',
-    compTitle: 'Architecture of the Volumes',
+    compEyebrow: 'Progressive Study Plan',
+    compTitle: 'Comparison: Volume 1 vs Volume 2',
     compCatalogLink: 'View full publications catalog →',
+    pillars: [
+      {
+        title: 'Tension-free emission',
+        desc: 'Anatomical harmonic progression in fixed positions to master partials without embouchure strain.',
+      },
+      {
+        title: 'QR Video Scores',
+        desc: 'Instant mobile or tablet scanning to watch and hear every exercise performed with reference pitch.',
+      },
+      {
+        title: 'TromBot AI Tutor',
+        desc: 'Interactive pedagogical assistance to structure daily routines and resolve technical questions.',
+      },
+      {
+        title: 'Stand ergonomics',
+        desc: 'Professional 7.0 mm Leland notation with generous inner margins designed for spiral binding.',
+      },
+    ],
+    teachersEyebrow: 'TEACHERS & CONSERVATORIES',
+    teachersTitle: 'Curriculum Adoption for Conservatories & Music Schools',
+    teachersSubtitle:
+      'A structured classroom-tested methodology designed to build student flexibility, tone quality, and endurance without straining the facial musculature.',
+    teachersVol1Badge: 'Elementary Grade',
+    teachersVol1Title: 'Volume 1 · Years 2–4 Elementary (Copper)',
+    teachersVol1Points: [
+      'Progression from 1st to 6th partial (up to F₄) in fixed positions to anchor embouchure stability.',
+      '120 symmetrical mirror exercises (1st–7th position) and 12 applied melodic etudes.',
+      'Interactive QR video scores ensuring guided, reliable practice at home between lessons.',
+      'Active prevention of excessive mouthpiece pressure during formative learning stages.',
+    ],
+    teachersVol2Badge: 'Intermediate / Conservatory',
+    teachersVol2Title: 'Volume 2 · Years 1–4 Intermediate (Silver)',
+    teachersVol2Points: [
+      'Upper register expansion up to the 8th partial (B♭₅) and agile wide intervals.',
+      'Technical integration of the F-attachment valve and air support across extreme dynamics.',
+      'Intermediate concert etudes tailored for grade examinations, auditions, and recitals.',
+      'Refining airflow dynamics to prepare students for core orchestral and solo repertoire.',
+    ],
+    teachersContactTag: 'PEDAGOGICAL INQUIRIES & CLASSROOM ORDERS',
+    teachersContactText:
+      'Looking to include the method in your syllabus, discuss curricular integration, or arrange a group order for your trombone studio?',
+    teachersContactBtn: 'Write to orders@javisaez.com',
+    teachersMailto:
+      'mailto:orders@javisaez.com?subject=Teaching%20Inquiry%20/%20Conservatory%20Adoption%20-%20Flexibility%20Method',
   },
   de: {
     home: 'Startseite',
     methods: 'Methoden',
     current: 'Flexibilitätsmethode',
-    eyebrow: 'KOLLEKTION FLEXIBILITÄTSMETHODIK · JAVIER SÁEZ MOZOS',
+    eyebrow: 'POSAUNEN-FLEXIBILITÄTSMETHODE · JAVIER SÁEZ MOZOS',
     h1: 'Posaune · Flexibilität',
     subtitle:
-      'Eine progressive didaktische Methode mit integrierten interaktiven Videopartituren und pädagogischer Begleitung durch TromBot KI. Exklusiver Start von Band 1 auf Amazon KDP (Taschenbuch) und Amazon Kindle.',
-    ctaVol1: 'Produktdatenblatt & Kauf Band 1 (Amazon KDP / Kindle)',
+      'Progressives didaktisches System mit interaktiven Videopartituren und TromBot KI-Tutor. Band 1 auf Amazon KDP & Kindle erhältlich; Band 2 in Vorbereitung.',
+    ctaVol1: 'Band 1 auf Amazon kaufen',
     ctaRegister: 'Exemplar aktivieren (/registro)',
-    compEyebrow: 'Fahrplan der Kollektion Flexibilitätsmethodik',
-    compTitle: 'Architektur der Bände',
+    compEyebrow: 'Progressiver Studienplan',
+    compTitle: 'Vergleich: Band 1 vs. Band 2',
     compCatalogLink: 'Vollständigen Publikationskatalog ansehen →',
+    pillars: [
+      {
+        title: 'Mühelose Ansprache',
+        desc: 'Anatomische Naturton-Progression in festen Zugpositionen für geschmeidige Bindungen ohne Druck.',
+      },
+      {
+        title: 'QR-Videopartituren',
+        desc: 'Direktes Scannen mit Smartphone oder Tablet zum Mitlesen und Anhören mit authentischem Referenzklang.',
+      },
+      {
+        title: 'TromBot KI-Tutor',
+        desc: 'Interaktive pädagogische Unterstützung für die Strukturierung der täglichen Überoutine und Fragen.',
+      },
+      {
+        title: 'Pult-Ergonomie',
+        desc: 'Professioneller 7,0-mm-Leland-Notenstich mit breiten Rändern für bequemes Umblättern und Spiralbindung.',
+      },
+    ],
+    teachersEyebrow: 'LEHRKRÄFTE & KONSERVATORIEN',
+    teachersTitle: 'Lehrplan-Integration für Konservatorien & Musikschulen',
+    teachersSubtitle:
+      'Eine im Unterricht erprobte, strukturierte Methodik zur gezielten Förderung von Flexibilität, Tonkultur und Ausdauer ohne muskuläre Überlastung.',
+    teachersVol1Badge: 'Elementarstufe',
+    teachersVol1Title: 'Band 1 · 2.–4. Ausbildungsjahr (Kupfer)',
+    teachersVol1Points: [
+      'Progression vom 1. bis 6. Naturton (bis F₄) in festen Lagen zur Festigung des Ansatzes.',
+      '120 symmetrische Spiegelübungen (1.–7. Zugposition) und 12 melodische Praxisetüden.',
+      'Interaktive QR-Videopartituren für ein kontrolliertes und fundiertes Üben zu Hause.',
+      'Aktiver Schutz vor schädlichem Mundstückdruck in den ersten Lernjahren.',
+    ],
+    teachersVol2Badge: 'Mittelstufe / Konservatorium',
+    teachersVol2Title: 'Band 2 · 1.–4. Jahr Mittelstufe (Silber)',
+    teachersVol2Points: [
+      'Erweiterung in die Höhe bis zum 8. Naturton (B₅) und fortgeschrittene Intervallgeläufigkeit.',
+      'Technische Einbindung des Quartventils und präzise Atemführung in gegensätzlichen Dynamiken.',
+      'Konzertetüden mittlerer Schwierigkeit, ideal für Zwischenprüfungen, Vorspiele und Wettbewerbe.',
+      'Festigung der Luftsäule für anspruchsvolles Solo- und Orchesterrepertoire.',
+    ],
+    teachersContactTag: 'PÄDAGOGISCHE ANFRAGEN & KLASSENBESTELLUNGEN',
+    teachersContactText:
+      'Möchten Sie die Methode in Ihren Lehrplan aufnehmen, didaktische Details besprechen oder eine Sammelbestellung für Ihre Posaunenklasse aufgeben?',
+    teachersContactBtn: 'Schreiben an orders@javisaez.com',
+    teachersMailto:
+      'mailto:orders@javisaez.com?subject=Dozentenanfrage%20/%20Konservatoriums-Adoption%20-%20Flexibilit%C3%A4tsmethode',
   },
   it: {
     home: 'Home',
     methods: 'Metodi',
     current: 'Metodo di Flessibilità',
-    eyebrow: 'COLLEZIONE METODOLOGIA DI FLESSIBILITÀ · JAVIER SÁEZ MOZOS',
+    eyebrow: 'METODO DI FLESSIBILITÀ PER TROMBONE · JAVIER SÁEZ MOZOS',
     h1: 'Trombone · Flessibilità',
     subtitle:
-      'Un metodo progressivo e didattico con videopartiture interattive integrate e assistenza pedagogica di TromBot IA. Lancio del Volume 1 in esclusiva su Amazon KDP (Copertina Flessibile) e Amazon Kindle.',
-    ctaVol1: 'Scheda e Acquisto del Volume 1 (Amazon KDP / Kindle)',
+      'Sistema didattico progressivo con videopartiture interattive e tutor TromBot IA. Volume 1 disponibile su Amazon KDP e Kindle; Volume 2 in preparazione.',
+    ctaVol1: 'Acquista Volume 1 su Amazon',
     ctaRegister: 'Attiva Copia (/registro)',
-    compEyebrow: 'Tabella di Marcia della Collezione Metodologia di Flessibilità',
-    compTitle: 'Architettura dei Volumi',
+    compEyebrow: 'Piano di Studio Progressivo',
+    compTitle: 'Confronto: Volume 1 vs Volume 2',
     compCatalogLink: 'Vedi il catalogo completo delle pubblicazioni →',
+    pillars: [
+      {
+        title: 'Emissione senza sforzo',
+        desc: 'Progressione anatomica su posizioni fisse per padroneggiare gli armonici senza forzare l\'imboccatura.',
+      },
+      {
+        title: 'Videopartiture QR',
+        desc: 'Scansione immediata con smartphone o tablet per visualizzare e ascoltare ogni esercizio con suono reale.',
+      },
+      {
+        title: 'Tutor TromBot IA',
+        desc: 'Supporto pedagogico interattivo per organizzare la routine quotidiana e risolvere dubbi tecnici.',
+      },
+      {
+        title: 'Ergonomia da leggio',
+        desc: 'Notazione professionale Leland da 7,0 mm con ampi margini ideali per rilegatura a spirale.',
+      },
+    ],
+    teachersEyebrow: 'DOCENTI E CONSERVATORI',
+    teachersTitle: 'Adozione Curricolare per Conservatori e Scuole di Musica',
+    teachersSubtitle:
+      'Una metodologia strutturata e collaudata nell\'insegnamento per sviluppare flessibilità, suono e resistenza senza affaticare la muscolatura facciale.',
+    teachersVol1Badge: 'Corsi Elementari',
+    teachersVol1Title: 'Volume 1 · 2º-4º Anno Elementare (Rame)',
+    teachersVol1Points: [
+      'Progressione dal 1º al 6º armonico (fino a Fa₄) a posizioni fisse per stabilizzare l\'imboccatura.',
+      '120 esercizi speculari simmetrici (1ª-7ª posizione) e 12 studi melodici applicati.',
+      'Videopartiture interattive con QR code per garantire uno studio a casa guidato e accurato.',
+      'Prevenzione attiva della pressione eccessiva sulle labbra fin dai primi anni di studio.',
+    ],
+    teachersVol2Badge: 'Corsi Professionali',
+    teachersVol2Title: 'Volume 2 · 1º-4º Anno Professionale (Argento)',
+    teachersVol2Points: [
+      'Espansione al registro acuto fino all\'8º armonico (Sib₅) e agilità intervallare avanzata.',
+      'Integrazione tecnica della ritorta in Fa e coordinazione del fiato nelle sfumature dinamiche estreme.',
+      'Studi da concerto di livello intermedio ideali per esami di passaggio, saggi e audizioni.',
+      'Consolidamento della colonna d\'aria per affrontare il repertorio solistico e orchestrale.',
+    ],
+    teachersContactTag: 'RICHIESTE DIDATTICHE E ORDINI DI CLASSE',
+    teachersContactText:
+      'Vuoi adottare il metodo nella tua classe di trombone, concordare dettagli didattici o effettuare un ordine cumulativo per il tuo istituto?',
+    teachersContactBtn: 'Scrivi a orders@javisaez.com',
+    teachersMailto:
+      'mailto:orders@javisaez.com?subject=Richiesta%20Didattica%20/%20Adozione%20in%20Conservatorio%20-%20Metodo%20Flessibilit%C3%A0',
   },
 };
 
@@ -155,7 +352,8 @@ const copy = copyMap[locale] || copyMap.es;
       </nav>
     </div>
 
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-4 pb-2 text-center">
+    <!-- HERO SECTION -->
+    <header class="mx-auto max-w-6xl px-4 sm:px-6 pt-4 pb-4 text-center">
       <p class="font-mono text-xs uppercase tracking-[0.28em] text-gold-400">
         {copy.eyebrow}
       </p>
@@ -181,12 +379,32 @@ const copy = copyMap[locale] || copyMap.es;
           <span>{copy.ctaRegister}</span>
         </a>
       </div>
-    </div>
 
+      <!-- 4 PILARES: QUÉ RESUELVE EL MÉTODO -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+        {copy.pillars.map((pillar) => (
+          <div class="rounded-2xl border border-dark-700/60 bg-dark-900/60 p-5 shadow-lg backdrop-blur-sm hover:border-gold-500/40 transition-colors">
+            <div class="flex items-center gap-2 text-gold-400 mb-2">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden="true"></span>
+              <h2 class="text-xs font-mono uppercase tracking-wider font-semibold text-white">
+                {pillar.title}
+              </h2>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              {pillar.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </header>
+
+    <!-- VISOR 3D INTERACTIVO -->
     <TrilogyBook3D initialVolume={1} locale={locale} showControls={true} />
 
+    <!-- VISOR DE MAQUETACIÓN Y PARTITURA VECTORIAL -->
     <SheetMusicViewer locale={locale} />
 
+    <!-- COMPARATIVA DE VOLÚMENES -->
     <section
       id="comparativa-metodo"
       aria-labelledby="comparativa-metodo-heading"
@@ -262,6 +480,85 @@ const copy = copyMap[locale] || copyMap.es;
               </div>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE PROFESORES Y CONSERVATORIOS -->
+    <section
+      id="profesores-conservatorios"
+      aria-labelledby="profesores-heading"
+      class="mx-auto max-w-6xl px-4 sm:px-6 pt-16"
+    >
+      <div class="rounded-3xl border border-dark-700/60 bg-dark-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs font-mono uppercase tracking-widest text-gold-400">
+            {copy.teachersEyebrow}
+          </span>
+          <h2 id="profesores-heading" class="mt-1 font-serif text-2xl sm:text-3xl font-bold text-white">
+            {copy.teachersTitle}
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-slate-300">
+            {copy.teachersSubtitle}
+          </p>
+        </div>
+
+        <!-- 2 Columnas de aplicación curricular (EE.EE. y EE.PP.) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Columna 1: EE.EE. -->
+          <div class="rounded-2xl border border-copper/35 bg-dark-950/80 p-6 shadow-lg">
+            <span class="inline-flex rounded-full bg-copper/15 border border-copper/40 px-3 py-1 text-xs font-mono uppercase tracking-wider text-copper-light">
+              {copy.teachersVol1Badge}
+            </span>
+            <h3 class="mt-3 font-serif text-lg sm:text-xl font-bold text-white">
+              {copy.teachersVol1Title}
+            </h3>
+            <ul class="mt-4 space-y-2.5 text-xs text-slate-300">
+              {copy.teachersVol1Points.map((point) => (
+                <li class="flex items-start gap-2.5">
+                  <span class="text-copper-light mt-0.5 text-sm" aria-hidden="true">✓</span>
+                  <span class="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Columna 2: EE.PP. -->
+          <div class="rounded-2xl border border-silver/35 bg-dark-950/80 p-6 shadow-lg">
+            <span class="inline-flex rounded-full bg-white/10 border border-silver/30 px-3 py-1 text-xs font-mono uppercase tracking-wider text-silver">
+              {copy.teachersVol2Badge}
+            </span>
+            <h3 class="mt-3 font-serif text-lg sm:text-xl font-bold text-white">
+              {copy.teachersVol2Title}
+            </h3>
+            <ul class="mt-4 space-y-2.5 text-xs text-slate-300">
+              {copy.teachersVol2Points.map((point) => (
+                <li class="flex items-start gap-2.5">
+                  <span class="text-silver mt-0.5 text-sm" aria-hidden="true">✓</span>
+                  <span class="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bloque de contacto directo y pedidos de aula -->
+        <div class="mt-8 rounded-2xl border border-gold-500/30 bg-gradient-to-r from-dark-950 via-dark-900 to-dark-850 p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <span class="inline-block text-[11px] font-mono uppercase tracking-wider text-gold-400 font-semibold mb-1">
+              {copy.teachersContactTag}
+            </span>
+            <p class="text-sm text-slate-200 leading-relaxed">
+              {copy.teachersContactText}
+            </p>
+          </div>
+          <a
+            href={copy.teachersMailto}
+            class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-gradient-to-r from-gold-600 to-amber-500 px-5 py-3 text-xs sm:text-sm font-bold text-dark-950 shadow-lg hover:from-gold-500 hover:to-amber-400 transition-all focus:outline-none focus:ring-2 focus:ring-gold-400"
+          >
+            <span aria-hidden="true">✉</span>
+            <span>{copy.teachersContactBtn}</span>
+          </a>
         </div>
       </div>
     </section>

@@ -1,0 +1,277 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TrilogyBook3D from '../TrilogyBook3D.astro';
+import SheetMusicViewer from '../SheetMusicViewer.astro';
+import esData from '../../data/es.json';
+import enData from '../../data/en.json';
+import deData from '../../data/de.json';
+import itData from '../../data/it.json';
+import { getTrilogyVolumes } from '../../data/methods-flexibility';
+import { getMethodsPaths, type SupportedLocale } from '../../utils/i18n-routes';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const dataMap = { es: esData, en: enData, de: deData, it: itData };
+const siteData = dataMap[locale] || esData;
+const paths = getMethodsPaths(locale, base);
+const trilogyCards = getTrilogyVolumes(locale, base);
+
+const trilogyMetaMap: Record<SupportedLocale, { title: string; description: string; ogImage: string; locale: string }> = {
+  es: {
+    title: 'Método de Flexibilidad para Trombón · Colección Metodología de Flexibilidad | Javier Sáez',
+    description:
+      'Método progresivo e interactivo de flexibilidad para trombón de Javier Sáez Mozos. Volumen 1 Elemental (Cobre, hasta Fa4) disponible en Amazon KDP y Amazon Kindle, y Volumen 2 Intermedio (Plata, hasta Sib5).',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'es',
+  },
+  en: {
+    title: 'Trombone Flexibility Method · Flexibility Methodology Collection | Javier Sáez',
+    description:
+      'Progressive and interactive trombone flexibility method by Javier Sáez Mozos. Volume 1 Elementary (Copper, up to F4) on Amazon KDP & Kindle, and Volume 2 Intermediate (Silver, up to Bb5).',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'en',
+  },
+  de: {
+    title: 'Posaunen-Flexibilitätsmethode · Kollektion Flexibilitätsmethodik | Javier Sáez',
+    description:
+      'Progressive und interaktive Flexibilitätsmethode für Posaune von Javier Sáez Mozos. Band 1 Elementarstufe (Kupfer, bis F4) auf Amazon KDP & Kindle und Band 2 Mittelstufe (Silber, bis B5).',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'de',
+  },
+  it: {
+    title: 'Metodo di Flessibilità per Trombone · Collezione Metodologia di Flessibilità | Javier Sáez',
+    description:
+      'Metodo progressivo e interattivo di flessibilità per trombone di Javier Sáez Mozos. Volume 1 Elementare (Rame, fino a Fa4) su Amazon KDP e Kindle, e Volume 2 Intermedio (Argento, fino a Sib5).',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'it',
+  },
+};
+
+const copyMap: Record<SupportedLocale, {
+  home: string;
+  methods: string;
+  current: string;
+  eyebrow: string;
+  h1: string;
+  subtitle: string;
+  ctaVol1: string;
+  ctaRegister: string;
+  compEyebrow: string;
+  compTitle: string;
+  compCatalogLink: string;
+}> = {
+  es: {
+    home: 'Inicio',
+    methods: 'Métodos',
+    current: 'Método de Flexibilidad',
+    eyebrow: 'COLECCIÓN METODOLOGÍA DE FLEXIBILIDAD · JAVIER SÁEZ MOZOS',
+    h1: 'Trombón · Flexibilidad',
+    subtitle:
+      'Un método progresivo y didáctico con videopartituras interactivas integradas y asistencia pedagógica de TromBot IA. Lanzamiento del Volumen 1 exclusivo en Amazon KDP (Tapa Blanda) y Amazon Kindle.',
+    ctaVol1: 'Ficha y Compra del Volumen 1 (Amazon KDP / Kindle)',
+    ctaRegister: 'Activar Ejemplar (/registro)',
+    compEyebrow: 'Hoja de Ruta de la Colección Metodología de Flexibilidad',
+    compTitle: 'Arquitectura de los Volúmenes',
+    compCatalogLink: 'Ver catálogo completo de publicaciones →',
+  },
+  en: {
+    home: 'Home',
+    methods: 'Methods',
+    current: 'Flexibility Method',
+    eyebrow: 'FLEXIBILITY METHODOLOGY COLLECTION · JAVIER SÁEZ MOZOS',
+    h1: 'Trombone · Flexibility',
+    subtitle:
+      'A progressive didactic method with integrated interactive video scores and TromBot AI pedagogical guidance. Exclusive Volume 1 launch on Amazon KDP (Paperback) and Amazon Kindle.',
+    ctaVol1: 'Volume 1 Sheet & Buy on Amazon (KDP / Kindle)',
+    ctaRegister: 'Activate Copy (/registro)',
+    compEyebrow: 'Flexibility Methodology Collection Roadmap',
+    compTitle: 'Architecture of the Volumes',
+    compCatalogLink: 'View full publications catalog →',
+  },
+  de: {
+    home: 'Startseite',
+    methods: 'Methoden',
+    current: 'Flexibilitätsmethode',
+    eyebrow: 'KOLLEKTION FLEXIBILITÄTSMETHODIK · JAVIER SÁEZ MOZOS',
+    h1: 'Posaune · Flexibilität',
+    subtitle:
+      'Eine progressive didaktische Methode mit integrierten interaktiven Videopartituren und pädagogischer Begleitung durch TromBot KI. Exklusiver Start von Band 1 auf Amazon KDP (Taschenbuch) und Amazon Kindle.',
+    ctaVol1: 'Produktdatenblatt & Kauf Band 1 (Amazon KDP / Kindle)',
+    ctaRegister: 'Exemplar aktivieren (/registro)',
+    compEyebrow: 'Fahrplan der Kollektion Flexibilitätsmethodik',
+    compTitle: 'Architektur der Bände',
+    compCatalogLink: 'Vollständigen Publikationskatalog ansehen →',
+  },
+  it: {
+    home: 'Home',
+    methods: 'Metodi',
+    current: 'Metodo di Flessibilità',
+    eyebrow: 'COLLEZIONE METODOLOGIA DI FLESSIBILITÀ · JAVIER SÁEZ MOZOS',
+    h1: 'Trombone · Flessibilità',
+    subtitle:
+      'Un metodo progressivo e didattico con videopartiture interattive integrate e assistenza pedagogica di TromBot IA. Lancio del Volume 1 in esclusiva su Amazon KDP (Copertina Flessibile) e Amazon Kindle.',
+    ctaVol1: 'Scheda e Acquisto del Volume 1 (Amazon KDP / Kindle)',
+    ctaRegister: 'Attiva Copia (/registro)',
+    compEyebrow: 'Tabella di Marcia della Collezione Metodologia di Flessibilità',
+    compTitle: 'Architettura dei Volumi',
+    compCatalogLink: 'Vedi il catalogo completo delle pubblicazioni →',
+  },
+};
+
+const trilogyMeta = trilogyMetaMap[locale] || trilogyMetaMap.es;
+const copy = copyMap[locale] || copyMap.es;
+---
+
+<Layout
+  meta={trilogyMeta}
+  nav={siteData.nav}
+  footer={siteData.footer}
+  currentLocale={locale}
+>
+  <main id="main-trilogy-content" class="bg-dark-950 min-h-screen pt-6 pb-24 text-white">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <nav aria-label="Breadcrumbs" class="py-3 text-xs text-slate-400">
+        <ol class="breadcrumb-list flex flex-wrap items-center">
+          <li>
+            <a href={paths.home} class="hover:text-gold-400 transition-colors focus:outline-none focus:underline">
+              {copy.home}
+            </a>
+          </li>
+          <li>
+            <a href={paths.catalog} class="hover:text-gold-400 transition-colors focus:outline-none focus:underline">
+              {copy.methods}
+            </a>
+          </li>
+          <li>
+            <a href={paths.trilogy} aria-current="page" class="font-medium text-slate-200">
+              {copy.current}
+            </a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-4 pb-2 text-center">
+      <p class="font-mono text-xs uppercase tracking-[0.28em] text-gold-400">
+        {copy.eyebrow}
+      </p>
+      <h1 class="mt-2 font-serif text-3xl sm:text-5xl font-bold tracking-wider text-white uppercase">
+        {copy.h1}
+      </h1>
+      <p class="mx-auto mt-3 max-w-2xl text-sm sm:text-base text-slate-300 font-serif italic">
+        {copy.subtitle}
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href={paths.vol1}
+          class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold-600 to-amber-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-dark-950 shadow-lg hover:from-gold-500 hover:to-amber-400 transition-all focus:outline-none focus:ring-2 focus:ring-gold-400"
+        >
+          <span>{copy.ctaVol1}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href={paths.register}
+          class="inline-flex items-center gap-2 rounded-xl border border-dark-700 bg-dark-850/80 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-dark-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+        >
+          <span>{copy.ctaRegister}</span>
+        </a>
+      </div>
+    </div>
+
+    <TrilogyBook3D initialVolume={1} locale={locale} showControls={true} />
+
+    <SheetMusicViewer locale={locale} />
+
+    <section
+      id="comparativa-metodo"
+      aria-labelledby="comparativa-metodo-heading"
+      class="mx-auto max-w-6xl px-4 sm:px-6 pt-12"
+    >
+      <div class="rounded-3xl border border-dark-700/60 bg-dark-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-gold-400">
+              {copy.compEyebrow}
+            </span>
+            <h2 id="comparativa-metodo-heading" class="mt-1 font-serif text-2xl sm:text-3xl font-bold text-white">
+              {copy.compTitle}
+            </h2>
+          </div>
+          <a
+            href={paths.catalog}
+            class="text-xs font-mono uppercase tracking-wider text-gold-400 hover:text-gold-300 hover:underline"
+          >
+            {copy.compCatalogLink}
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {trilogyCards.map((card) => (
+            <article class="flex flex-col justify-between rounded-2xl border border-dark-700/60 bg-dark-950/80 hover:border-gold-500/50 p-6 shadow-lg transition-all">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white">
+                    <span
+                      class="h-2.5 w-2.5 rounded-full"
+                      style={`background-color: ${card.hex};`}
+                    ></span>
+                    {card.metal}
+                  </span>
+                  <span class="rounded-full bg-dark-800 border border-dark-700 px-2.5 py-0.5 text-[11px] font-mono text-slate-300">
+                    {card.status}
+                  </span>
+                </div>
+
+                <h3 class="mt-4 font-serif text-xl font-bold text-white">
+                  {card.title}
+                </h3>
+                <p class="mt-1 text-xs font-semibold" style={`color: ${card.hex};`}>
+                  {card.range}
+                </p>
+                <p class="mt-1 text-xs text-slate-400">
+                  {card.courses}
+                </p>
+
+                <ul class="mt-4 space-y-2 border-t border-dark-700/60 pt-4 text-xs text-slate-300">
+                  {card.trilogyHighlights.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-gold-400" aria-hidden="true">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-dark-700/60">
+                <a
+                  href={card.slug}
+                  class={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400 ${
+                    card.available
+                      ? 'bg-gradient-to-r from-gold-600 to-amber-500 text-dark-950 hover:from-gold-500 hover:to-amber-400'
+                      : 'border border-dark-700 bg-dark-850/80 text-slate-200 hover:bg-dark-800'
+                  }`}
+                >
+                  <span>{card.ctaTrilogy}</span>
+                  <span aria-hidden="true">{card.available ? '→' : '✉'}</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .breadcrumb-list li:not(:first-child)::before {
+    content: "/" / "";
+    padding-inline: 0.6rem;
+    color: #64748b;
+  }
+</style>
