@@ -12,8 +12,6 @@ const paths = getMethodsPaths(currentLocale, base);
 
 const vol1Url = paths.vol1;
 const trilogyUrl = paths.trilogy;
-const catalogUrl = paths.catalog;
-const registerUrl = paths.register;
 
 const copyMap: Record<SupportedLocale, {
   eyebrow: string;
@@ -26,7 +24,6 @@ const copyMap: Record<SupportedLocale, {
   editionKindle: string;
   ctaPrimary: string;
   ctaSecondary: string;
-  ctaRegister: string;
   toggleFront: string;
   toggleBack: string;
   imgAlt: string;
@@ -46,9 +43,8 @@ const copyMap: Record<SupportedLocale, {
     editionsLabel: 'Ediciones oficiales · Lanzamiento previsto para mayo–junio de 2027:',
     editionKdp: 'Amazon KDP · Tapa Blanda',
     editionKindle: 'Amazon Kindle · Digital Print Replica',
-    ctaPrimary: 'Ver Ficha y Ediciones de Amazon',
-    ctaSecondary: 'Probar Visor 3D y Audio',
-    ctaRegister: 'Activar Ejemplar (/registro)',
+    ctaPrimary: 'Ver ficha del Volumen 1',
+    ctaSecondary: 'Ver colección (Vol. 1–2)',
     toggleFront: 'Portada',
     toggleBack: 'Contraportada',
     imgAlt:
@@ -70,9 +66,8 @@ const copyMap: Record<SupportedLocale, {
     editionsLabel: 'Official editions · Scheduled launch for May–June 2027:',
     editionKdp: 'Amazon KDP · Paperback',
     editionKindle: 'Amazon Kindle · Print Replica Digital',
-    ctaPrimary: 'View Volume 1 & Amazon Editions',
-    ctaSecondary: 'Try 3D Book & Audio Lab',
-    ctaRegister: 'Activate Copy (/registro)',
+    ctaPrimary: 'View Volume 1 details',
+    ctaSecondary: 'View collection (Vol. 1–2)',
     toggleFront: 'Front cover',
     toggleBack: 'Back cover',
     imgAlt:
@@ -94,9 +89,8 @@ const copyMap: Record<SupportedLocale, {
     editionsLabel: 'Offizielle Ausgaben · Geplanter Verkaufsstart für Mai–Juni 2027:',
     editionKdp: 'Amazon KDP · Taschenbuch',
     editionKindle: 'Amazon Kindle · Digital Print Replica',
-    ctaPrimary: 'Band 1 & Amazon-Ausgaben ansehen',
-    ctaSecondary: '3D-Buch & Audio ausprobieren',
-    ctaRegister: 'Exemplar aktivieren (/registro)',
+    ctaPrimary: 'Band 1 im Detail ansehen',
+    ctaSecondary: 'Reihe ansehen (Bd. 1–2)',
     toggleFront: 'Titelseite',
     toggleBack: 'Rückseite',
     imgAlt:
@@ -118,9 +112,8 @@ const copyMap: Record<SupportedLocale, {
     editionsLabel: 'Edizioni ufficiali · Lancio previsto per maggio–giugno 2027:',
     editionKdp: 'Amazon KDP · Copertina Flessibile',
     editionKindle: 'Amazon Kindle · Digital Print Replica',
-    ctaPrimary: 'Vedi Scheda ed Edizioni Amazon',
-    ctaSecondary: 'Prova il Libro 3D e Audio',
-    ctaRegister: 'Attiva Copia (/registro)',
+    ctaPrimary: 'Vedi scheda del Volume 1',
+    ctaSecondary: 'Vedi collezione (Vol. 1–2)',
     toggleFront: 'Copertina',
     toggleBack: 'Retro',
     imgAlt:
@@ -128,13 +121,6 @@ const copyMap: Record<SupportedLocale, {
     backImgAlt:
       'Retro di copertina ufficiale di Flessibilità Metodo per Trombone Volume 1 Elementare con TromBot',
   },
-};
-
-const catalogLinkLabelMap: Record<SupportedLocale, string> = {
-  es: 'Catálogo de Métodos (Vol. 1–2)',
-  en: 'Methods Catalog (Vol. 1–2)',
-  de: 'Methodenkatalog (Bd. 1–2)',
-  it: 'Catalogo Metodi (Vol. 1–2)',
 };
 
 const copy = copyMap[currentLocale] || copyMap.es;
@@ -249,7 +235,7 @@ const copy = copyMap[currentLocale] || copyMap.es;
             </div>
           </div>
 
-          <!-- CTAs Primario, Secundario y Registro -->
+          <!-- CTAs Primario y Secundario -->
           <div class="flex flex-wrap items-center gap-3 pt-2">
             <a
               href={vol1Url}
@@ -264,21 +250,6 @@ const copy = copyMap[currentLocale] || copyMap.es;
               class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-xs sm:text-sm font-medium text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
             >
               <span>{copy.ctaSecondary}</span>
-            </a>
-
-            <a
-              href={registerUrl}
-              class="inline-flex items-center gap-1.5 rounded-xl border border-copper/40 bg-copper/10 px-4 py-3 text-xs font-mono text-copper-light hover:bg-copper/20 transition-colors"
-            >
-              <span>{copy.ctaRegister}</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-
-            <a
-              href={catalogUrl}
-              class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
-            >
-              <span>{catalogLinkLabelMap[currentLocale] || catalogLinkLabelMap.es}</span>
             </a>
           </div>
         </div>

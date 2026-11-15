@@ -21,43 +21,33 @@ const paths = getMethodsPaths(locale, base);
 const syllabusLevels = getVol1Syllabus(locale);
 const faqs = getVol1Faqs(locale);
 
-const amazonDomainMap: Record<SupportedLocale, string> = {
-  es: 'amazon.es',
-  en: 'amazon.com',
-  de: 'amazon.de',
-  it: 'amazon.it',
-};
-const amazonDomain = amazonDomainMap[locale] || 'amazon.com';
-const kdpUrl = `https://www.${amazonDomain}/s?k=Javier+Saez+Mozos+Trombon+Flexibilidad`;
-const kindleUrl = `https://www.${amazonDomain}/s?k=Javier+Saez+Mozos+Trombon+Flexibilidad+Kindle`;
-
 const vol1MetaMap: Record<SupportedLocale, { title: string; description: string; ogImage: string; locale: string }> = {
   es: {
     title: 'Trombón Flexibilidad · Volumen 1 (Elemental) · Amazon KDP y Kindle | Javier Sáez',
     description:
       'Ficha técnica y comercial de «Trombón · Flexibilidad · Volumen 1 (Elemental, hasta Fa4)» de Javier Sáez Mozos. Lanzamiento oficial en Amazon KDP (Tapa Blanda) y Amazon Kindle previsto para mayo–junio de 2027.',
-    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    ogImage: '/images/metodos/vol1-portada.png',
     locale: 'es',
   },
   en: {
     title: 'Trombone Flexibility · Volume 1 (Elementary) · Amazon KDP & Kindle | Javier Sáez',
     description:
       'Technical & commercial sheet for «Trombone · Flexibility · Volume 1 (Elementary, up to F4)» by Javier Sáez Mozos. Official launch on Amazon KDP (Paperback) and Amazon Kindle scheduled for May–June 2027.',
-    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    ogImage: '/images/metodos/vol1-portada.png',
     locale: 'en',
   },
   de: {
     title: 'Posaune Flexibilität · Band 1 (Elementarstufe) · Amazon KDP & Kindle | Javier Sáez',
     description:
       'Produktdatenblatt zu «Posaune · Flexibilität · Band 1 (Elementarstufe, bis F4)» von Javier Sáez Mozos. Offizieller Verkaufsstart auf Amazon KDP (Taschenbuch) und Amazon Kindle geplant für Mai–Juni 2027.',
-    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    ogImage: '/images/metodos/vol1-portada.png',
     locale: 'de',
   },
   it: {
     title: 'Trombone Flessibilità · Volume 1 (Elementare) · Amazon KDP e Kindle | Javier Sáez',
     description:
       'Scheda tecnica e commerciale di «Trombone · Flessibilità · Volume 1 (Elementare, fino a Fa4)» di Javier Sáez Mozos. Lancio ufficiale su Amazon KDP e Kindle previsto per maggio–giugno 2027.',
-    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    ogImage: '/images/metodos/vol1-portada.png',
     locale: 'it',
   },
 };
@@ -78,7 +68,7 @@ const bookSchemaMap: Record<SupportedLocale, any> = {
     inLanguage: 'es',
     abridged: false,
     description:
-      'Método progresivo e interactivo de flexibilidad para trombón (Nivel Elemental, 2.º a 4.º de Enseñanzas Elementales, hasta Fa4) con 12 bloques pedagógicos, 120 ejercicios en espejo, 12 estudios melódicos y 15 códigos QR hacia videopartituras con TromBot IA.',
+      'Método progresivo de flexibilidad labial para trombón (Nivel Elemental, hasta Fa4) estructurado en 3 niveles (uno por curso escolar) con 30 ejercicios dobles por nivel, estudios de consolidación, bloque de ampliación, asistente visual TromBot y audios y videopartituras interactivas.',
   },
   en: {
     '@context': 'https://schema.org',
@@ -95,7 +85,7 @@ const bookSchemaMap: Record<SupportedLocale, any> = {
     inLanguage: 'en',
     abridged: false,
     description:
-      'Progressive and interactive trombone flexibility method (Elementary Level, up to F4) featuring 12 pedagogical blocks, 120 mirror exercises, 12 melodic etudes, and 15 QR codes linking to interactive video scores with TromBot AI (multilingual subtitles ES/EN/DE/IT).',
+      'Progressive trombone lip flexibility method (Elementary Level, up to F4) structured across 3 levels (one per academic year) featuring 30 double exercises per level, consolidation etudes, an extension block, visual assistant TromBot, and reference audio plus interactive video-scores.',
   },
   de: {
     '@context': 'https://schema.org',
@@ -112,7 +102,7 @@ const bookSchemaMap: Record<SupportedLocale, any> = {
     inLanguage: 'de',
     abridged: false,
     description:
-      'Progressive und interaktive Flexibilitätsmethode für Posaune (Elementarstufe, bis F4) mit 12 Lerneinheiten, 120 Spiegelübungen, 12 melodischen Etüden und 15 QR-Codes zu Videopartituren.',
+      'Progressive Flexibilitätsmethode für Posaune (Elementarstufe, bis F4) in 3 Stufen (je ein Schuljahr) mit 30 Doppelübungen pro Stufe, Konsolidierungsetüden, Erweiterungsblock, visuellem Assistenten TromBot sowie Referenz-Audios und interaktiven Videopartituren.',
   },
   it: {
     '@context': 'https://schema.org',
@@ -129,7 +119,7 @@ const bookSchemaMap: Record<SupportedLocale, any> = {
     inLanguage: 'it',
     abridged: false,
     description:
-      'Metodo progressivo e interattivo di flessibilità per trombone (Livello Elementare, fino a Fa4) con 12 blocchi didattici, 120 esercizi a specchio, 12 studi melodici e 15 codici QR a videopartiture.',
+      'Metodo progressivo di flessibilità labiale per trombone (Livello Elementare, fino a Fa4) strutturato in 3 livelli (uno per anno scolastico) con 30 esercizi doppi per livello, studi di consolidamento, blocco di ampliamento, assistente visivo TromBot e audio e videopartiture interattive.',
   },
 };
 
@@ -200,9 +190,9 @@ const copyMap: Record<SupportedLocale, {
     lead5: ' y 15 accesos QR a videopartituras con subtítulos en 4 idiomas.',
     specs: [
       { k: 'Tesitura', v: 'Sib₂ a Fa₄', accent: true },
-      { k: 'Estructura', v: '3 Niveles · 12 Bloques', accent: false },
-      { k: 'Rastral / Formato', v: '7,0 mm · US Letter', accent: false },
-      { k: 'Ecosistema QR', v: '15 QR · ES/EN/DE/IT', accent: false },
+      { k: 'Estructura', v: '3 Niveles · 1 curso/nivel', accent: false },
+      { k: 'Por nivel', v: '30 ej. dobles + estudios', accent: false },
+      { k: 'Multimedia', v: 'Audios + Videopartituras', accent: false },
     ],
     standTitle: 'Ergonomía de atril garantizada:',
     standBodyPrefix: ' La edición impresa de Amazon KDP incorpora un ',
@@ -220,25 +210,25 @@ const copyMap: Record<SupportedLocale, {
       '• Papel blanco de alto gramaje con margen interior de 20 mm para atril.',
       '• Envío directo con logística Amazon Prime según tu país.',
     ],
-    kdpBtn: 'Comprar Tapa Blanda en Amazon KDP',
+    kdpBtn: 'Próximo lanzamiento · Mayo–Junio 2027',
     kindleBadge: 'Descarga Inmediata',
     kindleTitle: 'Amazon Kindle · Edición Digital',
     kindleBullets: [
       '• Maquetación fija de alta definición idéntica al libro impreso para iPad, tablets y app Kindle.',
-      '• Enlaces interactivos directos y códigos QR hacia las 15 videopartituras Adilo.',
+      '• Audios de ejemplo, videopartituras con metrónomo y práctica pregunta-respuesta mediante QR.',
       '• Disponibilidad instantánea en cualquier tienda internacional de Amazon.',
     ],
-    kindleBtn: 'Comprar Edición Digital en Amazon Kindle',
-    alreadyBought: '¿Ya lo has comprado en Amazon?',
+    kindleBtn: 'Próximo lanzamiento · Mayo–Junio 2027',
+    alreadyBought: '¿Ya tienes un ejemplar o código?',
     registerLink: 'Registrar ejemplar →',
-    syllabusEyebrow: 'Arquitectura Pedagógica · 12 Bloques Progresivos',
+    syllabusEyebrow: 'Arquitectura Pedagógica · 3 Niveles (1 curso por nivel)',
     syllabusTitle: 'Índice Curricular del Volumen 1 (2.º a 4.º de EE.EE.)',
-    syllabusDesc1: 'Cada bloque pedagógico consta de ',
-    syllabusDescStrong1: '10 ejercicios dobles en espejo',
+    syllabusDesc1: 'Cada nivel incluye ',
+    syllabusDescStrong1: '30 ejercicios dobles',
     syllabusDesc2:
-      ' (practicables desde la 1.ª hasta la 7.ª posición para interiorizar la correspondencia mecánica y auditiva) seguidos de ',
-    syllabusDescStrong2: '1 estudio melódico integrador',
-    syllabusDesc3: ' y su código QR de videopartitura.',
+      ' progresivos para desarrollar la flexibilidad labial hasta Fa₄, seguidos de ',
+    syllabusDescStrong2: 'estudios de consolidación y bloque de ampliación',
+    syllabusDesc3: ', con audios de ejemplo y videopartituras (metrónomo y pregunta-respuesta).',
     testQr: 'Probar ruta QR →',
     faqEyebrow: 'Resolución de Dudas · Lanzamiento en Amazon',
     faqTitle: 'Preguntas Frecuentes (Amazon KDP y Amazon Kindle)',
@@ -263,9 +253,9 @@ const copyMap: Record<SupportedLocale, {
     lead5: ' and 15 QR accesses to interactive video scores with 4-language subtitles.',
     specs: [
       { k: 'Range', v: 'Bb₂ to F₄', accent: true },
-      { k: 'Structure', v: '3 Levels · 12 Blocks', accent: false },
-      { k: 'Rastral / Trim', v: '7.0 mm · US Letter', accent: false },
-      { k: 'QR Ecosystem', v: '15 QR · ES/EN/DE/IT', accent: false },
+      { k: 'Structure', v: '3 Levels · 1 year/level', accent: false },
+      { k: 'Per level', v: '30 double ex. + etudes', accent: false },
+      { k: 'Multimedia', v: 'Audio + Video-scores', accent: false },
     ],
     standTitle: 'Guaranteed music-stand ergonomics:',
     standBodyPrefix: ' The Amazon KDP print edition incorporates a ',
@@ -283,25 +273,25 @@ const copyMap: Record<SupportedLocale, {
       '• Crisp white stock featuring a 20 mm stand-safe inner gutter margin.',
       '• Worldwide fulfillment via Amazon Prime logistics.',
     ],
-    kdpBtn: 'Buy Paperback on Amazon KDP',
+    kdpBtn: 'Upcoming Launch · May–June 2027',
     kindleBadge: 'Instant Access',
     kindleTitle: 'Amazon Kindle · Digital Edition',
     kindleBullets: [
       '• Fixed-layout Print Replica mastering identical to the physical book for iPad, tablets & Kindle app.',
-      '• Direct clickable links and QR codes routing to all 15 ad-free Adilo video scores.',
+      '• Reference audio, solo metronome video-scores, and call-and-response video-scores via QR.',
       '• Instant delivery across all international Amazon Kindle stores.',
     ],
-    kindleBtn: 'Buy Digital Edition on Amazon Kindle',
-    alreadyBought: 'Already bought your copy on Amazon?',
+    kindleBtn: 'Upcoming Launch · May–June 2027',
+    alreadyBought: 'Already have a copy or code?',
     registerLink: 'Register copy →',
-    syllabusEyebrow: 'Pedagogical Architecture · 12 Progressive Blocks',
+    syllabusEyebrow: 'Pedagogical Architecture · 3 Levels (1 year per level)',
     syllabusTitle: 'Volume 1 Curriculum Syllabus (Years 2–4)',
-    syllabusDesc1: 'Each pedagogical block consists of ',
-    syllabusDescStrong1: '10 double mirror exercises',
+    syllabusDesc1: 'Each level features ',
+    syllabusDescStrong1: '30 double exercises',
     syllabusDesc2:
-      ' (playable from 1st through 7th slide position to build mechanical and aural consistency) followed by ',
-    syllabusDescStrong2: '1 integrative melodic etude',
-    syllabusDesc3: ' and its corresponding video-score QR code.',
+      ' to build lip flexibility progressively up to F₄, followed by ',
+    syllabusDescStrong2: 'consolidation etudes and an extension block',
+    syllabusDesc3: ', supported by reference audio and video-scores (metronome & call-and-response).',
     testQr: 'Test QR route →',
     faqEyebrow: 'FAQ · Amazon Launch Editions',
     faqTitle: 'Frequently Asked Questions (Amazon KDP & Kindle)',
@@ -326,9 +316,9 @@ const copyMap: Record<SupportedLocale, {
     lead5: ' und 15 QR-Codes zu Videopartituren mit 4-sprachigen Untertiteln.',
     specs: [
       { k: 'Tonumfang', v: 'B♭₂ bis F₄', accent: true },
-      { k: 'Struktur', v: '3 Niveaus · 12 Blöcke', accent: false },
-      { k: 'Rastral / Format', v: '7,0 mm · US Letter', accent: false },
-      { k: 'QR-System', v: '15 QR · ES/EN/DE/IT', accent: false },
+      { k: 'Struktur', v: '3 Stufen · 1 Jahr/Stufe', accent: false },
+      { k: 'Pro Stufe', v: '30 Doppelüb. + Etüden', accent: false },
+      { k: 'Multimedia', v: 'Audio + Videopartituren', accent: false },
     ],
     standTitle: 'Garantierte Ergonomie auf dem Notenständer:',
     standBodyPrefix: ' Die Amazon KDP-Druckausgabe verfügt über einen ',
@@ -346,25 +336,25 @@ const copyMap: Record<SupportedLocale, {
       '• Hochwertiges weißes Papier mit 20 mm atrilsicherem Innenrand.',
       '• Schnelle Lieferung mit Amazon Prime je nach Region.',
     ],
-    kdpBtn: 'Taschenbuch auf Amazon KDP kaufen',
+    kdpBtn: 'Erscheint Mai–Juni 2027',
     kindleBadge: 'Sofortiger Download',
     kindleTitle: 'Amazon Kindle · Digitale Ausgabe',
     kindleBullets: [
       '• Festes Print-Replica-Layout, 1:1 identisch zum gedruckten Buch für Tablets und iPads.',
-      '• Direkte Links und QR-Codes zu allen 15 werbefreien Adilo-Videopartituren.',
+      '• Referenz-Audios, Videopartituren mit Metronom und Frage-Antwort-Praxis per QR-Code.',
       '• Sofortige Verfügbarkeit in allen internationalen Amazon-Shops.',
     ],
-    kindleBtn: 'Digitale Ausgabe auf Amazon Kindle kaufen',
-    alreadyBought: 'Bereits auf Amazon gekauft?',
+    kindleBtn: 'Erscheint Mai–Juni 2027',
+    alreadyBought: 'Bereits ein Exemplar oder Code vorhanden?',
     registerLink: 'Exemplar registrieren →',
-    syllabusEyebrow: 'Pädagogische Struktur · 12 Progressive Blöcke',
+    syllabusEyebrow: 'Pädagogische Struktur · 3 Stufen (1 Schuljahr pro Stufe)',
     syllabusTitle: 'Lehrplan Band 1 (2.–4. Ausbildungsjahr)',
-    syllabusDesc1: 'Jeder didaktische Block umfasst ',
-    syllabusDescStrong1: '10 doppelte Spiegelübungen',
+    syllabusDesc1: 'Jede Stufe umfasst ',
+    syllabusDescStrong1: '30 Doppelübungen',
     syllabusDesc2:
-      ' (spielbar von der 1. bis zur 7. Zugposition zur Verinnerlichung der Mechanik) gefolgt von ',
-    syllabusDescStrong2: '1 integrativen melodischen Etüde',
-    syllabusDesc3: ' mit zugehörigem Videopartitur-QR-Code.',
+      ' zur progressiven Entwicklung der Lippenflexibilität bis F₄, gefolgt von ',
+    syllabusDescStrong2: 'Konsolidierungsetüden und einem Erweiterungsblock',
+    syllabusDesc3: ', ergänzt durch Referenz-Audios und Videopartituren (Metronom & Frage-Antwort).',
     testQr: 'QR-Route testen →',
     faqEyebrow: 'Häufig gestellte Fragen · Amazon-Start',
     faqTitle: 'FAQ (Amazon KDP & Amazon Kindle)',
@@ -389,9 +379,9 @@ const copyMap: Record<SupportedLocale, {
     lead5: ' e 15 accessi QR a videopartiture con sottotitoli in 4 lingue.',
     specs: [
       { k: 'Estensione', v: 'Sib₂ a Fa₄', accent: true },
-      { k: 'Struttura', v: '3 Livelli · 12 Blocchi', accent: false },
-      { k: 'Rastral / Formato', v: '7,0 mm · US Letter', accent: false },
-      { k: 'Ecosistema QR', v: '15 QR · ES/EN/DE/IT', accent: false },
+      { k: 'Struttura', v: '3 Livelli · 1 anno/liv.', accent: false },
+      { k: 'Per livello', v: '30 es. doppi + studi', accent: false },
+      { k: 'Multimedia', v: 'Audio + Videopartiture', accent: false },
     ],
     standTitle: 'Ergonomia da leggio garantita:',
     standBodyPrefix: ' L\'edizione cartacea Amazon KDP include un ',
@@ -409,25 +399,25 @@ const copyMap: Record<SupportedLocale, {
       '• Carta bianca ad alta grammatura con margine interno di sicurezza di 20 mm.',
       '• Spedizione rapida con logistica Amazon Prime in tutto il mondo.',
     ],
-    kdpBtn: 'Acquista Copertina Flessibile su Amazon KDP',
+    kdpBtn: 'In arrivo · Maggio–Giugno 2027',
     kindleBadge: 'Download Immediato',
     kindleTitle: 'Amazon Kindle · Edizione Digitale',
     kindleBullets: [
       '• Impaginazione fissa Print Replica identica al libro stampato per iPad, tablet e app Kindle.',
-      '• Collegamenti diretti e codici QR a tutte le 15 videopartiture Adilo senza pubblicità.',
+      '• Audio di riferimento, videopartiture con metronomo e pratica domanda-risposta tramite QR.',
       '• Disponibilità istantanea in tutti i negozi Amazon internazionali.',
     ],
-    kindleBtn: 'Acquista Edizione Digitale su Amazon Kindle',
-    alreadyBought: 'L\'hai già acquistato su Amazon?',
+    kindleBtn: 'In arrivo · Maggio–Giugno 2027',
+    alreadyBought: 'Hai già una copia o un codice?',
     registerLink: 'Registra copia →',
-    syllabusEyebrow: 'Architettura Didattica · 12 Blocchi Progressivi',
+    syllabusEyebrow: 'Architettura Didattica · 3 Livelli (1 anno per livello)',
     syllabusTitle: 'Syllabus Curricolare del Volume 1 (Anni 2–4)',
-    syllabusDesc1: 'Ogni blocco didattico comprende ',
-    syllabusDescStrong1: '10 esercizi doppi a specchio',
+    syllabusDesc1: 'Ogni livello comprende ',
+    syllabusDescStrong1: '30 esercizi doppi',
     syllabusDesc2:
-      ' (eseguibili dalla 1ª alla 7ª posizione per sviluppare corrispondenza meccanica e uditiva) seguiti da ',
-    syllabusDescStrong2: '1 studio melodico d\'insieme',
-    syllabusDesc3: ' e dal relativo codice QR della videopartitura.',
+      ' progressivi per sviluppare la flessibilità labiale fino a Fa₄, seguiti da ',
+    syllabusDescStrong2: 'studi di consolidamento e blocco di ampliamento',
+    syllabusDesc3: ', con audio di riferimento e videopartiture (metronomo e domanda-risposta).',
     testQr: 'Verifica percorso QR →',
     faqEyebrow: 'Domande Frequenti · Lancio su Amazon',
     faqTitle: 'FAQ (Amazon KDP e Amazon Kindle)',
@@ -540,15 +530,9 @@ const copy = copyMap[locale] || copyMap.es;
               <ul class="space-y-1.5 text-xs text-slate-300">
                 {copy.kdpBullets.map((b) => <li>{b}</li>)}
               </ul>
-              <a
-                href={kdpUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-600 to-amber-500 px-4 py-3 text-xs font-bold text-dark-950 shadow-md hover:from-gold-500 hover:to-amber-400 transition-all focus:outline-none focus:ring-2 focus:ring-gold-400"
-              >
-                <span>{copy.kdpBtn}</span>
-                <span aria-hidden="true">↗</span>
-              </a>
+              <div class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-xs font-mono font-semibold text-emerald-300">
+                <span>🗓️ {copy.kdpBtn}</span>
+              </div>
             </article>
 
             <article class="rounded-xl border border-dark-700/60 bg-dark-900/90 p-4 space-y-3">
@@ -566,15 +550,9 @@ const copy = copyMap[locale] || copyMap.es;
               <ul class="space-y-1.5 text-xs text-slate-300">
                 {copy.kindleBullets.map((b) => <li>{b}</li>)}
               </ul>
-              <a
-                href={kindleUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gold-500/60 bg-gold-500/20 px-4 py-3 text-xs font-bold text-white hover:bg-gold-500/30 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
-              >
-                <span>{copy.kindleBtn}</span>
-                <span aria-hidden="true">↗</span>
-              </a>
+              <div class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-xs font-mono font-semibold text-emerald-300">
+                <span>🗓️ {copy.kindleBtn}</span>
+              </div>
             </article>
 
             <div class="pt-2 border-t border-dark-700/60 flex items-center justify-between gap-3 text-xs">
