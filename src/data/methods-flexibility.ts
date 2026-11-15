@@ -51,7 +51,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
     return [
       {
         id: 1,
-        metal: 'Akustisches Kupfer',
+        metal: 'Kupfer-Serie',
         hex: '#E89758',
         borderClass: 'border-copper/45 hover:border-copper',
         badgeClass: 'bg-copper/15 text-copper-light border-copper/40',
@@ -77,7 +77,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       },
       {
         id: 2,
-        metal: 'Symphonisches Silber',
+        metal: 'Silber-Serie',
         hex: '#F1F2F4',
         borderClass: 'border-silver/35 hover:border-silver/70',
         badgeClass: 'bg-white/10 text-silver border-silver/30',
@@ -108,7 +108,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
     return [
       {
         id: 1,
-        metal: 'Rame Acustico',
+        metal: 'Serie Rame',
         hex: '#E89758',
         borderClass: 'border-copper/45 hover:border-copper',
         badgeClass: 'bg-copper/15 text-copper-light border-copper/40',
@@ -134,7 +134,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       },
       {
         id: 2,
-        metal: 'Argento Sinfonico',
+        metal: 'Serie Argento',
         hex: '#F1F2F4',
         borderClass: 'border-silver/35 hover:border-silver/70',
         badgeClass: 'bg-white/10 text-silver border-silver/30',
@@ -165,7 +165,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
     return [
       {
         id: 1,
-        metal: 'Acoustic Copper',
+        metal: 'Copper Series',
         hex: '#E89758',
         borderClass: 'border-copper/45 hover:border-copper',
         badgeClass: 'bg-copper/15 text-copper-light border-copper/40',
@@ -191,7 +191,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       },
       {
         id: 2,
-        metal: 'Symphonic Silver',
+        metal: 'Silver Series',
         hex: '#F1F2F4',
         borderClass: 'border-silver/35 hover:border-silver/70',
         badgeClass: 'bg-white/10 text-silver border-silver/30',
@@ -221,7 +221,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
   return [
     {
       id: 1,
-      metal: 'Cobre Acústico',
+      metal: 'Serie Cobre',
       hex: '#E89758',
       borderClass: 'border-copper/45 hover:border-copper',
       badgeClass: 'bg-copper/15 text-copper-light border-copper/40',
@@ -247,7 +247,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
     },
     {
       id: 2,
-      metal: 'Plata Sinfónica',
+      metal: 'Serie Plata',
       hex: '#F1F2F4',
       borderClass: 'border-silver/35 hover:border-silver/70',
       badgeClass: 'bg-white/10 text-silver border-silver/30',
