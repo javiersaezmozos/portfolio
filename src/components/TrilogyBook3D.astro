@@ -105,24 +105,24 @@ const coverFootMap: Record<SupportedLocale, string> = {
 
 const rightHeaderMap: Record<SupportedLocale, { eyebrow: string; title: string; desc: string }> = {
   es: {
-    eyebrow: 'Ingeniería Editorial · Inspección 3D',
-    title: 'Método de Flexibilidad: Progresión Acústica',
-    desc: 'Selecciona cada volumen para inspeccionar su acabado visual y comprobar el lomo de la edición impresa en Amazon KDP o el margen interior para atril y Amazon Kindle.',
+    eyebrow: 'Vista previa 3D · Ediciones',
+    title: 'Método de Flexibilidad · Volúmenes 1 y 2',
+    desc: 'Selecciona cada volumen para inspeccionar su acabado visual y comprobar el lomo de la edición impresa en Amazon KDP o la lectura en atril y Amazon Kindle.',
   },
   en: {
-    eyebrow: 'Editorial Engineering · 3D Inspection',
-    title: 'Flexibility Method: Acoustic Progression',
-    desc: 'Select each volume to inspect its visual finish and check the Amazon KDP paperback spine or the inner safety margin for music stands and Amazon Kindle.',
+    eyebrow: '3D Preview · Editions',
+    title: 'Flexibility Method · Volumes 1 & 2',
+    desc: 'Select each volume to inspect its visual finish and check the Amazon KDP paperback spine or music-stand and Amazon Kindle reading.',
   },
   de: {
-    eyebrow: 'Verlags-Engineering · 3D-Inspektion',
-    title: 'Flexibilitätsmethode: Akustische Progression',
-    desc: 'Wählen Sie einen Band aus, um den Notenstich zu begutachten und den Buchrücken der Amazon KDP-Ausgabe sowie den 20-mm-Sicherheitsrand für Notenständer und Kindle zu prüfen.',
+    eyebrow: '3D-Vorschau · Ausgaben',
+    title: 'Flexibilitätsmethode · Bände 1 & 2',
+    desc: 'Wählen Sie einen Band aus, um das visuelle Design zu begutachten und den Buchrücken der Amazon KDP-Ausgabe sowie die Lesbarkeit auf dem Notenständer und Kindle zu prüfen.',
   },
   it: {
-    eyebrow: 'Ingegneria Editoriale · Ispezione 3D',
-    title: 'Metodo di Flessibilità: Progressione Acustica',
-    desc: 'Seleziona ciascun volume per ispezionare i dettagli editoriali e verificare il dorso dell\'edizione cartacea Amazon KDP o il margine interno di 20 mm per leggio e Kindle.',
+    eyebrow: 'Anteprima 3D · Edizioni',
+    title: 'Metodo di Flessibilità · Volumi 1 e 2',
+    desc: 'Seleziona ciascun volume per ispezionare il design e verificare il dorso dell\'edizione cartacea Amazon KDP o la lettura sul leggio e su Kindle.',
   },
 };
 
@@ -164,29 +164,29 @@ const bindingSectionMap: Record<SupportedLocale, {
   es: {
     label: '2. Simulador de Edición y Atril:',
     kdpTitle: 'Amazon KDP (Tapa Blanda)',
-    kdpDesc: 'Edición impresa oficial con lomo encolado y pastilla metálica de 4×12 mm.',
-    kindleTitle: 'Amazon Kindle / Margen 20 mm',
+    kdpDesc: 'Edición impresa oficial con lomo de colección.',
+    kindleTitle: 'Amazon Kindle / Lectura en atril',
     kindleDesc: 'Edición digital de diseño fijo y margen interior para lectura limpia en atril.',
   },
   en: {
     label: '2. Edition & Music-Stand Simulator:',
     kdpTitle: 'Amazon KDP (Paperback)',
-    kdpDesc: 'Official print edition with perfect-bound spine and 4×12 mm metallic badge.',
-    kindleTitle: 'Amazon Kindle / 20 mm Margin',
+    kdpDesc: 'Official print edition with signature collection spine.',
+    kindleTitle: 'Amazon Kindle / Music-stand reading',
     kindleDesc: 'Fixed-layout digital edition & inner reserve for clean music-stand reading.',
   },
   de: {
     label: '2. Ausgaben- und Notenständer-Simulator:',
     kdpTitle: 'Amazon KDP (Taschenbuch)',
-    kdpDesc: 'Offizielle Druckausgabe mit Klebebindung und 4×12 mm Metallelement.',
-    kindleTitle: 'Amazon Kindle / 20 mm Bundsteg',
+    kdpDesc: 'Offizielle Druckausgabe mit Sammlungsrücken.',
+    kindleTitle: 'Amazon Kindle / Notenständer',
     kindleDesc: 'Digitale Ausgabe mit festem Layout und breitem Innenrand für optimale Lesbarkeit.',
   },
   it: {
     label: '2. Simulatore di Edizione e Leggio:',
     kdpTitle: 'Amazon KDP (Copertina Flessibile)',
-    kdpDesc: 'Edizione cartacea ufficiale con rilegatura fresata e dettaglio metallico 4×12 mm.',
-    kindleTitle: 'Amazon Kindle / Margine 20 mm',
+    kdpDesc: 'Edizione cartacea ufficiale con dorso da collezione.',
+    kindleTitle: 'Amazon Kindle / Lettura sul leggio',
     kindleDesc: 'Edizione digitale a layout fisso con ampio margine interno per una lettura chiara sul leggio.',
   },
 };
@@ -273,7 +273,17 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
                 ))}
               </div>
 
-              <!-- Ilustración canónica de fondo: Estudiante + TromBot IA -->
+              <!-- Portada definitiva real del Volumen 1 -->
+              <img
+                data-vol1-front-img
+                src={`${base}/images/metodos/vol1-portada.jpg`}
+                alt="Portada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental"
+                class={`pointer-events-none absolute inset-0 h-full w-full object-cover z-30 ${initialVolume === 1 ? '' : 'hidden'}`}
+                loading="eager"
+                decoding="async"
+              />
+
+              <!-- Ilustración canónica de fondo: Estudiante + TromBot -->
               <div class="relative h-full w-full flex flex-col justify-between p-5 sm:p-6 z-10">
                 <img
                   src={`${base}/images/metodos/portada-duo-trombot.jpg`}
@@ -381,9 +391,18 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
 
             <!-- 5. CONTRACUBIERTA (Cara Z-) -->
             <div
-              class="book-face book-back rounded-l-[4px] bg-[#0B0C0E] border border-white/10 p-5 flex flex-col justify-between"
+              class="book-face book-back rounded-l-[4px] bg-[#0B0C0E] border border-white/10 p-5 flex flex-col justify-between overflow-hidden"
               aria-hidden="true"
             >
+              <!-- Contraportada definitiva real del Volumen 1 -->
+              <img
+                data-vol1-back-img
+                src={`${base}/images/metodos/vol1-contraportada.jpg`}
+                alt="Contraportada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental"
+                class={`pointer-events-none absolute inset-0 h-full w-full object-cover z-30 ${initialVolume === 1 ? '' : 'hidden'}`}
+                loading="lazy"
+                decoding="async"
+              />
               <div class="text-center border-b border-white/10 pb-2.5">
                 <p class="font-serif text-sm font-bold tracking-[0.18em] text-gold-400 uppercase">
                   FLEXIBILIDAD
@@ -922,6 +941,9 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
             });
 
             const code = selectedBtn.dataset.volCode || 'copper';
+            const isVol1 = code === 'copper';
+            root.querySelector('[data-vol1-front-img]')?.classList.toggle('hidden', !isVol1);
+            root.querySelector('[data-vol1-back-img]')?.classList.toggle('hidden', !isVol1);
             const hex = selectedBtn.dataset.volHex || '#E89758';
             const hexSec = selectedBtn.dataset.volHexSec || '#D98A5B';
             const hexShadow = selectedBtn.dataset.volHexShadow || '#9E472A';
