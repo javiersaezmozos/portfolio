@@ -70,9 +70,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Referenz-Audios, Videopartituren mit Metronom & Frage-Antwort-Praxis',
         ],
         trilogyHighlights: [
-          '3 Stufen · 30 Doppelübungen/Stufe + Etüden + Erweiterungsblock',
-          'Visueller Assistent TromBot & großes, klares Notenbild auf dem Pult',
-          'Audios + Videopartituren (Metronom & Frage-Antwort)',
+          'Stufe 1: Naturtöne 2 (B₂), 3 (F₃) und 4 (B₃) mit stabilem Ansatz',
+          'Stufe 2: Schrittweise Erweiterung bis zum 5. Naturton (D₄) ohne Spannung',
+          'Stufe 3: Kontrollierter Ausbau bis zum 6. Naturton (F₄) und Abschlussübungen',
+          'Parallele rhythmische Progression: Halbe/Viertel, Achtel, Triolen und Sechzehntel',
         ],
       },
       {
@@ -96,9 +97,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Klares Notenbild für fortgeschrittenes Repertoire auf dem Pult',
         ],
         trilogyHighlights: [
-          'Fließende Verbindung der Naturtöne 6, 7 und 8 mit Quartventil-Balance',
-          'Weite gebrochene Intervalle, Oktavbindungen und Vokalisation',
-          'Professioneller 6,5-mm-Stich mit Konzertetüden der Mittelstufe',
+          'Stufe 1: Technische Arbeit bis As₄ mit Einbindung von Lippentrillern',
+          'Stufe 2: Festigung bis B₄ und Triller im mittel-hohen Register',
+          'Stufe 3: Erweiterung bis C₅ mit Trillern und Kontrolle der Naturtonreihe',
+          'Ausdauer, weite Intervalle sowie Vorbereitung auf anspruchsvolles Repertoire',
         ],
       },
     ];
@@ -127,9 +129,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Audio di riferimento, videopartiture con metronomo e domanda-risposta',
         ],
         trilogyHighlights: [
-          '3 livelli · 30 esercizi doppi/livello + studi + ampliamento',
-          'Assistente visivo TromBot e impaginazione ampia e chiara sul leggio',
-          'Audio + videopartiture (metronomo e domanda-risposta)',
+          'Livello 1: Armonici essenziali 2º (Sib₂), 3º (Fa₃) e 4º (Sib₃) con imboccatura stabile',
+          'Livello 2: Espansione graduale al 5º armonico (Re₄) senza tensione muscolare',
+          'Livello 3: Estensione controllata fino al 6º armonico (Fa₄) e sfide finali',
+          'Progressione ritmica parallela: minime/semiminime, crome, terzine e semicrome',
         ],
       },
       {
@@ -153,9 +156,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Impaginazione ottimizzata per il repertorio intermedio sul leggio',
         ],
         trilogyHighlights: [
-          'Connessione fluida degli armonici 6º, 7º e 8º e gestione della ritorta in Fa',
-          'Ampi intervalli spezzati, legature d\'ottava e controllo vocale interno',
-          'Incisione professionale da 6,5 mm con studi da concerto intermedi',
+          'Livello 1: Lavoro tecnico fino al Lab₄ con integrazione dei trilli di labbro',
+          'Livello 2: Consolidamento fino al Sib₄ e trilli applicati al registro medio-acuto',
+          'Livello 3: Estensione fino al Do₅ con trilli e controllo avanzato degli armonici',
+          'Resistenza, intervalli ampi e preparazione al repertorio avanzato',
         ],
       },
     ];
@@ -184,9 +188,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Reference audio, solo metronome video-scores, and call-and-response practice',
         ],
         trilogyHighlights: [
-          '3 levels · 30 double ex./level + consolidation etudes + extension',
-          'TromBot visual assistant & spacious, clear music-stand layout',
-          'Reference audio + video-scores (metronome & call-and-response)',
+          'Level 1: Core partials 2nd (Bb₂), 3rd (F₃), and 4th (Bb₃) with stable embouchure',
+          'Level 2: Gradual expansion to the 5th partial (D₄) without muscular tension',
+          'Level 3: Controlled extension up to the 6th partial (F₄) and final challenges',
+          'Parallel rhythmic progression: half/quarter notes, eighths, triplets & sixteenths',
         ],
       },
       {
@@ -210,9 +215,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Layout optimized for intermediate repertoire on the music stand',
         ],
         trilogyHighlights: [
-          'Fluid connection of 6th, 7th & 8th partials and F-trigger valve balance',
-          'Wide broken intervals, octave slurs, and internal vowel shaping',
-          '6.5 mm professional engraving with intermediate concert studies',
+          'Level 1: Technical work up to Ab₄ incorporating lip trills',
+          'Level 2: Consolidation up to Bb₄ and trills in the mid-high register',
+          'Level 3: Extension up to C₅ with trills and advanced harmonic-series control',
+          'Endurance, wide intervals, and preparation for advanced repertoire',
         ],
       },
     ];
@@ -240,9 +246,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         'Audios de ejemplo, videopartituras con metrónomo y práctica pregunta-respuesta',
       ],
       trilogyHighlights: [
-        '3 niveles · 30 ej. dobles/nivel + estudios de consolidación + ampliación',
-        'Asistente visual TromBot y lectura amplia y cómoda en el atril',
-        'Audios de ejemplo + videopartituras (metrónomo y pregunta-respuesta)',
+        'Nivel 1: Parciales esenciales 2.º (Sib₂), 3.º (Fa₃) y 4.º (Sib₃) con embocadura estable',
+        'Nivel 2: Ampliación gradual al 5.º parcial (Re₄) sin tensión muscular',
+        'Nivel 3: Extensión controlada hasta el 6.º parcial (Fa₄) y retos finales',
+        'Progresión rítmica paralela: blancas/negras, corcheas, tresillos y semicorcheas',
       ],
     },
     {
@@ -266,9 +273,10 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         'Edición optimizada para repertorio intermedio en el atril',
       ],
       trilogyHighlights: [
-        'Conexión fluida de los parciales 6.º, 7.º y 8.º y uso del transpositor en Fa',
-        'Intervalos quebrados, octavas ligadas y control de vocalización interna',
-        'Lectura clara en atril con estudios de concierto intermedios',
+        'Nivel 1: Trabajo técnico hasta Lab₄ con incorporación de trinos',
+        'Nivel 2: Consolidación hasta Sib₄ y trinos aplicados al registro medio-agudo',
+        'Nivel 3: Extensión hasta Do₅ con trinos y control avanzado de la serie armónica',
+        'Resistencia, intervalos amplios y preparación para repertorio avanzado',
       ],
     },
   ];
