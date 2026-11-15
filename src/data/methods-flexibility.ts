@@ -71,7 +71,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         ],
         trilogyHighlights: [
           '3 Stufen · 30 Doppelübungen/Stufe + Etüden + Erweiterungsblock',
-          'Visueller Assistent TromBot & 7,0-mm-Notenstich mit 20 mm Bundsteg',
+          'Visueller Assistent TromBot & großes, klares Notenbild auf dem Pult',
           'Audios + Videopartituren (Metronom & Frage-Antwort)',
         ],
       },
@@ -93,7 +93,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Beherrschung des 6., 7. und 8. Naturtons und Quartventil-Integration',
           'Gebrochene Intervalle, Oktavbindungen und agile Luftsäule',
           'Konzertetüden mittlerer Schwierigkeit mit digitalem Playalong',
-          'Professioneller 6,5-mm-Rastralstich für dichte Notenpult-Lektüre',
+          'Klares Notenbild für fortgeschrittenes Repertoire auf dem Pult',
         ],
         trilogyHighlights: [
           'Fließende Verbindung der Naturtöne 6, 7 und 8 mit Quartventil-Balance',
@@ -128,7 +128,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         ],
         trilogyHighlights: [
           '3 livelli · 30 esercizi doppi/livello + studi + ampliamento',
-          'Assistente visivo TromBot e incisione 7,0 mm con margine da 20 mm',
+          'Assistente visivo TromBot e impaginazione ampia e chiara sul leggio',
           'Audio + videopartiture (metronomo e domanda-risposta)',
         ],
       },
@@ -150,7 +150,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Padronanza del 6º, 7º e 8º armonico e controllo della ritorta in Fa',
           'Intervalli spezzati, ottave legate e agilità della colonna d\'aria',
           'Studi da concerto di difficoltà intermedia con accompagnamento digitale',
-          'Rastral professionale da 6,5 mm per una lettura chiara sul leggio',
+          'Impaginazione ottimizzata per il repertorio intermedio sul leggio',
         ],
         trilogyHighlights: [
           'Connessione fluida degli armonici 6º, 7º e 8º e gestione della ritorta in Fa',
@@ -185,7 +185,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         ],
         trilogyHighlights: [
           '3 levels · 30 double ex./level + consolidation etudes + extension',
-          'TromBot visual assistant & 7.0 mm engraving with 20 mm inner margin',
+          'TromBot visual assistant & spacious, clear music-stand layout',
           'Reference audio + video-scores (metronome & call-and-response)',
         ],
       },
@@ -207,7 +207,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Mastery of 6th, 7th & 8th partials and F-attachment valve integration',
           'Broken intervals, slurred octaves, and airflow agility',
           'Intermediate concert etudes with digital reference tracks',
-          '6.5 mm professional rastral optimized for dense music-stand reading',
+          'Layout optimized for intermediate repertoire on the music stand',
         ],
         trilogyHighlights: [
           'Fluid connection of 6th, 7th & 8th partials and F-trigger valve balance',
@@ -241,7 +241,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       ],
       trilogyHighlights: [
         '3 niveles · 30 ej. dobles/nivel + estudios de consolidación + ampliación',
-        'Asistente visual TromBot y rastral de 7,0 mm con margen de 20 mm',
+        'Asistente visual TromBot y lectura amplia y cómoda en el atril',
         'Audios de ejemplo + videopartituras (metrónomo y pregunta-respuesta)',
       ],
     },
@@ -263,12 +263,12 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         'Dominio de los parciales 6.º, 7.º y 8.º y control del transpositor en Fa',
         'Intervalos quebrados, octavas ligadas y agilidad de columna de aire',
         'Estudios de concierto de dificultad intermedia con acompañamiento digital',
-        'Rastral profesional de 6,5 mm optimizado para lectura densa en atril',
+        'Edición optimizada para repertorio intermedio en el atril',
       ],
       trilogyHighlights: [
         'Conexión fluida de los parciales 6.º, 7.º y 8.º y uso del transpositor en Fa',
         'Intervalos quebrados, octavas ligadas y control de vocalización interna',
-        'Rastral profesional de 6,5 mm con estudios de concierto intermedios',
+        'Lectura clara en atril con estudios de concierto intermedios',
       ],
     },
   ];
@@ -653,7 +653,7 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
       {
         question: 'Wie wird die Notenschrift in der Amazon Kindle-Ausgabe dargestellt?',
         answer:
-          'Die Amazon Kindle-Ausgabe wurde im Print-Replica-Format mit festem Layout direkt aus den originalen SMuFL Leland-Vektoren (7,0 mm Rastral) erstellt. Dies stellt sicher, dass Notensysteme, Bindungen und TromBot-Diagramme auf Tablets, iPads und Desktop-Geräten dieselbe Schärfe und Proportion wie im gedruckten Buch aufweisen.',
+          'Die Amazon Kindle-Ausgabe wurde mit festem Seitenlayout direkt aus den hochauflösenden Druckdaten erstellt. Dies stellt sicher, dass Notensysteme, Bindungen und TromBot-Diagramme auf Tablets, iPads und Desktop-Geräten dieselbe Schärfe und Proportion wie im gedruckten Buch aufweisen.',
       },
       {
         question: 'Wie funktionieren die 15 QR-Codes in Buch und Kindle?',
@@ -678,7 +678,7 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
       {
         question: 'Come appaiono gli spartiti nell\'edizione Amazon Kindle?',
         answer:
-          'L\'edizione per Amazon Kindle è impaginata in formato Print Replica a layout fisso dai vettori originali SMuFL Leland a 7,0 mm di rastral. Ciò assicura che pentagrammi, legature e schemi di TromBot mantengano su iPad, tablet e computer la stessa identica nitidezza del libro stampato.',
+          'L\'edizione per Amazon Kindle è impaginata con layout fisso ad alta definizione fedele al libro cartaceo. Ciò assicura che pentagrammi, legature e schemi di TromBot mantengano su iPad, tablet e computer la stessa identica nitidezza del libro stampato.',
       },
       {
         question: 'Come funzionano i 15 codici QR inclusi nel libro e in Kindle?',
@@ -703,7 +703,7 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
       {
         question: 'How is musical notation displayed in the Amazon Kindle edition?',
         answer:
-          'The Amazon Kindle edition is mastered in Print Replica fixed-layout format directly from the 7.0 mm SMuFL Leland vectors. This guarantees that staves, slurs, and TromBot diagrams preserve the exact proportions and crispness of the printed book on iPads, tablets, desktops, and the free Kindle app.',
+          'The Amazon Kindle edition uses a fixed-layout high-definition format faithful to the printed book. This guarantees that staves, slurs, and TromBot diagrams preserve the exact proportions and crispness of the printed book on iPads, tablets, desktops, and the free Kindle app.',
       },
       {
         question: 'How do the 15 QR codes work in both Print and Kindle editions?',
@@ -727,7 +727,7 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
     {
       question: '¿Cómo se ven las partituras en la edición de Amazon Kindle?',
       answer:
-        'La edición para Amazon Kindle está maquetada en formato de diseño fijo (Print Replica) a partir de los vectores originales SMuFL Leland a 7,0 mm de rastral. Esto garantiza que los pentagramas, ligaduras y diagramas de TromBot mantengan exactamente la misma proporción, nitidez y paginación que el libro físico en tablets, iPad, ordenadores y dispositivos compatibles con la app gratuita de Kindle.',
+        'La edición para Amazon Kindle está maquetada en formato de diseño fijo de alta definición, fiel al libro impreso. Esto garantiza que los pentagramas, ligaduras y diagramas de TromBot mantengan exactamente la misma proporción, nitidez y paginación que el libro físico en tablets, iPad, ordenadores y dispositivos compatibles con la app gratuita de Kindle.',
     },
     {
       question: '¿Cómo funcionan los códigos QR incluidos en el libro impreso y en Kindle?',
