@@ -688,7 +688,7 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
       {
         question: 'Quali vantaggi offre la registrazione su javisaez.com/registro?',
         answer:
-          'Registrando la tua copia di Amazon KDP o Kindle su javisaez.com/registro?lang=it ricevi accesso immediato agli aggiornamenti delle videopartiture, alle guide di studio integrative con TromBot IA e al supporto diretto dell\'autore.',
+          'Registrando la tua copia di Amazon KDP o Kindle su javisaez.com/registro?lang=it ricevi accesso immediato agli aggiornamenti delle videopartiture, alle guide di studio integrative con TromBot e al supporto diretto dell\'autore.',
       },
     ];
   }
@@ -737,7 +737,7 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
     {
       question: '¿Qué ventajas tiene registrar mi ejemplar de Amazon en javisaez.com/registro?',
       answer:
-        'Al registrar tu compra de Amazon KDP o Amazon Kindle en javisaez.com/registro recibes acceso directo a las actualizaciones de videopartituras, guías de estudio adicionales con TromBot IA y soporte directo del autor.',
+        'Al registrar tu compra de Amazon KDP o Amazon Kindle en javisaez.com/registro recibes acceso directo a las actualizaciones de videopartituras, guías de estudio adicionales con TromBot y soporte directo del autor.',
     },
   ];
 }
