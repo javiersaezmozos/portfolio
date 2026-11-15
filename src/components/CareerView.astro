@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AcademicSection from './AcademicSection.astro';
+import MasterclassesSection from './MasterclassesSection.astro';
+import PerformanceSection from './PerformanceSection.astro';
+import TeachingSection from './TeachingSection.astro';
+import AwardsSection from './AwardsSection.astro';
+import esData from '../data/es.json';
+import enData from '../data/en.json';
+import deData from '../data/de.json';
+import itData from '../data/it.json';
+import { getSectionPaths, type SupportedLocale } from '../utils/i18n-routes';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const dataMap = { es: esData, en: enData, de: deData, it: itData };
+const siteData = dataMap[locale] || esData;
+const paths = getSectionPaths(locale, base);
+
+const careerMetaMap: Record<SupportedLocale, {
+  title: string;
+  description: string;
+  ogImage: string;
+  locale: string;
+}> = {
+  es: {
+    title: 'Trayectoria Profesional, Académica y Pedagógica | Javier Sáez',
+    description: 'Explora la formación académica superior (triple máster), clases magistrales internacionales, actividad orquestal sinfónica, cátedra docente y premios de Javier Sáez.',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'es',
+  },
+  en: {
+    title: 'Professional, Academic & Pedagogical Career | Javier Sáez',
+    description: 'Explore higher music education (triple master degree), international masterclasses, symphonic orchestral activity, teaching faculty, and awards of Javier Sáez.',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'en',
+  },
+  de: {
+    title: 'Professioneller, Akademischer & Pädagogischer Werdegang | Javier Sáez',
+    description: 'Entdecken Sie die akademische Ausbildung (dreifacher Master), internationale Meisterkurse, sinfonische Orchestererfahrung, Lehrtätigkeit und Auszeichnungen von Javier Sáez.',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'de',
+  },
+  it: {
+    title: 'Carriera Professionale, Accademica e Pedagogica | Javier Sáez',
+    description: 'Scopri la formazione accademica superiore (triplo master), masterclass internazionali, attività orchestrale sinfonica, docenza e premi di Javier Sáez.',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'it',
+  },
+};
+
+const copyMap: Record<SupportedLocale, {
+  homeLabel: string;
+  careerBreadcrumb: string;
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+}> = {
+  es: {
+    homeLabel: 'Inicio',
+    careerBreadcrumb: 'Trayectoria',
+    eyebrow: 'CURRÍCULUM & TRAYECTORIA PROFESIONAL',
+    title: 'Trayectoria Artística, Académica y Pedagógica',
+    subtitle: 'Formación académica superior, especialización de posgrado, masterclasses internacionales, experiencia sinfónica y reconocimientos de Javier Sáez.',
+  },
+  en: {
+    homeLabel: 'Home',
+    careerBreadcrumb: 'Career',
+    eyebrow: 'CURRICULUM & PROFESSIONAL CAREER',
+    title: 'Artistic, Academic & Pedagogical Career',
+    subtitle: 'Higher musical education, postgraduate specialization, international masterclasses, symphonic orchestral performance, and honors of Javier Sáez.',
+  },
+  de: {
+    homeLabel: 'Startseite',
+    careerBreadcrumb: 'Werdegang',
+    eyebrow: 'LEBENSLAUF & BERUFLICHER WERDEGANG',
+    title: 'Künstlerischer, Akademischer & Pädagogischer Werdegang',
+    subtitle: 'Hochschulausbildung, postgraduale Spezialisierung, internationale Meisterkurse, sinfonische Konzerterfahrung und Auszeichnungen von Javier Sáez.',
+  },
+  it: {
+    homeLabel: 'Home',
+    careerBreadcrumb: 'Carriera',
+    eyebrow: 'CURRICULUM & CARRIERA PROFESSIONALE',
+    title: 'Carriera Artistica, Accademica e Pedagogica',
+    subtitle: 'Formazione accademica superiore, specializzazione post-laurea, masterclass internazionali, attività sinfonica orchestrale e riconoscimenti di Javier Sáez.',
+  },
+};
+
+const meta = careerMetaMap[locale] || careerMetaMap.es;
+const copy = copyMap[locale] || copyMap.es;
+---
+
+<Layout
+  meta={meta}
+  nav={siteData.nav}
+  footer={siteData.footer}
+  currentLocale={locale}
+>
+  <main id="main-career-content" class="bg-dark-950 min-h-screen text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="py-3 text-xs text-slate-400">
+        <ol class="breadcrumb-list flex flex-wrap items-center">
+          <li>
+            <a href={paths.home} class="hover:text-gold-400 transition-colors focus:outline-none focus:underline">
+              {copy.homeLabel}
+            </a>
+          </li>
+          <li>
+            <span aria-current="page" class="font-medium text-slate-200">
+              {copy.careerBreadcrumb}
+            </span>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Clean Header / Banner -->
+      <header class="mt-4 mb-4 rounded-3xl border border-dark-800 bg-gradient-to-b from-dark-900 via-dark-900/90 to-dark-950 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-3xl space-y-4 relative z-10">
+          <span class="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-gold-300">
+            {copy.eyebrow}
+          </span>
+          <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+            {copy.title}
+          </h1>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+            {copy.subtitle}
+          </p>
+        </div>
+      </header>
+    </div>
+
+    <!-- The 5 Career Sections -->
+    <AcademicSection academic={siteData.academic} currentLocale={locale} />
+    <MasterclassesSection masterclasses={siteData.masterclasses} currentLocale={locale} />
+    <PerformanceSection performance={siteData.performance} currentLocale={locale} />
+    <TeachingSection teaching={siteData.teaching} currentLocale={locale} />
+    <AwardsSection awards={siteData.awards} currentLocale={locale} />
+  </main>
+</Layout>
+
+<style>
+  .breadcrumb-list li:not(:first-child)::before {
+    content: '/';
+    margin: 0 0.5rem;
+    color: #64748b;
+  }
+</style>

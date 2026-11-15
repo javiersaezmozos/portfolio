@@ -1,0 +1,308 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SocialBroadcastSection from './SocialBroadcastSection.astro';
+import SocialIcons from './SocialIcons.astro';
+import esData from '../data/es.json';
+import enData from '../data/en.json';
+import deData from '../data/de.json';
+import itData from '../data/it.json';
+import { getSectionPaths, type SupportedLocale } from '../utils/i18n-routes';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const dataMap = { es: esData, en: enData, de: deData, it: itData };
+const siteData = dataMap[locale] || esData;
+const paths = getSectionPaths(locale, base);
+
+const contactMetaMap: Record<SupportedLocale, {
+  title: string;
+  description: string;
+  ogImage: string;
+  locale: string;
+}> = {
+  es: {
+    title: 'Contacto y Correo Corporativo | Javier Sáez',
+    description: 'Canales oficiales de contacto de Javier Sáez: consultas generales, colaboraciones artísticas y prensa (info@javisaez.com), y soporte de libros y pedidos (orders@javisaez.com).',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'es',
+  },
+  en: {
+    title: 'Contact & Corporate Inquiries | Javier Sáez',
+    description: 'Official contact channels of Javier Sáez: general inquiries, artistic collaborations and press (info@javisaez.com), and book & order support (orders@javisaez.com).',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'en',
+  },
+  de: {
+    title: 'Kontakt & Geschäftliche E-Mails | Javier Sáez',
+    description: 'Offizielle Kontaktkanäle von Javier Sáez: Allgemeine Anfragen, Kooperationen und Presse (info@javisaez.com), sowie Buch- und Bestellsupport (orders@javisaez.com).',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'de',
+  },
+  it: {
+    title: 'Contatti e Email Aziendali | Javier Sáez',
+    description: 'Canali ufficiali di contatto di Javier Sáez: richieste generali, collaborazioni artistiche e stampa (info@javisaez.com), e supporto libri e ordini (orders@javisaez.com).',
+    ogImage: '/images/javier-saez.jpg',
+    locale: 'it',
+  },
+};
+
+const copyMap: Record<SupportedLocale, {
+  homeLabel: string;
+  contactBreadcrumb: string;
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  emailsSectionTag: string;
+  emailsSectionTitle: string;
+  emailsSectionDesc: string;
+  generalBadge: string;
+  generalTitle: string;
+  generalDesc: string;
+  generalAction: string;
+  ordersBadge: string;
+  ordersTitle: string;
+  ordersDesc: string;
+  ordersAction: string;
+}> = {
+  es: {
+    homeLabel: 'Inicio',
+    contactBreadcrumb: 'Contacto',
+    eyebrow: 'CANALES OFICIALES & ATENCIÓN DIRECTA',
+    title: 'Contacto Profesional y Soporte',
+    subtitle: 'Vías directas de comunicación para proyectos artísticos, conferencias pedagógicas o soporte tras la adquisición de métodos y publicaciones.',
+    emailsSectionTag: 'Correspondencia Corporativa',
+    emailsSectionTitle: 'Correos Electrónicos Oficiales',
+    emailsSectionDesc: 'Elige el canal correspondiente para garantizar un tiempo de respuesta óptimo.',
+    generalBadge: 'Prensa & Colaboraciones',
+    generalTitle: 'Consultas Generales, Prensa y Colaboraciones',
+    generalDesc: 'Contrataciones orquestales, clases magistrales, recitales, conciertos, entrevistas en medios de comunicación y colaboraciones artísticas.',
+    generalAction: 'Escribir a info@javisaez.com',
+    ordersBadge: 'Soporte Editorial & QR',
+    ordersTitle: 'Soporte de Libros, Pedidos y Códigos QR',
+    ordersDesc: 'Atención especializada para lectores de Amazon KDP (tapa blanda) y Kindle (edición digital): incidencias con pedidos, registro de ejemplares y dudas sobre contenidos QR interactivos.',
+    ordersAction: 'Escribir a orders@javisaez.com',
+  },
+  en: {
+    homeLabel: 'Home',
+    contactBreadcrumb: 'Contact',
+    eyebrow: 'OFFICIAL CHANNELS & DIRECT INQUIRIES',
+    title: 'Professional Inquiries & Support',
+    subtitle: 'Direct communication channels for artistic projects, pedagogical lectures, or after-sales support for methods and publications.',
+    emailsSectionTag: 'Corporate Correspondence',
+    emailsSectionTitle: 'Official Email Addresses',
+    emailsSectionDesc: 'Please select the appropriate channel to ensure the fastest response.',
+    generalBadge: 'Press & Collaborations',
+    generalTitle: 'General Inquiries, Press & Collaborations',
+    generalDesc: 'Orchestral engagements, masterclasses, recitals, concerts, media interviews, and artistic collaborations.',
+    generalAction: 'Email info@javisaez.com',
+    ordersBadge: 'Editorial Support & QR',
+    ordersTitle: 'Book Support, Orders & QR Codes',
+    ordersDesc: 'Dedicated support for readers of Amazon KDP paperback and Kindle digital editions: order queries, copy registration, and interactive QR score assistance.',
+    ordersAction: 'Email orders@javisaez.com',
+  },
+  de: {
+    homeLabel: 'Startseite',
+    contactBreadcrumb: 'Kontakt',
+    eyebrow: 'OFFIZIELLE KANÄLE & DIREKTER KONTAKT',
+    title: 'Professioneller Kontakt & Support',
+    subtitle: 'Direkte Kommunikationswege für künstlerische Projekte, pädagogische Vorträge oder Verlagssupport nach dem Kauf von Methoden und Veröffentlichungen.',
+    emailsSectionTag: 'Geschäftliche Korrespondenz',
+    emailsSectionTitle: 'Offizielle E-Mail-Adressen',
+    emailsSectionDesc: 'Wählen Sie den passenden Kanal für eine zeitnahe und gezielte Rückmeldung.',
+    generalBadge: 'Presse & Kooperationen',
+    generalTitle: 'Allgemeine Anfragen, Presse & Kooperationen',
+    generalDesc: 'Orchesterengagements, Meisterkurse, Recitals, Konzerte, Medieninterviews und künstlerische Kooperationen.',
+    generalAction: 'E-Mail an info@javisaez.com',
+    ordersBadge: 'Verlagssupport & QR',
+    ordersTitle: 'Buch-Support, Bestellungen & QR-Codes',
+    ordersDesc: 'Kundenservice für Leser von Amazon KDP (Taschenbuch) und Kindle (Digitalausgabe): Bestellfragen, Exemplaraktivierung und Hilfestellung zu interaktiven QR-Codes.',
+    ordersAction: 'E-Mail an orders@javisaez.com',
+  },
+  it: {
+    homeLabel: 'Home',
+    contactBreadcrumb: 'Contatti',
+    eyebrow: 'CANALI UFFICIALI & CONTATTO DIRETTO',
+    title: 'Contatti Professionali e Supporto',
+    subtitle: 'Canali diretti di comunicazione per progetti artistici, conferenze pedagogiche o assistenza post-acquisto di metodi e pubblicazioni.',
+    emailsSectionTag: 'Corrispondenza Aziendale',
+    emailsSectionTitle: 'Indirizzi Email Ufficiali',
+    emailsSectionDesc: 'Scegli il canale opportuno per garantire una risposta tempestiva e dedicata.',
+    generalBadge: 'Stampa & Collaborazioni',
+    generalTitle: 'Richieste Generali, Stampa e Collaborazioni',
+    generalDesc: 'Ingaggi orchestrali, masterclass, recital solistici, concerti, interviste con la stampa e collaborazioni artistiche.',
+    generalAction: 'Scrivi a info@javisaez.com',
+    ordersBadge: 'Supporto Editoriale & QR',
+    ordersTitle: 'Supporto Libri, Ordini e Codici QR',
+    ordersDesc: 'Assistenza dedicata per i lettori di Amazon KDP (copertina flessibile) e Kindle (edizione digitale): gestione ordini, registrazione copie e supporto con codici QR interattivi.',
+    ordersAction: 'Scrivi a orders@javisaez.com',
+  },
+};
+
+const meta = contactMetaMap[locale] || contactMetaMap.es;
+const copy = copyMap[locale] || copyMap.es;
+---
+
+<Layout
+  meta={meta}
+  nav={siteData.nav}
+  footer={siteData.footer}
+  currentLocale={locale}
+>
+  <main id="contacto" class="bg-dark-950 min-h-screen text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+      
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="py-3 text-xs text-slate-400">
+        <ol class="breadcrumb-list flex flex-wrap items-center">
+          <li>
+            <a href={paths.home} class="hover:text-gold-400 transition-colors focus:outline-none focus:underline">
+              {copy.homeLabel}
+            </a>
+          </li>
+          <li>
+            <span aria-current="page" class="font-medium text-slate-200">
+              {copy.contactBreadcrumb}
+            </span>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Clean Header / Banner -->
+      <header class="mt-4 mb-12 rounded-3xl border border-dark-800 bg-gradient-to-b from-dark-900 via-dark-900/90 to-dark-950 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-3xl space-y-4 relative z-10">
+          <span class="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-gold-300">
+            {copy.eyebrow}
+          </span>
+          <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+            {copy.title}
+          </h1>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+            {copy.subtitle}
+          </p>
+        </div>
+      </header>
+
+      <!-- Corporate Emails Section -->
+      <section class="mb-16">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs uppercase tracking-widest text-gold-400 font-bold font-mono">
+            {copy.emailsSectionTag}
+          </span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-1 mb-2">
+            {copy.emailsSectionTitle}
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base">
+            {copy.emailsSectionDesc}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Card 1: General & Press -->
+          <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-gold-500/30 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-gold-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-gold-500/20 transition-all"></div>
+            
+            <div class="relative z-10">
+              <div class="flex items-center justify-between gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-gold-500/15 border border-gold-500/30 flex items-center justify-center text-gold-400 shadow-lg shadow-gold-500/10">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300 text-xs font-semibold">
+                  {copy.generalBadge}
+                </span>
+              </div>
+
+              <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mb-3">
+                {copy.generalTitle}
+              </h3>
+
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                {copy.generalDesc}
+              </p>
+
+              <div class="p-4 rounded-xl bg-dark-950/90 border border-dark-800 mb-6 flex items-center gap-3">
+                <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Email:</span>
+                <span class="font-mono text-sm sm:text-base font-semibold text-gold-300 selection:bg-gold-500 selection:text-dark-950">
+                  info@javisaez.com
+                </span>
+              </div>
+            </div>
+
+            <a
+              href="mailto:info@javisaez.com"
+              class="relative z-10 w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-gold-600 via-amber-500 to-gold-500 hover:from-gold-500 hover:to-amber-400 text-dark-950 font-bold text-sm sm:text-base shadow-xl shadow-gold-500/20 hover:scale-[1.01] active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-gold-400"
+            >
+              <svg class="w-5 h-5 text-dark-950" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>{copy.generalAction}</span>
+            </a>
+          </div>
+
+          <!-- Card 2: Books, Orders & QR -->
+          <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-amber-500/30 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-500/20 transition-all"></div>
+            
+            <div class="relative z-10">
+              <div class="flex items-center justify-between gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-lg shadow-amber-500/10">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold">
+                  {copy.ordersBadge}
+                </span>
+              </div>
+
+              <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mb-3">
+                {copy.ordersTitle}
+              </h3>
+
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                {copy.ordersDesc}
+              </p>
+
+              <div class="p-4 rounded-xl bg-dark-950/90 border border-dark-800 mb-6 flex items-center gap-3">
+                <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Email:</span>
+                <span class="font-mono text-sm sm:text-base font-semibold text-amber-300 selection:bg-amber-500 selection:text-dark-950">
+                  orders@javisaez.com
+                </span>
+              </div>
+            </div>
+
+            <a
+              href="mailto:orders@javisaez.com"
+              class="relative z-10 w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-400 text-dark-950 font-bold text-sm sm:text-base shadow-xl shadow-amber-500/20 hover:scale-[1.01] active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-amber-400"
+            >
+              <svg class="w-5 h-5 text-dark-950" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>{copy.ordersAction}</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Social Broadcast Channels (YouTube & Instagram) -->
+    <SocialBroadcastSection social={siteData.social} currentLocale={locale} />
+  </main>
+</Layout>
+
+<style>
+  .breadcrumb-list li:not(:first-child)::before {
+    content: '/';
+    margin: 0 0.5rem;
+    color: #64748b;
+  }
+</style>

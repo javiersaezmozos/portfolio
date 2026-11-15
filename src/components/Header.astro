@@ -1,6 +1,12 @@
 ---
 import SocialIcons from './SocialIcons.astro';
-import { getAlternateLocalePath, getMethodsPaths, SUPPORTED_LOCALES, type SupportedLocale } from '../utils/i18n-routes';
+import {
+  getAlternateLocalePath,
+  getMethodsPaths,
+  getSectionPaths,
+  SUPPORTED_LOCALES,
+  type SupportedLocale,
+} from '../utils/i18n-routes';
 
 interface Props {
   nav: {
@@ -21,6 +27,9 @@ interface Props {
 const { nav, currentLocale } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const localeHome = `${base}/${currentLocale}`;
+const sectionPaths = getSectionPaths(currentLocale, base);
+const careerHref = sectionPaths.career;
+const contactHref = sectionPaths.contact;
 const methodsHref = getMethodsPaths(currentLocale, base).trilogy;
 
 const homeLabelMap: Record<SupportedLocale, string> = {
@@ -57,11 +66,11 @@ const methodsLabel = nav.methods || methodsLabelMap[currentLocale] || 'Métodos'
 const contactLabel = contactLabelMap[currentLocale] || nav.contact || 'Contacto';
 
 const careerLinks = [
-  { href: `${localeHome}/#formacion-academica`, label: nav.academic },
-  { href: `${localeHome}/#masterclasses`, label: nav.masterclasses },
-  { href: `${localeHome}/#experiencia-interpretativa`, label: nav.performance },
-  { href: `${localeHome}/#trayectoria-docente`, label: nav.teaching },
-  { href: `${localeHome}/#premios`, label: nav.awards },
+  { href: `${careerHref}#formacion-academica`, label: nav.academic },
+  { href: `${careerHref}#masterclasses`, label: nav.masterclasses },
+  { href: `${careerHref}#experiencia-interpretativa`, label: nav.performance },
+  { href: `${careerHref}#trayectoria-docente`, label: nav.teaching },
+  { href: `${careerHref}#premios`, label: nav.awards },
 ];
 ---
 
@@ -71,7 +80,7 @@ const careerLinks = [
       
       <!-- Brand / Logo (Limpie tipografía serif, sin iconos SVG/JS) -->
       <a
-        href={`${base}/${currentLocale}`}
+        href={localeHome}
         class="group flex items-center shrink-0 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-lg py-1 px-1.5"
         aria-label="Javier Sáez - Inicio"
       >
@@ -84,23 +93,29 @@ const careerLinks = [
       <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300" aria-label="Main Navigation">
         <!-- 1) Inicio -->
         <a
-          href={`${localeHome}/#presentacion`}
+          href={localeHome}
           class="hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400"
         >
           {homeLabel}
         </a>
 
         <!-- 2) Trayectoria (Menú desplegable accesible) -->
-        <div class="relative group/dropdown" id="desktop-career-container">
+        <div class="relative group/dropdown flex items-center" id="desktop-career-container">
+          <a
+            href={careerHref}
+            class="inline-flex items-center hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400"
+          >
+            <span>{careerLabel}</span>
+          </a>
           <button
             id="desktop-career-trigger"
             type="button"
-            class="inline-flex items-center gap-1.5 hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400 cursor-pointer"
+            class="inline-flex items-center py-2 px-1 text-slate-400 group-hover/dropdown:text-gold-400 hover:text-gold-400 transition-colors focus:outline-none focus:text-gold-400 cursor-pointer"
             aria-expanded="false"
             aria-haspopup="true"
             aria-controls="desktop-career-menu"
+            aria-label={`Desplegar submenú de ${careerLabel}`}
           >
-            <span>{careerLabel}</span>
             <svg
               class="w-4 h-4 text-slate-400 group-hover/dropdown:text-gold-400 group-hover/dropdown:rotate-180 group-focus-within/dropdown:rotate-180 transition-transform duration-200"
               viewBox="0 0 20 20"
@@ -144,7 +159,7 @@ const careerLinks = [
 
         <!-- 4) Contacto -->
         <a
-          href={`${localeHome}/#redes`}
+          href={contactHref}
           class="hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400"
         >
           {contactLabel}
@@ -248,7 +263,7 @@ const careerLinks = [
       
       <!-- 1) Inicio -->
       <a
-        href={`${localeHome}/#presentacion`}
+        href={localeHome}
         class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900"
       >
         {homeLabel}
@@ -256,28 +271,36 @@ const careerLinks = [
 
       <!-- 2) Trayectoria (Lista expandible con los 5 enlaces) -->
       <div class="border-b border-dark-900 pb-1">
-        <button
-          id="mobile-career-toggle"
-          type="button"
-          class="flex items-center justify-between w-full text-slate-300 hover:text-gold-400 py-2 text-left font-medium focus:outline-none cursor-pointer"
-          aria-expanded="false"
-          aria-controls="mobile-career-menu"
-        >
-          <span>{careerLabel}</span>
-          <svg
-            id="mobile-career-chevron"
-            class="w-4 h-4 text-slate-400 transition-transform duration-200"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
+        <div class="flex items-center justify-between w-full py-2">
+          <a
+            href={careerHref}
+            class="mobile-nav-link text-slate-300 hover:text-gold-400 font-medium"
           >
-            <path
-              fill-rule="evenodd"
-              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+            {careerLabel}
+          </a>
+          <button
+            id="mobile-career-toggle"
+            type="button"
+            class="p-1.5 text-slate-400 hover:text-gold-400 focus:outline-none cursor-pointer"
+            aria-expanded="false"
+            aria-controls="mobile-career-menu"
+            aria-label={`Desplegar submenú de ${careerLabel}`}
+          >
+            <svg
+              id="mobile-career-chevron"
+              class="w-4 h-4 text-slate-400 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
         <div
           id="mobile-career-menu"
           class="hidden pl-3 py-1 space-y-1 bg-dark-900/50 rounded-lg mt-1 border border-dark-800/60"
@@ -305,7 +328,7 @@ const careerLinks = [
 
       <!-- 4) Contacto -->
       <a
-        href={`${localeHome}/#redes`}
+        href={contactHref}
         class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900"
       >
         {contactLabel}

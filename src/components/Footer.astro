@@ -1,6 +1,10 @@
 ---
 import SocialIcons from './SocialIcons.astro';
-import type { SupportedLocale } from '../utils/i18n-routes';
+import {
+  getAlternateLocalePath,
+  getSectionPaths,
+  type SupportedLocale,
+} from '../utils/i18n-routes';
 
 interface Props {
   footer: {
@@ -21,12 +25,23 @@ interface Props {
 const { footer, nav, currentLocale } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentYear = 2026;
+const sectionPaths = getSectionPaths(currentLocale, base);
+const localeHome = sectionPaths.home;
+const careerHref = sectionPaths.career;
+const contactHref = sectionPaths.contact;
 
 const careerHeadingMap: Record<SupportedLocale, string> = {
   es: 'Trayectoria',
   en: 'Career',
   de: 'Werdegang',
   it: 'Carriera',
+};
+
+const contactLabelMap: Record<SupportedLocale, string> = {
+  es: 'Contacto',
+  en: 'Contact',
+  de: 'Kontakt',
+  it: 'Contatti',
 };
 
 const channelLabelMap: Record<SupportedLocale, string> = {
@@ -44,7 +59,7 @@ const channelLabelMap: Record<SupportedLocale, string> = {
       
       <!-- Brand column -->
       <div class="lg:col-span-2 space-y-4">
-        <a href={`${base}/${currentLocale}`} class="flex items-center gap-3 w-fit">
+        <a href={localeHome} class="flex items-center gap-3 w-fit">
           <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 via-gold-500 to-amber-200 p-[1.5px]">
             <div class="w-full h-full bg-dark-950 rounded-full flex items-center justify-center">
               <span class="font-serif font-bold text-gold-400 text-lg">JS</span>
@@ -84,10 +99,10 @@ const channelLabelMap: Record<SupportedLocale, string> = {
       <div class="space-y-3">
         <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{footer.quickLinks}</h4>
         <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href="#presentacion" class="hover:text-gold-400 transition-colors">{nav.presentation}</a></li>
-          <li><a href="#formacion-academica" class="hover:text-gold-400 transition-colors">{nav.academic}</a></li>
-          <li><a href="#masterclasses" class="hover:text-gold-400 transition-colors">{nav.masterclasses}</a></li>
-          <li><a href="#experiencia-interpretativa" class="hover:text-gold-400 transition-colors">{nav.performance}</a></li>
+          <li><a href={`${localeHome}#presentacion`} class="hover:text-gold-400 transition-colors">{nav.presentation}</a></li>
+          <li><a href={`${careerHref}#formacion-academica`} class="hover:text-gold-400 transition-colors">{nav.academic}</a></li>
+          <li><a href={`${careerHref}#masterclasses`} class="hover:text-gold-400 transition-colors">{nav.masterclasses}</a></li>
+          <li><a href={`${careerHref}#experiencia-interpretativa`} class="hover:text-gold-400 transition-colors">{nav.performance}</a></li>
         </ul>
       </div>
 
@@ -95,9 +110,9 @@ const channelLabelMap: Record<SupportedLocale, string> = {
       <div class="space-y-3">
         <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{careerHeadingMap[currentLocale] || 'Career'}</h4>
         <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href="#trayectoria-docente" class="hover:text-gold-400 transition-colors">{nav.teaching}</a></li>
-          <li><a href="#premios" class="hover:text-gold-400 transition-colors">{nav.awards}</a></li>
-          <li><a href="#redes" class="hover:text-gold-400 transition-colors">{nav.social}</a></li>
+          <li><a href={`${careerHref}#trayectoria-docente`} class="hover:text-gold-400 transition-colors">{nav.teaching}</a></li>
+          <li><a href={`${careerHref}#premios`} class="hover:text-gold-400 transition-colors">{nav.awards}</a></li>
+          <li><a href={contactHref} class="hover:text-gold-400 transition-colors">{nav.contact || contactLabelMap[currentLocale] || 'Contacto'}</a></li>
         </ul>
       </div>
 
@@ -106,28 +121,28 @@ const channelLabelMap: Record<SupportedLocale, string> = {
         <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{footer.languages}</h4>
         <div class="flex flex-col space-y-2 text-sm">
           <a
-            href={`${base}/es`}
+            href={getAlternateLocalePath(Astro.url.pathname, 'es', base)}
             class={`flex items-center gap-2 ${currentLocale === 'es' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
           >
             <span>🇪🇸</span>
             <span>{footer.spanish || 'Español'}</span>
           </a>
           <a
-            href={`${base}/en`}
+            href={getAlternateLocalePath(Astro.url.pathname, 'en', base)}
             class={`flex items-center gap-2 ${currentLocale === 'en' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
           >
             <span>🇬🇧</span>
             <span>{footer.english || 'English'}</span>
           </a>
           <a
-            href={`${base}/de`}
+            href={getAlternateLocalePath(Astro.url.pathname, 'de', base)}
             class={`flex items-center gap-2 ${currentLocale === 'de' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
           >
             <span>🇩🇪</span>
             <span>{footer.german || 'Deutsch'}</span>
           </a>
           <a
-            href={`${base}/it`}
+            href={getAlternateLocalePath(Astro.url.pathname, 'it', base)}
             class={`flex items-center gap-2 ${currentLocale === 'it' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
           >
             <span>🇮🇹</span>

@@ -22,6 +22,18 @@ const LOCALE_ROUTE_MAP: ReadonlyArray<Record<SupportedLocale, string>> = [
     it: '/it/metodi',
   },
   {
+    es: '/es/trayectoria',
+    en: '/en/career',
+    de: '/de/werdegang',
+    it: '/it/carriera',
+  },
+  {
+    es: '/es/contacto',
+    en: '/en/contact',
+    de: '/de/kontakt',
+    it: '/it/contatti',
+  },
+  {
     es: '/es',
     en: '/en',
     de: '/de',
@@ -62,14 +74,51 @@ export function getAlternateLocalePath(
 }
 
 /**
- * Returns the root methods/collection paths for the given locale.
+ * Returns the root section paths (home, career, contact) for the given locale.
  */
-export function getMethodsPaths(locale: SupportedLocale, base = '') {
+export function getSectionPaths(locale: SupportedLocale, base = '') {
   const cleanBase = base.replace(/\/$/, '');
   switch (locale) {
     case 'en':
       return {
         home: `${cleanBase}/en`,
+        career: `${cleanBase}/en/career`,
+        contact: `${cleanBase}/en/contact`,
+      };
+    case 'de':
+      return {
+        home: `${cleanBase}/de`,
+        career: `${cleanBase}/de/werdegang`,
+        contact: `${cleanBase}/de/kontakt`,
+      };
+    case 'it':
+      return {
+        home: `${cleanBase}/it`,
+        career: `${cleanBase}/it/carriera`,
+        contact: `${cleanBase}/it/contatti`,
+      };
+    case 'es':
+    default:
+      return {
+        home: `${cleanBase}/es`,
+        career: `${cleanBase}/es/trayectoria`,
+        contact: `${cleanBase}/es/contacto`,
+      };
+  }
+}
+
+/**
+ * Returns the root methods/collection paths for the given locale.
+ */
+export function getMethodsPaths(locale: SupportedLocale, base = '') {
+  const cleanBase = base.replace(/\/$/, '');
+  const sectionPaths = getSectionPaths(locale, cleanBase);
+  switch (locale) {
+    case 'en':
+      return {
+        home: sectionPaths.home,
+        career: sectionPaths.career,
+        contact: sectionPaths.contact,
         catalog: `${cleanBase}/en/methods`,
         trilogy: `${cleanBase}/en/methods/flexibility`,
         vol1: `${cleanBase}/en/methods/flexibility/vol-1`,
@@ -77,7 +126,9 @@ export function getMethodsPaths(locale: SupportedLocale, base = '') {
       };
     case 'de':
       return {
-        home: `${cleanBase}/de`,
+        home: sectionPaths.home,
+        career: sectionPaths.career,
+        contact: sectionPaths.contact,
         catalog: `${cleanBase}/de/methoden`,
         trilogy: `${cleanBase}/de/methoden/flexibilitaet`,
         vol1: `${cleanBase}/de/methoden/flexibilitaet/bd-1`,
@@ -85,7 +136,9 @@ export function getMethodsPaths(locale: SupportedLocale, base = '') {
       };
     case 'it':
       return {
-        home: `${cleanBase}/it`,
+        home: sectionPaths.home,
+        career: sectionPaths.career,
+        contact: sectionPaths.contact,
         catalog: `${cleanBase}/it/metodi`,
         trilogy: `${cleanBase}/it/metodi/flessibilita`,
         vol1: `${cleanBase}/it/metodi/flessibilita/vol-1`,
@@ -94,7 +147,9 @@ export function getMethodsPaths(locale: SupportedLocale, base = '') {
     case 'es':
     default:
       return {
-        home: `${cleanBase}/es`,
+        home: sectionPaths.home,
+        career: sectionPaths.career,
+        contact: sectionPaths.contact,
         catalog: `${cleanBase}/es/metodos`,
         trilogy: `${cleanBase}/es/metodos/flexibilidad`,
         vol1: `${cleanBase}/es/metodos/flexibilidad/vol-1`,

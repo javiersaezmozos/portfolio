@@ -2,12 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/Hero.astro';
 import FeaturedMethodSection from '../../components/FeaturedMethodSection.astro';
-import AcademicSection from '../../components/AcademicSection.astro';
-import MasterclassesSection from '../../components/MasterclassesSection.astro';
-import PerformanceSection from '../../components/PerformanceSection.astro';
-import TeachingSection from '../../components/TeachingSection.astro';
-import AwardsSection from '../../components/AwardsSection.astro';
-import SocialBroadcastSection from '../../components/SocialBroadcastSection.astro';
 import esData from '../../data/es.json';
 ---
 
@@ -24,34 +18,4 @@ import esData from '../../data/es.json';
   />
 
   <FeaturedMethodSection currentLocale="es" />
-
-  <AcademicSection
-    academic={esData.academic}
-    currentLocale="es"
-  />
-
-  <MasterclassesSection
-    masterclasses={esData.masterclasses}
-    currentLocale="es"
-  />
-
-  <PerformanceSection
-    performance={esData.performance}
-    currentLocale="es"
-  />
-
-  <TeachingSection
-    teaching={esData.teaching}
-    currentLocale="es"
-  />
-
-  <AwardsSection
-    awards={esData.awards}
-    currentLocale="es"
-  />
-
-  <SocialBroadcastSection
-    social={esData.social}
-    currentLocale="es"
-  />
 </Layout>
