@@ -14,7 +14,7 @@
 
 const SHEET_NAME = 'Registros_Vol1';
 const DRIVE_FOLDER_NAME = 'Recibos_Trombon_Flexibilidad';
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_MODEL = 'gemini-2.0-flash';
 
 const HEADERS = [
   'Fecha_Envio_ISO',
@@ -466,7 +466,7 @@ function doPost(e) {
     if (gemini.veredicto === 'APROBADO') {
       statusText = 'Verificado por IA (' + gemini.confianza + '%) — ' + gemini.motivo;
       publicVerdict = 'APROBADO';
-      sendBuyerApprovalEmail(email, name, lang, orderId, adminEmail);
+      sendBuyerApprovalEmail(email, name, lang, orderId, 'orders@javisaez.com');
     } else {
       statusText = 'Revisión manual (' + gemini.veredicto + ') — ' + gemini.motivo;
       publicVerdict = 'DUDOSO';
