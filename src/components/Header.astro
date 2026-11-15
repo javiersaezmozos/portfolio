@@ -23,19 +23,56 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const localeHome = `${base}/${currentLocale}`;
 const methodsHref = getMethodsPaths(currentLocale, base).trilogy;
 
-const subtitleMap: Record<SupportedLocale, string> = {
-  es: 'Trombonista & Pedagogo',
-  en: 'Trombonist & Pedagogue',
-  de: 'Posaunist & Musikpädagoge',
-  it: 'Trombonista & Pedagogo',
-};
-
 const methodsLabelMap: Record<SupportedLocale, string> = {
   es: 'Métodos',
   en: 'Methods',
   de: 'Methoden',
   it: 'Metodi',
 };
+
+const shortNavMap: Record<SupportedLocale, {
+  presentation: string;
+  academic: string;
+  masterclasses: string;
+  performance: string;
+  teaching: string;
+  awards: string;
+}> = {
+  es: {
+    presentation: 'Inicio',
+    academic: 'Formación',
+    masterclasses: 'Masterclasses',
+    performance: 'Interpretación',
+    teaching: 'Docencia',
+    awards: 'Premios',
+  },
+  en: {
+    presentation: 'Home',
+    academic: 'Education',
+    masterclasses: 'Masterclasses',
+    performance: 'Performance',
+    teaching: 'Teaching',
+    awards: 'Awards',
+  },
+  de: {
+    presentation: 'Start',
+    academic: 'Ausbildung',
+    masterclasses: 'Meisterkurse',
+    performance: 'Bühne',
+    teaching: 'Lehre',
+    awards: 'Preise',
+  },
+  it: {
+    presentation: 'Home',
+    academic: 'Formazione',
+    masterclasses: 'Masterclass',
+    performance: 'Concerti',
+    teaching: 'Docenza',
+    awards: 'Premi',
+  },
+};
+
+const shortNav = shortNavMap[currentLocale] || shortNavMap.es;
 
 const mobileMethodsSuffixMap: Record<SupportedLocale, string> = {
   es: 'Trombón Flexibilidad',
@@ -50,39 +87,34 @@ const mobileMethodsSuffixMap: Record<SupportedLocale, string> = {
     <div class="flex items-center justify-between h-20">
       
       <!-- Brand / Logo -->
-      <a href={`${base}/${currentLocale}`} class="group flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-lg p-1">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 via-gold-500 to-amber-200 p-[1.5px] shadow-lg shadow-gold-500/10 group-hover:shadow-gold-500/30 transition-shadow">
-          <div class="w-full h-full bg-dark-950 rounded-full flex items-center justify-center">
-            <span class="font-serif font-bold text-gold-400 text-lg tracking-wider">JS</span>
-          </div>
+      <a href={`${base}/${currentLocale}`} class="group flex items-center gap-3 shrink-0 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-lg p-1">
+        <div class="w-9 h-9 rounded-xl border border-gold-500/35 bg-dark-900/80 flex items-center justify-center text-gold-400 group-hover:border-gold-400/70 group-hover:text-gold-300 transition-colors">
+          <!-- Clave de Fa en cuarta línea (proporción tipográfica musical clásica) -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8.5 6.5C11.2 4.5 15.2 5.4 16 8.4C16.7 11.2 14.3 15.3 8.2 18.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <circle cx="8.2" cy="8.5" r="1.7" fill="currentColor" />
+            <circle cx="18.2" cy="7.5" r="1.15" fill="currentColor" />
+            <circle cx="18.2" cy="11.5" r="1.15" fill="currentColor" />
+          </svg>
         </div>
-        <div class="flex flex-col">
-          <span class="font-serif text-lg font-bold tracking-tight text-slate-100 group-hover:text-gold-300 transition-colors">
-            Javier Sáez
-          </span>
-          <span class="text-[11px] font-medium tracking-widest text-gold-400/90 uppercase">
-            {subtitleMap[currentLocale] || subtitleMap.es}
-          </span>
-        </div>
+        <span class="font-serif text-lg font-bold tracking-tight text-slate-100 group-hover:text-gold-300 transition-colors whitespace-nowrap">
+          Javier Sáez
+        </span>
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden xl:flex items-center gap-5 text-sm font-medium text-slate-300" aria-label="Main Navigation">
-        <a href={`${localeHome}/#presentacion`} class="hover:text-gold-400 transition-colors py-2">{nav.presentation}</a>
-        <a href={`${localeHome}/#formacion-academica`} class="hover:text-gold-400 transition-colors py-2">{nav.academic}</a>
-        <a href={`${localeHome}/#masterclasses`} class="hover:text-gold-400 transition-colors py-2">{nav.masterclasses}</a>
-        <a href={`${localeHome}/#experiencia-interpretativa`} class="hover:text-gold-400 transition-colors py-2">{nav.performance}</a>
-        <a href={`${localeHome}/#trayectoria-docente`} class="hover:text-gold-400 transition-colors py-2">{nav.teaching}</a>
-        <a href={`${localeHome}/#premios`} class="hover:text-gold-400 transition-colors py-2">{nav.awards}</a>
+      <nav class="hidden xl:flex items-center gap-5 text-sm font-medium text-slate-300 whitespace-nowrap" aria-label="Main Navigation">
+        <a href={`${localeHome}/#presentacion`} class="hover:text-gold-400 transition-colors py-2">{shortNav.presentation}</a>
+        <a href={`${localeHome}/#formacion-academica`} class="hover:text-gold-400 transition-colors py-2">{shortNav.academic}</a>
+        <a href={`${localeHome}/#masterclasses`} class="hover:text-gold-400 transition-colors py-2">{shortNav.masterclasses}</a>
+        <a href={`${localeHome}/#experiencia-interpretativa`} class="hover:text-gold-400 transition-colors py-2">{shortNav.performance}</a>
+        <a href={`${localeHome}/#trayectoria-docente`} class="hover:text-gold-400 transition-colors py-2">{shortNav.teaching}</a>
+        <a href={`${localeHome}/#premios`} class="hover:text-gold-400 transition-colors py-2">{shortNav.awards}</a>
         <a
           href={methodsHref}
-          class="inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-3 py-1 text-gold-400 hover:bg-gold-500/20 hover:text-white transition-colors"
+          class="inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-3.5 py-1 text-gold-400 hover:bg-gold-500/20 hover:text-white transition-colors"
         >
           <span>{nav.methods || methodsLabelMap[currentLocale] || 'Methods'}</span>
-        </a>
-        <a href={`${localeHome}/#redes`} class="hover:text-gold-400 transition-colors py-2 flex items-center gap-1.5 text-gold-400/90">
-          <SocialIcons name="video" class="w-4 h-4 text-gold-400" />
-          <span>{nav.social}</span>
         </a>
       </nav>
 
