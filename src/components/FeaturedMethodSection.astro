@@ -27,23 +27,21 @@ const copyMap: Record<SupportedLocale, {
   ctaPrimary: string;
   ctaSecondary: string;
   ctaRegister: string;
-  coverAuthor: string;
-  coverTitle: string;
-  coverSubtitle: string;
-  coverVol: string;
-  coverDesc: string;
+  toggleFront: string;
+  toggleBack: string;
   imgAlt: string;
+  backImgAlt: string;
 }> = {
   es: {
     eyebrow: 'Nueva Publicación Pedagógica · COLECCIÓN METODOLOGÍA DE FLEXIBILIDAD',
     heading: 'Trombón · Flexibilidad — Volumen 1 (Elemental)',
     subheading:
-      'Un método progresivo diseñado para Enseñanzas Elementales (2.º a 4.º curso, hasta Fa₄) con videopartituras interactivas y el asistente pedagógico TromBot. Lanzamiento oficial en Amazon KDP y Amazon Kindle previsto para mayo–junio de 2027.',
-    badge: 'Lanzamiento Oficial en Amazon KDP y Kindle: Mayo–Junio de 2027',
+      'Método diseñado para el desarrollo progresivo, con rigor técnico-interpretativo, de la flexibilidad labial hasta Fa₄ en tres niveles, pensado cada uno para un curso escolar.',
+    badge: 'Lanzamiento Oficial: Mayo–Junio de 2027',
     highlights: [
-      '3 Niveles y 12 Bloques: 120 ejercicios dobles en espejo (1.ª–7.ª posición) + 12 estudios melódicos.',
-      'Grabado musical SMuFL Leland de 7,0 mm y tipografía Baskerville con margen interior de 20 mm para atril.',
-      '15 Códigos QR interactivos hacia videopartituras en alta definición sin anuncios (subtítulos ES/EN/DE/IT).',
+      'Estructura por nivel: 30 ejercicios dobles en cada nivel, estudios de consolidación y bloque de ampliación.',
+      'Asistente visual: TromBot irá recordando las ideas principales durante todo el recorrido por los tres niveles.',
+      'Contenido multimedia: audios de ejemplo, videopartituras con metrónomo para estudio individual y videopartituras de pregunta-respuesta conmigo.',
     ],
     editionsLabel: 'Ediciones oficiales · Lanzamiento previsto para mayo–junio de 2027:',
     editionKdp: 'Amazon KDP · Tapa Blanda',
@@ -51,24 +49,23 @@ const copyMap: Record<SupportedLocale, {
     ctaPrimary: 'Ver Ficha y Ediciones de Amazon',
     ctaSecondary: 'Probar Visor 3D y Audio',
     ctaRegister: 'Activar Ejemplar (/registro)',
-    coverAuthor: 'Javier Sáez Mozos',
-    coverTitle: 'FLEXIBILIDAD',
-    coverSubtitle: 'MÉTODO DE TROMBÓN',
-    coverVol: 'VOLUMEN 1 · ELEMENTAL',
-    coverDesc: 'Desarrollo progresivo de la flexibilidad labial hasta Fa₄',
+    toggleFront: 'Portada',
+    toggleBack: 'Contraportada',
     imgAlt:
-      'Portada de Flexibilidad Método de Trombón Volumen 1 Elemental: joven trombonista junto a TromBot IA',
+      'Portada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental por Javier Sáez Mozos',
+    backImgAlt:
+      'Contraportada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental con TromBot',
   },
   en: {
     eyebrow: 'New Pedagogical Publication · FLEXIBILITY METHODOLOGY COLLECTION',
     heading: 'Trombone · Flexibility — Volume 1 (Elementary)',
     subheading:
-      'A progressive method designed for elementary conservatory studies (up to F₄) featuring interactive video scores and the pedagogical assistant TromBot. Official launch on Amazon KDP and Amazon Kindle scheduled for May–June 2027.',
-    badge: 'Official Launch on Amazon KDP & Kindle: May–June 2027',
+      'A method designed for the progressive development of lip flexibility up to F₄ with technical and interpretive rigor across three levels, each structured for one academic year.',
+    badge: 'Official Launch: May–June 2027',
     highlights: [
-      '3 Levels & 12 Blocks: 120 double mirror exercises (1st–7th slide position) + 12 melodic etudes.',
-      '7.0 mm SMuFL Leland engraving and Baskerville typography with a 20 mm inner music-stand safety margin.',
-      '15 interactive QR codes linking to ad-free HD video scores with subtitles in ES, EN, DE, and IT.',
+      'Structure per level: 30 double exercises per level, consolidation etudes, and an extension block.',
+      'Visual assistant: TromBot highlights the key technical ideas throughout all three levels.',
+      'Multimedia content: reference audio recordings, video-scores with metronome for solo practice, and call-and-response video-scores with me.',
     ],
     editionsLabel: 'Official editions · Scheduled launch for May–June 2027:',
     editionKdp: 'Amazon KDP · Paperback',
@@ -76,24 +73,23 @@ const copyMap: Record<SupportedLocale, {
     ctaPrimary: 'View Volume 1 & Amazon Editions',
     ctaSecondary: 'Try 3D Book & Audio Lab',
     ctaRegister: 'Activate Copy (/registro)',
-    coverAuthor: 'Javier Sáez Mozos',
-    coverTitle: 'FLEXIBILIDAD',
-    coverSubtitle: 'TROMBONE METHOD',
-    coverVol: 'VOLUME 1 · ELEMENTARY',
-    coverDesc: 'Progressive development of lip flexibility up to F₄',
+    toggleFront: 'Front cover',
+    toggleBack: 'Back cover',
     imgAlt:
-      'Cover of Flexibility Trombone Method Volume 1 Elementary featuring a young trombonist with TromBot AI',
+      'Official front cover of Flexibility Trombone Method Volume 1 Elementary by Javier Sáez Mozos',
+    backImgAlt:
+      'Official back cover of Flexibility Trombone Method Volume 1 Elementary featuring TromBot',
   },
   de: {
     eyebrow: 'Neue Pädagogische Publikation · KOLLEKTION FLEXIBILITÄTSMETHODIK',
     heading: 'Posaune · Flexibilität — Band 1 (Elementarstufe)',
     subheading:
-      'Eine progressive Methode für die Elementarstufe (bis F₄) mit interaktiven Videopartituren und dem pädagogischen Assistenten TromBot. Offizieller Verkaufsstart auf Amazon KDP und Amazon Kindle geplant für Mai–Juni 2027.',
-    badge: 'Offizieller Verkaufsstart auf Amazon KDP & Kindle: Mai–Juni 2027',
+      'Eine Methode zur progressiven Entwicklung der Lippenflexibilität bis F₄ mit technischer und interpretatorischer Präzision in drei Stufen, jeweils ausgelegt für ein Schuljahr.',
+    badge: 'Offizieller Verkaufsstart: Mai–Juni 2027',
     highlights: [
-      '3 Niveaus & 12 Blöcke: 120 doppelte Spiegelübungen (1.–7. Zugposition) + 12 melodische Etüden.',
-      '7,0-mm-Notenstich (SMuFL Leland & Baskerville) mit 20 mm atrilsicherem Bundsteg.',
-      '15 interaktive QR-Codes zu werbefreien HD-Videopartituren (Untertitel ES/EN/DE/IT).',
+      'Aufbau pro Stufe: 30 Doppelübungen pro Stufe, Konsolidierungsetüden und ein Erweiterungsblock.',
+      'Visueller Assistent: TromBot erinnert auf dem gesamten Weg durch alle drei Stufen an die wichtigsten Grundideen.',
+      'Multimedia-Inhalte: Referenz-Audios, Videopartituren mit Metronom für das Einzelstudium sowie Frage-Antwort-Videopartituren mit mir.',
     ],
     editionsLabel: 'Offizielle Ausgaben · Geplanter Verkaufsstart für Mai–Juni 2027:',
     editionKdp: 'Amazon KDP · Taschenbuch',
@@ -101,24 +97,23 @@ const copyMap: Record<SupportedLocale, {
     ctaPrimary: 'Band 1 & Amazon-Ausgaben ansehen',
     ctaSecondary: '3D-Buch & Audio ausprobieren',
     ctaRegister: 'Exemplar aktivieren (/registro)',
-    coverAuthor: 'Javier Sáez Mozos',
-    coverTitle: 'FLEXIBILIDAD',
-    coverSubtitle: 'POSAUNENMETHODE',
-    coverVol: 'BAND 1 · ELEMENTARSTUFE',
-    coverDesc: 'Progressive Entwicklung der Lippenflexibilität bis F₄',
+    toggleFront: 'Titelseite',
+    toggleBack: 'Rückseite',
     imgAlt:
-      'Cover von Posaune Flexibilität Band 1 Elementarstufe mit TromBot KI',
+      'Offizielles Cover von Flexibilität Posaunenmethode Band 1 Elementarstufe von Javier Sáez Mozos',
+    backImgAlt:
+      'Offizielle Rückseite von Flexibilität Posaunenmethode Band 1 Elementarstufe mit TromBot',
   },
   it: {
     eyebrow: 'Nuova Pubblicazione Pedagogica · COLLEZIONE METODOLOGIA DI FLESSIBILITÀ',
     heading: 'Trombone · Flessibilità — Volume 1 (Elementare)',
     subheading:
-      'Un metodo progressivo per i corsi elementari (fino a Fa₄) con videopartiture interattive e l\'assistente didattico TromBot. Lancio ufficiale su Amazon KDP e Amazon Kindle previsto per maggio–giugno 2027.',
-    badge: 'Lancio Ufficiale su Amazon KDP e Kindle: Maggio–Giugno 2027',
+      'Un metodo progettato per lo sviluppo progressivo della flessibilità labiale fino a Fa₄ con rigore tecnico-interpretativo in tre livelli, ciascuno pensato per un anno scolastico.',
+    badge: 'Lancio Ufficiale: Maggio–Giugno 2027',
     highlights: [
-      '3 Livelli & 12 Blocchi: 120 esercizi doppi a specchio (1ª–7ª posizione) + 12 studi melodici.',
-      'Incisione musicale da 7,0 mm (SMuFL Leland e Baskerville) con margine interno da 20 mm.',
-      '15 codici QR interattivi verso videopartiture HD senza annunci (sottotitoli ES/EN/DE/IT).',
+      'Struttura per livello: 30 esercizi doppi per livello, studi di consolidamento e blocco di ampliamento.',
+      'Assistente visivo: TromBot ricorda le idee principali lungo tutto il percorso attraverso i tre livelli.',
+      'Contenuti multimediali: audio di riferimento, videopartiture con metronomo per lo studio individuale e videopartiture domanda-risposta con me.',
     ],
     editionsLabel: 'Edizioni ufficiali · Lancio previsto per maggio–giugno 2027:',
     editionKdp: 'Amazon KDP · Copertina Flessibile',
@@ -126,13 +121,12 @@ const copyMap: Record<SupportedLocale, {
     ctaPrimary: 'Vedi Scheda ed Edizioni Amazon',
     ctaSecondary: 'Prova il Libro 3D e Audio',
     ctaRegister: 'Attiva Copia (/registro)',
-    coverAuthor: 'Javier Sáez Mozos',
-    coverTitle: 'FLEXIBILIDAD',
-    coverSubtitle: 'METODO PER TROMBONE',
-    coverVol: 'VOLUME 1 · ELEMENTARE',
-    coverDesc: 'Sviluppo progressivo della flessibilità labiale fino a Fa₄',
+    toggleFront: 'Copertina',
+    toggleBack: 'Retro',
     imgAlt:
-      'Copertina di Trombone Flessibilità Volume 1 Elementare con TromBot IA',
+      'Copertina ufficiale di Flessibilità Metodo per Trombone Volume 1 Elementare di Javier Sáez Mozos',
+    backImgAlt:
+      'Retro di copertina ufficiale di Flessibilità Metodo per Trombone Volume 1 Elementare con TromBot',
   },
 };
 
@@ -158,45 +152,48 @@ const copy = copyMap[currentLocale] || copyMap.es;
     <article class="relative rounded-3xl border border-dark-700/80 bg-gradient-to-br from-dark-900/90 via-dark-900/70 to-dark-950/90 p-6 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-sm">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
-        <!-- Preview Cubierta 3D Estilo Portada Física -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="featured-book-wrap relative group w-full max-w-xs sm:max-w-sm">
+        <!-- Portada y Contraportada Definitivas del Volumen 1 -->
+        <div class="lg:col-span-5 flex flex-col items-center gap-4">
+          <div class="featured-book-wrap relative group w-full max-w-xs sm:max-w-sm" data-cover-viewer>
             <div class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-copper-base via-copper to-gold-regal opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-700"></div>
 
-            <div class="featured-book-card relative rounded-xl border border-copper/40 bg-graphite-base p-5 shadow-book-3d text-white flex flex-col justify-between aspect-[1/1.33]">
-              <div class="text-center pt-2">
-                <p class="font-serif text-[11px] font-medium tracking-[0.14em] text-white/90">
-                  {copy.coverAuthor}
-                </p>
-                <h3 class="mt-2 font-serif text-2xl sm:text-3xl font-bold tracking-[0.18em] uppercase text-gradient-copper">
-                  {copy.coverTitle}
-                </h3>
-                <p class="mt-0.5 font-serif text-[10px] font-semibold tracking-[0.24em] text-slate-200 uppercase">
-                  {copy.coverSubtitle}
-                </p>
-                <div class="mt-2 inline-block rounded-full border border-copper/50 bg-copper/15 px-3 py-0.5 text-[10px] font-mono uppercase tracking-wider text-copper-light">
-                  {copy.coverVol}
-                </div>
-                <p class="mt-2 font-serif italic text-[11px] text-slate-300">
-                  {copy.coverDesc}
-                </p>
-              </div>
-
-              <div class="relative my-2 rounded-lg overflow-hidden border border-white/10 bg-black/40 aspect-[4/3]">
-                <img
-                  src={`${base}/images/metodos/portada-duo-trombot.jpg`}
-                  alt={copy.imgAlt}
-                  class="h-full w-full object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-300">
-                <span>AMAZON KDP &amp; KINDLE</span>
-                <span class="text-copper-light font-bold">15 QR CODES</span>
-              </div>
+            <div class="featured-book-card relative rounded-xl overflow-hidden border border-copper/40 bg-[#0B0C0E] shadow-book-3d aspect-[3/4]">
+              <img
+                data-cover-front
+                src={`${base}/images/metodos/vol1-portada.png`}
+                alt={copy.imgAlt}
+                class="h-full w-full object-cover object-center transition-opacity duration-300"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                data-cover-back
+                src={`${base}/images/metodos/vol1-contraportada.png`}
+                alt={copy.backImgAlt}
+                class="absolute inset-0 h-full w-full object-cover object-center opacity-0 pointer-events-none transition-opacity duration-300"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
+          </div>
+
+          <div class="inline-flex items-center rounded-full border border-dark-700 bg-dark-950/80 p-1 text-xs font-mono" role="group" aria-label="Vista de cubierta">
+            <button
+              type="button"
+              data-cover-btn="front"
+              aria-pressed="true"
+              class="rounded-full px-3.5 py-1 transition-colors bg-copper text-graphite-deep font-semibold"
+            >
+              {copy.toggleFront}
+            </button>
+            <button
+              type="button"
+              data-cover-btn="back"
+              aria-pressed="false"
+              class="rounded-full px-3.5 py-1 transition-colors text-slate-300 hover:text-white"
+            >
+              {copy.toggleBack}
+            </button>
           </div>
         </div>
 
@@ -312,3 +309,37 @@ const copy = copyMap[currentLocale] || copyMap.es;
     -webkit-text-fill-color: transparent;
   }
 </style>
+
+<script>
+  document.querySelectorAll('#novedades').forEach((section) => {
+    const frontImg = section.querySelector<HTMLImageElement>('[data-cover-front]');
+    const backImg = section.querySelector<HTMLImageElement>('[data-cover-back]');
+    const frontBtn = section.querySelector<HTMLButtonElement>('[data-cover-btn="front"]');
+    const backBtn = section.querySelector<HTMLButtonElement>('[data-cover-btn="back"]');
+    if (!frontImg || !backImg || !frontBtn || !backBtn) return;
+
+    const setSide = (side: 'front' | 'back') => {
+      const showFront = side === 'front';
+      frontImg.classList.toggle('opacity-0', !showFront);
+      frontImg.classList.toggle('pointer-events-none', !showFront);
+      backImg.classList.toggle('opacity-0', showFront);
+      backImg.classList.toggle('pointer-events-none', showFront);
+
+      frontBtn.setAttribute('aria-pressed', String(showFront));
+      backBtn.setAttribute('aria-pressed', String(!showFront));
+
+      frontBtn.classList.toggle('bg-copper', showFront);
+      frontBtn.classList.toggle('text-graphite-deep', showFront);
+      frontBtn.classList.toggle('font-semibold', showFront);
+      frontBtn.classList.toggle('text-slate-300', !showFront);
+
+      backBtn.classList.toggle('bg-copper', !showFront);
+      backBtn.classList.toggle('text-graphite-deep', !showFront);
+      backBtn.classList.toggle('font-semibold', !showFront);
+      backBtn.classList.toggle('text-slate-300', showFront);
+    };
+
+    frontBtn.addEventListener('click', () => setSide('front'));
+    backBtn.addEventListener('click', () => setSide('back'));
+  });
+</script>
