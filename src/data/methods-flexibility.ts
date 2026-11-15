@@ -58,7 +58,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         title: 'Band 1 · Elementarstufe',
         range: 'Anfangs- & Mittelregister (B♭₂ bis F₄ · 6. Naturton)',
         courses: 'Elementarstufe (2.–4. Ausbildungsjahr)',
-        status: 'Erhältlich auf Amazon KDP & Kindle',
+        status: 'Offizieller Verkaufsstart auf Amazon KDP & Kindle: Mai–Juni 2027',
         available: true,
         slug: vol1Href,
         ctaCatalog: 'Produktdatenblatt & Kauf auf Amazon',
@@ -115,7 +115,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         title: 'Volume 1 · Elementare',
         range: 'Registro iniziale e medio (Sib₂ fino a Fa₄ · 6º armonico)',
         courses: '2º a 4º Anno di Corsi Elementari',
-        status: 'Disponibile su Amazon KDP e Kindle',
+        status: 'Lancio ufficiale su Amazon KDP e Kindle: maggio–giugno 2027',
         available: true,
         slug: vol1Href,
         ctaCatalog: 'Scheda Prodotto e Acquisto su Amazon',
@@ -172,7 +172,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         title: 'Volume 1 · Elementary',
         range: 'Initial & middle register (Bb₂ up to F₄ · 6th partial)',
         courses: 'Elementary Music Studies (Years 2–4)',
-        status: 'Available on Amazon KDP & Kindle',
+        status: 'Official launch on Amazon KDP & Kindle: May–June 2027',
         available: true,
         slug: vol1Href,
         ctaCatalog: 'Product Sheet & Buy on Amazon',
@@ -228,7 +228,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       title: 'Volumen 1 · Elemental',
       range: 'Registro inicial y medio (Sib₂ hasta Fa₄ · 6.º parcial)',
       courses: '2.º a 4.º de Enseñanzas Elementales',
-      status: 'Disponible en Amazon KDP y Kindle',
+      status: 'Lanzamiento oficial en Amazon KDP y Kindle: mayo–junio de 2027',
       available: true,
       slug: vol1Href,
       ctaCatalog: 'Ficha Comercial y Compra en Amazon',
@@ -646,9 +646,9 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
   if (locale === 'de') {
     return [
       {
-        question: 'Wo kann ich Band 1 zur Veröffentlichung erwerben?',
+        question: 'Wo und wann kann ich Band 1 zur Veröffentlichung erwerben?',
         answer:
-          'Zum offiziellen Verkaufsstart ist «Posaune · Flexibilität · Band 1 (Elementarstufe)» exklusiv über Amazon in zwei offiziellen Formaten erhältlich: Gedrucktes Taschenbuch (Amazon KDP) und digitale Ausgabe (Amazon Kindle).',
+          'Der offizielle Verkaufsstart auf Amazon KDP und Amazon Kindle ist für Mai–Juni 2027 geplant. Zu diesem Zeitpunkt ist «Posaune · Flexibilität · Band 1 (Elementarstufe)» exklusiv über Amazon in zwei offiziellen Formaten erhältlich: Gedrucktes Taschenbuch (Amazon KDP) und digitale Ausgabe (Amazon Kindle).',
       },
       {
         question: 'Wie wird die Notenschrift in der Amazon Kindle-Ausgabe dargestellt?',
@@ -671,9 +671,9 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
   if (locale === 'it') {
     return [
       {
-        question: 'Dove posso acquistare il Volume 1 al momento del lancio?',
+        question: 'Dove e quando posso acquistare il Volume 1 al momento del lancio?',
         answer:
-          'Al momento del lancio ufficiale, «Trombone · Flessibilità · Volume 1 (Elementare)» è distribuito esclusivamente tramite Amazon in due formati ufficiali: Edizione Cartacea (Amazon KDP) ed Edizione Digitale (Amazon Kindle).',
+          'Il lancio ufficiale su Amazon KDP e Amazon Kindle è previsto per maggio–giugno 2027. In quel momento, «Trombone · Flessibilità · Volume 1 (Elementare)» sarà distribuito esclusivamente tramite Amazon in due formati ufficiali: Edizione Cartacea (Amazon KDP) ed Edizione Digitale (Amazon Kindle).',
       },
       {
         question: 'Come appaiono gli spartiti nell\'edizione Amazon Kindle?',
@@ -696,9 +696,9 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
   if (locale === 'en') {
     return [
       {
-        question: 'Where can I purchase Volume 1 at launch?',
+        question: 'Where and when can I purchase Volume 1 at launch?',
         answer:
-          'At launch, «Trombone · Flexibility · Volume 1 (Elementary)» is exclusively distributed via Amazon in two official formats: Print Paperback (Amazon KDP) and Digital Edition (Amazon Kindle).',
+          'The official launch on Amazon KDP and Amazon Kindle is scheduled for May–June 2027. At that time, «Trombone · Flexibility · Volume 1 (Elementary)» will be distributed exclusively via Amazon in two official formats: Print Paperback (Amazon KDP) and Digital Edition (Amazon Kindle).',
       },
       {
         question: 'How is musical notation displayed in the Amazon Kindle edition?',
@@ -720,9 +720,9 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
 
   return [
     {
-      question: '¿Dónde se puede adquirir el Volumen 1 en el momento del lanzamiento?',
+      question: '¿Dónde y cuándo se puede adquirir el Volumen 1 en el momento del lanzamiento?',
       answer:
-        'En el momento del lanzamiento oficial, «Trombón · Flexibilidad · Volumen 1 (Elemental)» se distribuye exclusivamente a través de Amazon en dos formatos oficiales: Edición Impresa en Tapa Blanda (Amazon KDP) y Edición Digital (Amazon Kindle).',
+        'El lanzamiento oficial en Amazon KDP y Amazon Kindle está previsto para mayo–junio de 2027. En ese momento, «Trombón · Flexibilidad · Volumen 1 (Elemental)» se distribuirá exclusivamente a través de Amazon en dos formatos oficiales: Edición Impresa en Tapa Blanda (Amazon KDP) y Edición Digital (Amazon Kindle).',
     },
     {
       question: '¿Cómo se ven las partituras en la edición de Amazon Kindle?',

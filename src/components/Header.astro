@@ -17,6 +17,7 @@ interface Props {
     teaching: string;
     awards: string;
     methods?: string;
+    news?: string;
     social: string;
     contact?: string;
     langSwitch: string;
@@ -31,12 +32,20 @@ const sectionPaths = getSectionPaths(currentLocale, base);
 const careerHref = sectionPaths.career;
 const contactHref = sectionPaths.contact;
 const methodsHref = getMethodsPaths(currentLocale, base).trilogy;
+const newsHref = `${localeHome}/#novedades`;
 
 const homeLabelMap: Record<SupportedLocale, string> = {
   es: 'Inicio',
   en: 'Home',
   de: 'Start',
   it: 'Home',
+};
+
+const newsLabelMap: Record<SupportedLocale, string> = {
+  es: 'Novedades',
+  en: 'News',
+  de: 'Aktuelles',
+  it: 'Novità',
 };
 
 const careerLabelMap: Record<SupportedLocale, string> = {
@@ -61,6 +70,7 @@ const contactLabelMap: Record<SupportedLocale, string> = {
 };
 
 const homeLabel = homeLabelMap[currentLocale] || 'Inicio';
+const newsLabel = nav.news || newsLabelMap[currentLocale] || 'Novedades';
 const careerLabel = careerLabelMap[currentLocale] || 'Trayectoria';
 const methodsLabel = nav.methods || methodsLabelMap[currentLocale] || 'Métodos';
 const contactLabel = contactLabelMap[currentLocale] || nav.contact || 'Contacto';
@@ -89,17 +99,25 @@ const careerLinks = [
         </span>
       </a>
 
-      <!-- Desktop Navigation Menu (4 elementos) -->
-      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300" aria-label="Main Navigation">
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-slate-300" aria-label="Main Navigation">
         <!-- 1) Inicio -->
         <a
           href={localeHome}
-          class="hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400"
+          class="hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400 whitespace-nowrap"
         >
           {homeLabel}
         </a>
 
-        <!-- 2) Trayectoria (Menú desplegable accesible) -->
+        <!-- 2) Novedades -->
+        <a
+          href={newsHref}
+          class="hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400 whitespace-nowrap"
+        >
+          {newsLabel}
+        </a>
+
+        <!-- 3) Trayectoria (Menú desplegable accesible) -->
         <div class="relative group/dropdown flex items-center" id="desktop-career-container">
           <a
             href={careerHref}
@@ -257,7 +275,7 @@ const careerLinks = [
     </div>
   </div>
 
-  <!-- Mobile Drawer Menu (4 elementos) -->
+  <!-- Mobile Drawer Menu -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-2xl px-4 pt-4 pb-6 space-y-4">
     <div class="flex flex-col space-y-3 text-base font-medium">
       
@@ -269,7 +287,15 @@ const careerLinks = [
         {homeLabel}
       </a>
 
-      <!-- 2) Trayectoria (Lista expandible con los 5 enlaces) -->
+      <!-- 2) Novedades -->
+      <a
+        href={newsHref}
+        class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900"
+      >
+        {newsLabel}
+      </a>
+
+      <!-- 3) Trayectoria (Lista expandible con los 5 enlaces) -->
       <div class="border-b border-dark-900 pb-1">
         <div class="flex items-center justify-between w-full py-2">
           <a
