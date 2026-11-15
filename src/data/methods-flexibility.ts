@@ -100,7 +100,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Stufe 1: Technische Arbeit bis As₄ mit Einbindung von Lippentrillern',
           'Stufe 2: Festigung bis B₄ und Triller im mittel-hohen Register',
           'Stufe 3: Erweiterung bis C₅ mit Trillern und Kontrolle der Naturtonreihe',
-          'Ausdauer, weite Intervalle sowie Vorbereitung auf anspruchsvolles Repertoire',
+          'Parallele rhythmische Progression: Halbe/Viertel, Achtel, Triolen und Sechzehntel (mit Trillern als Erweiterung)',
         ],
       },
     ];
@@ -159,7 +159,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Livello 1: Lavoro tecnico fino al Lab₄ con integrazione dei trilli di labbro',
           'Livello 2: Consolidamento fino al Sib₄ e trilli applicati al registro medio-acuto',
           'Livello 3: Estensione fino al Do₅ con trilli e controllo avanzato degli armonici',
-          'Resistenza, intervalli ampi e preparazione al repertorio avanzato',
+          'Progressione ritmica parallela: minime/semiminime, crome, terzine e semicrome (con trilli come ampliamento)',
         ],
       },
     ];
@@ -218,7 +218,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Level 1: Technical work up to Ab₄ incorporating lip trills',
           'Level 2: Consolidation up to Bb₄ and trills in the mid-high register',
           'Level 3: Extension up to C₅ with trills and advanced harmonic-series control',
-          'Endurance, wide intervals, and preparation for advanced repertoire',
+          'Parallel rhythmic progression: half/quarter notes, eighths, triplets & sixteenths (with trills as extension)',
         ],
       },
     ];
@@ -276,7 +276,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         'Nivel 1: Trabajo técnico hasta Lab₄ con incorporación de trinos',
         'Nivel 2: Consolidación hasta Sib₄ y trinos aplicados al registro medio-agudo',
         'Nivel 3: Extensión hasta Do₅ con trinos y control avanzado de la serie armónica',
-        'Resistencia, intervalos amplios y preparación para repertorio avanzado',
+        'Progresión rítmica paralela: blancas/negras, corcheas, tresillos y semicorcheas (con trinos como ampliación)',
       ],
     },
   ];
