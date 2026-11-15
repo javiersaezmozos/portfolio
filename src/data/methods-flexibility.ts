@@ -79,7 +79,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       {
         id: 2,
         metal: 'Silber-Serie',
-        hex: '#F1F2F4',
+        hex: '#B8C0CC',
         borderClass: 'border-silver/35 hover:border-silver/70',
         badgeClass: 'bg-white/10 text-silver border-silver/30',
         title: 'Band 2 · Mittelstufe',
@@ -138,7 +138,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       {
         id: 2,
         metal: 'Serie Argento',
-        hex: '#F1F2F4',
+        hex: '#B8C0CC',
         borderClass: 'border-silver/35 hover:border-silver/70',
         badgeClass: 'bg-white/10 text-silver border-silver/30',
         title: 'Volume 2 · Intermedio',
@@ -197,7 +197,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
       {
         id: 2,
         metal: 'Silver Series',
-        hex: '#F1F2F4',
+        hex: '#B8C0CC',
         borderClass: 'border-silver/35 hover:border-silver/70',
         badgeClass: 'bg-white/10 text-silver border-silver/30',
         title: 'Volume 2 · Intermediate',
@@ -255,7 +255,7 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
     {
       id: 2,
       metal: 'Serie Plata',
-      hex: '#F1F2F4',
+      hex: '#B8C0CC',
       borderClass: 'border-silver/35 hover:border-silver/70',
       badgeClass: 'bg-white/10 text-silver border-silver/30',
       title: 'Volumen 2 · Intermedio',
