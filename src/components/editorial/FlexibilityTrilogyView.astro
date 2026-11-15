@@ -433,13 +433,11 @@ const copy = copyMap[locale] || copyMap.es;
             <article class="flex flex-col justify-between rounded-2xl border border-dark-700/60 bg-dark-950/80 hover:border-gold-500/50 p-6 shadow-lg transition-all">
               <div>
                 <div class="flex items-center justify-between gap-2">
-                  <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white">
-                    <span
-                      class="h-2.5 w-2.5 rounded-full"
-                      style={`background-color: ${card.hex};`}
-                    ></span>
-                    {card.metal}
-                  </span>
+                  <span
+                    class="h-3 w-3 rounded-full"
+                    style={`background-color: ${card.hex};`}
+                    aria-hidden="true"
+                  ></span>
                   <span class="rounded-full bg-dark-800 border border-dark-700 px-2.5 py-0.5 text-[11px] font-mono text-slate-300">
                     {card.status}
                   </span>
