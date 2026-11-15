@@ -1,0 +1,300 @@
+{
+  "meta": {
+    "title": "Javier Sáez | Posaunist, Musikpädagoge & Forscher",
+    "description": "Offizielle Website und professionelles Portfolio von Javier Sáez: Posaunist, Euphoniumspieler, Musikpädagoge und Forscher. Entdecken Sie seinen akademischen Werdegang, seine künstlerische Laufbahn und seine Unterrichtserfahrung.",
+    "ogImage": "/images/javier-saez.jpg",
+    "locale": "de"
+  },
+  "nav": {
+    "presentation": "Präsentation",
+    "academic": "Akademischer Werdegang",
+    "masterclasses": "Weiterbildung & Meisterkurse",
+    "performance": "Künstlerische Erfahrung",
+    "teaching": "Pädagogische Laufbahn",
+    "awards": "Auszeichnungen",
+    "methods": "Methoden",
+    "social": "Kanäle @javi_trombone",
+    "contact": "Kontakt",
+    "langSwitch": "DE"
+  },
+  "hero": {
+    "badge": "Posaunist & Musikpädagoge",
+    "name": "Javier Sáez",
+    "tagline": "Posaunist, Euphoniumspieler, Musikpädagoge und Forscher, engagiert für interpretatorische Exzellenz und zeitgenössische instrumentaldidaktische Methoden.",
+    "ctaPrimary": "Werdegang entdecken",
+    "ctaSecondary": "Akademische Ausbildung",
+    "ctaSocial": "Kanal @javi_trombone",
+    "highlights": [
+      { "label": "Postgraduale Ausbildung", "value": "Dreifacher Master" },
+      { "label": "Höchster Abschluss", "value": "Mit Auszeichnung" },
+      { "label": "Unterrichtserfahrung", "value": "+12 Jahre" },
+      { "label": "Spezialitäten", "value": "Posaune & Euphonium" }
+    ]
+  },
+  "presentation": {
+    "title": "Präsentation",
+    "subtitle": "Künstlerisches und pädagogisches Profil",
+    "paragraphs": [
+      "Javier Sáez begann seine Posaunenausbildung bei Félix García am Ateneo Musical «Schola Cantorum» in la Vall d'Uixó (Castellón, Spanien). 2009 schloss er sein professionelles Musikstudium im Fach Posaune am dortigen Konservatorium mit dem außerordentlichen Abschlusspreis (Premio Fin de Grado) ab.",
+      "2013 erlangte er den künstlerischen Hochschulabschluss (Grado Superior) im Fach Posaune am Real Conservatorio Superior de Música de Madrid (RCSMM) unter der Leitung von José Enrique Cotolí, wobei er beim Abschlusskonzert die Bestnote mit Auszeichnung (Matrícula de Honor) erhielt. 2018 vollendete er zudem die professionelle Musikausbildung im Fach Tuba mit dem Euphonium am Conservatorio Profesional de Música «Manuel de Falla» in Alcorcón, erneut ausgezeichnet mit dem Premio Fin de Grado.",
+      "Sein Profil als Pädagoge und Forscher stützt sich auf einen dreifachen universitären Masterabschluss: Master in Lehramtsausbildung (UCM, 2015), Master in Musikpädagogik (UNIR, 2022) und Master in Instrumentalpädagogik (UAX, 2025). Im professionellen Bereich wirkte er bei renommierten Soundtracks wie «Otros Mundos» für Movistar+ und «Klaus» für Netflix sowie bei Studioalben wie «Incendios» von Conchita mit Mad4Strings mit und verbindet Orchesterengagements mit einer fundierten Lehrtätigkeit an Musikschulen und Konservatorien."
+    ],
+    "quote": "«Musikpädagogik und künstlerische Exzellenz sind zwei untrennbare Disziplinen, die sich auf der Konzertbühne und im Unterricht gegenseitig bereichern.»"
+  },
+  "academic": {
+    "title": "Akademischer Werdegang",
+    "subtitle": "Hochschulausbildung und universitäre Postgraduiertenabschlüsse",
+    "tripleMaster": {
+      "title": "Dreifacher universitärer Masterabschluss",
+      "description": "Universitäre Spezialisierung in Instrumentalpädagogik, Musikdidaktik und Bildungsforschung:",
+      "items": [
+        {
+          "degree": "Universitärer Masterstudiengang in Instrumentalpädagogik",
+          "institution": "Universidad Alfonso X el Sabio (UAX)",
+          "year": "2025",
+          "focus": "Forschung und fortgeschrittene Methodik des Instrumentalunterrichts."
+        },
+        {
+          "degree": "Universitärer Masterstudiengang in Musikpädagogik",
+          "institution": "Universidad Internacional de La Rioja (UNIR)",
+          "year": "2022",
+          "focus": "Curriculumentwicklung, Neurowissenschaften des Lernens und zeitgenössische Musikdidaktik."
+        },
+        {
+          "degree": "Masterstudiengang für das Lehramt an Sekundarstufen und Gymnasien",
+          "institution": "Universidad Complutense de Madrid (UCM)",
+          "year": "2015",
+          "focus": "Fachrichtung Musikpädagogik, pädagogische Psychologie und offizielle Lehrbefähigung."
+        }
+      ]
+    },
+    "higherDegrees": [
+      {
+        "degree": "Hochschulabschluss in Musik (Posaune)",
+        "institution": "Real Conservatorio Superior de Música de Madrid (RCSMM)",
+        "year": "2013",
+        "honors": "Mit Auszeichnung (Matrícula de Honor) im Abschlusskonzert",
+        "professor": "Klasse von José Enrique Cotolí",
+        "type": "Offizieller Hochschulabschluss (Grado Superior)"
+      },
+      {
+        "degree": "Professioneller Musikabschluss in Tuba / Euphonium",
+        "institution": "Conservatorio Profesional de Música «Manuel de Falla» in Alcorcón",
+        "year": "2018",
+        "honors": "Außerordentlicher Abschlusspreis (Premio Fin de Grado)",
+        "type": "Professioneller Musikabschluss"
+      },
+      {
+        "degree": "Professioneller Musikabschluss in Posaune",
+        "institution": "Conservatorio Profesional de Música de La Vall d'Uixó (Castellón)",
+        "year": "2009",
+        "honors": "Außerordentlicher Abschlusspreis (Premio Fin de Grado)",
+        "professor": "Erste Studien bei Félix García (Ateneo Musical «Schola Cantorum»)",
+        "type": "Professioneller Musikabschluss"
+      }
+    ]
+  },
+  "masterclasses": {
+    "title": "Weiterbildung und Meisterkurse",
+    "subtitle": "Perfektionierung bei Solisten und Pädagogen von internationalem Rang",
+    "description": "Er erweiterte seine Ausbildung durch internationale Meisterkurse für Spieltechnik, Orchesterinterpretation und Seminare bei führenden Blechbläsersolisten:",
+    "teachers": [
+      { "name": "Gilles Millière", "role": "Internationaler Solist & Pädagoge", "institution": "CNSM Paris" },
+      { "name": "Thomas Horch", "role": "Soloposaunist", "institution": "Symphonieorchester des Bayerischen Rundfunks (BRSO)" },
+      { "name": "Stephan Schulz", "role": "Solobassposaunist", "institution": "Berliner Philharmoniker" },
+      { "name": "Walter Hilgers", "role": "Tubasolist & Dirigent", "institution": "German Brass / Hochschule für Musik Weimar" },
+      { "name": "John Kenny", "role": "Internationaler Solist & Spezialist", "institution": "Royal Conservatoire of Scotland / Guildhall" },
+      { "name": "Mark Hampson", "role": "Bassposaunist", "institution": "Mahler Chamber Orchestra" },
+      { "name": "Elíes Hernandis", "role": "Posaunenprofessor", "institution": "Real Conservatorio Superior de Madrid" },
+      { "name": "Juan Bautista Abad", "role": "Soloposaunist", "institution": "Orquesta Sinfónica de Madrid (Teatro Real)" },
+      { "name": "Baltasar Perelló", "role": "Pädagoge & Posaunensolist", "institution": "Conservatorio Superior de Castellón" },
+      { "name": "Ximo Vicedo", "role": "Soloposaunist", "institution": "Orquesta Sinfónica de RTVE" },
+      { "name": "Carlos Gil", "role": "Professor & Posaunenpädagoge", "institution": "Conservatorio Superior de Valencia" },
+      { "name": "Indalecio Bonet", "role": "Gründungsmitglied & Solist", "institution": "Spanish Brass" },
+      { "name": "Miguel Rivera", "role": "Soloposaunist & Pädagoge", "institution": "Orquesta Sinfónica de Galicia" }
+    ]
+  },
+  "performance": {
+    "title": "Künstlerische Erfahrung: Orchester, Kammermusik & Solospiel",
+    "subtitle": "Sinfonieorchester, Kammermusikformationen & Soloauftritte",
+    "soloSection": {
+      "title": "Als Solist",
+      "subtitle": "Soloauftritte mit Sinfonieorchester und sinfonischen Blasorchestern",
+      "items": [
+        {
+          "work": "Konzert für Posaune und Militärorchester",
+          "composer": "N. Rimski-Korsakow",
+          "ensemble": "Banda Sinfónica del Ateneo Musical «Schola Cantorum»",
+          "year": "2006"
+        },
+        {
+          "work": "Concertino",
+          "composer": "L.-E. Larsson",
+          "ensemble": "Russisches Orchester «Die Perle Moskaus»",
+          "year": "2009"
+        },
+        {
+          "work": "Bolivar",
+          "composer": "E. Cook",
+          "ensemble": "Banda Municipal de Pinto",
+          "year": "2022"
+        }
+      ]
+    },
+    "chamberSection": {
+      "title": "Blechbläser-Kammermusikformationen",
+      "subtitle": "Kammermusikensembles und Brass Bands",
+      "items": [
+        {
+          "name": "«And The Brass»",
+          "period": "Seit 2013",
+          "type": "Tiefes Blechbläserensemble",
+          "description": "Auf tiefes Blech (Posaunen, Euphoniums und Tuben) spezialisiertes Ensemble mit einem Repertoire von Renaissance-Polyphonie bis zu modernen Jazz-Arrangements."
+        },
+        {
+          "name": "Madrid Brass Band",
+          "period": "Seit 2022",
+          "type": "Traditionelle britische Brass Band",
+          "description": "Blechbläser- und Schlagwerkensemble im traditionellen britischen Stil, das originale Wettbewerbswerke und virtuose Transkriptionen interpretiert."
+        },
+        {
+          "name": "Nuit Brass Quintet",
+          "period": "Seit 2010",
+          "type": "Blechbläserquintett",
+          "description": "Klassisches und zeitgenössisches Blechbläserquintett bei Konzertzyklen und Musikfestivals."
+        },
+        {
+          "name": "Special Brass Quintet",
+          "period": "2009 – 2010",
+          "type": "Blechbläserquintett",
+          "description": "Kammermusikalisches Blechbläserensemble für Konzerte und Kulturvermittlungsprojekte."
+        }
+      ]
+    },
+    "orchestralSection": {
+      "title": "Orchestererfahrung & audiovisuelle Aufnahmen",
+      "recordingBadge": "Soundtracks & Studioaufnahmen",
+      "recordingTitle": "Audiovisuelle Aufnahmen und Studioalben mit Mad4Strings",
+      "recordingText": "Mitwirkung bei Aufnahmesitzungen für Filmmusik, Fernsehen und internationale Streaming-Produktionen – darunter «Klaus» (Netflix) und «Otros Mundos» (Movistar+) – sowie bei Studioalben wie «Incendios» von Conchita mit dem renommierten Session-Orchester Mad4Strings.",
+      "featuredRecordings": [
+        { "title": "Klaus", "category": "Original-Soundtrack", "platform": "Netflix" },
+        { "title": "Otros Mundos", "category": "Serien-Soundtrack", "platform": "Movistar+" },
+        { "title": "Incendios", "category": "Studioalbum", "platform": "Conchita" }
+      ],
+      "orchestrasTitle": "Professionelle Orchester & Ensembles",
+      "orchestrasDescription": "Mitwirkung als Posaunist und Euphoniumspieler in führenden sinfonischen Orchestern, Opernhäusern und Ensembles für zeitgenössische Musik:",
+      "orchestras": [
+        { "name": "Plural Ensemble", "tag": "Zeitgenössische Musik" },
+        { "name": "Orquesta Sinfónica de RTVE (ORTVE)", "tag": "Nationales Sinfonieorchester" },
+        { "name": "Orquesta Sinfónica de Madrid (OSM)", "tag": "Residenzorchester Teatro Real" },
+        { "name": "Orquesta de la Comunidad de Madrid (ORCAM)", "tag": "Sinfonie & Zarzuela" },
+        { "name": "Orquesta de Extremadura (OEX)", "tag": "Sinfonieorchester" },
+        { "name": "Orquesta Sinfónica Verum", "tag": "Konzertsaison" },
+        { "name": "Film Symphony Orchestra (FSO)", "tag": "Filmmusik-Tournee" },
+        { "name": "Orquesta Filarmonía de Madrid", "tag": "Auditorio Nacional" },
+        { "name": "Orquesta Sinfónica Ciudad de Getafe (OSCG)", "tag": "Sinfonieorchester" },
+        { "name": "Orquesta Sinfónica «Alma Mahler» de Rivas-Vaciamadrid", "tag": "Sinfonieorchester" }
+      ]
+    }
+  },
+  "teaching": {
+    "title": "Pädagogische Laufbahn",
+    "subtitle": "Pädagogische und institutionelle Berufung",
+    "description": "Eine fundierte Laufbahn im Instrumentalunterricht, in der Ensembleleitung und in der Ausbildung von Schülern an offiziellen Musikschulen und Konservatorien:",
+    "positions": [
+      {
+        "period": "2023 – Gegenwart",
+        "role": "Musikprofessor",
+        "institution": "Escuela-Conservatorio Profesional de Música «Manuel Rodríguez Sales» in Leganés",
+        "description": "Offizieller Blechbläserunterricht, technische Vorbereitung fortgeschrittener Schüler und Ensembleleitung."
+      },
+      {
+        "period": "2017 – 2023",
+        "role": "Dozent für Blechblasinstrumente",
+        "institution": "Städtische Musikschule der Stadtverwaltung Pinto",
+        "description": "Einzel- und Gruppenunterricht für Posaune, Euphonium und Tuba mit Förderung des Ensemblespiels."
+      },
+      {
+        "period": "2013 – 2016",
+        "role": "Musikdozent",
+        "institution": "Städtische Musikschulen der Stadtverwaltung Madrid",
+        "description": "Instrumentalunterricht und Aufbau von Blechbläserensembles an städtischen Musikzentren."
+      },
+      {
+        "period": "Seit 2013",
+        "role": "Pädagogische Zusammenarbeit",
+        "institution": "Colegio Americano de Madrid (American School of Madrid)",
+        "description": "Blechbläser-Workshops und didaktische Aktivitäten im internationalen Bildungsumfeld."
+      }
+    ]
+  },
+  "awards": {
+    "title": "Auszeichnungen & Preise",
+    "subtitle": "Akademische Ehrungen und Wettbewerbserfolge",
+    "items": [
+      {
+        "year": "2018",
+        "award": "Außerordentlicher Abschlusspreis (Premio Fin de Grado)",
+        "category": "Professionelle Musikausbildung in Tuba / Euphonium",
+        "institution": "Conservatorio Profesional de Música «Manuel de Falla» in Alcorcón"
+      },
+      {
+        "year": "2013",
+        "award": "Mit Auszeichnung (Matrícula de Honor)",
+        "category": "Abschlusskonzert – Hochschulabschluss in Posaune",
+        "institution": "Real Conservatorio Superior de Música de Madrid (RCSMM)"
+      },
+      {
+        "year": "2010",
+        "award": "Dritter Preis",
+        "category": "Blechbläserquintett-Wettbewerb Benimodo",
+        "institution": "Benimodo (Valencia)"
+      },
+      {
+        "year": "2009",
+        "award": "Außerordentlicher Abschlusspreis (Premio Fin de Grado)",
+        "category": "Professionelle Musikausbildung in Posaune",
+        "institution": "Conservatorio Profesional de Música de La Vall d'Uixó"
+      },
+      {
+        "year": "2008",
+        "award": "Dritter Preis (Kategorie B)",
+        "category": "V. Wettbewerb für junge Interpreten «Villa de Castellnovo»",
+        "institution": "Castellnovo (Castellón)"
+      }
+    ]
+  },
+  "social": {
+    "title": "Digitale Kanäle & Medien",
+    "subtitle": "Audiovisuelle Vermittlung & Community (@javi_trombone)",
+    "description": "Verfolgen Sie offizielle Darbietungen, didaktische Inhalte, Probe-Livestreams und Neuigkeiten auf den Kanälen von Javier Sáez.",
+    "handle": "@javi_trombone",
+    "channels": [
+      {
+        "platform": "YouTube",
+        "handle": "@javi_trombone",
+        "url": "https://youtube.com/@javi_trombone",
+        "description": "Audiovisuelle Aufnahmen, Recitals, Solowerke für Posaune und Blechbläserensembles.",
+        "actionText": "Auf YouTube abonnieren"
+      },
+      {
+        "platform": "Instagram",
+        "handle": "@javi_trombone",
+        "url": "https://instagram.com/javi_trombone",
+        "description": "Pädagogischer Alltag, Probeaufnahmen, Orchesterstellen und Übungsstrategien.",
+        "actionText": "Auf Instagram folgen"
+      }
+    ]
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "tagline": "Posaunist, Euphoniumspieler & Musikpädagoge",
+    "quickLinks": "Schnelllinks",
+    "connect": "Verbinden",
+    "languages": "Sprachen",
+    "spanish": "Spanisch",
+    "english": "Englisch",
+    "german": "Deutsch",
+    "italian": "Italienisch"
+  }
+}

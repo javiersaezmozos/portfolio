@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import FeaturedMethodSection from '../../components/FeaturedMethodSection.astro';
+import AcademicSection from '../../components/AcademicSection.astro';
+import MasterclassesSection from '../../components/MasterclassesSection.astro';
+import PerformanceSection from '../../components/PerformanceSection.astro';
+import TeachingSection from '../../components/TeachingSection.astro';
+import AwardsSection from '../../components/AwardsSection.astro';
+import SocialBroadcastSection from '../../components/SocialBroadcastSection.astro';
+import deData from '../../data/de.json';
+---
+
+<Layout
+  meta={deData.meta}
+  nav={deData.nav}
+  footer={deData.footer}
+  currentLocale="de"
+>
+  <Hero
+    hero={deData.hero}
+    presentation={deData.presentation}
+    currentLocale="de"
+  />
+
+  <FeaturedMethodSection currentLocale="de" />
+
+  <AcademicSection
+    academic={deData.academic}
+    currentLocale="de"
+  />
+
+  <MasterclassesSection
+    masterclasses={deData.masterclasses}
+    currentLocale="de"
+  />
+
+  <PerformanceSection
+    performance={deData.performance}
+    currentLocale="de"
+  />
+
+  <TeachingSection
+    teaching={deData.teaching}
+    currentLocale="de"
+  />
+
+  <AwardsSection
+    awards={deData.awards}
+    currentLocale="de"
+  />
+
+  <SocialBroadcastSection
+    social={deData.social}
+    currentLocale="de"
+  />
+</Layout>

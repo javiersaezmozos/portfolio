@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import esData from '../../data/es.json';
 import enData from '../../data/en.json';
+import deData from '../../data/de.json';
+import itData from '../../data/it.json';
 import { getTrilogyVolumes } from '../../data/methods-flexibility';
 import { getMethodsPaths, type SupportedLocale } from '../../utils/i18n-routes';
 
@@ -11,76 +13,164 @@ interface Props {
 
 const { locale } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const isEs = locale === 'es';
-const siteData = isEs ? esData : enData;
+const dataMap = { es: esData, en: enData, de: deData, it: itData };
+const siteData = dataMap[locale] || esData;
 const paths = getMethodsPaths(locale, base);
 const volumes = getTrilogyVolumes(locale, base);
 
-const catalogMeta = isEs
-  ? {
-      title: 'Métodos y Publicaciones Didácticas · Colección Metales Nobles | Javier Sáez',
-      description:
-        'Catálogo de métodos pedagógicos y publicaciones para trombón de Javier Sáez Mozos. Trilogía «Trombón · Flexibilidad» disponible en Amazon KDP (Tapa Blanda) y Amazon Kindle.',
-      ogImage: '/images/metodos/portada-duo-trombot.jpg',
-      locale: 'es',
-    }
-  : {
-      title: 'Methods & Pedagogical Publications · Noble Metals Collection | Javier Sáez',
-      description:
-        'Catalog of pedagogical trombone methods and publications by Javier Sáez Mozos. «Trombone · Flexibility» Trilogy available on Amazon KDP (Paperback) and Amazon Kindle.',
-      ogImage: '/images/metodos/portada-duo-trombot.jpg',
-      locale: 'en',
-    };
+const catalogMetaMap: Record<SupportedLocale, { title: string; description: string; ogImage: string; locale: string }> = {
+  es: {
+    title: 'Métodos y Publicaciones Didácticas · Colección Metodología de Flexibilidad | Javier Sáez',
+    description:
+      'Catálogo de métodos pedagógicos y publicaciones para trombón de Javier Sáez Mozos. Método de Flexibilidad disponible en Amazon KDP (Tapa Blanda) y Amazon Kindle.',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'es',
+  },
+  en: {
+    title: 'Methods & Pedagogical Publications · Flexibility Methodology Collection | Javier Sáez',
+    description:
+      'Catalog of pedagogical trombone methods and publications by Javier Sáez Mozos. Flexibility Method available on Amazon KDP (Paperback) and Amazon Kindle.',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'en',
+  },
+  de: {
+    title: 'Methoden & Pädagogische Publikationen · Kollektion Flexibilitätsmethodik | Javier Sáez',
+    description:
+      'Katalog pädagogischer Posaunenmethoden und Publikationen von Javier Sáez Mozos. Flexibilitätsmethode erhältlich auf Amazon KDP (Taschenbuch) und Amazon Kindle.',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'de',
+  },
+  it: {
+    title: 'Metodi e Pubblicazioni Didattiche · Collezione Metodologia di Flessibilità | Javier Sáez',
+    description:
+      'Catalogo di metodi pedagogici e pubblicazioni per trombone di Javier Sáez Mozos. Metodo di Flessibilità disponibile su Amazon KDP (Copertina Flessibile) e Amazon Kindle.',
+    ogImage: '/images/metodos/portada-duo-trombot.jpg',
+    locale: 'it',
+  },
+};
 
-const copy = isEs
-  ? {
-      homeLabel: 'Inicio',
-      currentBreadcrumb: 'Métodos y Publicaciones',
-      eyebrow: 'Colección Editorial Metales Nobles',
-      h1: 'Publicaciones Didácticas y Ecosistema Digital para Trombón',
-      leadPrefix:
-        'Obras pedagógicas diseñadas bajo estándares de grabado musical de alta precisión (SMuFL Leland y tipografía Baskerville), combinadas con videopartituras interactivas y el asistente virtual ',
-      leadMid: '. En su lanzamiento oficial, las ediciones están disponibles exclusivamente a través de ',
-      leadChannel1: 'Amazon KDP (Tapa Blanda)',
-      leadConj: ' y ',
-      leadChannel2: 'Amazon Kindle (Edición Digital)',
-      ctaPrimary: 'Ver Ficha del Volumen 1 (Amazon KDP / Kindle)',
-      ctaSecondary: 'Explorar Simulador 3D y Laboratorio Acústico',
-      postSaleEyebrow: 'Servicio Postventa Editorial',
-      postSaleTitle: '¿Ya tienes tu ejemplar de Amazon KDP o Kindle?',
-      postSaleBody:
-        'Registra tu edición impresa o digital para recibir el material complementario descargable, avisos de erratas y actualizaciones de las videopartituras.',
-      postSaleBtn: 'Activar Ejemplar en /registro',
-      seriesEyebrow: 'Serie Principal · 3 Volúmenes Progresivos',
-      seriesHeading: 'Trilogía «Trombón · Flexibilidad»',
-      seriesLink: 'Ver experiencia interactiva completa de la trilogía →',
-      stagePrefix: 'Etapa recomendada: ',
-      cardSecondary: 'Probar Visor de Partitura y Audio',
-    }
-  : {
-      homeLabel: 'Home',
-      currentBreadcrumb: 'Methods & Publications',
-      eyebrow: 'Noble Metals Editorial Collection',
-      h1: 'Pedagogical Publications & Digital Ecosystem for Trombone',
-      leadPrefix:
-        'Pedagogical editions engraved under high-precision music notation standards (SMuFL Leland and Baskerville typography), paired with interactive video scores and virtual assistant ',
-      leadMid: '. At official launch, editions are exclusively available through ',
-      leadChannel1: 'Amazon KDP (Paperback)',
-      leadConj: ' and ',
-      leadChannel2: 'Amazon Kindle (Digital Edition)',
-      ctaPrimary: 'View Volume 1 Sheet (Amazon KDP / Kindle)',
-      ctaSecondary: 'Explore 3D Book & Acoustic Lab',
-      postSaleEyebrow: 'Editorial After-Sales Service',
-      postSaleTitle: 'Already own an Amazon KDP or Kindle copy?',
-      postSaleBody:
-        'Register your print or digital edition to receive downloadable supplementary materials, errata alerts, and interactive video-score updates.',
-      postSaleBtn: 'Activate Copy at /registro',
-      seriesEyebrow: 'Flagship Series · 3 Progressive Volumes',
-      seriesHeading: '«Trombone · Flexibility» Trilogy',
-      seriesLink: 'View full interactive trilogy experience →',
-      stagePrefix: 'Recommended stage: ',
-      cardSecondary: 'Try Sheet Music Viewer & Audio Lab',
-    };
+const copyMap: Record<SupportedLocale, {
+  homeLabel: string;
+  currentBreadcrumb: string;
+  eyebrow: string;
+  h1: string;
+  leadPrefix: string;
+  leadMid: string;
+  leadChannel1: string;
+  leadConj: string;
+  leadChannel2: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+  postSaleEyebrow: string;
+  postSaleTitle: string;
+  postSaleBody: string;
+  postSaleBtn: string;
+  seriesEyebrow: string;
+  seriesHeading: string;
+  seriesLink: string;
+  stagePrefix: string;
+  cardSecondary: string;
+}> = {
+  es: {
+    homeLabel: 'Inicio',
+    currentBreadcrumb: 'Métodos y Publicaciones',
+    eyebrow: 'COLECCIÓN METODOLOGÍA DE FLEXIBILIDAD',
+    h1: 'Publicaciones Didácticas y Ecosistema Digital para Trombón',
+    leadPrefix:
+      'Obras pedagógicas diseñadas bajo estándares de grabado musical de alta precisión (SMuFL Leland y tipografía Baskerville), combinadas con videopartituras interactivas y el asistente virtual ',
+    leadMid: '. En su lanzamiento oficial, las ediciones están disponibles exclusivamente a través de ',
+    leadChannel1: 'Amazon KDP (Tapa Blanda)',
+    leadConj: ' y ',
+    leadChannel2: 'Amazon Kindle (Edición Digital)',
+    ctaPrimary: 'Ver Ficha del Volumen 1 (Amazon KDP / Kindle)',
+    ctaSecondary: 'Explorar Simulador 3D y Laboratorio Acústico',
+    postSaleEyebrow: 'Servicio Postventa Editorial',
+    postSaleTitle: '¿Ya tienes tu ejemplar de Amazon KDP o Kindle?',
+    postSaleBody:
+      'Registra tu edición impresa o digital para recibir el material complementario descargable, avisos de erratas y actualizaciones de las videopartituras.',
+    postSaleBtn: 'Activar Ejemplar en /registro',
+    seriesEyebrow: 'Serie Principal · Volúmenes Progresivos',
+    seriesHeading: 'Método de Flexibilidad · «Trombón · Flexibilidad»',
+    seriesLink: 'Ver experiencia interactiva completa del método →',
+    stagePrefix: 'Etapa recomendada: ',
+    cardSecondary: 'Probar Visor de Partitura y Audio',
+  },
+  en: {
+    homeLabel: 'Home',
+    currentBreadcrumb: 'Methods & Publications',
+    eyebrow: 'FLEXIBILITY METHODOLOGY COLLECTION',
+    h1: 'Pedagogical Publications & Digital Ecosystem for Trombone',
+    leadPrefix:
+      'Pedagogical editions engraved under high-precision music notation standards (SMuFL Leland and Baskerville typography), paired with interactive video scores and virtual assistant ',
+    leadMid: '. At official launch, editions are exclusively available through ',
+    leadChannel1: 'Amazon KDP (Paperback)',
+    leadConj: ' and ',
+    leadChannel2: 'Amazon Kindle (Digital Edition)',
+    ctaPrimary: 'View Volume 1 Sheet (Amazon KDP / Kindle)',
+    ctaSecondary: 'Explore 3D Book & Acoustic Lab',
+    postSaleEyebrow: 'Editorial After-Sales Service',
+    postSaleTitle: 'Already own an Amazon KDP or Kindle copy?',
+    postSaleBody:
+      'Register your print or digital edition to receive downloadable supplementary materials, errata alerts, and interactive video-score updates.',
+    postSaleBtn: 'Activate Copy at /registro',
+    seriesEyebrow: 'Flagship Series · Progressive Volumes',
+    seriesHeading: 'Flexibility Method · «Trombone · Flexibility»',
+    seriesLink: 'View full interactive method experience →',
+    stagePrefix: 'Recommended stage: ',
+    cardSecondary: 'Try Sheet Music Viewer & Audio Lab',
+  },
+  de: {
+    homeLabel: 'Startseite',
+    currentBreadcrumb: 'Methoden & Publikationen',
+    eyebrow: 'KOLLEKTION FLEXIBILITÄTSMETHODIK',
+    h1: 'Pädagogische Publikationen & Digitales Ökosystem für Posaune',
+    leadPrefix:
+      'Pädagogische Werke nach höchsten Notenstichstandards (SMuFL Leland & Baskerville), kombiniert mit interaktiven Videopartituren und dem virtuellen Assistenten ',
+    leadMid: '. Zum Verkaufsstart sind die Ausgaben exklusiv erhältlich über ',
+    leadChannel1: 'Amazon KDP (Taschenbuch)',
+    leadConj: ' und ',
+    leadChannel2: 'Amazon Kindle (Digitale Ausgabe)',
+    ctaPrimary: 'Produktdatenblatt Band 1 ansehen (Amazon KDP / Kindle)',
+    ctaSecondary: '3D-Buch & Akustiklabor erkunden',
+    postSaleEyebrow: 'Verlags-Kundenservice',
+    postSaleTitle: 'Haben Sie bereits Ihr Amazon-Exemplar?',
+    postSaleBody:
+      'Registrieren Sie Ihre gedruckte oder digitale Ausgabe, um Begleitmaterialien, Errata-Hinweise und Partitur-Updates zu erhalten.',
+    postSaleBtn: 'Exemplar aktivieren unter /registro',
+    seriesEyebrow: 'Hauptreihe · Progressive Bände',
+    seriesHeading: 'Flexibilitätsmethode · «Posaune · Flexibilität»',
+    seriesLink: 'Interaktives Gesamterlebnis der Methode ansehen →',
+    stagePrefix: 'Empfohlene Stufe: ',
+    cardSecondary: 'Notenleser & Audio ausprobieren',
+  },
+  it: {
+    homeLabel: 'Home',
+    currentBreadcrumb: 'Metodi & Pubblicazioni',
+    eyebrow: 'COLLEZIONE METODOLOGIA DI FLESSIBILITÀ',
+    h1: 'Pubblicazioni Didattiche ed Ecosistema Digitale per Trombone',
+    leadPrefix:
+      'Opere pedagogiche curate secondo i più alti standard di incisione musicale (SMuFL Leland e Baskerville), integrate con videopartiture interattive e l\'assistente virtuale ',
+    leadMid: '. Al lancio ufficiale, le edizioni sono disponibili esclusivamente tramite ',
+    leadChannel1: 'Amazon KDP (Copertina Flessibile)',
+    leadConj: ' e ',
+    leadChannel2: 'Amazon Kindle (Edizione Digitale)',
+    ctaPrimary: 'Scheda del Volume 1 (Amazon KDP / Kindle)',
+    ctaSecondary: 'Esplora il Libro 3D e Laboratorio Acustico',
+    postSaleEyebrow: 'Servizio Post-vendita Editoriale',
+    postSaleTitle: 'Hai già la tua copia di Amazon KDP o Kindle?',
+    postSaleBody:
+      'Registra la tua edizione per ricevere materiali integrativi scaricabili, avvisi di correzione e aggiornamenti delle videopartiture.',
+    postSaleBtn: 'Attiva Copia su /registro',
+    seriesEyebrow: 'Serie Principale · Volumi Progressivi',
+    seriesHeading: 'Metodo di Flessibilità · «Trombone · Flessibilità»',
+    seriesLink: 'Vedi l\'esperienza interattiva completa del metodo →',
+    stagePrefix: 'Livello consigliato: ',
+    cardSecondary: 'Prova il Visualizzatore di Spartiti e Audio',
+  },
+};
+
+const catalogMeta = catalogMetaMap[locale] || catalogMetaMap.es;
+const copy = copyMap[locale] || copyMap.es;
 ---
 
 <Layout
@@ -89,12 +179,12 @@ const copy = isEs
   footer={siteData.footer}
   currentLocale={locale}
 >
-  <main id="main-catalog-content" class="bg-gradient-auditorium min-h-screen pt-6 pb-24 text-white">
+  <main id="main-catalog-content" class="bg-dark-950 min-h-screen pt-6 pb-24 text-white">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <nav aria-label="Breadcrumbs" class="py-3 text-xs text-slate-400">
         <ol class="breadcrumb-list flex flex-wrap items-center">
           <li>
-            <a href={paths.home} class="hover:text-copper-light transition-colors focus:outline-none focus:underline">
+            <a href={paths.home} class="hover:text-gold-400 transition-colors focus:outline-none focus:underline">
               {copy.homeLabel}
             </a>
           </li>
@@ -106,10 +196,10 @@ const copy = isEs
         </ol>
       </nav>
 
-      <header class="mt-6 rounded-3xl border border-graphite-border bg-graphite-surface/75 p-6 sm:p-10 shadow-2xl">
+      <header class="mt-6 rounded-3xl border border-dark-700/60 bg-dark-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-8 space-y-4">
-            <span class="inline-flex items-center gap-2 rounded-full border border-copper/40 bg-copper/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-copper-light">
+            <span class="inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-gold-500/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-gold-400">
               {copy.eyebrow}
             </span>
             <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
@@ -119,30 +209,30 @@ const copy = isEs
               {copy.leadPrefix}
               <strong class="text-white">TromBot IA</strong>
               {copy.leadMid}
-              <strong class="text-copper-light">{copy.leadChannel1}</strong>
+              <strong class="text-gold-400">{copy.leadChannel1}</strong>
               {copy.leadConj}
-              <strong class="text-copper-light">{copy.leadChannel2}</strong>.
+              <strong class="text-gold-400">{copy.leadChannel2}</strong>.
             </p>
             <div class="flex flex-wrap gap-3 pt-2">
               <a
                 href={paths.vol1}
-                class="inline-flex items-center gap-2 rounded-xl bg-copper px-5 py-3 text-xs sm:text-sm font-bold text-graphite-deep shadow-lg hover:bg-copper-light transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+                class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold-600 to-amber-500 px-5 py-3 text-xs sm:text-sm font-bold text-dark-950 shadow-lg hover:from-gold-500 hover:to-amber-400 transition-all focus:outline-none focus:ring-2 focus:ring-gold-400"
               >
                 <span>{copy.ctaPrimary}</span>
                 <span aria-hidden="true">→</span>
               </a>
               <a
                 href={paths.trilogy}
-                class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-xs sm:text-sm font-medium text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+                class="inline-flex items-center gap-2 rounded-xl border border-dark-700 bg-dark-850/80 px-5 py-3 text-xs sm:text-sm font-medium text-white hover:bg-dark-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
               >
                 <span>{copy.ctaSecondary}</span>
               </a>
             </div>
           </div>
 
-          <aside class="lg:col-span-4 rounded-2xl border border-copper/35 bg-graphite-deep/90 p-5 space-y-3">
+          <aside class="lg:col-span-4 rounded-2xl border border-gold-500/35 bg-dark-950/90 p-5 space-y-3">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono uppercase tracking-wider text-copper-light">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-gold-400">
                 {copy.postSaleEyebrow}
               </span>
               <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
@@ -155,7 +245,7 @@ const copy = isEs
             </p>
             <a
               href={paths.register}
-              class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-copper/50 bg-copper/15 px-4 py-2.5 text-xs font-bold text-copper-light hover:bg-copper/25 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+              class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gold-500/50 bg-gold-500/15 px-4 py-2.5 text-xs font-bold text-gold-300 hover:bg-gold-500/25 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
             >
               <span>{copy.postSaleBtn}</span>
               <span aria-hidden="true">↗</span>
@@ -164,28 +254,28 @@ const copy = isEs
         </div>
       </header>
 
-      <section aria-labelledby="trilogy-catalog-heading" class="mt-14">
+      <section aria-labelledby="method-catalog-heading" class="mt-14">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <p class="text-xs font-mono uppercase tracking-widest text-copper-light">
+            <p class="text-xs font-mono uppercase tracking-widest text-gold-400">
               {copy.seriesEyebrow}
             </p>
-            <h2 id="trilogy-catalog-heading" class="mt-1 font-serif text-2xl sm:text-3xl font-bold text-white">
+            <h2 id="method-catalog-heading" class="mt-1 font-serif text-2xl sm:text-3xl font-bold text-white">
               {copy.seriesHeading}
             </h2>
           </div>
           <a
             href={paths.trilogy}
-            class="text-xs font-mono uppercase tracking-wider text-copper-light hover:underline"
+            class="text-xs font-mono uppercase tracking-wider text-gold-400 hover:text-gold-300 hover:underline"
           >
             {copy.seriesLink}
           </a>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {volumes.map((vol) => (
             <article
-              class={`flex flex-col justify-between rounded-2xl border bg-graphite-surface/85 p-6 shadow-xl transition-colors ${vol.borderClass}`}
+              class={`flex flex-col justify-between rounded-2xl border border-dark-700/60 bg-dark-900/60 hover:border-gold-500/50 p-6 shadow-xl transition-all ${vol.borderClass}`}
             >
               <div>
                 <div class="flex items-center justify-between gap-2">
@@ -213,29 +303,29 @@ const copy = isEs
                   {copy.stagePrefix}{vol.courses}
                 </p>
 
-                <ul class="mt-5 space-y-2.5 border-t border-white/10 pt-4 text-xs text-slate-300">
+                <ul class="mt-5 space-y-2.5 border-t border-dark-700/60 pt-4 text-xs text-slate-300">
                   {vol.specs.map((spec) => (
                     <li class="flex items-start gap-2">
-                      <span class="mt-0.5 text-copper-light" aria-hidden="true">•</span>
+                      <span class="mt-0.5 text-gold-400" aria-hidden="true">•</span>
                       <span>{spec}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div class="mt-6 pt-4 border-t border-white/10 flex flex-col gap-2.5">
+              <div class="mt-6 pt-4 border-t border-dark-700/60 flex flex-col gap-2.5">
                 {vol.available ? (
                   <>
                     <a
                       href={vol.slug}
-                      class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-copper px-4 py-2.5 text-xs font-bold text-graphite-deep hover:bg-copper-light transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+                      class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-600 to-amber-500 px-4 py-2.5 text-xs font-bold text-dark-950 hover:from-gold-500 hover:to-amber-400 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
                     >
                       <span>{vol.ctaCatalog}</span>
                       <span aria-hidden="true">→</span>
                     </a>
                     <a
                       href={paths.trilogy}
-                      class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-white/10 transition-colors"
+                      class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-dark-700 bg-dark-850/80 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-dark-800 transition-colors"
                     >
                       <span>{copy.cardSecondary}</span>
                     </a>
@@ -243,7 +333,7 @@ const copy = isEs
                 ) : (
                   <a
                     href={vol.slug}
-                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-medium text-slate-200 hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-regal"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-dark-700 bg-dark-850/80 px-4 py-2.5 text-xs font-medium text-slate-200 hover:bg-dark-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
                   >
                     <span>{vol.ctaCatalog}</span>
                   </a>

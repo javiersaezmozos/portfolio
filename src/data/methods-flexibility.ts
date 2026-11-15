@@ -40,8 +40,126 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
   const vol1Href =
     locale === 'en'
       ? `${cleanBase}/en/methods/flexibility/vol-1`
-      : `${cleanBase}/es/metodos/flexibilidad/vol-1`;
+      : locale === 'de'
+        ? `${cleanBase}/de/methoden/flexibilitaet/bd-1`
+        : locale === 'it'
+          ? `${cleanBase}/it/metodi/flessibilita/vol-1`
+          : `${cleanBase}/es/metodos/flexibilidad/vol-1`;
   const waitlistBase = 'mailto:info@javisaez.com?subject=';
+
+  if (locale === 'de') {
+    return [
+      {
+        id: 1,
+        metal: 'Akustisches Kupfer',
+        hex: '#E89758',
+        borderClass: 'border-copper/45 hover:border-copper',
+        badgeClass: 'bg-copper/15 text-copper-light border-copper/40',
+        title: 'Band 1 · Elementarstufe',
+        range: 'Anfangs- & Mittelregister (B♭₂ bis F₄ · 6. Naturton)',
+        courses: 'Elementarstufe (2.–4. Ausbildungsjahr)',
+        status: 'Erhältlich auf Amazon KDP & Kindle',
+        available: true,
+        slug: vol1Href,
+        ctaCatalog: 'Produktdatenblatt & Kauf auf Amazon',
+        ctaTrilogy: 'Zu Band 1 (Amazon KDP / Kindle)',
+        specs: [
+          '12 progressive Lerneinheiten in 3 Niveaustufen',
+          '120 Spiegelübungen (1.–7. Zugposition) + 12 melodische Etüden',
+          '15 QR-Codes mit Adilo-HD-Videopartituren und Untertiteln in ES/EN/DE/IT',
+          'Großzügiges 7,0-mm-Notenrastral (Leland & Baskerville) mit 20 mm Bundsteg',
+        ],
+        trilogyHighlights: [
+          '3 progressive Stufen · 12 Blöcke · 120 Spiegelübungen + 12 Etüden',
+          '7,0-mm-Notenstich (SMuFL Leland) und 20 mm atrilsicherer Bundsteg',
+          '15 QR-Codes mit Adilo-HD-Videopartituren und Untertiteln in ES/EN/DE/IT',
+        ],
+      },
+      {
+        id: 2,
+        metal: 'Symphonisches Silber',
+        hex: '#F1F2F4',
+        borderClass: 'border-silver/35 hover:border-silver/70',
+        badgeClass: 'bg-white/10 text-silver border-silver/30',
+        title: 'Band 2 · Mittelstufe',
+        range: 'Erweiterung in die Höhe (bis B♭₅ · 8. Naturton)',
+        courses: 'Mittelstufe / Konservatorium',
+        status: 'In Vorbereitung',
+        available: false,
+        slug: `${waitlistBase}${encodeURIComponent('Warteliste: Posaune Flexibilität Band 2 (Silber)')}`,
+        ctaCatalog: 'Erscheinungsbenachrichtigung anfordern (Amazon KDP / Kindle)',
+        ctaTrilogy: 'Auf die Warteliste setzen (Bd. 2 · Silber)',
+        specs: [
+          'Beherrschung des 6., 7. und 8. Naturtons und Quartventil-Integration',
+          'Gebrochene Intervalle, Oktavbindungen und agile Luftsäule',
+          'Konzertetüden mittlerer Schwierigkeit mit digitalem Playalong',
+          'Professioneller 6,5-mm-Rastralstich für dichte Notenpult-Lektüre',
+        ],
+        trilogyHighlights: [
+          'Fließende Verbindung der Naturtöne 6, 7 und 8 mit Quartventil-Balance',
+          'Weite gebrochene Intervalle, Oktavbindungen und Vokalisation',
+          'Professioneller 6,5-mm-Stich mit Konzertetüden der Mittelstufe',
+        ],
+      },
+    ];
+  }
+
+  if (locale === 'it') {
+    return [
+      {
+        id: 1,
+        metal: 'Rame Acustico',
+        hex: '#E89758',
+        borderClass: 'border-copper/45 hover:border-copper',
+        badgeClass: 'bg-copper/15 text-copper-light border-copper/40',
+        title: 'Volume 1 · Elementare',
+        range: 'Registro iniziale e medio (Sib₂ fino a Fa₄ · 6º armonico)',
+        courses: '2º a 4º Anno di Corsi Elementari',
+        status: 'Disponibile su Amazon KDP e Kindle',
+        available: true,
+        slug: vol1Href,
+        ctaCatalog: 'Scheda Prodotto e Acquisto su Amazon',
+        ctaTrilogy: 'Vai al Volume 1 (Amazon KDP / Kindle)',
+        specs: [
+          '12 blocchi progressivi in 3 livelli curricolari',
+          '120 esercizi a specchio (1ª a 7ª posizione) + 12 studi melodici',
+          '15 codici QR con videopartiture Adilo e sottotitoli ES/EN/DE/IT',
+          'Rastral ampio da 7,0 mm (Leland & Baskerville) con margine interno di 20 mm',
+        ],
+        trilogyHighlights: [
+          '3 livelli progressivi · 12 blocchi · 120 esercizi a specchio + 12 studi',
+          'Incisione musicale da 7,0 mm (SMuFL Leland) e margine di sicurezza di 20 mm',
+          '15 codici QR con videopartiture Adilo HD e sottotitoli in ES/EN/DE/IT',
+        ],
+      },
+      {
+        id: 2,
+        metal: 'Argento Sinfonico',
+        hex: '#F1F2F4',
+        borderClass: 'border-silver/35 hover:border-silver/70',
+        badgeClass: 'bg-white/10 text-silver border-silver/30',
+        title: 'Volume 2 · Intermedio',
+        range: 'Espansione al registro medio-acuto (fino a Sib₅ · 8º armonico)',
+        courses: 'Corsi Professionali di Conservatorio',
+        status: 'In preparazione editoriale',
+        available: false,
+        slug: `${waitlistBase}${encodeURIComponent('Lista d\'attesa: Trombone Flessibilità Volume 2 (Argento)')}`,
+        ctaCatalog: 'Richiedi notifica di lancio (Amazon KDP / Kindle)',
+        ctaTrilogy: 'Iscriviti alla lista d\'attesa (Vol. 2 · Argento)',
+        specs: [
+          'Padronanza del 6º, 7º e 8º armonico e controllo della ritorta in Fa',
+          'Intervalli spezzati, ottave legate e agilità della colonna d\'aria',
+          'Studi da concerto di difficoltà intermedia con accompagnamento digitale',
+          'Rastral professionale da 6,5 mm per una lettura chiara sul leggio',
+        ],
+        trilogyHighlights: [
+          'Connessione fluida degli armonici 6º, 7º e 8º e gestione della ritorta in Fa',
+          'Ampi intervalli spezzati, legature d\'ottava e controllo vocale interno',
+          'Incisione professionale da 6,5 mm con studi da concerto intermedi',
+        ],
+      },
+    ];
+  }
 
   if (locale === 'en') {
     return [
@@ -95,32 +213,6 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
           'Fluid connection of 6th, 7th & 8th partials and F-trigger valve balance',
           'Wide broken intervals, octave slurs, and internal vowel shaping',
           '6.5 mm professional engraving with intermediate concert studies',
-        ],
-      },
-      {
-        id: 3,
-        metal: 'Regal Gold',
-        hex: '#F9D658',
-        borderClass: 'border-gold-regal/35 hover:border-gold-regal/70',
-        badgeClass: 'bg-gold-regal/15 text-gold-regal border-gold-regal/40',
-        title: 'Volume 3 · Advanced',
-        range: 'Virtuosity & extreme register (Up to F₆ · 12th–16th partial)',
-        courses: 'Higher Conservatory, Orchestral & Soloists',
-        status: 'In Editorial Preparation',
-        available: false,
-        slug: `${waitlistBase}${encodeURIComponent('Waitlist: Trombone Flexibility Volume 3 (Gold)')}`,
-        ctaCatalog: 'Request Launch Notification (Amazon KDP / Kindle)',
-        ctaTrilogy: 'Join Waitlist (Vol. 3 · Gold)',
-        specs: [
-          'Upper harmonic series, lip trills, and multi-octave leaps',
-          'Integration of flexible multiple tonguing and concert endurance',
-          'Orchestral & solo virtuoso etudes with acoustic diagnostics',
-          'High-density audition-ready music-stand layout',
-        ],
-        trilogyHighlights: [
-          'Upper harmonic control, lip trills, and extreme multi-octave leaps',
-          'Concert endurance and high-performance flexible articulation',
-          'Orchestral & solo virtuosity studies with acoustic diagnostics',
         ],
       },
     ];
@@ -179,36 +271,194 @@ export function getTrilogyVolumes(locale: SupportedLocale, base = ''): TrilogyVo
         'Rastral profesional de 6,5 mm con estudios de concierto intermedios',
       ],
     },
-    {
-      id: 3,
-      metal: 'Oro Regio',
-      hex: '#F9D658',
-      borderClass: 'border-gold-regal/35 hover:border-gold-regal/70',
-      badgeClass: 'bg-gold-regal/15 text-gold-regal border-gold-regal/40',
-      title: 'Volumen 3 · Avanzado',
-      range: 'Virtuosismo y registro extremo (Hasta Fa₆ · 12.º–16.º parcial)',
-      courses: '5.º–6.º de EE.PP., Enseñanzas Superiores y Solistas',
-      status: 'En preparación editorial',
-      available: false,
-      slug: `${waitlistBase}${encodeURIComponent('Lista de espera: Trombón Flexibilidad Volumen 3 · Oro')}`,
-      ctaCatalog: 'Solicitar aviso de lanzamiento (Amazon KDP / Kindle)',
-      ctaTrilogy: 'Unirse a la lista de espera (Vol. 3 · Oro)',
-      specs: [
-        'Serie sobreaguda, trinos de labio y saltos extremos multi-octava',
-        'Integración de articulación múltiple flexible y resistencia de concierto',
-        'Estudios de virtuosismo orquestal y solista con diagnóstico acústico',
-        'Edición de alta densidad para atril profesional y preparación de pruebas',
-      ],
-      trilogyHighlights: [
-        'Dominio de la octava sobreaguda, trinos de labio y saltos multi-octava',
-        'Resistencia de concierto y articulación flexible de alto rendimiento',
-        'Estudios de virtuosismo orquestal y solista con diagnóstico acústico',
-      ],
-    },
   ];
 }
 
 export function getVol1Syllabus(locale: SupportedLocale): SyllabusLevel[] {
+  if (locale === 'de') {
+    return [
+      {
+        level: 'Niveau 1 · 2. Ausbildungsjahr Elementarstufe',
+        range: 'Grundlegende Naturtöne: 2. (B♭₂), 3. (F₃) und 4. (B♭₃)',
+        qrRoot: '/e/v1-n1',
+        summary:
+          'Aufbau einer kontinuierlichen Luftsäule, nahtlose Lippenbindungen ohne Glottisschlag und präzise Koordination von Zug und Atmung in allen 7 Positionen.',
+        blocks: [
+          {
+            code: 'v1-n1-l1',
+            title: 'Block 1.1 · Einführung & Erste Töne',
+            detail: '10 doppelte Spiegelübungen (Ganze und Halbe Noten) + Melodische Etüde Nr. 1.',
+          },
+          {
+            code: 'v1-n1-l2',
+            title: 'Block 1.2 · Hinführung zu Viertelnoten',
+            detail: '10 doppelte Spiegelübungen im Viertelpuls + Melodische Etüde Nr. 2.',
+          },
+          {
+            code: 'v1-n1-l3',
+            title: 'Block 1.3 · Einführung von Achtelnoten',
+            detail: '10 doppelte Geläufigkeitsübungen mit Achtelnoten + Melodische Etüde Nr. 3.',
+          },
+          {
+            code: 'v1-n1-amp',
+            title: 'Block 1.4 · Vertiefung: Triolen',
+            detail: '10 fließende ternäre Subdivisionsübungen + Melodische Etüde Nr. 4.',
+          },
+        ],
+      },
+      {
+        level: 'Niveau 2 · 3. Ausbildungsjahr Elementarstufe',
+        range: 'Erweiterung zum 5. Naturton (D₄) & Kombinierte Intervalle',
+        qrRoot: '/e/v1-n2',
+        summary:
+          'Einführung der oberen großen Terz der Naturtonreihe, Vokalisation (Oh → Ah → Eh) und bewusste Intonation des 5. Naturtons (-14 Cent).',
+        blocks: [
+          {
+            code: 'v1-n2-l1',
+            title: 'Block 2.1 · Viertelnoten (bis D₄)',
+            detail: '10 doppelte Spiegelübungen unter Einbindung des 5. Naturtons + Melodische Etüde Nr. 5.',
+          },
+          {
+            code: 'v1-n2-l2',
+            title: 'Block 2.2 · Achtelbindungen (bis D₄)',
+            detail: '10 doppelte Wellenbewegungsübungen in Achteln + Melodische Etüde Nr. 6.',
+          },
+          {
+            code: 'v1-n2-l3',
+            title: 'Block 2.3 · Triolische Geläufigkeit (bis D₄)',
+            detail: '10 ternäre Doppelübungen in allen 7 Positionen + Melodische Etüde Nr. 7.',
+          },
+          {
+            code: 'v1-n2-amp',
+            title: 'Block 2.4 · Vertiefung: Sechzehntelnoten',
+            detail: '10 Elastizitätsübungen mit kontrollierter Geschwindigkeit + Melodische Etüde Nr. 8.',
+          },
+        ],
+      },
+      {
+        level: 'Niveau 3 · 4. Ausbildungsjahr Elementarstufe',
+        range: 'Konsolidierung bis zum 6. Naturton (F₄) & Vorbereitung auf die Mittelstufe',
+        qrRoot: '/e/v1-n3',
+        summary:
+          'Vollständige Beherrschung der mittleren bis hohen Oktave, komplette Arpeggien vom 2. bis zum 6. Naturton und musikalischer Ausdruck in Konzertetüden.',
+        blocks: [
+          {
+            code: 'v1-n3-l1',
+            title: 'Block 3.1 · Von Vierteln zu Achteln (bis F₄)',
+            detail: '10 Doppelübungen bis zum 6. Naturton + Melodische Etüde Nr. 9.',
+          },
+          {
+            code: 'v1-n3-l2',
+            title: 'Block 3.2 · Triolen im oberen Mittelregister (bis F₄)',
+            detail: '10 ternäre Flexibilitätsübungen bis F₄ + Melodische Etüde Nr. 10.',
+          },
+          {
+            code: 'v1-n3-l3',
+            title: 'Block 3.3 · Sechzehntel-Geläufigkeit (bis F₄)',
+            detail: '10 fortgeschrittene Geläufigkeitsübungen + Melodische Etüde Nr. 11.',
+          },
+          {
+            code: 'v1-n3-amp',
+            title: 'Block 3.4 · Vertiefung: Abschließende Herausforderungen',
+            detail: '10 Syntheseübungen zur Vorbereitung auf die Mittelstufe + Finale Konzertetüde Nr. 12.',
+          },
+        ],
+      },
+    ];
+  }
+
+  if (locale === 'it') {
+    return [
+      {
+        level: 'Livello 1 · 2º Anno di Corsi Elementari',
+        range: 'Armonici fondamentali: 2º (Sib₂), 3º (Fa₃) e 4º (Sib₃)',
+        qrRoot: '/e/v1-n1',
+        summary:
+          'Sviluppo di una colonna d\'aria costante, legature labiali fluide senza colpi di glottide e sincronizzazione braccio-aria in tutte le 7 posizioni.',
+        blocks: [
+          {
+            code: 'v1-n1-l1',
+            title: 'Blocco 1.1 · Introduzione e Primi Suoni',
+            detail: '10 esercizi doppi a specchio (semibrevi e minime) + Studio Melodico n. 1.',
+          },
+          {
+            code: 'v1-n1-l2',
+            title: 'Blocco 1.2 · Verso le semiminime',
+            detail: '10 esercizi doppi a specchio a pulsazione regolare + Studio Melodico n. 2.',
+          },
+          {
+            code: 'v1-n1-l3',
+            title: 'Blocco 1.3 · Inserimento delle crome',
+            detail: '10 esercizi doppi di agilità iniziale con crome + Studio Melodico n. 3.',
+          },
+          {
+            code: 'v1-n1-amp',
+            title: 'Blocco 1.4 · Approfondimento: Terzine',
+            detail: '10 esercizi fluidi di suddivisione ternaria + Studio Melodico n. 4.',
+          },
+        ],
+      },
+      {
+        level: 'Livello 2 · 3º Anno di Corsi Elementari',
+        range: 'Espansione al 5º armonico (Re₄) e intervalli combinati',
+        qrRoot: '/e/v1-n2',
+        summary:
+          'Introduzione della terza maggiore superiore della serie armonica, vocalizzazione interna (Oh → Ah → Eh) e intonazione consapevole del 5º armonico (-14 cent).',
+        blocks: [
+          {
+            code: 'v1-n2-l1',
+            title: 'Blocco 2.1 · Semiminime (fino a Re₄)',
+            detail: '10 esercizi doppi a specchio con il 5º armonico + Studio Melodico n. 5.',
+          },
+          {
+            code: 'v1-n2-l2',
+            title: 'Blocco 2.2 · Legature in crome (fino a Re₄)',
+            detail: '10 esercizi doppi di ondulazione armonica in crome + Studio Melodico n. 6.',
+          },
+          {
+            code: 'v1-n2-l3',
+            title: 'Blocco 2.3 · Agilità ternaria (fino a Re₄)',
+            detail: '10 esercizi doppi ternari nelle 7 posizioni + Studio Melodico n. 7.',
+          },
+          {
+            code: 'v1-n2-amp',
+            title: 'Blocco 2.4 · Approfondimento: Semicrome',
+            detail: '10 esercizi di elasticità a velocità controllata + Studio Melodico n. 8.',
+          },
+        ],
+      },
+      {
+        level: 'Livello 3 · 4º Anno di Corsi Elementari',
+        range: 'Consolidamento fino al 6º armonico (Fa₄) e preparazione ai Corsi Professionali',
+        qrRoot: '/e/v1-n3',
+        summary:
+          'Padronanza completa dell\'ottava medio-alta elementare, arpeggi armonici completi dal 2º al 6º armonico e fraseggio musicale in studi da concerto.',
+        blocks: [
+          {
+            code: 'v1-n3-l1',
+            title: 'Blocco 3.1 · Da semiminime a crome (fino a Fa₄)',
+            detail: '10 esercizi doppi fino al 6º armonico + Studio Melodico n. 9.',
+          },
+          {
+            code: 'v1-n3-l2',
+            title: 'Blocco 3.2 · Terzine nel registro medio-acuto (fino a Fa₄)',
+            detail: '10 esercizi di flessibilità ternaria fino a Fa₄ + Studio Melodico n. 10.',
+          },
+          {
+            code: 'v1-n3-l3',
+            title: 'Blocco 3.3 · Fluidità in semicrome (fino a Fa₄)',
+            detail: '10 esercizi avanzati di agilità elementare + Studio Melodico n. 11.',
+          },
+          {
+            code: 'v1-n3-amp',
+            title: 'Blocco 3.4 · Approfondimento: Sfide conclusive',
+            detail: '10 esercizi di sintesi tecnica pre-professionale + Studio da Concerto Finale n. 12.',
+          },
+        ],
+      },
+    ];
+  }
+
   if (locale === 'en') {
     return [
       {
@@ -393,6 +643,56 @@ export function getVol1Syllabus(locale: SupportedLocale): SyllabusLevel[] {
 }
 
 export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
+  if (locale === 'de') {
+    return [
+      {
+        question: 'Wo kann ich Band 1 zur Veröffentlichung erwerben?',
+        answer:
+          'Zum offiziellen Verkaufsstart ist «Posaune · Flexibilität · Band 1 (Elementarstufe)» exklusiv über Amazon in zwei offiziellen Formaten erhältlich: Gedrucktes Taschenbuch (Amazon KDP) und digitale Ausgabe (Amazon Kindle).',
+      },
+      {
+        question: 'Wie wird die Notenschrift in der Amazon Kindle-Ausgabe dargestellt?',
+        answer:
+          'Die Amazon Kindle-Ausgabe wurde im Print-Replica-Format mit festem Layout direkt aus den originalen SMuFL Leland-Vektoren (7,0 mm Rastral) erstellt. Dies stellt sicher, dass Notensysteme, Bindungen und TromBot-Diagramme auf Tablets, iPads und Desktop-Geräten dieselbe Schärfe und Proportion wie im gedruckten Buch aufweisen.',
+      },
+      {
+        question: 'Wie funktionieren die 15 QR-Codes in Buch und Kindle?',
+        answer:
+          'Jeder Lektionsblock und jede Stufe verfügt über einen permanenten QR-Code (/e/v1-n1-l1 bis /e/v1-n3-amp), der zu werbefreien HD-Videopartituren mit wählbaren didaktischen Untertiteln auf Deutsch, Englisch, Spanisch und Italienisch führt.',
+      },
+      {
+        question: 'Warum sollte ich mein Exemplar unter javisaez.com/registro registrieren?',
+        answer:
+          'Die Registrierung Ihres Amazon-Exemplars unter javisaez.com/registro?lang=de ermöglicht direkten Zugriff auf Partitur-Updates, zusätzliche TromBot-KI-Übungsleitfäden und direkten Autorensupport.',
+      },
+    ];
+  }
+
+  if (locale === 'it') {
+    return [
+      {
+        question: 'Dove posso acquistare il Volume 1 al momento del lancio?',
+        answer:
+          'Al momento del lancio ufficiale, «Trombone · Flessibilità · Volume 1 (Elementare)» è distribuito esclusivamente tramite Amazon in due formati ufficiali: Edizione Cartacea (Amazon KDP) ed Edizione Digitale (Amazon Kindle).',
+      },
+      {
+        question: 'Come appaiono gli spartiti nell\'edizione Amazon Kindle?',
+        answer:
+          'L\'edizione per Amazon Kindle è impaginata in formato Print Replica a layout fisso dai vettori originali SMuFL Leland a 7,0 mm di rastral. Ciò assicura che pentagrammi, legature e schemi di TromBot mantengano su iPad, tablet e computer la stessa identica nitidezza del libro stampato.',
+      },
+      {
+        question: 'Come funzionano i 15 codici QR inclusi nel libro e in Kindle?',
+        answer:
+          'Ogni blocco didattico e ciascun livello include un codice QR univoco (/e/v1-n1-l1 fino a /e/v1-n3-amp) che collega direttamente a videopartiture interattive in alta definizione senza pubblicità, con sottotitoli didattici in italiano, spagnolo, inglese e tedesco.',
+      },
+      {
+        question: 'Quali vantaggi offre la registrazione su javisaez.com/registro?',
+        answer:
+          'Registrando la tua copia di Amazon KDP o Kindle su javisaez.com/registro?lang=it ricevi accesso immediato agli aggiornamenti delle videopartiture, alle guide di studio integrative con TromBot IA e al supporto diretto dell\'autore.',
+      },
+    ];
+  }
+
   if (locale === 'en') {
     return [
       {

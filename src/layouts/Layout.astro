@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { getAlternateLocalePath } from '../utils/i18n-routes';
+import { getAlternateLocalePath, SUPPORTED_LOCALES, type SupportedLocale } from '../utils/i18n-routes';
 
 interface Props {
   meta: {
@@ -12,22 +12,43 @@ interface Props {
   };
   nav: any;
   footer: any;
-  currentLocale: 'es' | 'en';
+  currentLocale: SupportedLocale;
 }
 
 const { meta, nav, footer, currentLocale } = Astro.props;
-const otherLocale = currentLocale === 'es' ? 'en' : 'es';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://www.javisaez.com').href;
-const altPath = getAlternateLocalePath(Astro.url.pathname, otherLocale, base);
-const altUrl = new URL(altPath, Astro.site || 'https://www.javisaez.com').href;
+const siteUrl = Astro.site || 'https://www.javisaez.com';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+const hreflangLinks = SUPPORTED_LOCALES.map((loc) => {
+  const altPath = getAlternateLocalePath(Astro.url.pathname, loc, base);
+  return {
+    locale: loc,
+    href: new URL(altPath, siteUrl).href,
+  };
+});
+const xDefaultHref = new URL(getAlternateLocalePath(Astro.url.pathname, 'es', base), siteUrl).href;
+
+const ogLocaleMap: Record<SupportedLocale, string> = {
+  es: 'es_ES',
+  en: 'en_US',
+  de: 'de_DE',
+  it: 'it_IT',
+};
+
+const jobTitleMap: Record<SupportedLocale, string> = {
+  es: 'Trombonista y Pedagogo Musical',
+  en: 'Trombonist and Music Pedagogue',
+  de: 'Posaunist und Musikpädagoge',
+  it: 'Trombonista e Pedagogo Musicale',
+};
 
 // Schema.org Person metadata
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Javier Sáez",
-  "jobTitle": currentLocale === 'es' ? "Trombonista y Pedagogo Musical" : "Trombonist and Music Pedagogue",
+  "jobTitle": jobTitleMap[currentLocale] || jobTitleMap.en,
   "url": "https://www.javisaez.com",
   "sameAs": [
     "https://instagram.com/javi_trombone",
@@ -70,7 +91,10 @@ const personSchema = {
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang={otherLocale} href={altUrl} />
+    {hreflangLinks.map(({ locale, href }) => (
+      <link rel="alternate" hreflang={locale} href={href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="profile" />
@@ -78,7 +102,7 @@ const personSchema = {
     <meta property="og:description" content={meta.description} />
     <meta property="og:image" content={meta.ogImage ? `${base}${meta.ogImage}` : `${base}/images/javier-saez.jpg`} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content={currentLocale === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale" content={ogLocaleMap[currentLocale] || 'es_ES'} />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

@@ -1,0 +1,300 @@
+{
+  "meta": {
+    "title": "Javier Sáez | Trombonista, Pedagogo e Ricercatore Musicale",
+    "description": "Sito web ufficiale e portfolio professionale di Javier Sáez: Trombonista, Euphoniumista, Pedagogo Musicale e Ricercatore. Scopri il suo percorso accademico, artistico e didattico.",
+    "ogImage": "/images/javier-saez.jpg",
+    "locale": "it"
+  },
+  "nav": {
+    "presentation": "Presentazione",
+    "academic": "Formazione Accademica",
+    "masterclasses": "Formazione Continua e Masterclass",
+    "performance": "Esperienza Artistica",
+    "teaching": "Attività Didattica",
+    "awards": "Premi",
+    "methods": "Metodi",
+    "social": "Canali @javi_trombone",
+    "contact": "Contatto",
+    "langSwitch": "IT"
+  },
+  "hero": {
+    "badge": "Trombonista & Pedagogo Musicale",
+    "name": "Javier Sáez",
+    "tagline": "Trombonista, euphoniumista, docente e ricercatore musicale impegnato nell'eccellenza esecutiva e nelle nuove metodologie didattiche strumentali.",
+    "ctaPrimary": "Esplora la Carriera",
+    "ctaSecondary": "Formazione Accademica",
+    "ctaSocial": "Canale @javi_trombone",
+    "highlights": [
+      { "label": "Titolo Post-laurea", "value": "Triplo Master" },
+      { "label": "Grado Superiore", "value": "Con Lode" },
+      { "label": "Esperienza Didattica", "value": "+12 Anni" },
+      { "label": "Specialità", "value": "Trombone & Euphonium" }
+    ]
+  },
+  "presentation": {
+    "title": "Presentazione",
+    "subtitle": "Profilo Artistico e Pedagogico",
+    "paragraphs": [
+      "Javier Sáez ha iniziato i suoi studi di trombone con Félix García presso l'Ateneo Musical «Schola Cantorum» di la Vall d'Uixó (Castellón, Spagna). Nel 2009 ha concluso gli Studi Professionali di Musica nella specialità Trombone presso il conservatorio della stessa città con il Premio Straordinario di Fine Corso (Premio Fin de Grado).",
+      "Nel 2013 ha conseguito il Titolo Superiore di Musica in Interpretazione presso il Real Conservatorio Superior de Música de Madrid (RCSMM) sotto la guida di José Enrique Cotolí, ottenendo il massimo dei voti e la Lode (Matrícula de Honor) nel recital finale. Nel 2018 ha inoltre completato gli Studi Professionali nella specialità Tuba con l'euphonium presso il Conservatorio Profesional de Música «Manuel de Falla» di Alcorcón, ricevendo ancora una volta il Premio Fin de Grado.",
+      "Il suo profilo didattico e di ricerca si fonda su un triplo master universitario: Master in Formazione Docenti (UCM, 2015), Master in Pedagogia Musicale (UNIR, 2022) e Master in Pedagogia Strumentale (UAX, 2025). In ambito professionale, ha partecipato alla registrazione di importanti colonne sonore come «Otros Mundos» per Movistar+ e «Klaus» per Netflix, nonché ad album in studio come «Incendios» di Conchita con Mad4Strings, coniugando collaborazioni orchestrali con l'insegnamento nei conservatori."
+    ],
+    "quote": "«La pedagogia musicale e l'eccellenza esecutiva sono due discipline inseparabili che si arricchiscono a vicenda sul palco e in aula.»"
+  },
+  "academic": {
+    "title": "Formazione Accademica",
+    "subtitle": "Educazione Superiore e Master Universitari Post-laurea",
+    "tripleMaster": {
+      "title": "Triplo Titolo di Master Universitario",
+      "description": "Specializzazione universitaria in pedagogia strumentale, didattica musicale e ricerca didattica:",
+      "items": [
+        {
+          "degree": "Master Universitario in Pedagogia Strumentale",
+          "institution": "Universidad Alfonso X el Sabio (UAX)",
+          "year": "2025",
+          "focus": "Ricerca e metodologie avanzate per l'insegnamento strumentale."
+        },
+        {
+          "degree": "Master Universitario in Pedagogia Musicale",
+          "institution": "Universidad Internacional de La Rioja (UNIR)",
+          "year": "2022",
+          "focus": "Progettazione curricolare, neuroscienze dell'educazione e didattica musicale contemporanea."
+        },
+        {
+          "degree": "Master in Formazione Docenti di Scuola Secondaria e Liceo",
+          "institution": "Universidad Complutense de Madrid (UCM)",
+          "year": "2015",
+          "focus": "Specialità in Educazione Musicale, psicologia dell'apprendimento e abilitazione all'insegnamento."
+        }
+      ]
+    },
+    "higherDegrees": [
+      {
+        "degree": "Diploma Accademico Superiore in Interpretazione (Trombone)",
+        "institution": "Real Conservatorio Superior de Música de Madrid (RCSMM)",
+        "year": "2013",
+        "honors": "Diploma con Lode (Matrícula de Honor) nel Recital Finale",
+        "professor": "Cattedra di José Enrique Cotolí",
+        "type": "Grado Superiore Ufficiale"
+      },
+      {
+        "degree": "Diploma Professionale di Musica (Tuba / Euphonium)",
+        "institution": "Conservatorio Profesional de Música «Manuel de Falla» di Alcorcón",
+        "year": "2018",
+        "honors": "Premio Straordinario di Fine Corso (Premio Fin de Grado)",
+        "type": "Diploma Professionale"
+      },
+      {
+        "degree": "Diploma Professionale di Musica (Trombone)",
+        "institution": "Conservatorio Profesional de Música de La Vall d'Uixó (Castellón)",
+        "year": "2009",
+        "honors": "Premio Straordinario di Fine Corso (Premio Fin de Grado)",
+        "professor": "Primi studi con Félix García (Ateneo Musical «Schola Cantorum»)",
+        "type": "Diploma Professionale"
+      }
+    ]
+  },
+  "masterclasses": {
+    "title": "Formazione Continua e Masterclass",
+    "subtitle": "Perfezionamento con Solisti e Docenti di Prestigio Internazionale",
+    "description": "Ha approfondito la sua formazione in corsi internazionali di perfezionamento tecnico, interpretazione orchestrale e masterclass con illustri maestri degli ottoni:",
+    "teachers": [
+      { "name": "Gilles Millière", "role": "Solista Internazionale & Docente", "institution": "CNSM di Parigi" },
+      { "name": "Thomas Horch", "role": "Primo Trombone Solista", "institution": "Orchestra Sinfonica della Radio Bavarese (BRSO)" },
+      { "name": "Stephan Schulz", "role": "Trombone Basso Solista", "institution": "Berliner Philharmoniker" },
+      { "name": "Walter Hilgers", "role": "Tubista Solista & Direttore", "institution": "German Brass / Hochschule Weimar" },
+      { "name": "John Kenny", "role": "Solista Internazionale & Specialista", "institution": "Royal Conservatoire of Scotland / Guildhall" },
+      { "name": "Mark Hampson", "role": "Trombone Basso", "institution": "Mahler Chamber Orchestra" },
+      { "name": "Elíes Hernandis", "role": "Docente Ordinario di Trombone", "institution": "Real Conservatorio Superior de Madrid" },
+      { "name": "Juan Bautista Abad", "role": "Primo Trombone Solista", "institution": "Orquesta Sinfónica de Madrid (Teatro Real)" },
+      { "name": "Baltasar Perelló", "role": "Docente e Solista di Trombone", "institution": "Conservatorio Superior de Castellón" },
+      { "name": "Ximo Vicedo", "role": "Primo Trombone Solista", "institution": "Orchestra Sinfonica di RTVE" },
+      { "name": "Carlos Gil", "role": "Docente e Pedagogo di Trombone", "institution": "Conservatorio Superior de Valencia" },
+      { "name": "Indalecio Bonet", "role": "Membro Fondatore & Solista", "institution": "Spanish Brass" },
+      { "name": "Miguel Rivera", "role": "Primo Trombone Solista & Docente", "institution": "Orchestra Sinfonica di Galizia" }
+    ]
+  },
+  "performance": {
+    "title": "Esperienza Artistica: Orchestrale, Cameristica e Solista",
+    "subtitle": "Orchestre Sinfoniche, Formazioni da Camera e Recital Solistici",
+    "soloSection": {
+      "title": "Come Solista",
+      "subtitle": "Esibizioni da Solista con Orchestra Sinfonica e Bande da Concerto",
+      "items": [
+        {
+          "work": "Concerto per trombone e banda militare",
+          "composer": "N. Rimsky-Korsakov",
+          "ensemble": "Banda Sinfonica dell'Ateneo Musical «Schola Cantorum»",
+          "year": "2006"
+        },
+        {
+          "work": "Concertino",
+          "composer": "L.-E. Larsson",
+          "ensemble": "Orchestra Russa «La Perla di Mosca»",
+          "year": "2009"
+        },
+        {
+          "work": "Bolivar",
+          "composer": "E. Cook",
+          "ensemble": "Banda Municipale di Pinto",
+          "year": "2022"
+        }
+      ]
+    },
+    "chamberSection": {
+      "title": "Ensemble di Ottoni da Camera",
+      "subtitle": "Formazioni Cameristiche e Brass Band Tradizionali",
+      "items": [
+        {
+          "name": "«And The Brass»",
+          "period": "Dal 2013",
+          "type": "Low Brass Ensemble",
+          "description": "Ensemble specializzato in ottoni gravi (tromboni, euphonium e tube) con un repertorio che spazia dalla polifonia rinascimentale agli arrangiamenti moderni e jazz."
+        },
+        {
+          "name": "Madrid Brass Band",
+          "period": "Dal 2022",
+          "type": "Brass Band Britannica Tradizionale",
+          "description": "Formazione di ottoni e percussioni nel tipico stile britannico, dedicata a brani da concorso e trascrizioni virtuosistiche."
+        },
+        {
+          "name": "Nuit Brass Quintet",
+          "period": "Dal 2010",
+          "type": "Quintetto di Ottoni",
+          "description": "Quintetto di ottoni classico e contemporaneo con partecipazione a festival e stagioni concertistiche."
+        },
+        {
+          "name": "Special Brass Quintet",
+          "period": "2009 – 2010",
+          "type": "Quintetto di Ottoni",
+          "description": "Formazione cameristica attiva in recital e progetti di divulgazione musicale."
+        }
+      ]
+    },
+    "orchestralSection": {
+      "title": "Esperienza Orchestrale e Registrazioni Audiovisive",
+      "recordingBadge": "Colonne Sonore & Registrazioni in Studio",
+      "recordingTitle": "Sessioni di Registrazione per Cinema e Discografia con Mad4Strings",
+      "recordingText": "Partecipazione a sessioni di registrazione per colonne sonore cinematografiche, serie TV e piattaforme internazionali di streaming – tra cui «Klaus» (Netflix) e «Otros Mundos» (Movistar+) – oltre ad album discografici in studio come «Incendios» di Conchita con la rinomata orchestra di sessione Mad4Strings.",
+      "featuredRecordings": [
+        { "title": "Klaus", "category": "Colonna Sonora Originale", "platform": "Netflix" },
+        { "title": "Otros Mundos", "category": "Colonna Sonora Serie TV", "platform": "Movistar+" },
+        { "title": "Incendios", "category": "Album in Studio", "platform": "Conchita" }
+      ],
+      "orchestrasTitle": "Orchestre e Formazioni Professionali",
+      "orchestrasDescription": "Collaborazioni come trombonista ed euphoniumista con prestigiosi complessi sinfonici, lirici e di musica contemporanea:",
+      "orchestras": [
+        { "name": "Plural Ensemble", "tag": "Musica Contemporanea" },
+        { "name": "Orquesta Sinfónica de RTVE (ORTVE)", "tag": "Sinfonica Nazionale" },
+        { "name": "Orquesta Sinfónica de Madrid (OSM)", "tag": "Orchestra Titolare Teatro Real" },
+        { "name": "Orquesta de la Comunidad de Madrid (ORCAM)", "tag": "Sinfonica e Zarzuela" },
+        { "name": "Orquesta de Extremadura (OEX)", "tag": "Sinfonica" },
+        { "name": "Orquesta Sinfónica Verum", "tag": "Stagione Concertistica" },
+        { "name": "Film Symphony Orchestra (FSO)", "tag": "Tour Colonne Sonore" },
+        { "name": "Orquesta Filarmonía de Madrid", "tag": "Auditorio Nacional" },
+        { "name": "Orquesta Sinfónica Ciudad de Getafe (OSCG)", "tag": "Sinfonica" },
+        { "name": "Orquesta Sinfónica «Alma Mahler» de Rivas-Vaciamadrid", "tag": "Sinfonica" }
+      ]
+    }
+  },
+  "teaching": {
+    "title": "Attività Didattica",
+    "subtitle": "Vocazione Pedagogica e Istituzionale",
+    "description": "Una solida esperienza nell'insegnamento strumentale, direzione di ensemble e preparazione degli allievi in conservatori e scuole civiche di musica:",
+    "positions": [
+      {
+        "period": "2023 – Presente",
+        "role": "Docente di Musica",
+        "institution": "Scuola-Conservatorio Professionale di Musica «Manuel Rodríguez Sales» di Leganés",
+        "description": "Insegnamento ufficiale di ottoni, perfezionamento tecnico degli studenti e direzione di formazioni strumentali."
+      },
+      {
+        "period": "2017 – 2023",
+        "role": "Docente di Ottoni",
+        "institution": "Scuola Civica di Musica del Comune di Pinto",
+        "description": "Lezioni individuali e collettive di trombone, euphonium e tuba, promuovendo la musica d'insieme."
+      },
+      {
+        "period": "2013 – 2016",
+        "role": "Docente di Musica",
+        "institution": "Scuole Civiche di Musica del Comune di Madrid",
+        "description": "Formazione musicale e sviluppo di gruppi di ottoni nei vari centri municipali."
+      },
+      {
+        "period": "Dal 2013",
+        "role": "Collaborazione Didattica",
+        "institution": "Colegio Americano de Madrid (American School of Madrid)",
+        "description": "Workshop di ottoni e attività didattiche in un ambiente scolastico internazionale."
+      }
+    ]
+  },
+  "awards": {
+    "title": "Premi e Riconoscimenti",
+    "subtitle": "Distinzioni Accademiche e Concorsi Musicali",
+    "items": [
+      {
+        "year": "2018",
+        "award": "Premio Straordinario di Fine Corso (Premio Fin de Grado)",
+        "category": "Studi Professionali di Tuba / Euphonium",
+        "institution": "Conservatorio Profesional de Música «Manuel de Falla» di Alcorcón"
+      },
+      {
+        "year": "2013",
+        "award": "Con Lode (Matrícula de Honor)",
+        "category": "Recital Finale – Diploma Accademico Superiore in Trombone",
+        "institution": "Real Conservatorio Superior de Música de Madrid (RCSMM)"
+      },
+      {
+        "year": "2010",
+        "award": "Terzo Premio",
+        "category": "Concorso per Quintetti di Ottoni di Benimodo",
+        "institution": "Benimodo (Valencia)"
+      },
+      {
+        "year": "2009",
+        "award": "Premio Straordinario di Fine Corso (Premio Fin de Grado)",
+        "category": "Studi Professionali di Trombone",
+        "institution": "Conservatorio Profesional de Música di La Vall d'Uixó"
+      },
+      {
+        "year": "2008",
+        "award": "Terzo Premio (Categoria B)",
+        "category": "V Concorso Giovani Interpreti «Villa de Castellnovo»",
+        "institution": "Castellnovo (Castellón)"
+      }
+    ]
+  },
+  "social": {
+    "title": "Canali Digitali & Media",
+    "subtitle": "Divulgazione Audiovisiva & Community (@javi_trombone)",
+    "description": "Segui le esibizioni, i contenuti didattici, le dirette e gli aggiornamenti sulle piattaforme ufficiali di Javier Sáez.",
+    "handle": "@javi_trombone",
+    "channels": [
+      {
+        "platform": "YouTube",
+        "handle": "@javi_trombone",
+        "url": "https://youtube.com/@javi_trombone",
+        "description": "Registrazioni audiovisive, recital, brani per trombone solo ed ensemble di ottoni.",
+        "actionText": "Iscriviti su YouTube"
+      },
+      {
+        "platform": "Instagram",
+        "handle": "@javi_trombone",
+        "url": "https://instagram.com/javi_trombone",
+        "description": "Vita didattica quotidiana, dirette di prove, estratti orchestrali e consigli di studio.",
+        "actionText": "Segui su Instagram"
+      }
+    ]
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati.",
+    "tagline": "Trombonista, Euphoniumista e Pedagogo Musicale",
+    "quickLinks": "Link Rapidi",
+    "connect": "Connetti",
+    "languages": "Lingue",
+    "spanish": "Spagnolo",
+    "english": "Inglese",
+    "german": "Tedesco",
+    "italian": "Italiano"
+  }
+}

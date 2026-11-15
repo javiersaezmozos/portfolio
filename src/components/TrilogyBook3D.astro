@@ -1,7 +1,9 @@
 ---
+import type { SupportedLocale } from '../utils/i18n-routes';
+
 interface Props {
-  initialVolume?: 1 | 2 | 3;
-  locale?: 'es' | 'en';
+  initialVolume?: 1 | 2;
+  locale?: SupportedLocale;
   showControls?: boolean;
 }
 
@@ -17,60 +19,181 @@ const volumes = [
   {
     id: 1,
     code: 'copper',
-    badgeEs: 'VOLUMEN 1 · ELEMENTAL',
-    badgeEn: 'VOLUME 1 · ELEMENTARY',
-    subtitleEs: 'Desarrollo de la flexibilidad labial hasta Fa₄',
-    subtitleEn: 'Lip flexibility development up to F₄',
-    courseEs: '2.º a 4.º EE.EE. · 12 Lecciones + Estudios',
-    courseEn: 'Elementary Grade · 12 Lessons + Etudes',
+    badge: {
+      es: 'VOLUMEN 1 · ELEMENTAL',
+      en: 'VOLUME 1 · ELEMENTARY',
+      de: 'BAND 1 · ELEMENTARSTUFE',
+      it: 'VOLUME 1 · ELEMENTARE',
+    },
+    subtitle: {
+      es: 'Desarrollo de la flexibilidad labial hasta Fa₄',
+      en: 'Lip flexibility development up to F₄',
+      de: 'Entwicklung der Lippenflexibilität bis F₄',
+      it: 'Sviluppo della flessibilità labiale fino a Fa₄',
+    },
+    course: {
+      es: '2.º a 4.º EE.EE. · 12 Lecciones + Estudios',
+      en: 'Elementary Grade · 12 Lessons + Etudes',
+      de: 'Elementarstufe · 12 Lektionen + Etüden',
+      it: 'Corsi Elementari · 12 Lezioni + Studi',
+    },
     spineLabel: 'FLEXIBILIDAD · TROMBÓN 1 · JAVIER SÁEZ MOZOS',
-    metalNameEs: 'Cobre / Bronce Cálido',
-    metalNameEn: 'Warm Copper / Bronze',
+    metalName: {
+      es: 'Cobre / Bronce Cálido',
+      en: 'Warm Copper / Bronze',
+      de: 'Warmes Kupfer / Bronze',
+      it: 'Rame Caldo / Bronzo',
+    },
     hexPrimary: '#E89758',
     hexSecondary: '#D98A5B',
     hexShadow: '#9E472A',
-    statusEs: 'Edición Activa · Lanzamiento',
-    statusEn: 'Active Edition · Available',
+    status: {
+      es: 'Edición Activa · Lanzamiento',
+      en: 'Active Edition · Available',
+      de: 'Aktive Ausgabe · Erhältlich',
+      it: 'Edizione Attiva · Disponibile',
+    },
   },
   {
     id: 2,
     code: 'silver',
-    badgeEs: 'VOLUMEN 2 · INTERMEDIO',
-    badgeEn: 'VOLUME 2 · INTERMEDIATE',
-    subtitleEs: 'Desarrollo de la flexibilidad labial hasta Sib₅',
-    subtitleEn: 'Lip flexibility development up to B♭₅',
-    courseEs: 'Enseñanzas Profesionales · Agilidad y Semicorcheas',
-    courseEn: 'Intermediate Grade · Agility & Sixteenth Notes',
+    badge: {
+      es: 'VOLUMEN 2 · INTERMEDIO',
+      en: 'VOLUME 2 · INTERMEDIATE',
+      de: 'BAND 2 · MITTELSTUFE',
+      it: 'VOLUME 2 · INTERMEDIO',
+    },
+    subtitle: {
+      es: 'Desarrollo de la flexibilidad labial hasta Sib₅',
+      en: 'Lip flexibility development up to B♭₅',
+      de: 'Entwicklung der Lippenflexibilität bis B♭₅',
+      it: 'Sviluppo della flessibilità labiale fino a Sib₅',
+    },
+    course: {
+      es: 'Enseñanzas Profesionales · Agilidad y Semicorcheas',
+      en: 'Intermediate Grade · Agility & Sixteenth Notes',
+      de: 'Mittelstufe · Geläufigkeit & Sechzehntel',
+      it: 'Corsi Professionali · Agilità e Sedicesimi',
+    },
     spineLabel: 'FLEXIBILIDAD · TROMBÓN 2 · JAVIER SÁEZ MOZOS',
-    metalNameEs: 'Plata / Platino Acerado',
-    metalNameEn: 'Brushed Silver / Platinum',
+    metalName: {
+      es: 'Plata / Platino Acerado',
+      en: 'Brushed Silver / Platinum',
+      de: 'Symphonisches Silber / Platin',
+      it: 'Argento Sinfonico / Platino',
+    },
     hexPrimary: '#F1F2F4',
     hexSecondary: '#D6DBDF',
     hexShadow: '#8E959D',
-    statusEs: 'En preparación · Reserva de aviso',
-    statusEn: 'In preparation · Waitlist open',
-  },
-  {
-    id: 3,
-    code: 'gold',
-    badgeEs: 'VOLUMEN 3 · AVANZADO',
-    badgeEn: 'VOLUME 3 · ADVANCED',
-    subtitleEs: 'Desarrollo de la flexibilidad labial hasta Fa₆',
-    subtitleEn: 'Lip flexibility development up to F₆',
-    courseEs: 'Superior y Perfeccionamiento · Registro de Concierto',
-    courseEn: 'Advanced & Conservatory · Concert High Register',
-    spineLabel: 'FLEXIBILIDAD · TROMBÓN 3 · JAVIER SÁEZ MOZOS',
-    metalNameEs: 'Oro / Dorado Regio',
-    metalNameEn: 'Regal Gold / Brass',
-    hexPrimary: '#F9D658',
-    hexSecondary: '#E5C148',
-    hexShadow: '#A88428',
-    statusEs: 'En preparación · Reserva de aviso',
-    statusEn: 'In preparation · Waitlist open',
+    status: {
+      es: 'En preparación · Reserva de aviso',
+      en: 'In preparation · Waitlist open',
+      de: 'In Vorbereitung · Vormerkung möglich',
+      it: 'In preparazione · Lista d\'attesa',
+    },
   },
 ];
 
 const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0];
+
+const coverFootMap: Record<SupportedLocale, string> = {
+  es: 'COLECCIÓN METODOLOGÍA DE FLEXIBILIDAD · QR + TromBot',
+  en: 'FLEXIBILITY METHODOLOGY COLLECTION · QR + TromBot',
+  de: 'KOLLEKTION FLEXIBILITÄTSMETHODIK · QR + TromBot',
+  it: 'COLLEZIONE METODOLOGIA DI FLESSIBILITÀ · QR + TromBot',
+};
+
+const rightHeaderMap: Record<SupportedLocale, { eyebrow: string; title: string; desc: string }> = {
+  es: {
+    eyebrow: 'Ingeniería Editorial · Inspección 3D',
+    title: 'Método de Flexibilidad: Progresión Acústica',
+    desc: 'Selecciona cada volumen para inspeccionar su aleación tipográfica y comprobar el lomo de la edición impresa en Amazon KDP o el margen interior de seguridad de 20 mm para atril y Amazon Kindle.',
+  },
+  en: {
+    eyebrow: 'Editorial Engineering · 3D Inspection',
+    title: 'Flexibility Method: Acoustic Progression',
+    desc: 'Select each volume to inspect its typographic alloy and check the Amazon KDP paperback spine or the 20 mm inner safety margin for music stands and Amazon Kindle.',
+  },
+  de: {
+    eyebrow: 'Verlags-Engineering · 3D-Inspektion',
+    title: 'Flexibilitätsmethode: Akustische Progression',
+    desc: 'Wählen Sie einen Band aus, um den Notenstich zu begutachten und den Buchrücken der Amazon KDP-Ausgabe sowie den 20-mm-Sicherheitsrand für Notenständer und Kindle zu prüfen.',
+  },
+  it: {
+    eyebrow: 'Ingegneria Editoriale · Ispezione 3D',
+    title: 'Metodo di Flessibilità: Progressione Acustica',
+    desc: 'Seleziona ciascun volume per ispezionare i dettagli editoriali e verificare il dorso dell\'edizione cartacea Amazon KDP o il margine interno di 20 mm per leggio e Kindle.',
+  },
+};
+
+const volSelectLabelMap: Record<SupportedLocale, string> = {
+  es: '1. Seleccionar Volumen del Método:',
+  en: '1. Select Method Volume:',
+  de: '1. Band der Methode auswählen:',
+  it: '1. Seleziona il Volume del Metodo:',
+};
+
+const rangeVol1Map: Record<SupportedLocale, string> = {
+  es: 'Hasta Fa₄',
+  en: 'Up to F₄',
+  de: 'Bis F₄',
+  it: 'Fino a Fa₄',
+};
+
+const rangeVol2Map: Record<SupportedLocale, string> = {
+  es: 'Hasta Sib₅',
+  en: 'Up to B♭₅',
+  de: 'Bis B♭₅',
+  it: 'Fino a Sib₅',
+};
+
+const panelLabelsMap: Record<SupportedLocale, { targetRange: string; recStage: string }> = {
+  es: { targetRange: 'Tesitura objetivo', recStage: 'Etapa recomendada' },
+  en: { targetRange: 'Target Range', recStage: 'Recommended Stage' },
+  de: { targetRange: 'Ziel-Tonumfang', recStage: 'Empfohlene Stufe' },
+  it: { targetRange: 'Estensione obiettivo', recStage: 'Livello consigliato' },
+};
+
+const bindingSectionMap: Record<SupportedLocale, {
+  label: string;
+  kdpTitle: string;
+  kdpDesc: string;
+  kindleTitle: string;
+  kindleDesc: string;
+}> = {
+  es: {
+    label: '2. Simulador de Edición y Atril:',
+    kdpTitle: 'Amazon KDP (Tapa Blanda)',
+    kdpDesc: 'Edición impresa oficial con lomo encolado y pastilla metálica de 4×12 mm.',
+    kindleTitle: 'Amazon Kindle / Margen 20 mm',
+    kindleDesc: 'Edición digital Print Replica y reserva de 20 mm para lectura limpia en atril.',
+  },
+  en: {
+    label: '2. Edition & Music-Stand Simulator:',
+    kdpTitle: 'Amazon KDP (Paperback)',
+    kdpDesc: 'Official print edition with perfect-bound spine and 4×12 mm metallic badge.',
+    kindleTitle: 'Amazon Kindle / 20 mm Margin',
+    kindleDesc: 'Print Replica digital edition & 20 mm inner reserve for clean music-stand reading.',
+  },
+  de: {
+    label: '2. Ausgaben- und Notenständer-Simulator:',
+    kdpTitle: 'Amazon KDP (Taschenbuch)',
+    kdpDesc: 'Offizielle Druckausgabe mit Klebebindung und 4×12 mm Metallelement.',
+    kindleTitle: 'Amazon Kindle / 20 mm Bundsteg',
+    kindleDesc: 'Digitale Print-Replica-Ausgabe mit 20 mm Bundsteg für optimale Lesbarkeit.',
+  },
+  it: {
+    label: '2. Simulatore di Edizione e Leggio:',
+    kdpTitle: 'Amazon KDP (Copertina Flessibile)',
+    kdpDesc: 'Edizione cartacea ufficiale con rilegatura fresata e dettaglio metallico 4×12 mm.',
+    kindleTitle: 'Amazon Kindle / Margine 20 mm',
+    kindleDesc: 'Edizione digitale Print Replica con 20 mm di margine per una lettura chiara sul leggio.',
+  },
+};
+
+const rightContent = rightHeaderMap[locale] || rightHeaderMap.es;
+const panelLabels = panelLabelsMap[locale] || panelLabelsMap.es;
+const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
 ---
 
 <section
@@ -154,9 +277,7 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
               <div class="relative h-full w-full flex flex-col justify-between p-5 sm:p-6 z-10">
                 <img
                   src={`${base}/images/metodos/portada-duo-trombot.jpg`}
-                  alt={locale === 'es'
-                    ? 'Cubierta oficial de Trombón Flexibilidad: estudiante de trombón junto al asistente pedagógico TromBot IA en escenario grafito'
-                    : 'Official cover of Trombone Flexibility: trombone student alongside pedagogical assistant TromBot AI on a graphite stage'}
+                  alt="Cubierta oficial de Trombón Flexibilidad: estudiante de trombón junto al asistente pedagógico TromBot IA"
                   class="pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom brightness-95 contrast-105"
                   loading="eager"
                   decoding="async"
@@ -180,7 +301,7 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                   aria-hidden="true"
                 ></div>
 
-                <!-- BLOQUE SUPERIOR: Jerarquía exacta de cubierta_completa.pdf -->
+                <!-- BLOQUE SUPERIOR -->
                 <div class="relative z-20 text-center pt-1">
                   <p class="font-serif text-[10.5px] sm:text-xs font-medium tracking-[0.12em] text-white/95 mb-1.5">
                     Javier Sáez Mozos
@@ -196,7 +317,7 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                   </p>
 
                   <p class="mt-0.5 font-serif text-[9px] sm:text-[10px] font-semibold tracking-[0.28em] text-slate-100 uppercase">
-                    {locale === 'es' ? 'MÉTODO DE TROMBÓN' : 'TROMBONE METHOD'}
+                    {locale === 'es' ? 'MÉTODO DE TROMBÓN' : locale === 'de' ? 'POSAUNENMETHODE' : locale === 'it' ? 'METODO PER TROMBONE' : 'TROMBONE METHOD'}
                   </p>
 
                   <!-- Cartela de Volumen y Nivel -->
@@ -206,7 +327,7 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                       class="inline-block font-serif text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-500"
                       style={`color: ${initialVolData.hexPrimary};`}
                     >
-                      {locale === 'es' ? initialVolData.badgeEs : initialVolData.badgeEn}
+                      {initialVolData.badge[locale] || initialVolData.badge.es}
                     </span>
                   </div>
 
@@ -215,25 +336,25 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                     data-book-subtitle
                     class="mt-1 font-serif italic text-[9px] sm:text-[10px] text-slate-200 tracking-wide transition-colors duration-500"
                   >
-                    {locale === 'es' ? initialVolData.subtitleEs : initialVolData.subtitleEn}
+                    {initialVolData.subtitle[locale] || initialVolData.subtitle.es}
                   </p>
                 </div>
 
                 <!-- PIE DISCRETO SOBRE EL ESCENARIO DE PORTADA -->
                 <div class="relative z-20 text-center pb-0.5">
                   <span class="inline-block rounded-full border border-white/15 bg-black/55 px-2.5 py-0.5 font-sans text-[8px] uppercase tracking-[0.18em] text-slate-300/90 backdrop-blur-sm">
-                    {locale === 'es' ? 'Colección Metales Nobles · QR + TromBot' : 'Noble Metals Collection · QR + TromBot'}
+                    {coverFootMap[locale] || coverFootMap.es}
                   </span>
                 </div>
               </div>
             </div>
 
-            <!-- 2. LOMO FÍSICO (Cara X- · 26px simulando ~6mm escalado para visibilidad en atril) -->
+            <!-- 2. LOMO FÍSICO (Cara X-) -->
             <div
               class="book-face book-spine flex flex-col items-center justify-between py-4 bg-[#141518] border-y border-l border-white/15"
               aria-hidden="true"
             >
-              <!-- Pastilla geométrica metálica superior (4 x 12 mm proporción) -->
+              <!-- Pastilla geométrica metálica superior -->
               <div
                 data-spine-pill
                 class="w-2.5 h-6 rounded-[1px] shadow-sm transition-colors duration-500"
@@ -241,7 +362,7 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
               ></div>
 
               <!-- Texto vertical del lomo girado 90° -->
-              <div class=" book-spine-text font-sans text-[7.5px] font-medium tracking-[0.2em] text-slate-200/90 uppercase whitespace-nowrap">
+              <div class="book-spine-text font-sans text-[7.5px] font-medium tracking-[0.2em] text-slate-200/90 uppercase whitespace-nowrap">
                 <span data-spine-label>{initialVolData.spineLabel}</span>
               </div>
 
@@ -251,29 +372,33 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
               </div>
             </div>
 
-            <!-- 3. CORTE DERECHO DE HOJAS (Cara X+ · Papel marfil 100g con micro-estrías de pliegos) -->
+            <!-- 3. CORTE DERECHO DE HOJAS -->
             <div class="book-face book-pages-right" aria-hidden="true"></div>
 
-            <!-- 4. CORTE SUPERIOR E INFERIOR DE HOJAS (Caras Y- / Y+) -->
+            <!-- 4. CORTE SUPERIOR E INFERIOR DE HOJAS -->
             <div class="book-face book-pages-top" aria-hidden="true"></div>
             <div class="book-face book-pages-bottom" aria-hidden="true"></div>
 
-            <!-- 5. CONTRACUBIERTA (Cara Z- · Replica fiel de cubierta_completa.pdf pág. 2) -->
+            <!-- 5. CONTRACUBIERTA (Cara Z-) -->
             <div
               class="book-face book-back rounded-l-[4px] bg-[#0B0C0E] border border-white/10 p-5 flex flex-col justify-between"
               aria-hidden="true"
             >
               <div class="text-center border-b border-white/10 pb-2.5">
-                <p class="font-serif text-sm font-bold tracking-[0.18em] text-copper uppercase">
+                <p class="font-serif text-sm font-bold tracking-[0.18em] text-gold-400 uppercase">
                   FLEXIBILIDAD
                 </p>
                 <p class="mt-0.5 font-serif text-[7.5px] tracking-[0.2em] text-white uppercase">
-                  {locale === 'es' ? 'MÉTODO DE TROMBÓN · VOLUMEN 1 (ELEMENTAL)' : 'TROMBONE METHOD · VOLUME 1 (ELEMENTARY)'}
+                  {locale === 'es' ? 'MÉTODO DE TROMBÓN · VOLUMEN 1 (ELEMENTAL)' : locale === 'de' ? 'POSAUNENMETHODE · BAND 1 (ELEMENTARSTUFE)' : locale === 'it' ? 'METODO PER TROMBONE · VOLUME 1 (ELEMENTARE)' : 'TROMBONE METHOD · VOLUME 1 (ELEMENTARY)'}
                 </p>
-                <p class="mt-1 font-serif text-[8px] text-copper-light leading-snug">
+                <p class="mt-1 font-serif text-[8px] text-gold-300 leading-snug">
                   {locale === 'es'
                     ? 'La guía estructurada para iniciar y desarrollar tu flexibilidad labial hasta Fa₄'
-                    : 'The structured guide to build and develop your lip flexibility up to F₄'}
+                    : locale === 'de'
+                      ? 'Der strukturierte Leitfaden für Ihre Lippenflexibilität bis F₄'
+                      : locale === 'it'
+                        ? 'La guida strutturata per iniziare e sviluppare la flessibilità labiale fino a Fa₄'
+                        : 'The structured guide to build and develop your lip flexibility up to F₄'}
                 </p>
               </div>
 
@@ -281,30 +406,29 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                 <p>
                   {locale === 'es'
                     ? 'Moverse ágilmente entre armónicos sin forzar la embocadura es posible cuando el aire se convierte en el motor y los labios responden con elasticidad.'
-                    : 'Moving fluidly across harmonics without forcing the embouchure becomes natural when airflow drives the sound and the lips respond with elasticity.'}
+                    : locale === 'de'
+                      ? 'Fließende Übergänge zwischen Naturtönen ohne Verkrampfung gelingen, wenn die Luftsäule die Führung übernimmt und die Lippen elastisch reagieren.'
+                      : locale === 'it'
+                        ? 'Muoversi fluidamente tra gli armonici senza forzare l\'imboccatura è naturale quando l\'aria diventa il motore e le labbra rispondono con elasticità.'
+                        : 'Moving fluidly across harmonics without forcing the embouchure becomes natural when airflow drives the sound and the lips respond with elasticity.'}
                 </p>
                 <ul class="space-y-1 text-[7.8px] text-slate-300 font-sans">
                   <li>
-                    <span class="text-copper">✦</span>{' '}
-                    <strong class="text-white">{locale === 'es' ? 'Grabaciones y práctica interactiva:' : 'Recordings & interactive study:'}</strong>{' '}
-                    {locale === 'es' ? '15 códigos QR con videopartituras.' : '15 QR codes linking to video scores.'}
+                    <span class="text-gold-400">✦</span>{' '}
+                    <strong class="text-white">{locale === 'es' ? 'Grabaciones y práctica interactiva:' : locale === 'de' ? 'Aufnahmen & Üben:' : locale === 'it' ? 'Registrazioni e pratica:' : 'Recordings & practice:'}</strong>{' '}
+                    {locale === 'es' ? '15 códigos QR con videopartituras.' : locale === 'de' ? '15 QR-Codes mit Videopartituren.' : locale === 'it' ? '15 codici QR con videopartiture.' : '15 QR codes linking to video scores.'}
                   </li>
                   <li>
-                    <span class="text-copper">✦</span>{' '}
-                    <strong class="text-white">{locale === 'es' ? 'Progresión Curricular en 3 Niveles:' : '3-Level Curriculum:'}</strong>{' '}
-                    {locale === 'es' ? 'Sib₂–Fa₃–Sib₃ · +Re₄ · +Fa₄.' : 'Bb₂–F₃–Bb₃ · +D₄ · +F₄.'}
+                    <span class="text-gold-400">✦</span>{' '}
+                    <strong class="text-white">{locale === 'es' ? 'Progresión Curricular en 3 Niveles:' : locale === 'de' ? '3-Stufen-Lehrplan:' : locale === 'it' ? 'Curriculum in 3 Livelli:' : '3-Level Curriculum:'}</strong>{' '}
+                    {locale === 'es' ? 'Sib₂–Fa₃–Sib₃ · +Re₄ · +Fa₄.' : locale === 'de' ? 'B♭₂–F₃–B♭₃ · +D₄ · +F₄.' : locale === 'it' ? 'Sib₂–Fa₃–Sib₃ · +Re₄ · +Fa₄.' : 'Bb₂–F₃–Bb₃ · +D₄ · +F₄.'}
                   </li>
                   <li>
-                    <span class="text-copper">✦</span>{' '}
-                    <strong class="text-white">{locale === 'es' ? 'Asistente pedagógico TromBot:' : 'TromBot Pedagogue:'}</strong>{' '}
-                    {locale === 'es' ? 'Pautas visuales para el estudio en casa.' : 'Visual guidance for home practice.'}
+                    <span class="text-gold-400">✦</span>{' '}
+                    <strong class="text-white">{locale === 'es' ? 'Asistente pedagógico TromBot:' : locale === 'de' ? 'Pädagogischer Assistent TromBot:' : locale === 'it' ? 'Assistente TromBot:' : 'TromBot Pedagogue:'}</strong>{' '}
+                    {locale === 'es' ? 'Pautas visuales para el estudio en casa.' : locale === 'de' ? 'Visuelle Leitlinien für das Heimstudium.' : locale === 'it' ? 'Linee guida visive per lo studio.' : 'Visual guidance for home practice.'}
                   </li>
                 </ul>
-                <p class="pt-1 text-center font-serif italic text-[8.5px] text-copper-light">
-                  {locale === 'es'
-                    ? '¡Construye una embocadura fuerte y flexible haciendo que el aire trabaje para ti!'
-                    : 'Build a strong, flexible embouchure by letting the air do the work for you!'}
-                </p>
               </div>
 
               <div class="flex items-end justify-between border-t border-white/10 pt-2">
@@ -313,7 +437,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                   <p>US LETTER · MARGEN 20 MM</p>
                   <p>WWW.JAVISAEZ.COM</p>
                 </div>
-                <!-- Simulación código ISBN KDP -->
                 <div class="h-9 w-14 rounded-[2px] bg-white p-1 flex flex-col justify-between items-center">
                   <div class="w-full h-5 bg-[repeating-linear-gradient(90deg,#111_0px,#111_1px,transparent_1px,transparent_3px)]"></div>
                   <span class="text-[5.5px] font-mono text-black leading-none">ISBN KDP</span>
@@ -324,14 +447,18 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
           </div>
         </div>
 
-        <!-- Barra de estado de interacción 3D + Botón accesible de Pausa (WCAG 2.2.2) -->
+        <!-- Barra de estado de interacción 3D + Botón accesible de Pausa -->
         <div class="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-graphite-surface/90 border border-graphite-border px-3 py-1">
-            <span class="h-2 w-2 rounded-full bg-copper animate-pulse" data-status-dot></span>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-dark-900/80 border border-dark-700/60 px-3 py-1">
+            <span class="h-2 w-2 rounded-full bg-gold-400 animate-pulse" data-status-dot></span>
             <span data-interaction-hint>
               {locale === 'es'
                 ? 'Mueve el cursor o inclina para ver el reflejo metálico y el lomo'
-                : 'Move pointer or tilt to inspect metallic foil reflection & spine'}
+                : locale === 'de'
+                  ? 'Maus bewegen oder neigen für Glanzeffekt und Buchrücken'
+                  : locale === 'it'
+                    ? 'Muovi il cursore o inclina per vedere il riflesso metallico e il dorso'
+                    : 'Move pointer or tilt to inspect metallic foil reflection & spine'}
             </span>
           </span>
 
@@ -339,50 +466,46 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
             type="button"
             data-toggle-flip
             aria-pressed="false"
-            class="rounded-full bg-graphite-surface hover:bg-dark-800 border border-graphite-border px-3 py-1 text-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+            class="rounded-full bg-dark-900 hover:bg-dark-800 border border-dark-700 px-3 py-1 text-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
           >
-            {locale === 'es' ? 'Girar contraportada (180°)' : 'Flip back cover (180°)'}
+            {locale === 'es' ? 'Girar contraportada (180°)' : locale === 'de' ? 'Rückseite drehen (180°)' : locale === 'it' ? 'Ruota retro (180°)' : 'Flip back cover (180°)'}
           </button>
 
           <button
             type="button"
             data-toggle-motion
-            class="rounded-full bg-graphite-surface hover:bg-dark-800 border border-graphite-border px-3 py-1 text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+            class="rounded-full bg-dark-900 hover:bg-dark-800 border border-dark-700 px-3 py-1 text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
           >
-            {locale === 'es' ? 'Pausar giro 3D' : 'Pause 3D motion'}
+            {locale === 'es' ? 'Pausar giro 3D' : locale === 'de' ? '3D-Drehung anhalten' : locale === 'it' ? 'Pausa rotazione 3D' : 'Pause 3D motion'}
           </button>
         </div>
       </div>
 
-      <!-- COLUMNA DERECHA: Selector de Aleación (Vol. 1, 2, 3) y Comparador KDP vs Espiral -->
+      <!-- COLUMNA DERECHA: Selector de Volumen (Vol. 1, 2) y Comparador KDP vs Espiral -->
       {showControls && (
         <div class="lg:col-span-5 flex flex-col justify-center space-y-6">
           
           <div>
-            <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-copper-light">
-              {locale === 'es' ? 'Ingeniería Editorial · Inspección 3D' : 'Editorial Engineering · 3D Inspection'}
+            <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gold-400">
+              {rightContent.eyebrow}
             </span>
             <h2 class="mt-2 font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              {locale === 'es'
-                ? 'Tres Metales Nobles, Una Progresión Acústica'
-                : 'Three Noble Metals, One Acoustic Progression'}
+              {rightContent.title}
             </h2>
             <p class="mt-2 text-sm text-slate-300 leading-relaxed">
-              {locale === 'es'
-                ? 'Selecciona cada volumen para inspeccionar su aleación tipográfica y comprobar el lomo de la edición impresa en Amazon KDP o el margen interior de seguridad de 20 mm para atril y Amazon Kindle.'
-                : 'Select each volume to inspect its typographic alloy and check the Amazon KDP paperback spine or the 20 mm inner safety margin for music stands and Amazon Kindle.'}
+              {rightContent.desc}
             </p>
           </div>
 
-          <!-- Selector de Volumen (Tablist accesible con indicador de borde según modern-web-guidance `tabs`) -->
+          <!-- Selector de Volumen (Solo Vol. 1 y Vol. 2) -->
           <div>
-            <p id="trilogy-vol-tabs-label" class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
-              {locale === 'es' ? '1. Seleccionar Volumen de la Trilogía:' : '1. Select Trilogy Volume:'}
+            <p id="method-vol-tabs-label" class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+              {volSelectLabelMap[locale] || volSelectLabelMap.es}
             </p>
             <div
               role="tablist"
-              aria-labelledby="trilogy-vol-tabs-label"
-              class="grid grid-cols-3 gap-2 rounded-xl bg-graphite-deep p-1.5 border border-graphite-border"
+              aria-labelledby="method-vol-tabs-label"
+              class="grid grid-cols-2 gap-2 rounded-xl bg-dark-950 p-1.5 border border-dark-700/60"
             >
               {volumes.map((vol) => (
                 <button
@@ -392,11 +515,11 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                   aria-selected={vol.id === initialVolume ? 'true' : 'false'}
                   data-vol-tab={vol.id}
                   data-vol-code={vol.code}
-                  data-vol-badge={locale === 'es' ? vol.badgeEs : vol.badgeEn}
-                  data-vol-subtitle={locale === 'es' ? vol.subtitleEs : vol.subtitleEn}
-                  data-vol-course={locale === 'es' ? vol.courseEs : vol.courseEn}
-                  data-vol-metal-name={locale === 'es' ? vol.metalNameEs : vol.metalNameEn}
-                  data-vol-status={locale === 'es' ? vol.statusEs : vol.statusEn}
+                  data-vol-badge={vol.badge[locale] || vol.badge.es}
+                  data-vol-subtitle={vol.subtitle[locale] || vol.subtitle.es}
+                  data-vol-course={vol.course[locale] || vol.course.es}
+                  data-vol-metal-name={vol.metalName[locale] || vol.metalName.es}
+                  data-vol-status={vol.status[locale] || vol.status.es}
                   data-vol-spine={vol.spineLabel}
                   data-vol-hex={vol.hexPrimary}
                   data-vol-hex-sec={vol.hexSecondary}
@@ -412,7 +535,7 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                     <span>Vol. {vol.id}</span>
                   </span>
                   <span class="mt-0.5 text-[11px] text-slate-400">
-                    {vol.id === 1 ? 'Hasta Fa₄' : vol.id === 2 ? 'Hasta Sib₅' : 'Hasta Fa₆'}
+                    {vol.id === 1 ? (rangeVol1Map[locale] || rangeVol1Map.es) : (rangeVol2Map[locale] || rangeVol2Map.es)}
                   </span>
                 </button>
               ))}
@@ -424,40 +547,40 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
             role="tabpanel"
             aria-labelledby={`tab-vol-${initialVolume}`}
             data-vol-tabpanel
-            class="rounded-xl bg-graphite-surface/90 border border-graphite-border p-4 space-y-3 shadow-lg"
+            class="rounded-xl bg-dark-900/60 border border-dark-700/60 p-4 space-y-3 shadow-lg backdrop-blur-sm"
           >
-            <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+            <div class="flex items-center justify-between border-b border-dark-700/60 pb-2.5">
               <div>
                 <span
                   data-panel-metal-label
                   class="text-xs font-mono uppercase tracking-wider"
                   style={`color: ${initialVolData.hexPrimary};`}
                 >
-                  {locale === 'es' ? initialVolData.metalNameEs : initialVolData.metalNameEn}
+                  {initialVolData.metalName[locale] || initialVolData.metalName.es}
                 </span>
                 <h3 data-panel-title class="font-serif text-lg font-bold text-white">
-                  {locale === 'es' ? initialVolData.badgeEs : initialVolData.badgeEn}
+                  {initialVolData.badge[locale] || initialVolData.badge.es}
                 </h3>
               </div>
               <span
                 data-panel-status
-                class="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium text-slate-200"
+                class="rounded-full bg-dark-800 border border-dark-700 px-2.5 py-1 text-[11px] font-medium text-slate-200"
               >
-                {locale === 'es' ? initialVolData.statusEs : initialVolData.statusEn}
+                {initialVolData.status[locale] || initialVolData.status.es}
               </span>
             </div>
 
             <dl class="grid grid-cols-2 gap-3 text-xs">
               <div>
-                <dt class="text-slate-400">{locale === 'es' ? 'Tesitura objetivo' : 'Target Range'}</dt>
+                <dt class="text-slate-400">{panelLabels.targetRange}</dt>
                 <dd data-panel-subtitle class="mt-0.5 font-medium text-slate-100">
-                  {locale === 'es' ? initialVolData.subtitleEs : initialVolData.subtitleEn}
+                  {initialVolData.subtitle[locale] || initialVolData.subtitle.es}
                 </dd>
               </div>
               <div>
-                <dt class="text-slate-400">{locale === 'es' ? 'Etapa recomendada' : 'Recommended Stage'}</dt>
+                <dt class="text-slate-400">{panelLabels.recStage}</dt>
                 <dd data-panel-course class="mt-0.5 font-medium text-slate-100">
-                  {locale === 'es' ? initialVolData.courseEs : initialVolData.courseEn}
+                  {initialVolData.course[locale] || initialVolData.course.es}
                 </dd>
               </div>
             </dl>
@@ -466,22 +589,20 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
           <!-- Comparador táctil: Encuadernación KDP vs Vista de Atril (Margen 20 mm) -->
           <div>
             <p class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
-              {locale === 'es' ? '2. Simulador de Edición y Atril:' : '2. Edition & Music-Stand Simulator:'}
+              {bindingContent.label}
             </p>
             <div class="grid grid-cols-2 gap-2.5">
               <button
                 type="button"
                 data-binding-btn="kdp"
                 aria-pressed="true"
-                class="binding-btn flex flex-col items-start rounded-xl border border-copper/50 bg-copper/10 p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+                class="binding-btn flex flex-col items-start rounded-xl border border-gold-500/50 bg-gold-500/10 p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
               >
                 <span class="text-xs font-bold text-white">
-                  {locale === 'es' ? 'Amazon KDP (Tapa Blanda)' : 'Amazon KDP (Paperback)'}
+                  {bindingContent.kdpTitle}
                 </span>
                 <span class="mt-1 text-[11px] text-slate-300 leading-snug">
-                  {locale === 'es'
-                    ? 'Edición impresa oficial con lomo encolado y pastilla metálica de 4×12 mm.'
-                    : 'Official print edition with perfect-bound spine and 4×12 mm metallic badge.'}
+                  {bindingContent.kdpDesc}
                 </span>
               </button>
 
@@ -489,15 +610,13 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
                 type="button"
                 data-binding-btn="spiral"
                 aria-pressed="false"
-                class="binding-btn flex flex-col items-start rounded-xl border border-graphite-border bg-graphite-surface/60 hover:bg-graphite-surface p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+                class="binding-btn flex flex-col items-start rounded-xl border border-dark-700 bg-dark-900/60 hover:bg-dark-850 p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
               >
                 <span class="text-xs font-bold text-white">
-                  {locale === 'es' ? 'Amazon Kindle / Margen 20 mm' : 'Amazon Kindle / 20 mm Margin'}
+                  {bindingContent.kindleTitle}
                 </span>
                 <span class="mt-1 text-[11px] text-slate-300 leading-snug">
-                  {locale === 'es'
-                    ? 'Edición digital Print Replica y reserva de 20 mm para lectura limpia en atril.'
-                    : 'Print Replica digital edition & 20 mm inner reserve for clean music-stand reading.'}
+                  {bindingContent.kindleDesc}
                 </span>
               </button>
             </div>
@@ -510,12 +629,10 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
 </section>
 
 <style>
-  /* Escenario con perspectiva 3D real */
   .book-stage {
     perspective: 1400px;
   }
 
-  /* Objeto 3D con identidad de transformación explícita (modern-web-guidance: individual-transform-properties) */
   .book-3d-object {
     transform-style: preserve-3d;
     translate: 0px 0px;
@@ -526,7 +643,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
     will-change: transform;
   }
 
-  /* Flotación suave solo cuando el usuario no solicita reducir movimiento (modern-web-guidance: motion) */
   @media (prefers-reduced-motion: no-preference) {
     .book-3d-object:not([data-motion-paused="true"]):not([data-pointer-active="true"]) {
       animation: bookFloat 6s ease-in-out infinite;
@@ -548,7 +664,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
     backface-visibility: hidden;
   }
 
-  /* Cara frontal desplazada +14px en Z (espesor total 28px) */
   .book-front {
     transform: translateZ(14px);
     box-shadow:
@@ -556,13 +671,11 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
       inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   }
 
-  /* Contracubierta desplazada -14px en Z */
   .book-back {
     transform: rotateY(180deg) translateZ(14px);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
   }
 
-  /* Lomo izquierdo (ancho 28px = de -14px a +14px en Z) */
   .book-spine {
     width: 28px;
     left: -14px;
@@ -574,7 +687,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
     text-orientation: mixed;
   }
 
-  /* Corte derecho de páginas (papel blanco marfil con micro-estrías de hojas) */
   .book-pages-right {
     width: 26px;
     right: -13px;
@@ -627,7 +739,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
       );
   }
 
-  /* Estampación metálica tridimensional para el titular FLEXIBILIDAD */
   .book-metallic-title {
     background-size: 200% 200%;
     background-position: var(--sheen-pos, 50%) 50%;
@@ -660,19 +771,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
     );
   }
 
-  .book-metallic-title[data-metal-variant="gold"] {
-    background-image: linear-gradient(
-      115deg,
-      #A88428 0%,
-      #E5C148 30%,
-      #FFFDF0 49%,
-      #F9D658 56%,
-      #D8A935 85%,
-      #A88428 100%
-    );
-  }
-
-  /* Haz de luz especular sobre la portada cuando interactúa el puntero */
   .book-specular-sheen {
     background: radial-gradient(
       380px circle at calc(var(--pointer-x, 0.5) * 100%) calc(var(--pointer-y, 0.35) * 100%),
@@ -683,7 +781,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
     mix-blend-mode: soft-light;
   }
 
-  /* Indicador de pestaña seleccionada mediante pseudo-elemento con borde (modern-web-guidance: tabs) */
   .vol-tab-btn[aria-selected="true"] {
     background-color: rgba(255, 255, 255, 0.07);
   }
@@ -706,7 +803,7 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
         if (root.dataset.initialized === 'true') return;
         root.dataset.initialized = 'true';
 
-        const locale = root.dataset.locale === 'en' ? 'en' : 'es';
+        const locale = root.dataset.locale || 'es';
         const stage = root.querySelector<HTMLElement>('[data-book-stage]');
         const bookObject = root.querySelector<HTMLElement>('[data-book-object]');
         const sheen = root.querySelector<HTMLElement>('[data-book-sheen]');
@@ -737,14 +834,16 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
         let isFlipped = false;
         let isMotionPaused = prefersReducedMotion;
 
+        const resumeText = locale === 'es' ? 'Reanudar giro 3D' : locale === 'de' ? '3D-Drehung fortsetzen' : locale === 'it' ? 'Riprendi rotazione 3D' : 'Resume 3D motion';
+        const pauseText = locale === 'es' ? 'Pausar giro 3D' : locale === 'de' ? '3D-Drehung anhalten' : locale === 'it' ? 'Pausa rotazione 3D' : 'Pause 3D motion';
+
         if (isMotionPaused) {
           bookObject.dataset.motionPaused = 'true';
           if (motionBtn) {
-            motionBtn.textContent = locale === 'es' ? 'Reanudar giro 3D' : 'Resume 3D motion';
+            motionBtn.textContent = resumeText;
           }
         }
 
-        // Control de inclinación 3D por puntero
         const updateBookTransform = (rotX: number, rotY: number) => {
           try {
             const baseFlip = isFlipped ? 180 : 0;
@@ -761,8 +860,8 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
             const relX = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
             const relY = Math.min(Math.max((e.clientY - rect.top) / rect.height, 0), 1);
 
-            const rotY = (relX - 0.5) * 38; // -19° a +19°
-            const rotX = (0.5 - relY) * 24; // -12° a +12°
+            const rotY = (relX - 0.5) * 38;
+            const rotX = (0.5 - relY) * 24;
 
             bookObject.dataset.pointerActive = 'true';
             root.style.setProperty('--pointer-x', relX.toFixed(3));
@@ -787,7 +886,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
           }
         });
 
-        // Giro de 180° para ver la contraportada y el lomo
         flipBtn?.addEventListener('click', () => {
           try {
             isFlipped = !isFlipped;
@@ -798,7 +896,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
           }
         });
 
-        // Pausa accesible de movimiento (WCAG 2.2.2)
         motionBtn?.addEventListener('click', () => {
           try {
             isMotionPaused = !isMotionPaused;
@@ -806,18 +903,17 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
               bookObject.dataset.motionPaused = 'true';
               if (sheen) sheen.style.opacity = '0';
               updateBookTransform(0, 0);
-              motionBtn.textContent = locale === 'es' ? 'Reanudar giro 3D' : 'Resume 3D motion';
+              motionBtn.textContent = resumeText;
             } else {
               delete bookObject.dataset.motionPaused;
               updateBookTransform(4, -18);
-              motionBtn.textContent = locale === 'es' ? 'Pausar giro 3D' : 'Pause 3D motion';
+              motionBtn.textContent = pauseText;
             }
           } catch (err) {
             console.error('[TrilogyBook3D] Error al alternar movimiento:', err);
           }
         });
 
-        // Selector de Volumen (1 = Cobre, 2 = Plata, 3 = Oro)
         const selectVolumeTab = (selectedBtn: HTMLButtonElement) => {
           try {
             volTabs.forEach((btn) => {
@@ -898,7 +994,6 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
           });
         });
 
-        // Simulador KDP vs Espiral Metálica
         bindingBtns.forEach((btn) => {
           btn.addEventListener('click', () => {
             try {
@@ -906,10 +1001,10 @@ const initialVolData = volumes.find((v) => v.id === initialVolume) || volumes[0]
               bindingBtns.forEach((b) => {
                 const active = b === btn;
                 b.setAttribute('aria-pressed', String(active));
-                b.classList.toggle('border-copper/50', active);
-                b.classList.toggle('bg-copper/10', active);
-                b.classList.toggle('border-graphite-border', !active);
-                b.classList.toggle('bg-graphite-surface/60', !active);
+                b.classList.toggle('border-gold-500/50', active);
+                b.classList.toggle('bg-gold-500/10', active);
+                b.classList.toggle('border-dark-700', !active);
+                b.classList.toggle('bg-dark-900/60', !active);
               });
 
               bookObject.dataset.binding = mode;

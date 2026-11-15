@@ -1,5 +1,6 @@
 ---
 import SocialIcons from './SocialIcons.astro';
+import type { SupportedLocale } from '../utils/i18n-routes';
 
 interface Props {
   hero: {
@@ -17,7 +18,7 @@ interface Props {
     paragraphs: string[];
     quote: string;
   };
-  currentLocale: 'es' | 'en';
+  currentLocale: SupportedLocale;
 }
 
 const { hero, presentation, currentLocale } = Astro.props;

@@ -1,5 +1,6 @@
 ---
 import SocialIcons from './SocialIcons.astro';
+import type { SupportedLocale } from '../utils/i18n-routes';
 
 interface Props {
   social: {
@@ -15,10 +16,49 @@ interface Props {
       actionText: string;
     }>;
   };
-  currentLocale: 'es' | 'en';
+  currentLocale: SupportedLocale;
 }
 
 const { social, currentLocale } = Astro.props;
+
+const copyMap: Record<SupportedLocale, {
+  ytTag: string;
+  ytTitle: string;
+  ytDesc: string;
+  igTag: string;
+  igDesc: string;
+}> = {
+  es: {
+    ytTag: 'Vídeos & Recitales',
+    ytTitle: 'Canal Oficial de Javier Sáez',
+    ytDesc: 'Interpretaciones, metales y repertorio solista',
+    igTag: 'Comunidad & Docencia',
+    igDesc: 'Consejos técnicos, directos y actualidad musical',
+  },
+  en: {
+    ytTag: 'Videos & Recitals',
+    ytTitle: 'Official Channel of Javier Sáez',
+    ytDesc: 'Solo brass repertoire, concerts & pieces',
+    igTag: 'Community & Pedagogy',
+    igDesc: 'Technical advice, live sessions & news',
+  },
+  de: {
+    ytTag: 'Videos & Recitals',
+    ytTitle: 'Offizieller Kanal von Javier Sáez',
+    ytDesc: 'Blechbläserrepertoire, Konzerte & Solowerke',
+    igTag: 'Community & Pädagogik',
+    igDesc: 'Technische Tipps, Livestreams & Neuigkeiten',
+  },
+  it: {
+    ytTag: 'Video & Recital',
+    ytTitle: 'Canale Ufficiale di Javier Sáez',
+    ytDesc: 'Repertorio per ottoni, concerti e brani solistici',
+    igTag: 'Community & Didattica',
+    igDesc: 'Consigli tecnici, dirette e novità musicali',
+  },
+};
+
+const copy = copyMap[currentLocale] || copyMap.es;
 ---
 
 <section id="redes" class="py-20 lg:py-28 relative overflow-hidden">
@@ -61,7 +101,7 @@ const { social, currentLocale } = Astro.props;
               </div>
             </div>
             <span class="px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-semibold">
-              {currentLocale === 'es' ? 'Vídeos & Recitales' : 'Videos & Recitals'}
+              {copy.ytTag}
             </span>
           </div>
 
@@ -76,10 +116,10 @@ const { social, currentLocale } = Astro.props;
             </div>
             <div class="min-w-0">
               <p class="text-xs font-bold text-slate-200 truncate">
-                {currentLocale === 'es' ? 'Canal Oficial de Javier Sáez' : 'Official Channel of Javier Sáez'}
+                {copy.ytTitle}
               </p>
               <p class="text-[11px] text-slate-400">
-                {currentLocale === 'es' ? 'Interpretaciones, metales y repertorio solista' : 'Solo brass repertoire, concerts & pieces'}
+                {copy.ytDesc}
               </p>
             </div>
           </div>
@@ -115,7 +155,7 @@ const { social, currentLocale } = Astro.props;
               </div>
             </div>
             <span class="px-3 py-1 rounded-full bg-pink-500/15 border border-pink-500/30 text-pink-300 text-xs font-semibold">
-              {currentLocale === 'es' ? 'Comunidad & Docencia' : 'Community & Pedagogy'}
+              {copy.igTag}
             </span>
           </div>
 
@@ -131,7 +171,7 @@ const { social, currentLocale } = Astro.props;
             <div class="min-w-0">
               <p class="text-xs font-bold text-slate-200 truncate">@javi_trombone</p>
               <p class="text-[11px] text-slate-400">
-                {currentLocale === 'es' ? 'Consejos técnicos, directos y actualidad musical' : 'Technical advice, live sessions & news'}
+                {copy.igDesc}
               </p>
             </div>
           </div>

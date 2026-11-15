@@ -1,6 +1,8 @@
 ---
+import type { SupportedLocale } from '../utils/i18n-routes';
+
 interface Props {
-  locale?: 'es' | 'en';
+  locale?: SupportedLocale;
 }
 
 const { locale = 'es' } = Astro.props;

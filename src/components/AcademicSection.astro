@@ -1,5 +1,6 @@
 ---
 import SocialIcons from './SocialIcons.astro';
+import type { SupportedLocale } from '../utils/i18n-routes';
 
 interface Props {
   academic: {
@@ -24,10 +25,24 @@ interface Props {
       type: string;
     }>;
   };
-  currentLocale: 'es' | 'en';
+  currentLocale: SupportedLocale;
 }
 
 const { academic, currentLocale } = Astro.props;
+
+const specMap: Record<SupportedLocale, string> = {
+  es: 'Especialización Universitaria',
+  en: 'University Specialization',
+  de: 'Universitäre Spezialisierung',
+  it: 'Specializzazione Universitaria',
+};
+
+const degreesMap: Record<SupportedLocale, string> = {
+  es: 'Titulaciones Superiores y Conservatorio',
+  en: 'Higher Degrees & Conservatory Qualifications',
+  de: 'Hochschulabschlüsse & Konservatorium',
+  it: 'Titoli Superiori e Conservatorio',
+};
 ---
 
 <section id="formacion-academica" class="py-20 lg:py-28 bg-dark-900/40 border-t border-dark-800/80 relative">
@@ -56,7 +71,7 @@ const { academic, currentLocale } = Astro.props;
           <div>
             <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-widest mb-1">
               <SocialIcons name="sparkles" class="w-4 h-4" />
-              <span>{currentLocale === 'es' ? 'Especialización Universitaria' : 'University Specialization'}</span>
+              <span>{specMap[currentLocale] || specMap.es}</span>
             </div>
             <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">
               {academic.tripleMaster.title}
@@ -104,7 +119,7 @@ const { academic, currentLocale } = Astro.props;
       <div class="flex items-center gap-3 mb-6">
         <div class="w-6 h-[2px] bg-gold-400"></div>
         <h3 class="font-serif text-xl sm:text-2xl font-bold text-white">
-          {currentLocale === 'es' ? 'Titulaciones Superiores y Conservatorio' : 'Higher Degrees & Conservatory Qualifications'}
+          {degreesMap[currentLocale] || degreesMap.es}
         </h3>
       </div>
 

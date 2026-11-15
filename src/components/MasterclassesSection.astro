@@ -1,5 +1,6 @@
 ---
 import SocialIcons from './SocialIcons.astro';
+import type { SupportedLocale } from '../utils/i18n-routes';
 
 interface Props {
   masterclasses: {
@@ -12,7 +13,7 @@ interface Props {
       institution: string;
     }>;
   };
-  currentLocale: 'es' | 'en';
+  currentLocale: SupportedLocale;
 }
 
 const { masterclasses, currentLocale } = Astro.props;

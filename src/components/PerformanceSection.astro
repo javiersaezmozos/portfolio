@@ -1,5 +1,6 @@
 ---
 import SocialIcons from './SocialIcons.astro';
+import type { SupportedLocale } from '../utils/i18n-routes';
 
 interface Props {
   performance: {
@@ -43,10 +44,24 @@ interface Props {
       }>;
     };
   };
-  currentLocale: 'es' | 'en';
+  currentLocale: SupportedLocale;
 }
 
 const { performance, currentLocale } = Astro.props;
+
+const withMap: Record<SupportedLocale, string> = {
+  es: 'Acompañamiento:',
+  en: 'With:',
+  de: 'Begleitung:',
+  it: 'Accompagnamento:',
+};
+
+const watchMap: Record<SupportedLocale, string> = {
+  es: 'Ver Canal @javi_trombone',
+  en: 'Watch @javi_trombone',
+  de: 'Kanal @javi_trombone ansehen',
+  it: 'Guarda Canale @javi_trombone',
+};
 ---
 
 <section id="experiencia-interpretativa" class="py-20 lg:py-28 bg-dark-900/50 border-t border-dark-800/80 relative">
@@ -90,7 +105,7 @@ const { performance, currentLocale } = Astro.props;
               </p>
             </div>
             <p class="text-xs sm:text-sm text-slate-300 pt-4 border-t border-dark-750 flex items-center gap-2">
-              <span class="text-slate-400">{currentLocale === 'es' ? 'Acompañamiento:' : 'With:'}</span>
+              <span class="text-slate-400">{withMap[currentLocale] || withMap.es}</span>
               <span class="font-medium text-slate-200">{solo.ensemble}</span>
             </p>
           </div>
@@ -166,7 +181,7 @@ const { performance, currentLocale } = Astro.props;
                   class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-dark-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-gold-500/20"
                 >
                   <SocialIcons name="youtube" class="w-4 h-4 text-dark-950" />
-                  <span>{currentLocale === 'es' ? 'Ver Canal @javi_trombone' : 'Watch @javi_trombone'}</span>
+                  <span>{watchMap[currentLocale] || watchMap.es}</span>
                 </a>
               </div>
             </div>
