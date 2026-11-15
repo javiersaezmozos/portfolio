@@ -23,6 +23,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const localeHome = `${base}/${currentLocale}`;
 const methodsHref = getMethodsPaths(currentLocale, base).trilogy;
 
+const homeLabelMap: Record<SupportedLocale, string> = {
+  es: 'Inicio',
+  en: 'Home',
+  de: 'Start',
+  it: 'Home',
+};
+
+const careerLabelMap: Record<SupportedLocale, string> = {
+  es: 'Trayectoria',
+  en: 'Career',
+  de: 'Werdegang',
+  it: 'Carriera',
+};
+
 const methodsLabelMap: Record<SupportedLocale, string> = {
   es: 'Métodos',
   en: 'Methods',
@@ -30,95 +44,114 @@ const methodsLabelMap: Record<SupportedLocale, string> = {
   it: 'Metodi',
 };
 
-const shortNavMap: Record<SupportedLocale, {
-  presentation: string;
-  academic: string;
-  masterclasses: string;
-  performance: string;
-  teaching: string;
-  awards: string;
-}> = {
-  es: {
-    presentation: 'Inicio',
-    academic: 'Formación',
-    masterclasses: 'Masterclasses',
-    performance: 'Interpretación',
-    teaching: 'Docencia',
-    awards: 'Premios',
-  },
-  en: {
-    presentation: 'Home',
-    academic: 'Education',
-    masterclasses: 'Masterclasses',
-    performance: 'Performance',
-    teaching: 'Teaching',
-    awards: 'Awards',
-  },
-  de: {
-    presentation: 'Start',
-    academic: 'Ausbildung',
-    masterclasses: 'Meisterkurse',
-    performance: 'Bühne',
-    teaching: 'Lehre',
-    awards: 'Preise',
-  },
-  it: {
-    presentation: 'Home',
-    academic: 'Formazione',
-    masterclasses: 'Masterclass',
-    performance: 'Concerti',
-    teaching: 'Docenza',
-    awards: 'Premi',
-  },
+const contactLabelMap: Record<SupportedLocale, string> = {
+  es: 'Contacto',
+  en: 'Contact',
+  de: 'Kontakt',
+  it: 'Contatti',
 };
 
-const shortNav = shortNavMap[currentLocale] || shortNavMap.es;
+const homeLabel = homeLabelMap[currentLocale] || 'Inicio';
+const careerLabel = careerLabelMap[currentLocale] || 'Trayectoria';
+const methodsLabel = nav.methods || methodsLabelMap[currentLocale] || 'Métodos';
+const contactLabel = contactLabelMap[currentLocale] || nav.contact || 'Contacto';
 
-const mobileMethodsSuffixMap: Record<SupportedLocale, string> = {
-  es: 'Trombón Flexibilidad',
-  en: 'Trombone Flexibility',
-  de: 'Posaune Flexibilität',
-  it: 'Trombone Flessibilità',
-};
+const careerLinks = [
+  { href: `${localeHome}/#formacion-academica`, label: nav.academic },
+  { href: `${localeHome}/#masterclasses`, label: nav.masterclasses },
+  { href: `${localeHome}/#experiencia-interpretativa`, label: nav.performance },
+  { href: `${localeHome}/#trayectoria-docente`, label: nav.teaching },
+  { href: `${localeHome}/#premios`, label: nav.awards },
+];
 ---
 
 <header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-dark-950/80 border-b border-dark-800/80 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       
-      <!-- Brand / Logo -->
-      <a href={`${base}/${currentLocale}`} class="group flex items-center gap-3 shrink-0 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-lg p-1">
-        <div class="w-9 h-9 rounded-xl border border-gold-500/35 bg-dark-900/80 flex items-center justify-center text-gold-400 group-hover:border-gold-400/70 group-hover:text-gold-300 transition-colors">
-          <!-- Clave de Fa en cuarta línea (proporción tipográfica musical clásica) -->
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8.5 6.5C11.2 4.5 15.2 5.4 16 8.4C16.7 11.2 14.3 15.3 8.2 18.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-            <circle cx="8.2" cy="8.5" r="1.7" fill="currentColor" />
-            <circle cx="18.2" cy="7.5" r="1.15" fill="currentColor" />
-            <circle cx="18.2" cy="11.5" r="1.15" fill="currentColor" />
-          </svg>
-        </div>
-        <span class="font-serif text-lg font-bold tracking-tight text-slate-100 group-hover:text-gold-300 transition-colors whitespace-nowrap">
+      <!-- Brand / Logo (Limpie tipografía serif, sin iconos SVG/JS) -->
+      <a
+        href={`${base}/${currentLocale}`}
+        class="group flex items-center shrink-0 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-lg py-1 px-1.5"
+        aria-label="Javier Sáez - Inicio"
+      >
+        <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-100 group-hover:text-gold-300 transition-colors whitespace-nowrap">
           Javier Sáez
         </span>
       </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="hidden xl:flex items-center gap-5 text-sm font-medium text-slate-300 whitespace-nowrap" aria-label="Main Navigation">
-        <a href={`${localeHome}/#presentacion`} class="hover:text-gold-400 transition-colors py-2">{shortNav.presentation}</a>
-        <a href={`${localeHome}/#formacion-academica`} class="hover:text-gold-400 transition-colors py-2">{shortNav.academic}</a>
-        <a href={`${localeHome}/#masterclasses`} class="hover:text-gold-400 transition-colors py-2">{shortNav.masterclasses}</a>
-        <a href={`${localeHome}/#experiencia-interpretativa`} class="hover:text-gold-400 transition-colors py-2">{shortNav.performance}</a>
-        <a href={`${localeHome}/#trayectoria-docente`} class="hover:text-gold-400 transition-colors py-2">{shortNav.teaching}</a>
-        <a href={`${localeHome}/#premios`} class="hover:text-gold-400 transition-colors py-2">{shortNav.awards}</a>
+      <!-- Desktop Navigation Menu (4 elementos) -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300" aria-label="Main Navigation">
+        <!-- 1) Inicio -->
+        <a
+          href={`${localeHome}/#presentacion`}
+          class="hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400"
+        >
+          {homeLabel}
+        </a>
+
+        <!-- 2) Trayectoria (Menú desplegable accesible) -->
+        <div class="relative group/dropdown" id="desktop-career-container">
+          <button
+            id="desktop-career-trigger"
+            type="button"
+            class="inline-flex items-center gap-1.5 hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400 cursor-pointer"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-controls="desktop-career-menu"
+          >
+            <span>{careerLabel}</span>
+            <svg
+              class="w-4 h-4 text-slate-400 group-hover/dropdown:text-gold-400 group-hover/dropdown:rotate-180 group-focus-within/dropdown:rotate-180 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+
+          <!-- Dropdown panel -->
+          <div
+            id="desktop-career-menu"
+            class="absolute top-full left-0 mt-2 w-72 rounded-xl bg-dark-950/95 backdrop-blur-2xl border border-dark-800 shadow-2xl p-2 opacity-0 invisible pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:visible group-hover/dropdown:pointer-events-auto group-focus-within/dropdown:opacity-100 group-focus-within/dropdown:visible group-focus-within/dropdown:pointer-events-auto transition-all duration-200 z-50 focus-within:opacity-100 focus-within:visible focus-within:pointer-events-auto"
+            role="menu"
+            aria-label={careerLabel}
+          >
+            {careerLinks.map((item) => (
+              <a
+                href={item.href}
+                class="desktop-dropdown-link block px-3.5 py-2.5 rounded-lg text-sm text-slate-300 hover:text-gold-300 hover:bg-dark-900/90 focus:bg-dark-900/90 focus:text-gold-300 transition-colors focus:outline-none"
+                role="menuitem"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- 3) Métodos (Botón destacado) -->
         <a
           href={methodsHref}
-          class="inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-3.5 py-1 text-gold-400 hover:bg-gold-500/20 hover:text-white transition-colors"
+          class="inline-flex items-center gap-1.5 rounded-full border border-gold-400/60 bg-gradient-to-r from-gold-500/20 via-amber-500/15 to-gold-500/20 px-4 py-1.5 text-xs sm:text-sm font-semibold text-gold-300 hover:text-white hover:border-gold-300 hover:bg-gold-500/30 shadow-sm shadow-gold-500/10 transition-all focus:outline-none focus:ring-2 focus:ring-gold-500"
         >
-          <span>{nav.methods || methodsLabelMap[currentLocale] || 'Methods'}</span>
+          <span>{methodsLabel}</span>
+        </a>
+
+        <!-- 4) Contacto -->
+        <a
+          href={`${localeHome}/#redes`}
+          class="hover:text-gold-400 transition-colors py-2 focus:outline-none focus:text-gold-400"
+        >
+          {contactLabel}
         </a>
       </nav>
 
-      <!-- Right Action Bar -->
+      <!-- Right Action Bar (Instagram/YouTube y selector ES · EN · DE · IT) -->
       <div class="hidden lg:flex items-center gap-4">
         
         <!-- Social Icons (@javi_trombone) -->
@@ -209,22 +242,75 @@ const mobileMethodsSuffixMap: Record<SupportedLocale, string> = {
     </div>
   </div>
 
-  <!-- Mobile Drawer Menu -->
+  <!-- Mobile Drawer Menu (4 elementos) -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-2xl px-4 pt-4 pb-6 space-y-4">
     <div class="flex flex-col space-y-3 text-base font-medium">
-      <a href={`${localeHome}/#presentacion`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.presentation}</a>
-      <a href={`${localeHome}/#formacion-academica`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.academic}</a>
-      <a href={`${localeHome}/#masterclasses`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.masterclasses}</a>
-      <a href={`${localeHome}/#experiencia-interpretativa`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.performance}</a>
-      <a href={`${localeHome}/#trayectoria-docente`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.teaching}</a>
-      <a href={`${localeHome}/#premios`} class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900">{nav.awards}</a>
-      <a href={methodsHref} class="mobile-nav-link text-gold-400 hover:text-white py-2 border-b border-dark-900 font-semibold">
-        {nav.methods || methodsLabelMap[currentLocale] || 'Methods'} · {mobileMethodsSuffixMap[currentLocale] || 'Trombone Flexibility'}
+      
+      <!-- 1) Inicio -->
+      <a
+        href={`${localeHome}/#presentacion`}
+        class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900"
+      >
+        {homeLabel}
       </a>
-      <a href={`${localeHome}/#redes`} class="mobile-nav-link text-gold-400 py-2 flex items-center gap-2 border-b border-dark-900 font-semibold">
-        <SocialIcons name="video" class="w-5 h-5 text-gold-400" />
-        <span>{nav.social}</span>
+
+      <!-- 2) Trayectoria (Lista expandible con los 5 enlaces) -->
+      <div class="border-b border-dark-900 pb-1">
+        <button
+          id="mobile-career-toggle"
+          type="button"
+          class="flex items-center justify-between w-full text-slate-300 hover:text-gold-400 py-2 text-left font-medium focus:outline-none cursor-pointer"
+          aria-expanded="false"
+          aria-controls="mobile-career-menu"
+        >
+          <span>{careerLabel}</span>
+          <svg
+            id="mobile-career-chevron"
+            class="w-4 h-4 text-slate-400 transition-transform duration-200"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          id="mobile-career-menu"
+          class="hidden pl-3 py-1 space-y-1 bg-dark-900/50 rounded-lg mt-1 border border-dark-800/60"
+        >
+          {careerLinks.map((item) => (
+            <a
+              href={item.href}
+              class="mobile-nav-link block text-sm text-slate-300 hover:text-gold-300 py-2 px-2 rounded-md hover:bg-dark-850 transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- 3) Métodos (Botón destacado) -->
+      <div class="pt-1">
+        <a
+          href={methodsHref}
+          class="mobile-nav-link flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-gold-400/60 bg-gradient-to-r from-gold-500/20 via-amber-500/15 to-gold-500/20 text-gold-300 hover:text-white hover:bg-gold-500/30 font-semibold text-center w-full shadow-sm transition-all"
+        >
+          <span>{methodsLabel}</span>
+        </a>
+      </div>
+
+      <!-- 4) Contacto -->
+      <a
+        href={`${localeHome}/#redes`}
+        class="mobile-nav-link text-slate-300 hover:text-gold-400 py-2 border-b border-dark-900"
+      >
+        {contactLabel}
       </a>
+
     </div>
 
     <!-- Mobile Social Actions -->
@@ -252,6 +338,7 @@ const mobileMethodsSuffixMap: Record<SupportedLocale, string> = {
 </header>
 
 <script>
+  // Control del menú móvil (hamburguesa)
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const openIcon = document.getElementById('menu-icon-open');
@@ -267,12 +354,59 @@ const mobileMethodsSuffixMap: Record<SupportedLocale, string> = {
       closeIcon.classList.toggle('hidden');
     });
 
-    mobileLinks.forEach(link => {
+    mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
         menu.classList.add('hidden');
         openIcon.classList.remove('hidden');
         closeIcon.classList.add('hidden');
         toggleBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Acordeón expandible para Trayectoria en móvil
+  const careerToggleBtn = document.getElementById('mobile-career-toggle');
+  const careerMenu = document.getElementById('mobile-career-menu');
+  const careerChevron = document.getElementById('mobile-career-chevron');
+
+  if (careerToggleBtn && careerMenu && careerChevron) {
+    careerToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = careerToggleBtn.getAttribute('aria-expanded') === 'true';
+      careerToggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+      careerMenu.classList.toggle('hidden');
+      careerChevron.classList.toggle('rotate-180');
+    });
+  }
+
+  // Accesibilidad de teclado para el menú desplegable de escritorio
+  const desktopCareerTrigger = document.getElementById('desktop-career-trigger');
+  const desktopCareerMenu = document.getElementById('desktop-career-menu');
+  const desktopContainer = document.getElementById('desktop-career-container');
+  const desktopLinks = document.querySelectorAll('.desktop-dropdown-link');
+
+  if (desktopCareerTrigger && desktopCareerMenu && desktopContainer) {
+    desktopCareerTrigger.addEventListener('click', () => {
+      const isExpanded = desktopCareerTrigger.getAttribute('aria-expanded') === 'true';
+      desktopCareerTrigger.setAttribute('aria-expanded', (!isExpanded).toString());
+    });
+
+    // Cerrar al pulsar Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        desktopCareerTrigger.setAttribute('aria-expanded', 'false');
+        if (careerToggleBtn && careerMenu && !careerMenu.classList.contains('hidden')) {
+          careerMenu.classList.add('hidden');
+          careerToggleBtn.setAttribute('aria-expanded', 'false');
+          careerChevron?.classList.remove('rotate-180');
+        }
+      }
+    });
+
+    // Cerrar al hacer clic en un enlace del dropdown
+    desktopLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        desktopCareerTrigger.setAttribute('aria-expanded', 'false');
       });
     });
   }

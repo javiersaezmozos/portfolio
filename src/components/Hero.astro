@@ -6,10 +6,11 @@ interface Props {
   hero: {
     badge: string;
     name: string;
-    tagline: string;
-    ctaPrimary: string;
-    ctaSecondary: string;
-    ctaSocial: string;
+    tagline?: string;
+    description?: string;
+    ctaPrimary?: string;
+    ctaSecondary?: string;
+    ctaSocial?: string;
     highlights: Array<{ label: string; value: string }>;
   };
   presentation: {
@@ -52,37 +53,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               width="600"
               height="750"
             />
-            
-            <!-- Gradient overlay for text readability at bottom -->
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent opacity-80"></div>
-            
-            <!-- Quick badge on portrait -->
-            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-dark-900/85 backdrop-blur-md border border-gold-500/30 flex items-center justify-between">
-              <div>
-                <p class="text-xs uppercase tracking-wider text-gold-400 font-semibold">{hero.badge}</p>
-                <p class="text-sm font-serif font-bold text-slate-100">Javier Sáez</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <a
-                  href="https://youtube.com/@javi_trombone"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="p-2 rounded-lg bg-dark-800 text-slate-300 hover:text-red-500 transition-colors"
-                  aria-label="YouTube @javi_trombone"
-                >
-                  <SocialIcons name="youtube" class="w-4 h-4" />
-                </a>
-                <a
-                  href="https://instagram.com/javi_trombone"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="p-2 rounded-lg bg-dark-800 text-slate-300 hover:text-pink-400 transition-colors"
-                  aria-label="Instagram @javi_trombone"
-                >
-                  <SocialIcons name="instagram" class="w-4 h-4" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -102,29 +72,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </h1>
         
         <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-8">
-          {hero.tagline}
+          {hero.description || hero.tagline}
         </p>
-
-        <!-- CTA Action Buttons -->
-        <div class="flex flex-wrap items-center gap-4 mb-10">
-          <!-- Primary Explore Career -->
-          <a
-            href="#experiencia-interpretativa"
-            class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-gold-600 via-amber-500 to-gold-400 text-dark-950 font-bold text-sm sm:text-base shadow-xl shadow-gold-500/20 hover:shadow-gold-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
-          >
-            <SocialIcons name="music" class="w-5 h-5 text-dark-950" />
-            <span>{hero.ctaPrimary}</span>
-          </a>
-
-          <!-- Secondary Social / Channels Button -->
-          <a
-            href="#redes"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-200 hover:text-gold-300 border border-dark-700 hover:border-gold-500/40 font-semibold text-sm sm:text-base transition-all"
-          >
-            <SocialIcons name="video" class="w-5 h-5 text-gold-400" />
-            <span>{hero.ctaSocial}</span>
-          </a>
-        </div>
 
         <!-- Highlight Key Metrics Cards -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-dark-800/80">

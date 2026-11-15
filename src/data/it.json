@@ -18,9 +18,10 @@
     "langSwitch": "IT"
   },
   "hero": {
-    "badge": "Trombonista & Pedagogo Musicale",
+    "badge": "Trombonista & Pedagogo",
     "name": "Javier Sáez",
-    "tagline": "Trombonista, euphoniumista, docente e ricercatore musicale impegnato nell'eccellenza esecutiva e nelle nuove metodologie didattiche strumentali.",
+    "description": "Trombonista, docente e ricercatore musicale orientato alle nuove correnti pedagogiche e all'eccellenza esecutiva.",
+    "tagline": "Trombonista, docente e ricercatore musicale orientato alle nuove correnti pedagogiche e all'eccellenza esecutiva.",
     "ctaPrimary": "Esplora la Carriera",
     "ctaSecondary": "Formazione Accademica",
     "ctaSocial": "Canale @javi_trombone",
