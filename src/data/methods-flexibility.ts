@@ -577,7 +577,7 @@ export function getVol1Syllabus(locale: SupportedLocale): SyllabusLevel[] {
         {
           code: 'v1-n1-amp',
           title: 'Bloque 1.4 · Ampliación: Tresillos',
-          detail: '10 ejercicios de subdivisión ternaria fluida + Estudio Melódico n.º 4.',
+          detail: 'Bloque de ampliación para diversidad y trabajo estival en subdivisión ternaria.',
         },
       ],
     },
@@ -606,7 +606,7 @@ export function getVol1Syllabus(locale: SupportedLocale): SyllabusLevel[] {
         {
           code: 'v1-n2-amp',
           title: 'Bloque 2.4 · Ampliación: Semicorcheas',
-          detail: '10 ejercicios de velocidad controlada y elasticidad + Estudio Melódico n.º 8.',
+          detail: 'Bloque de ampliación para diversidad y trabajo estival con velocidad controlada.',
         },
       ],
     },
@@ -635,7 +635,7 @@ export function getVol1Syllabus(locale: SupportedLocale): SyllabusLevel[] {
         {
           code: 'v1-n3-amp',
           title: 'Bloque 3.4 · Ampliación: Retos finales',
-          detail: '10 ejercicios de síntesis técnica pre-profesional + Estudio Final n.º 12.',
+          detail: 'Bloque de ampliación para diversidad, trabajo estival y síntesis pre-profesional.',
         },
       ],
     },
@@ -708,12 +708,12 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
       {
         question: 'How do the 15 QR codes work in both Print and Kindle editions?',
         answer:
-          'Each lesson block and level features a unique permanent QR code (/e/v1-n1-l1 through /e/v1-n3-amp) routing to ad-free HD interactive video scores with selectable pedagogical subtitles in Spanish, English, German, and Italian.',
+          'Each lesson block and level features a unique permanent QR code (/e/v1-n1-l1 through /e/v1-n3-amp) linking to reference audio recordings, solo metronome video-scores, and call-and-response video-scores with selectable subtitles (ES/EN/DE/IT).',
       },
       {
         question: 'Why should I register my Amazon copy at javisaez.com/registro?',
         answer:
-          'Registering your Amazon KDP or Amazon Kindle copy at javisaez.com/registro?lang=en grants direct access to video-score updates, supplemental TromBot AI practice guides, and direct support from the author.',
+          'Registering your Amazon KDP or Amazon Kindle copy at javisaez.com/registro?lang=en grants direct access to video-score updates, supplemental TromBot practice guides, and direct support from the author.',
       },
     ];
   }
@@ -730,9 +730,9 @@ export function getVol1Faqs(locale: SupportedLocale): EditorialFaq[] {
         'La edición para Amazon Kindle está maquetada en formato de diseño fijo (Print Replica) a partir de los vectores originales SMuFL Leland a 7,0 mm de rastral. Esto garantiza que los pentagramas, ligaduras y diagramas de TromBot mantengan exactamente la misma proporción, nitidez y paginación que el libro físico en tablets, iPad, ordenadores y dispositivos compatibles con la app gratuita de Kindle.',
     },
     {
-      question: '¿Cómo funcionan los 15 códigos QR incluidos en el libro impreso y en Kindle?',
+      question: '¿Cómo funcionan los códigos QR incluidos en el libro impreso y en Kindle?',
       answer:
-        'Cada bloque de lección y cada nivel cuenta con un código QR único (/e/v1-n1-l1 hasta /e/v1-n3-amp) que enlaza con las videopartituras interactivas alojadas en vídeo de alta definición sin anuncios y con subtítulos pedagógicos seleccionables en español, inglés, alemán e italiano.',
+        'Cada bloque y nivel cuenta con un código QR único (/e/v1-n1-l1 hasta /e/v1-n3-amp) que da acceso a tres formatos multimedia: audios de ejemplo, videopartituras con metrónomo para estudio individual y videopartituras de pregunta-respuesta con el autor (subtítulos ES/EN/DE/IT).',
     },
     {
       question: '¿Qué ventajas tiene registrar mi ejemplar de Amazon en javisaez.com/registro?',
