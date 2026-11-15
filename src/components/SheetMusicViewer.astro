@@ -6,6 +6,75 @@ interface Props {
 }
 
 const { locale = 'es' } = Astro.props;
+
+const copyMap: Record<SupportedLocale, {
+  eyebrow: string;
+  heading: string;
+  desc: string;
+  paperAria: string;
+  ivory: string;
+  white: string;
+  night: string;
+  margins: string;
+  tabsAria: string;
+  tab1: string;
+  tab2: string;
+}> = {
+  es: {
+    eyebrow: 'Muestra interactiva · Partitura y Audio',
+    heading: 'Lectura clara en el atril y prueba de audio',
+    desc: 'Explora una muestra del método y haz clic sobre cualquier nota del pentagrama para escuchar su afinación real.',
+    paperAria: 'Modo de papel',
+    ivory: 'Papel Marfil',
+    white: 'Blanco puro',
+    night: 'Modo Foso (Tablet)',
+    margins: 'Ver márgenes',
+    tabsAria: 'Muestras de partitura del Volumen 1',
+    tab1: 'Muestra 1 · Nivel 1, Lección 1 (Ejercicios en Espejo Sib₂–Fa₃–Sib₃)',
+    tab2: 'Muestra 2 · Nivel 3, Estudio Integrador (Extensión hasta Fa₄)',
+  },
+  en: {
+    eyebrow: 'Interactive Sample · Score & Audio',
+    heading: 'Clear music-stand reading & audio preview',
+    desc: 'Explore a sample from the method and click any note on the staff to hear its real pitch.',
+    paperAria: 'Paper mode',
+    ivory: 'Ivory Paper',
+    white: 'Pure White',
+    night: 'Pit Dark Mode',
+    margins: 'Show margins',
+    tabsAria: 'Volume 1 score samples',
+    tab1: 'Sample 1 · Level 1, Lesson 1 (Mirror Exercises B♭₂–F₃–B♭₃)',
+    tab2: 'Sample 2 · Level 3, Integrative Etude (Extension up to F₄)',
+  },
+  de: {
+    eyebrow: 'Interaktive Vorschau · Partitur & Audio',
+    heading: 'Klare Lesbarkeit auf dem Pult & Audiovorschau',
+    desc: 'Entdecken Sie eine Beispielseite der Methode und klicken Sie auf eine beliebige Note, um ihre reale Tonhöhe zu hören.',
+    paperAria: 'Papiermodus',
+    ivory: 'Elfenbeinpapier',
+    white: 'Reinweiß',
+    night: 'Nachtmodus (Tablet)',
+    margins: 'Ränder anzeigen',
+    tabsAria: 'Partiturbeispiele Band 1',
+    tab1: 'Beispiel 1 · Stufe 1, Lektion 1 (Spiegelübungen B♭₂–F₃–B♭₃)',
+    tab2: 'Beispiel 2 · Stufe 3, Etüde (Erweiterung bis F₄)',
+  },
+  it: {
+    eyebrow: 'Anteprima interattiva · Spartito e Audio',
+    heading: 'Lettura chiara sul leggio e anteprima audio',
+    desc: 'Esplora un estratto del metodo e clicca su qualsiasi nota sul pentagramma per ascoltarne l\'intonazione reale.',
+    paperAria: 'Modalità carta',
+    ivory: 'Carta Avorio',
+    white: 'Bianco puro',
+    night: 'Modalità Notturna (Tablet)',
+    margins: 'Mostra margini',
+    tabsAria: 'Estratti dello spartito Volume 1',
+    tab1: 'Estratto 1 · Livello 1, Lezione 1 (Esercizi a specchio Sib₂–Fa₃–Sib₃)',
+    tab2: 'Estratto 2 · Livello 3, Studio integrativo (Estensione fino a Fa₄)',
+  },
+};
+
+const copy = copyMap[locale] || copyMap.es;
 ---
 
 <section
@@ -19,19 +88,13 @@ const { locale = 'es' } = Astro.props;
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-6">
       <div>
         <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-copper">
-          {locale === 'es'
-            ? 'Inspección de Grabado Editorial · Alta Definición Vectorial'
-            : 'Editorial Engraving Inspection · Vector High Definition'}
+          {copy.eyebrow}
         </span>
         <h2 class="mt-2 font-serif text-2xl sm:text-3xl font-bold text-white">
-          {locale === 'es'
-            ? 'Ergonomía de Atril: Tipografía Baskerville & Leland (7,0 mm)'
-            : 'Music Stand Ergonomics: Baskerville & Leland Engraving (7.0 mm)'}
+          {copy.heading}
         </h2>
         <p class="mt-1.5 max-w-2xl text-sm text-slate-300">
-          {locale === 'es'
-            ? 'Inspecciona la maquetación real en formato US Letter, haz clic sobre cualquier nota del pentagrama para escuchar su afinación real y comprueba las cotas de seguridad para encuadernación en espiral.'
-            : 'Inspect the real US Letter layout, click any note on the staff to hear its real pitch, and verify the safety margins for spiral binding.'}
+          {copy.desc}
         </p>
       </div>
 
@@ -39,14 +102,14 @@ const { locale = 'es' } = Astro.props;
       <div class="flex flex-wrap items-center gap-2 bg-graphite-surface border border-graphite-border rounded-xl p-1.5">
         
         <!-- Selector de iluminación del papel (Atril Marfil / Blanco Puro / Foso Nocturno) -->
-        <div role="group" aria-label={locale === 'es' ? 'Modo de papel' : 'Paper mode'} class="flex items-center gap-1 border-r border-white/10 pr-2">
+        <div role="group" aria-label={copy.paperAria} class="flex items-center gap-1 border-r border-white/10 pr-2">
           <button
             type="button"
             data-paper-theme="ivory"
             aria-pressed="true"
             class="paper-theme-btn rounded-lg px-2.5 py-1.5 text-xs font-medium bg-copper/20 text-copper-light border border-copper/40 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
           >
-            {locale === 'es' ? 'Papel Marfil' : 'Ivory Paper'}
+            {copy.ivory}
           </button>
           <button
             type="button"
@@ -54,7 +117,7 @@ const { locale = 'es' } = Astro.props;
             aria-pressed="false"
             class="paper-theme-btn rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
           >
-            {locale === 'es' ? 'Impresión K=100%' : 'Print K=100%'}
+            {copy.white}
           </button>
           <button
             type="button"
@@ -62,18 +125,18 @@ const { locale = 'es' } = Astro.props;
             aria-pressed="false"
             class="paper-theme-btn rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
           >
-            {locale === 'es' ? 'Modo Foso (Tablet)' : 'Pit Dark Mode'}
+            {copy.night}
           </button>
         </div>
 
-        <!-- Conmutador de Cotas Técnicas de Maquetación (20mm Lomo / 15mm Exterior) -->
+        <!-- Conmutador de Márgenes -->
         <button
           type="button"
           data-toggle-rulers
           aria-pressed="false"
           class="rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:text-white border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
         >
-          {locale === 'es' ? 'Ver Cotas (20 mm)' : 'Show Margins (20 mm)'}
+          {copy.margins}
         </button>
 
         <!-- Control de Zoom Vectorial -->
@@ -91,7 +154,7 @@ const { locale = 'es' } = Astro.props;
     <!-- PESTAÑAS DE MUESTRA DE LECCIÓN (Cumpliendo modern-web-guidance `tabs`) -->
     <div
       role="tablist"
-      aria-label={locale === 'es' ? 'Muestras de partitura del Volumen 1' : 'Volume 1 score samples'}
+      aria-label={copy.tabsAria}
       class="flex overflow-x-auto gap-2 border-b border-graphite-border mb-6"
     >
       <button
@@ -103,9 +166,7 @@ const { locale = 'es' } = Astro.props;
         class="score-tab-btn relative flex-none px-4 py-3 text-xs sm:text-sm font-serif text-white transition-colors hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-gold-400"
         style="--tab-accent: #E89758;"
       >
-        {locale === 'es'
-          ? 'Muestra 1 · Nivel 1, Lección 1 (Ejercicios en Espejo Sib₂–Fa₃–Sib₃)'
-          : 'Sample 1 · Level 1, Lesson 1 (Mirror Exercises B♭₂–F₃–B♭₃)'}
+        {copy.tab1}
       </button>
 
       <button
@@ -117,9 +178,7 @@ const { locale = 'es' } = Astro.props;
         class="score-tab-btn relative flex-none px-4 py-3 text-xs sm:text-sm font-serif text-slate-300 transition-colors hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-gold-400"
         style="--tab-accent: #E89758;"
       >
-        {locale === 'es'
-          ? 'Muestra 2 · Nivel 3, Estudio Integrador (Extensión hasta Fa₄)'
-          : 'Sample 2 · Level 3, Integrative Etude (Extension up to F₄)'}
+        {copy.tab2}
       </button>
     </div>
 
