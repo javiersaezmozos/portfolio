@@ -598,42 +598,6 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
             </dl>
           </div>
 
-          <!-- Comparador táctil: Encuadernación KDP vs Vista de Atril (Margen 20 mm) -->
-          <div>
-            <p class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
-              {bindingContent.label}
-            </p>
-            <div class="grid grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                data-binding-btn="kdp"
-                aria-pressed="true"
-                class="binding-btn flex flex-col items-start rounded-xl border border-gold-500/50 bg-gold-500/10 p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
-              >
-                <span class="text-xs font-bold text-white">
-                  {bindingContent.kdpTitle}
-                </span>
-                <span class="mt-1 text-[11px] text-slate-300 leading-snug">
-                  {bindingContent.kdpDesc}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                data-binding-btn="spiral"
-                aria-pressed="false"
-                class="binding-btn flex flex-col items-start rounded-xl border border-dark-700 bg-dark-900/60 hover:bg-dark-850 p-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
-              >
-                <span class="text-xs font-bold text-white">
-                  {bindingContent.kindleTitle}
-                </span>
-                <span class="mt-1 text-[11px] text-slate-300 leading-snug">
-                  {bindingContent.kindleDesc}
-                </span>
-              </button>
-            </div>
-          </div>
-
         </div>
       )}
     </div>
