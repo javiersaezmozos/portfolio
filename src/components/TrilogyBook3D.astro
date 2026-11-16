@@ -48,10 +48,10 @@ const volumes = [
     hexSecondary: '#D98A5B',
     hexShadow: '#9E472A',
     status: {
-      es: 'Edición Activa · Lanzamiento',
-      en: 'Active Edition · Available',
-      de: 'Aktive Ausgabe · Erhältlich',
-      it: 'Edizione Attiva · Disponibile',
+      es: 'Lanzamiento · Mayo–junio 2027',
+      en: 'Launch · May–June 2027',
+      de: 'Erscheinung · Mai–Juni 2027',
+      it: 'Lancio · Maggio–giugno 2027',
     },
   },
   {
@@ -64,10 +64,10 @@ const volumes = [
       it: 'VOLUME 2 · INTERMEDIO',
     },
     subtitle: {
-      es: 'Desarrollo de la flexibilidad labial hasta Sib₅',
-      en: 'Lip flexibility development up to B♭₅',
-      de: 'Entwicklung der Lippenflexibilität bis B♭₅',
-      it: 'Sviluppo della flessibilità labiale fino a Sib₅',
+      es: 'Desarrollo de la flexibilidad labial hasta Do₆',
+      en: 'Lip flexibility development up to C₆',
+      de: 'Entwicklung der Lippenflexibilität bis C₆',
+      it: 'Sviluppo della flessibilità labiale fino a Do₆',
     },
     course: {
       es: 'Enseñanzas Profesionales · Agilidad y Semicorcheas',
@@ -141,10 +141,10 @@ const rangeVol1Map: Record<SupportedLocale, string> = {
 };
 
 const rangeVol2Map: Record<SupportedLocale, string> = {
-  es: 'Hasta Sib₅',
-  en: 'Up to B♭₅',
-  de: 'Bis B♭₅',
-  it: 'Fino a Sib₅',
+  es: 'Hasta Do₆',
+  en: 'Up to C₆',
+  de: 'Bis C₆',
+  it: 'Fino a Do₆',
 };
 
 const panelLabelsMap: Record<SupportedLocale, { targetRange: string; recStage: string }> = {
@@ -570,13 +570,6 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
           >
             <div class="flex items-center justify-between border-b border-dark-700/60 pb-2.5">
               <div>
-                <span
-                  data-panel-metal-label
-                  class="text-xs font-mono uppercase tracking-wider"
-                  style={`color: ${initialVolData.hexPrimary};`}
-                >
-                  {initialVolData.metalName[locale] || initialVolData.metalName.es}
-                </span>
                 <h3 data-panel-title class="font-serif text-lg font-bold text-white">
                   {initialVolData.badge[locale] || initialVolData.badge.es}
                 </h3>
