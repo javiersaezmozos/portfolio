@@ -293,73 +293,6 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
                 decoding="async"
               />
 
-              <!-- Ilustración canónica de fondo: Estudiante + TromBot -->
-              <div class="relative h-full w-full flex flex-col justify-between p-5 sm:p-6 z-10">
-
-                <!-- Gradiente superior e inferior para garantizar contraste editorial de la tipografía metálica -->
-                <div
-                  class="pointer-events-none absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-[#08090B] via-[#08090B]/92 to-transparent"
-                  aria-hidden="true"
-                ></div>
-                <div
-                  class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#08090B]/90 to-transparent"
-                  aria-hidden="true"
-                ></div>
-
-                <!-- Marco de filete fino metálico interior -->
-                <div
-                  data-metal-frame
-                  class="pointer-events-none absolute inset-2.5 rounded-[2px] border opacity-35 transition-colors duration-500"
-                  style={`border-color: ${initialVolData.hexPrimary};`}
-                  aria-hidden="true"
-                ></div>
-
-                <!-- BLOQUE SUPERIOR -->
-                <div class="relative z-20 text-center pt-1">
-                  <p class="font-serif text-[10.5px] sm:text-xs font-medium tracking-[0.12em] text-white/95 mb-1.5">
-                    Javier Sáez Mozos
-                  </p>
-
-                  <!-- Título principal con efecto Foil Metálico 3 paradas + Brillo Especular -->
-                  <p
-                    data-book-main-title
-                    class="book-metallic-title font-serif text-2xl sm:text-[27px] font-bold tracking-[0.18em] uppercase leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
-                    data-metal-variant={initialVolData.code}
-                  >
-                    FLEXIBILIDAD
-                  </p>
-
-                  <p class="mt-0.5 font-serif text-[9px] sm:text-[10px] font-semibold tracking-[0.28em] text-slate-100 uppercase">
-                    {locale === 'es' ? 'MÉTODO DE TROMBÓN' : locale === 'de' ? 'POSAUNENMETHODE' : locale === 'it' ? 'METODO PER TROMBONE' : 'TROMBONE METHOD'}
-                  </p>
-
-                  <!-- Cartela de Volumen y Nivel -->
-                  <div class="mt-2 flex items-center justify-center">
-                    <span
-                      data-book-badge
-                      class="inline-block font-serif text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-500"
-                      style={`color: ${initialVolData.hexPrimary};`}
-                    >
-                      {initialVolData.badge[locale] || initialVolData.badge.es}
-                    </span>
-                  </div>
-
-                  <!-- Descriptor curricular de tesitura -->
-                  <p
-                    data-book-subtitle
-                    class="mt-1 font-serif italic text-[9px] sm:text-[10px] text-slate-200 tracking-wide transition-colors duration-500"
-                  >
-                    {initialVolData.subtitle[locale] || initialVolData.subtitle.es}
-                  </p>
-                </div>
-
-                <!-- PIE DISCRETO SOBRE EL ESCENARIO DE PORTADA -->
-                <div class="relative z-20 text-center pb-0.5">
-                  <span class="inline-block rounded-full border border-white/15 bg-black/55 px-2.5 py-0.5 font-sans text-[8px] uppercase tracking-[0.18em] text-slate-300/90 backdrop-blur-sm">
-                    {coverFootMap[locale] || coverFootMap.es}
-                  </span>
-                </div>
-              </div>
             </div>
 
             <!-- 2. LOMO FÍSICO (Cara X-) -->
@@ -416,64 +349,6 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
                 loading="eager"
                 decoding="async"
               />
-              <div class="text-center border-b border-white/10 pb-2.5">
-                <p class="font-serif text-sm font-bold tracking-[0.18em] text-gold-400 uppercase">
-                  FLEXIBILIDAD
-                </p>
-                <p class="mt-0.5 font-serif text-[7.5px] tracking-[0.2em] text-white uppercase">
-                  {locale === 'es' ? 'MÉTODO DE TROMBÓN · VOLUMEN 1 (ELEMENTAL)' : locale === 'de' ? 'POSAUNENMETHODE · BAND 1 (ELEMENTARSTUFE)' : locale === 'it' ? 'METODO PER TROMBONE · VOLUME 1 (ELEMENTARE)' : 'TROMBONE METHOD · VOLUME 1 (ELEMENTARY)'}
-                </p>
-                <p class="mt-1 font-serif text-[8px] text-gold-300 leading-snug">
-                  {locale === 'es'
-                    ? 'La guía estructurada para iniciar y desarrollar tu flexibilidad labial hasta Fa₄'
-                    : locale === 'de'
-                      ? 'Der strukturierte Leitfaden für Ihre Lippenflexibilität bis F₄'
-                      : locale === 'it'
-                        ? 'La guida strutturata per iniziare e sviluppare la flessibilità labiale fino a Fa₄'
-                        : 'The structured guide to build and develop your lip flexibility up to F₄'}
-                </p>
-              </div>
-
-              <div class="space-y-2 my-auto py-2 text-[8.2px] leading-relaxed text-slate-200 font-serif">
-                <p>
-                  {locale === 'es'
-                    ? 'Moverse ágilmente entre armónicos sin forzar la embocadura es posible cuando el aire se convierte en el motor y los labios responden con elasticidad.'
-                    : locale === 'de'
-                      ? 'Fließende Übergänge zwischen Naturtönen ohne Verkrampfung gelingen, wenn die Luftsäule die Führung übernimmt und die Lippen elastisch reagieren.'
-                      : locale === 'it'
-                        ? 'Muoversi fluidamente tra gli armonici senza forzare l\'imboccatura è naturale quando l\'aria diventa il motore e le labbra rispondono con elasticità.'
-                        : 'Moving fluidly across harmonics without forcing the embouchure becomes natural when airflow drives the sound and the lips respond with elasticity.'}
-                </p>
-                <ul class="space-y-1 text-[7.8px] text-slate-300 font-sans">
-                  <li>
-                    <span class="text-gold-400">✦</span>{' '}
-                    <strong class="text-white">{locale === 'es' ? 'Grabaciones y práctica interactiva:' : locale === 'de' ? 'Aufnahmen & Üben:' : locale === 'it' ? 'Registrazioni e pratica:' : 'Recordings & practice:'}</strong>{' '}
-                    {locale === 'es' ? '15 códigos QR con videopartituras.' : locale === 'de' ? '15 QR-Codes mit Videopartituren.' : locale === 'it' ? '15 codici QR con videopartiture.' : '15 QR codes linking to video scores.'}
-                  </li>
-                  <li>
-                    <span class="text-gold-400">✦</span>{' '}
-                    <strong class="text-white">{locale === 'es' ? 'Progresión Curricular en 3 Niveles:' : locale === 'de' ? '3-Stufen-Lehrplan:' : locale === 'it' ? 'Curriculum in 3 Livelli:' : '3-Level Curriculum:'}</strong>{' '}
-                    {locale === 'es' ? 'Sib₂–Fa₃–Sib₃ · +Re₄ · +Fa₄.' : locale === 'de' ? 'B♭₂–F₃–B♭₃ · +D₄ · +F₄.' : locale === 'it' ? 'Sib₂–Fa₃–Sib₃ · +Re₄ · +Fa₄.' : 'Bb₂–F₃–Bb₃ · +D₄ · +F₄.'}
-                  </li>
-                  <li>
-                    <span class="text-gold-400">✦</span>{' '}
-                    <strong class="text-white">{locale === 'es' ? 'Asistente pedagógico TromBot:' : locale === 'de' ? 'Pädagogischer Assistent TromBot:' : locale === 'it' ? 'Assistente TromBot:' : 'TromBot Pedagogue:'}</strong>{' '}
-                    {locale === 'es' ? 'Pautas visuales para el estudio en casa.' : locale === 'de' ? 'Visuelle Leitlinien für das Heimstudium.' : locale === 'it' ? 'Linee guida visive per lo studio.' : 'Visual guidance for home practice.'}
-                  </li>
-                </ul>
-              </div>
-
-              <div class="flex items-end justify-between border-t border-white/10 pt-2">
-                <div class="text-[7px] font-mono text-slate-400 space-y-0.5">
-                  <p>AMAZON KDP &amp; KINDLE</p>
-                  <p>US LETTER · MARGEN 20 MM</p>
-                  <p>WWW.JAVISAEZ.COM</p>
-                </div>
-                <div class="h-9 w-14 rounded-[2px] bg-white p-1 flex flex-col justify-between items-center">
-                  <div class="w-full h-5 bg-[repeating-linear-gradient(90deg,#111_0px,#111_1px,transparent_1px,transparent_3px)]"></div>
-                  <span class="text-[5.5px] font-mono text-black leading-none">ISBN KDP</span>
-                </div>
-              </div>
             </div>
 
           </div>
