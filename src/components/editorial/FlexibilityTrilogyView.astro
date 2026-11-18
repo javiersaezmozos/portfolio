@@ -321,6 +321,65 @@ const copyMap: Record<SupportedLocale, CopyEntry> = {
 
 const trilogyMeta = trilogyMetaMap[locale] || trilogyMetaMap.es;
 const copy = copyMap[locale] || copyMap.es;
+const siteUrl = Astro.site || 'https://www.javisaez.com';
+
+const trilogySchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BookSeries',
+      name: copy.h1Main,
+      description: trilogyMeta.description,
+      url: new URL(paths.trilogy, siteUrl).href,
+      inLanguage: locale,
+      author: {
+        '@type': 'Person',
+        name: 'Javier Sáez Mozos',
+        url: new URL(paths.home, siteUrl).href,
+      },
+      hasPart: [
+        {
+          '@type': 'Book',
+          name: trilogyCards[0]?.title || 'Volumen 1 · Elemental',
+          position: 1,
+          url: new URL(paths.vol1, siteUrl).href,
+          image: new URL('/images/metodos/vol1-portada.png', siteUrl).href,
+          bookFormat: ['https://schema.org/Paperback', 'https://schema.org/EBook'],
+        },
+        {
+          '@type': 'Book',
+          name: trilogyCards[1]?.title || 'Volumen 2 · Intermedio',
+          position: 2,
+          image: new URL('/images/metodos/vol2-portada.jpg', siteUrl).href,
+          bookFormat: ['https://schema.org/Paperback', 'https://schema.org/EBook'],
+        },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: copy.home,
+          item: new URL(paths.home, siteUrl).href,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: copy.methods,
+          item: new URL(paths.catalog, siteUrl).href,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: copy.current,
+          item: new URL(paths.trilogy, siteUrl).href,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <Layout
@@ -329,7 +388,9 @@ const copy = copyMap[locale] || copyMap.es;
   footer={siteData.footer}
   currentLocale={locale}
 >
-  <main id="main-trilogy-content" class="bg-dark-950 min-h-screen pt-6 pb-24 text-white">
+  <script type="application/ld+json" set:html={JSON.stringify(trilogySchema)} />
+
+  <div id="main-trilogy-content" class="bg-dark-950 min-h-screen pt-6 pb-24 text-white">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <nav aria-label="Breadcrumbs" class="py-3 text-xs text-slate-400">
         <ol class="breadcrumb-list flex flex-wrap items-center">
@@ -549,7 +610,7 @@ const copy = copyMap[locale] || copyMap.es;
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>

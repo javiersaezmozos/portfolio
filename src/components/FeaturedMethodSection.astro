@@ -144,22 +144,30 @@ const copy = copyMap[currentLocale] || copyMap.es;
             <div class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-copper-base via-copper to-gold-regal opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-700"></div>
 
             <div class="featured-book-card relative rounded-xl overflow-hidden border border-copper/40 bg-[#0B0C0E] shadow-book-3d aspect-[3/4]">
-              <img
-                data-cover-front
-                src={`${base}/images/metodos/vol1-portada.jpg`}
-                alt={copy.imgAlt}
-                class="h-full w-full object-cover object-center transition-opacity duration-300"
-                loading="lazy"
-                decoding="async"
-              />
-              <img
-                data-cover-back
-                src={`${base}/images/metodos/vol1-contraportada.jpg`}
-                alt={copy.backImgAlt}
-                class="absolute inset-0 h-full w-full object-cover object-center opacity-0 pointer-events-none transition-opacity duration-300"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture data-cover-front transition:name="book-cover-vol1" class="block h-full w-full transition-opacity duration-300">
+                <source srcset={`${base}/images/metodos/vol1-portada.webp`} type="image/webp" />
+                <img
+                  src={`${base}/images/metodos/vol1-portada.jpg`}
+                  alt={copy.imgAlt}
+                  width="800"
+                  height="1035"
+                  class="h-full w-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <picture data-cover-back class="absolute inset-0 block h-full w-full opacity-0 pointer-events-none transition-opacity duration-300">
+                <source srcset={`${base}/images/metodos/vol1-contraportada.webp`} type="image/webp" />
+                <img
+                  src={`${base}/images/metodos/vol1-contraportada.jpg`}
+                  alt={copy.backImgAlt}
+                  width="800"
+                  height="1035"
+                  class="h-full w-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
           </div>
 
@@ -282,35 +290,47 @@ const copy = copyMap[currentLocale] || copyMap.es;
 </style>
 
 <script>
-  document.querySelectorAll('#novedades').forEach((section) => {
-    const frontImg = section.querySelector<HTMLImageElement>('[data-cover-front]');
-    const backImg = section.querySelector<HTMLImageElement>('[data-cover-back]');
-    const frontBtn = section.querySelector<HTMLButtonElement>('[data-cover-btn="front"]');
-    const backBtn = section.querySelector<HTMLButtonElement>('[data-cover-btn="back"]');
-    if (!frontImg || !backImg || !frontBtn || !backBtn) return;
+  function initFeaturedMethodCover() {
+    try {
+      document.querySelectorAll<HTMLElement>('#novedades').forEach((section) => {
+        if (section.dataset.initialized === 'true') return;
+        section.dataset.initialized = 'true';
 
-    const setSide = (side: 'front' | 'back') => {
-      const showFront = side === 'front';
-      frontImg.classList.toggle('opacity-0', !showFront);
-      frontImg.classList.toggle('pointer-events-none', !showFront);
-      backImg.classList.toggle('opacity-0', showFront);
-      backImg.classList.toggle('pointer-events-none', showFront);
+        const frontImg = section.querySelector<HTMLImageElement>('[data-cover-front]');
+        const backImg = section.querySelector<HTMLImageElement>('[data-cover-back]');
+        const frontBtn = section.querySelector<HTMLButtonElement>('[data-cover-btn="front"]');
+        const backBtn = section.querySelector<HTMLButtonElement>('[data-cover-btn="back"]');
+        if (!frontImg || !backImg || !frontBtn || !backBtn) return;
 
-      frontBtn.setAttribute('aria-pressed', String(showFront));
-      backBtn.setAttribute('aria-pressed', String(!showFront));
+        const setSide = (side: 'front' | 'back') => {
+          const showFront = side === 'front';
+          frontImg.classList.toggle('opacity-0', !showFront);
+          frontImg.classList.toggle('pointer-events-none', !showFront);
+          backImg.classList.toggle('opacity-0', showFront);
+          backImg.classList.toggle('pointer-events-none', showFront);
 
-      frontBtn.classList.toggle('bg-copper', showFront);
-      frontBtn.classList.toggle('text-graphite-deep', showFront);
-      frontBtn.classList.toggle('font-semibold', showFront);
-      frontBtn.classList.toggle('text-slate-300', !showFront);
+          frontBtn.setAttribute('aria-pressed', String(showFront));
+          backBtn.setAttribute('aria-pressed', String(!showFront));
 
-      backBtn.classList.toggle('bg-copper', !showFront);
-      backBtn.classList.toggle('text-graphite-deep', !showFront);
-      backBtn.classList.toggle('font-semibold', !showFront);
-      backBtn.classList.toggle('text-slate-300', showFront);
-    };
+          frontBtn.classList.toggle('bg-copper', showFront);
+          frontBtn.classList.toggle('text-graphite-deep', showFront);
+          frontBtn.classList.toggle('font-semibold', showFront);
+          frontBtn.classList.toggle('text-slate-300', !showFront);
 
-    frontBtn.addEventListener('click', () => setSide('front'));
-    backBtn.addEventListener('click', () => setSide('back'));
-  });
+          backBtn.classList.toggle('bg-copper', !showFront);
+          backBtn.classList.toggle('text-graphite-deep', !showFront);
+          backBtn.classList.toggle('font-semibold', !showFront);
+          backBtn.classList.toggle('text-slate-300', showFront);
+        };
+
+        frontBtn.addEventListener('click', () => setSide('front'));
+        backBtn.addEventListener('click', () => setSide('back'));
+      });
+    } catch (err) {
+      console.error('[FeaturedMethodSection] Error initializing cover toggle:', err);
+    }
+  }
+
+  initFeaturedMethodCover();
+  document.addEventListener('astro:page-load', initFeaturedMethodCover);
 </script>

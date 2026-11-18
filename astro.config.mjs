@@ -7,8 +7,8 @@ export default defineConfig({
   integrations: [tailwind()],
   base: process.env.VERCEL ? '/' : '/portfolio',
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'es'],
+    defaultLocale: 'es',
+    locales: ['es', 'en', 'de', 'it'],
     routing: {
       prefixDefaultLocale: true,
       redirectToDefaultLocale: false

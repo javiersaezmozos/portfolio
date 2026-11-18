@@ -42,7 +42,7 @@ const isCareerActive = currentPath.startsWith(careerHref.replace(/\/$/, ''));
 const isMethodsActive = currentPath.startsWith(methodsCatalogHref.replace(/\/$/, ''));
 const isContactActive = currentPath.startsWith(contactHref.replace(/\/$/, ''));
 
-const desktopPillBase = 'inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs sm:text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-gold-500 whitespace-nowrap';
+const desktopPillBase = 'inline-flex items-center gap-1.5 rounded-full border lg:px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-gold-500 whitespace-nowrap';
 const desktopPillActive = 'border-gold-400/60 bg-gradient-to-r from-gold-500/20 via-amber-500/15 to-gold-500/20 text-gold-300 hover:text-white hover:border-gold-300 hover:bg-gold-500/30 shadow-sm shadow-gold-500/10';
 const desktopPillInactive = 'border-dark-700/80 bg-dark-900/60 text-slate-300 hover:text-gold-300 hover:border-gold-400/50 hover:bg-dark-850';
 
@@ -116,7 +116,7 @@ const careerLinks = [
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm font-medium text-slate-300" aria-label="Main Navigation">
+      <nav class="hidden lg:flex items-center lg:gap-2 xl:gap-3.5 text-sm font-medium text-slate-300" aria-label="Main Navigation">
         <!-- 1) Inicio -->
         <a
           href={localeHome}
@@ -148,7 +148,7 @@ const careerLinks = [
           <a
             href={careerHref}
             aria-current={isCareerActive ? 'page' : undefined}
-            class={`inline-flex items-center pl-4 pr-1 py-1.5 text-xs sm:text-sm font-semibold transition-colors focus:outline-none whitespace-nowrap ${
+            class={`inline-flex items-center lg:pl-3 xl:pl-4 pr-1 py-1.5 text-xs xl:text-sm font-semibold transition-colors focus:outline-none whitespace-nowrap ${
               isCareerActive ? 'text-gold-300 hover:text-white' : 'text-slate-300 hover:text-gold-300'
             }`}
           >
@@ -157,7 +157,7 @@ const careerLinks = [
           <button
             id="desktop-career-trigger"
             type="button"
-            class={`inline-flex items-center py-1.5 pr-3 pl-1 transition-colors focus:outline-none cursor-pointer ${
+            class={`inline-flex items-center py-1.5 lg:pr-2.5 xl:pr-3 pl-1 transition-colors focus:outline-none cursor-pointer ${
               isCareerActive ? 'text-gold-300 hover:text-white' : 'text-slate-400 group-hover/dropdown:text-gold-300 hover:text-gold-300'
             }`}
             aria-expanded="false"
@@ -438,121 +438,134 @@ const careerLinks = [
 </header>
 
 <script>
-  // Control del menú móvil (hamburguesa)
-  const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const openIcon = document.getElementById('menu-icon-open');
-  const closeIcon = document.getElementById('menu-icon-close');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  function initHeaderNav() {
+    try {
+      const headerEl = document.querySelector('header');
+      if (!headerEl) return;
 
-  if (toggleBtn && menu && openIcon && closeIcon) {
-    toggleBtn.addEventListener('click', () => {
-      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
-      menu.classList.toggle('hidden');
-      openIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
-    });
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      const careerToggleBtn = document.getElementById('mobile-career-toggle');
+      const careerMenu = document.getElementById('mobile-career-menu');
+      const careerChevron = document.getElementById('mobile-career-chevron');
+      const desktopCareerTrigger = document.getElementById('desktop-career-trigger');
+      const desktopCareerMenu = document.getElementById('desktop-career-menu');
+      const desktopContainer = document.getElementById('desktop-career-container');
+      const desktopLinks = document.querySelectorAll('.desktop-dropdown-link');
 
-    mobileLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        openIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
+      if (headerEl.dataset.initialized !== 'true') {
+        headerEl.dataset.initialized = 'true';
 
-  // Acordeón expandible para Trayectoria en móvil
-  const careerToggleBtn = document.getElementById('mobile-career-toggle');
-  const careerMenu = document.getElementById('mobile-career-menu');
-  const careerChevron = document.getElementById('mobile-career-chevron');
+        if (toggleBtn && menu && openIcon && closeIcon) {
+          toggleBtn.addEventListener('click', () => {
+            const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+            toggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+            menu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+          });
 
-  if (careerToggleBtn && careerMenu && careerChevron) {
-    careerToggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isExpanded = careerToggleBtn.getAttribute('aria-expanded') === 'true';
-      careerToggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
-      careerMenu.classList.toggle('hidden');
-      careerChevron.classList.toggle('rotate-180');
-    });
-  }
+          mobileLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+              menu.classList.add('hidden');
+              openIcon.classList.remove('hidden');
+              closeIcon.classList.add('hidden');
+              toggleBtn.setAttribute('aria-expanded', 'false');
+            });
+          });
+        }
 
-  // Accesibilidad de teclado para el menú desplegable de escritorio
-  const desktopCareerTrigger = document.getElementById('desktop-career-trigger');
-  const desktopCareerMenu = document.getElementById('desktop-career-menu');
-  const desktopContainer = document.getElementById('desktop-career-container');
-  const desktopLinks = document.querySelectorAll('.desktop-dropdown-link');
+        if (careerToggleBtn && careerMenu && careerChevron) {
+          careerToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isExpanded = careerToggleBtn.getAttribute('aria-expanded') === 'true';
+            careerToggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+            careerMenu.classList.toggle('hidden');
+            careerChevron.classList.toggle('rotate-180');
+          });
+        }
 
-  if (desktopCareerTrigger && desktopCareerMenu && desktopContainer) {
-    desktopCareerTrigger.addEventListener('click', () => {
-      const isExpanded = desktopCareerTrigger.getAttribute('aria-expanded') === 'true';
-      desktopCareerTrigger.setAttribute('aria-expanded', (!isExpanded).toString());
-    });
+        if (desktopCareerTrigger && desktopCareerMenu && desktopContainer) {
+          desktopCareerTrigger.addEventListener('click', () => {
+            const isExpanded = desktopCareerTrigger.getAttribute('aria-expanded') === 'true';
+            desktopCareerTrigger.setAttribute('aria-expanded', (!isExpanded).toString());
+          });
 
-    // Cerrar al pulsar Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        desktopCareerTrigger.setAttribute('aria-expanded', 'false');
-        if (careerToggleBtn && careerMenu && !careerMenu.classList.contains('hidden')) {
-          careerMenu.classList.add('hidden');
-          careerToggleBtn.setAttribute('aria-expanded', 'false');
-          careerChevron?.classList.remove('rotate-180');
+          desktopLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+              desktopCareerTrigger.setAttribute('aria-expanded', 'false');
+            });
+          });
         }
       }
-    });
 
-    // Cerrar al hacer clic en un enlace del dropdown
-    desktopLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        desktopCareerTrigger.setAttribute('aria-expanded', 'false');
-      });
-    });
+      const syncNewsHashState = () => {
+        const isNewsHash = window.location.hash === '#novedades';
+        const homeDesktop = document.querySelector('[data-nav-home="desktop"]');
+        const newsDesktop = document.querySelector('[data-nav-news="desktop"]');
+        const homeMobile = document.querySelector('[data-nav-home="mobile"]');
+        const newsMobile = document.querySelector('[data-nav-news="mobile"]');
+
+        const activeDesktop = ['border-gold-400/60', 'bg-gradient-to-r', 'from-gold-500/20', 'via-amber-500/15', 'to-gold-500/20', 'text-gold-300', 'shadow-sm', 'shadow-gold-500/10'];
+        const inactiveDesktop = ['border-dark-700/80', 'bg-dark-900/60', 'text-slate-300'];
+        const activeMobile = ['border-gold-400/60', 'bg-gradient-to-r', 'from-gold-500/20', 'via-amber-500/15', 'to-gold-500/20', 'text-gold-300', 'shadow-sm'];
+        const inactiveMobile = ['border-dark-800', 'bg-dark-900/60', 'text-slate-300'];
+
+        if (homeDesktop && newsDesktop && (homeDesktop.getAttribute('aria-current') === 'page' || isNewsHash)) {
+          if (isNewsHash) {
+            homeDesktop.classList.remove(...activeDesktop);
+            homeDesktop.classList.add(...inactiveDesktop);
+            newsDesktop.classList.remove(...inactiveDesktop);
+            newsDesktop.classList.add(...activeDesktop);
+          } else if (homeDesktop.getAttribute('aria-current') === 'page') {
+            newsDesktop.classList.remove(...activeDesktop);
+            newsDesktop.classList.add(...inactiveDesktop);
+            homeDesktop.classList.remove(...inactiveDesktop);
+            homeDesktop.classList.add(...activeDesktop);
+          }
+        }
+
+        if (homeMobile && newsMobile && (homeMobile.getAttribute('aria-current') === 'page' || isNewsHash)) {
+          if (isNewsHash) {
+            homeMobile.classList.remove(...activeMobile);
+            homeMobile.classList.add(...inactiveMobile);
+            newsMobile.classList.remove(...inactiveMobile);
+            newsMobile.classList.add(...activeMobile);
+          } else if (homeMobile.getAttribute('aria-current') === 'page') {
+            newsMobile.classList.remove(...activeMobile);
+            newsMobile.classList.add(...inactiveMobile);
+            homeMobile.classList.remove(...inactiveMobile);
+            homeMobile.classList.add(...activeMobile);
+          }
+        }
+      };
+
+      syncNewsHashState();
+      if (!(window as any).__headerHashBound) {
+        (window as any).__headerHashBound = true;
+        window.addEventListener('hashchange', syncNewsHashState);
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            document.getElementById('desktop-career-trigger')?.setAttribute('aria-expanded', 'false');
+            const cMenu = document.getElementById('mobile-career-menu');
+            const cBtn = document.getElementById('mobile-career-toggle');
+            const cChev = document.getElementById('mobile-career-chevron');
+            if (cBtn && cMenu && !cMenu.classList.contains('hidden')) {
+              cMenu.classList.add('hidden');
+              cBtn.setAttribute('aria-expanded', 'false');
+              cChev?.classList.remove('rotate-180');
+            }
+          }
+        });
+      }
+    } catch (err) {
+      console.error('[Header] Error initializing navigation:', err);
+    }
   }
 
-  // Sincronizar estado activo entre Inicio y Novedades (#novedades)
-  const syncNewsHashState = () => {
-    const isNewsHash = window.location.hash === '#novedades';
-    const homeDesktop = document.querySelector('[data-nav-home="desktop"]');
-    const newsDesktop = document.querySelector('[data-nav-news="desktop"]');
-    const homeMobile = document.querySelector('[data-nav-home="mobile"]');
-    const newsMobile = document.querySelector('[data-nav-news="mobile"]');
-
-    const activeDesktop = ['border-gold-400/60', 'bg-gradient-to-r', 'from-gold-500/20', 'via-amber-500/15', 'to-gold-500/20', 'text-gold-300', 'shadow-sm', 'shadow-gold-500/10'];
-    const inactiveDesktop = ['border-dark-700/80', 'bg-dark-900/60', 'text-slate-300'];
-    const activeMobile = ['border-gold-400/60', 'bg-gradient-to-r', 'from-gold-500/20', 'via-amber-500/15', 'to-gold-500/20', 'text-gold-300', 'shadow-sm'];
-    const inactiveMobile = ['border-dark-800', 'bg-dark-900/60', 'text-slate-300'];
-
-    if (homeDesktop && newsDesktop && (homeDesktop.getAttribute('aria-current') === 'page' || isNewsHash)) {
-      if (isNewsHash) {
-        homeDesktop.classList.remove(...activeDesktop);
-        homeDesktop.classList.add(...inactiveDesktop);
-        newsDesktop.classList.remove(...inactiveDesktop);
-        newsDesktop.classList.add(...activeDesktop);
-      } else if (homeDesktop.getAttribute('aria-current') === 'page') {
-        newsDesktop.classList.remove(...activeDesktop);
-        newsDesktop.classList.add(...inactiveDesktop);
-        homeDesktop.classList.remove(...inactiveDesktop);
-        homeDesktop.classList.add(...activeDesktop);
-      }
-    }
-
-    if (homeMobile && newsMobile && (homeMobile.getAttribute('aria-current') === 'page' || isNewsHash)) {
-      if (isNewsHash) {
-        homeMobile.classList.remove(...activeMobile);
-        homeMobile.classList.add(...inactiveMobile);
-        newsMobile.classList.remove(...inactiveMobile);
-        newsMobile.classList.add(...activeMobile);
-      } else if (homeMobile.getAttribute('aria-current') === 'page') {
-        newsMobile.classList.remove(...activeMobile);
-        newsMobile.classList.add(...inactiveMobile);
-        homeMobile.classList.remove(...inactiveMobile);
-        homeMobile.classList.add(...activeMobile);
-      }
-    }
-  };
-
-  syncNewsHashState();
-  window.addEventListener('hashchange', syncNewsHashState);
+  initHeaderNav();
+  document.addEventListener('astro:page-load', initHeaderNav);
 </script>

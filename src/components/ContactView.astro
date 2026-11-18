@@ -144,6 +144,13 @@ const copyMap: Record<SupportedLocale, {
 
 const meta = contactMetaMap[locale] || contactMetaMap.es;
 const copy = copyMap[locale] || copyMap.es;
+const copyLabelMap: Record<SupportedLocale, { copy: string; copied: string }> = {
+  es: { copy: 'Copiar', copied: 'Copiado ✓' },
+  en: { copy: 'Copy', copied: 'Copied ✓' },
+  de: { copy: 'Kopieren', copied: 'Kopiert ✓' },
+  it: { copy: 'Copia', copied: 'Copiato ✓' },
+};
+const copyLabels = copyLabelMap[locale] || copyLabelMap.es;
 ---
 
 <Layout
@@ -152,7 +159,7 @@ const copy = copyMap[locale] || copyMap.es;
   footer={siteData.footer}
   currentLocale={locale}
 >
-  <main id="contacto" class="bg-dark-950 min-h-screen text-white">
+  <div id="contacto" class="bg-dark-950 min-h-screen text-white">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-4">
       
       <!-- Breadcrumb -->
@@ -227,11 +234,22 @@ const copy = copyMap[locale] || copyMap.es;
                 {copy.generalDesc}
               </p>
 
-              <div class="p-4 rounded-xl bg-dark-950/90 border border-dark-800 mb-6 flex items-center gap-3">
-                <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Email:</span>
-                <span class="font-mono text-sm sm:text-base font-semibold text-gold-300 selection:bg-gold-500 selection:text-dark-950">
-                  info@javisaez.com
-                </span>
+              <div class="p-4 rounded-xl bg-dark-950/90 border border-dark-800 mb-6 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Email:</span>
+                  <span class="font-mono text-sm sm:text-base font-semibold text-gold-300 selection:bg-gold-500 selection:text-dark-950 truncate">
+                    info@javisaez.com
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  data-copy-email="info@javisaez.com"
+                  data-copy-text={copyLabels.copy}
+                  data-copied-text={copyLabels.copied}
+                  class="shrink-0 rounded-lg border border-gold-500/30 bg-gold-500/10 hover:bg-gold-500/20 px-3 py-1.5 text-xs font-mono font-semibold text-gold-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400 cursor-pointer"
+                >
+                  {copyLabels.copy}
+                </button>
               </div>
             </div>
 
@@ -270,11 +288,22 @@ const copy = copyMap[locale] || copyMap.es;
                 {copy.ordersDesc}
               </p>
 
-              <div class="p-4 rounded-xl bg-dark-950/90 border border-dark-800 mb-6 flex items-center gap-3">
-                <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Email:</span>
-                <span class="font-mono text-sm sm:text-base font-semibold text-amber-300 selection:bg-amber-500 selection:text-dark-950">
-                  orders@javisaez.com
-                </span>
+              <div class="p-4 rounded-xl bg-dark-950/90 border border-dark-800 mb-6 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Email:</span>
+                  <span class="font-mono text-sm sm:text-base font-semibold text-amber-300 selection:bg-amber-500 selection:text-dark-950 truncate">
+                    orders@javisaez.com
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  data-copy-email="orders@javisaez.com"
+                  data-copy-text={copyLabels.copy}
+                  data-copied-text={copyLabels.copied}
+                  class="shrink-0 rounded-lg border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-1.5 text-xs font-mono font-semibold text-amber-300 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer"
+                >
+                  {copyLabels.copy}
+                </button>
               </div>
             </div>
 
@@ -296,8 +325,41 @@ const copy = copyMap[locale] || copyMap.es;
 
     <!-- Social Broadcast Channels (YouTube & Instagram) -->
     <SocialBroadcastSection social={siteData.social} currentLocale={locale} />
-  </main>
+  </div>
 </Layout>
+
+<script>
+  function initCopyEmails() {
+    try {
+      document.querySelectorAll<HTMLButtonElement>('[data-copy-email]').forEach((btn) => {
+        if (btn.dataset.initialized === 'true') return;
+        btn.dataset.initialized = 'true';
+
+        btn.addEventListener('click', async () => {
+          const email = btn.dataset.copyEmail;
+          const copyText = btn.dataset.copyText || 'Copiar';
+          const copiedText = btn.dataset.copiedText || 'Copiado ✓';
+          if (!email) return;
+
+          try {
+            await navigator.clipboard.writeText(email);
+            btn.textContent = copiedText;
+            window.setTimeout(() => {
+              btn.textContent = copyText;
+            }, 2200);
+          } catch (err) {
+            console.warn('[ContactView] Clipboard copy fallback:', err);
+          }
+        });
+      });
+    } catch (err) {
+      console.error('[ContactView] Error initializing email copy buttons:', err);
+    }
+  }
+
+  initCopyEmails();
+  document.addEventListener('astro:page-load', initCopyEmails);
+</script>
 
 <style>
   .breadcrumb-list li:not(:first-child)::before {

@@ -57,13 +57,14 @@ export default {
           900: '#0f141c',
           850: '#141b24',
           800: '#1a2330',
+          750: '#1f2a3a',
           700: '#253244',
           600: '#34455c'
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['Baskerville', 'Libre Baskerville', 'Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+        serif: ['Libre Baskerville', 'Baskerville', 'Georgia', 'serif'],
         mono: ['JetBrains Mono', 'monospace']
       },
       backgroundImage: {

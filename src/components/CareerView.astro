@@ -100,7 +100,7 @@ const copy = copyMap[locale] || copyMap.es;
   footer={siteData.footer}
   currentLocale={locale}
 >
-  <main id="main-career-content" class="bg-dark-950 min-h-screen text-white">
+  <div id="main-career-content" class="bg-dark-950 min-h-screen text-white">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-4">
       <!-- Breadcrumb -->
       <nav aria-label="Breadcrumb" class="py-3 text-xs text-slate-400">
@@ -141,7 +141,7 @@ const copy = copyMap[locale] || copyMap.es;
     <PerformanceSection performance={siteData.performance} currentLocale={locale} />
     <TeachingSection teaching={siteData.teaching} currentLocale={locale} />
     <AwardsSection awards={siteData.awards} currentLocale={locale} />
-  </main>
+  </div>
 </Layout>
 
 <style>

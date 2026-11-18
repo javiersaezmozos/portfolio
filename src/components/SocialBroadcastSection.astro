@@ -63,8 +63,8 @@ const copy = copyMap[currentLocale] || copyMap.es;
 
 <section id="redes" class="py-20 lg:py-28 relative overflow-hidden">
   
-  <!-- Ambient background glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-96 bg-gradient-radial from-red-600/10 via-pink-600/5 to-transparent blur-3xl pointer-events-none -z-10"></div>
+  <!-- Ambient noble metal background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-96 bg-gradient-radial from-gold-500/10 via-copper/5 to-transparent blur-3xl pointer-events-none -z-10"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
@@ -74,7 +74,7 @@ const copy = copyMap[currentLocale] || copyMap.es;
         <SocialIcons name="video" class="w-4 h-4 text-gold-400" />
         <span>{social.subtitle}</span>
       </div>
-      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 text-balance">
         {social.title}
       </h2>
       <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -82,17 +82,17 @@ const copy = copyMap[currentLocale] || copyMap.es;
       </p>
     </div>
 
-    <!-- Interactive Channels Grid -->
+    <!-- Interactive Channels Grid (Noble Metals Palette + Lite Facade) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       
-      <!-- YouTube Card -->
-      <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-red-500/30 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden">
-        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 rounded-full blur-2xl pointer-events-none group-hover:bg-red-600/20 transition-all"></div>
+      <!-- YouTube Card with On-Demand Lite Facade -->
+      <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-gold-500/30 hover:border-gold-400/60 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden transition-colors">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
         
         <div>
           <div class="flex items-center justify-between gap-4 mb-6">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center text-red-500 shadow-lg shadow-red-600/10">
+              <div class="w-12 h-12 rounded-2xl bg-gold-500/15 border border-gold-500/30 flex items-center justify-center text-gold-400 shadow-lg shadow-gold-500/10">
                 <SocialIcons name="youtube" class="w-7 h-7" />
               </div>
               <div>
@@ -100,27 +100,37 @@ const copy = copyMap[currentLocale] || copyMap.es;
                 <span class="text-xs font-mono text-slate-400">@javi_trombone</span>
               </div>
             </div>
-            <span class="px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-semibold">
+            <span class="px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300 text-xs font-semibold">
               {copy.ytTag}
             </span>
           </div>
 
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
             {social.channels[0].description}
           </p>
 
-          <!-- Visual Player Preview Component -->
-          <div class="rounded-2xl bg-dark-950/90 border border-dark-800 p-4 mb-8 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white shrink-0 shadow-md">
-              <SocialIcons name="video" class="w-6 h-6" />
-            </div>
-            <div class="min-w-0">
-              <p class="text-xs font-bold text-slate-200 truncate">
-                {copy.ytTitle}
-              </p>
-              <p class="text-[11px] text-slate-400">
-                {copy.ytDesc}
-              </p>
+          <!-- Lite YouTube Facade (0 KB third-party JS until user clicks) -->
+          <div
+            data-yt-facade
+            data-yt-embed="https://www.youtube-nocookie.com/embed?listType=user_uploads&list=javi_trombone&autoplay=1&rel=0"
+            class="relative rounded-2xl bg-dark-950 border border-dark-750 overflow-hidden mb-8 aspect-video flex flex-col items-center justify-center p-6 text-center group/yt cursor-pointer"
+            role="button"
+            tabindex="0"
+            aria-label={`${copy.ytTitle} — YouTube`}
+          >
+            <div class="absolute inset-0 bg-gradient-to-tr from-dark-950 via-dark-900/90 to-gold-500/10 pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col items-center gap-3">
+              <div class="w-14 h-14 rounded-full bg-gold-500 text-dark-950 flex items-center justify-center shadow-xl shadow-gold-500/25 group-hover/yt:scale-105 transition-transform duration-200">
+                <SocialIcons name="video" class="w-6 h-6" />
+              </div>
+              <div>
+                <p class="text-sm font-serif font-bold text-white">
+                  {copy.ytTitle}
+                </p>
+                <p class="text-xs text-slate-300 mt-0.5">
+                  {copy.ytDesc}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -129,7 +139,7 @@ const copy = copyMap[currentLocale] || copyMap.es;
           href="https://youtube.com/@javi_trombone"
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-red-600/20 hover:scale-[1.01] active:scale-[0.99] transition-all"
+          class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-dark-950 font-bold text-sm sm:text-base shadow-xl shadow-gold-500/20 transition-colors"
         >
           <SocialIcons name="youtube" class="w-5 h-5" />
           <span>{social.channels[0].actionText}</span>
@@ -137,42 +147,43 @@ const copy = copyMap[currentLocale] || copyMap.es;
         </a>
       </div>
 
-      <!-- Instagram Card -->
-      <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-pink-500/30 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden">
-        <div class="absolute top-0 right-0 w-48 h-48 bg-pink-600/10 rounded-full blur-2xl pointer-events-none group-hover:bg-pink-600/20 transition-all"></div>
+      <!-- Instagram Card (Copper Editorial Palette) -->
+      <div class="rounded-3xl bg-gradient-to-b from-dark-900 via-dark-850 to-dark-950 border border-copper/35 hover:border-copper/70 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative group overflow-hidden transition-colors">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-copper/10 rounded-full blur-2xl pointer-events-none"></div>
         
         <div>
           <div class="flex items-center justify-between gap-4 mb-6">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 p-[1.5px] shadow-lg shadow-pink-600/10">
-                <div class="w-full h-full bg-dark-950 rounded-2xl flex items-center justify-center text-pink-400">
-                  <SocialIcons name="instagram" class="w-6 h-6" />
-                </div>
+              <div class="w-12 h-12 rounded-2xl bg-copper/15 border border-copper/40 flex items-center justify-center text-copper-light shadow-lg shadow-copper/10">
+                <SocialIcons name="instagram" class="w-6 h-6" />
               </div>
               <div>
                 <h3 class="font-serif text-2xl font-bold text-white">Instagram</h3>
                 <span class="text-xs font-mono text-slate-400">@javi_trombone</span>
               </div>
             </div>
-            <span class="px-3 py-1 rounded-full bg-pink-500/15 border border-pink-500/30 text-pink-300 text-xs font-semibold">
+            <span class="px-3 py-1 rounded-full bg-copper/15 border border-copper/40 text-copper-light text-xs font-semibold">
               {copy.igTag}
             </span>
           </div>
 
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
             {social.channels[1].description}
           </p>
 
-          <!-- Visual Profile Preview Component -->
-          <div class="rounded-2xl bg-dark-950/90 border border-dark-800 p-4 mb-8 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 flex items-center justify-center text-white shrink-0 shadow-md">
-              <SocialIcons name="instagram" class="w-6 h-6" />
-            </div>
-            <div class="min-w-0">
-              <p class="text-xs font-bold text-slate-200 truncate">@javi_trombone</p>
-              <p class="text-[11px] text-slate-400">
-                {copy.igDesc}
-              </p>
+          <!-- Editorial Community Showcase Box -->
+          <div class="relative rounded-2xl bg-dark-950 border border-dark-750 overflow-hidden mb-8 aspect-video flex flex-col items-center justify-center p-6 text-center">
+            <div class="absolute inset-0 bg-gradient-to-tr from-dark-950 via-dark-900/90 to-copper/10 pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col items-center gap-3">
+              <div class="w-14 h-14 rounded-full bg-copper/20 border border-copper/50 text-copper-light flex items-center justify-center shadow-lg">
+                <SocialIcons name="instagram" class="w-6 h-6" />
+              </div>
+              <div>
+                <p class="text-sm font-serif font-bold text-white">@javi_trombone</p>
+                <p class="text-xs text-slate-300 mt-0.5">
+                  {copy.igDesc}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -181,9 +192,9 @@ const copy = copyMap[currentLocale] || copyMap.es;
           href="https://instagram.com/javi_trombone"
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:from-purple-500 hover:via-pink-500 hover:to-amber-400 text-white font-bold text-sm sm:text-base shadow-xl shadow-pink-600/20 hover:scale-[1.01] active:scale-[0.99] transition-all"
+          class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-copper/60 bg-copper/20 hover:bg-copper/30 text-white font-bold text-sm sm:text-base shadow-xl transition-colors"
         >
-          <SocialIcons name="instagram" class="w-5 h-5" />
+          <SocialIcons name="instagram" class="w-5 h-5 text-copper-light" />
           <span>{social.channels[1].actionText}</span>
           <SocialIcons name="external" class="w-4 h-4 opacity-80" />
         </a>
@@ -193,3 +204,42 @@ const copy = copyMap[currentLocale] || copyMap.es;
 
   </div>
 </section>
+
+<script>
+  function initLiteYouTubeFacade() {
+    try {
+      document.querySelectorAll<HTMLElement>('[data-yt-facade]').forEach((facade) => {
+        if (facade.dataset.initialized === 'true') return;
+        facade.dataset.initialized = 'true';
+
+        const activateEmbed = () => {
+          const embedUrl = facade.dataset.ytEmbed;
+          if (!embedUrl || facade.dataset.loaded === 'true') return;
+          facade.dataset.loaded = 'true';
+
+          const iframe = document.createElement('iframe');
+          iframe.src = embedUrl;
+          iframe.title = 'Javier Sáez YouTube Official Channel';
+          iframe.className = 'absolute inset-0 w-full h-full border-0';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          facade.innerHTML = '';
+          facade.appendChild(iframe);
+        };
+
+        facade.addEventListener('click', activateEmbed);
+        facade.addEventListener('keydown', (e: KeyboardEvent) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activateEmbed();
+          }
+        });
+      });
+    } catch (err) {
+      console.error('[SocialBroadcastSection] Error initializing YouTube facade:', err);
+    }
+  }
+
+  initLiteYouTubeFacade();
+  document.addEventListener('astro:page-load', initLiteYouTubeFacade);
+</script>

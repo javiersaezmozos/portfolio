@@ -6,7 +6,7 @@
     "locale": "es"
   },
   "nav": {
-    "presentation": "Presentación",
+    "presentation": "Perfil Artístico",
     "academic": "Formación académica",
     "masterclasses": "Formación continua y Masterclasses",
     "performance": "Experiencia interpretativa",
@@ -19,27 +19,27 @@
     "langSwitch": "EN"
   },
   "hero": {
-    "badge": "Trombonista & Pedagogo",
+    "badge": "Trombonista · Pedagogo Musical · Autor Editorial",
     "name": "Javier Sáez",
-    "description": "Trombonista, docente e investigador musical enfocado en las nuevas corrientes pedagógicas y la excelencia interpretativa.",
-    "tagline": "Trombonista, docente e investigador musical enfocado en las nuevas corrientes pedagógicas y la excelencia interpretativa.",
-    "ctaPrimary": "Explorar Trayectoria",
-    "ctaSecondary": "Formación Académica",
+    "description": "Interpretación sinfónica, investigación aplicada y metodología instrumental para el trombón contemporáneo. Colaborador en grandes orquestas y producciones para Netflix y Movistar+, profesor de conservatorio y autor de la colección «Trombón · Flexibilidad».",
+    "tagline": "Interpretación sinfónica, investigación aplicada y metodología instrumental para el trombón contemporáneo.",
+    "ctaPrimary": "Explorar Método Flexibilidad",
+    "ctaSecondary": "Trayectoria y Carrera Sinfónica",
     "ctaSocial": "Canal @javi_trombone",
     "highlights": [
       { "label": "Titulación de Posgrado", "value": "Triple Máster" },
-      { "label": "Grado Superior", "value": "Matrícula de Honor" },
+      { "label": "Título Superior (RCSMM)", "value": "Matrícula de Honor" },
       { "label": "Experiencia Docente", "value": "+12 Años" },
       { "label": "Especialidades", "value": "Trombón & Bombardino" }
     ]
   },
   "presentation": {
-    "title": "Presentación",
-    "subtitle": "Perfil Artístico y Pedagógico",
+    "title": "Perfil Artístico y Pedagógico",
+    "subtitle": "Escenario, Investigación y Docencia",
     "paragraphs": [
-      "Javier Sáez inició sus estudios de trombón con Félix García en el Ateneo Musical «Schola Cantorum» de la Vall d'Uixó (Castellón). En 2009 concluyó las Enseñanzas Profesionales de Música en la especialidad de Trombón en el conservatorio profesional de dicha localidad con Premio Fin de Grado.",
-      "En 2013 obtuvo el Título Superior de Música en el Real Conservatorio Superior de Música de Madrid (RCSMM) bajo la dirección de José Enrique Cotolí, logrando la máxima calificación de Matrícula de Honor en el recital de fin de carrera. En 2018 completó asimismo las Enseñanzas Profesionales en la especialidad de Tuba con el bombardino en el Conservatorio Profesional de Música «Manuel de Falla» de Alcorcón, obteniendo nuevamente el Premio Fin de Grado.",
-      "Su perfil docente e investigador se fundamenta en una triple titulación de posgrado universitario: Máster en Formación del Profesorado (UCM, 2015), Máster en Pedagogía Musical (UNIR, 2022) y Máster en Pedagogía Instrumental (UAX, 2025). En el ámbito profesional, ha participado en la grabación de destacadas bandas sonoras como «Otros Mundos» para Movistar+ o «Klaus» para Netflix, y en álbumes discográficos como «Incendios» de Conchita con Mad4Strings, compaginando colaboraciones orquestales con su labor docente en conservatorios. Su trayectoria incluye colaboraciones con orquestas profesionales como la OSRTVE y la ORCAM, su pertenencia a And The Brass, su experiencia docente desde 2013 y su puesto actual como profesor en la Escuela-Conservatorio «Manuel Rodríguez Sales» de Leganés (Madrid)."
+      "La actividad artística de Javier Sáez abarca el repertorio sinfónico, la música contemporánea y la grabación de bandas sonoras internacionales. Ha colaborado como trombonista y bombardinista con formaciones de referencia como la Orquesta Sinfónica de RTVE (ORTVE), la Orquesta Sinfónica de Madrid (Titular del Teatro Real), la ORCAM y Plural Ensemble, participando además junto a Mad4Strings en la grabación de producciones para Netflix («Klaus»), Movistar+ («Otros Mundos») y álbumes de estudio como «Incendios». En el ámbito camerístico, es miembro de And The Brass y de la Madrid Brass Band.",
+      "Con más de doce años de experiencia docente, ejerce como profesor de viento metal y Secretario Académico en la Escuela-Conservatorio Profesional de Música «Manuel Rodríguez Sales» de Leganés (Madrid). Su labor pedagógica se apoya en un Triple Máster universitario —Pedagogía Instrumental (UAX, 2025), Pedagogía Musical (UNIR, 2022) y Formación del Profesorado (UCM, 2015)— y se proyecta internacionalmente a través de su colección editorial «Trombón · Flexibilidad» y del ecosistema divulgativo @javi_trombone.",
+      "Titulado Superior en Trombón por el Real Conservatorio Superior de Música de Madrid (RCSMM) en la cátedra de José Enrique Cotolí, obtuvo la máxima calificación de Matrícula de Honor en su recital de fin de carrera, tras haber sido distinguido previamente con un doble Premio Fin de Grado en las Enseñanzas Profesionales de Trombón (La Vall d'Uixó, donde inició sus estudios con Félix García) y en la especialidad oficial de Tuba con el bombardino (Conservatorio Profesional «Manuel de Falla» de Alcorcón)."
     ],
     "quote": "«La pedagogía musical y la excelencia interpretativa son dos disciplinas inseparables que se nutren mutuamente en el escenario y en el aula.»"
   },
@@ -206,15 +206,15 @@
     "positions": [
       {
         "period": "2023 – Actualidad",
-        "role": "Profesor de Música",
+        "role": "Profesor de Viento Metal y Secretario Académico",
         "institution": "Escuela-Conservatorio Profesional de Música «Manuel Rodríguez Sales» de Leganés",
-        "description": "Docencia oficial de viento metal, preparación técnica de alumnos y dirección de ensambles instrumentales."
+        "description": "Docencia oficial de trombón y viento metal en Enseñanzas Elementales y Profesionales, dirección de agrupaciones instrumentales y coordinación en la Secretaría Académica del centro."
       },
       {
         "period": "2017 – 2023",
         "role": "Profesor de Viento Metal",
         "institution": "Escuela Municipal de Música del Ayuntamiento de Pinto",
-        "description": "Impartición de clases individuales y colectivas de trombón, bombardino y tuba, fomentando la práctica de conjunto."
+        "description": "Impartición de clases individuales y colectivas de trombón y bombardino, fomentando la práctica de conjunto y agrupaciones de metales."
       },
       {
         "period": "2013 – 2016",
@@ -269,7 +269,7 @@
   "social": {
     "title": "Redes y Canales Digitales",
     "subtitle": "Difusión Audiovisual & Comunidad (@javi_trombone)",
-    "description": "Sigue las interpretaciones, contenidos pedagógicos, directos y novedades en las plataformas oficiales de Javier Sáez.",
+    "description": "Interpretaciones en directo, análisis técnico del repertorio sinfónico, videopartituras guiadas y recursos diarios de estudio para trombonistas en @javi_trombone.",
     "handle": "@javi_trombone",
     "channels": [
       {

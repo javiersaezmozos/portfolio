@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions as ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getAlternateLocalePath, SUPPORTED_LOCALES, type SupportedLocale } from '../utils/i18n-routes';
@@ -37,30 +38,62 @@ const ogLocaleMap: Record<SupportedLocale, string> = {
 };
 
 const jobTitleMap: Record<SupportedLocale, string> = {
-  es: 'Trombonista y Pedagogo Musical',
-  en: 'Trombonist and Music Pedagogue',
-  de: 'Posaunist und Musikpädagoge',
-  it: 'Trombonista e Pedagogo Musicale',
+  es: 'Trombonista, Pedagogo Musical y Secretario Académico',
+  en: 'Trombonist, Music Pedagogue and Academic Secretary',
+  de: 'Posaunist, Musikpädagoge und Akademischer Sekretär',
+  it: 'Trombonista, Pedagogo Musicale e Segretario Accademico',
 };
+
+const skipLabelMap: Record<SupportedLocale, string> = {
+  es: 'Saltar al contenido principal',
+  en: 'Skip to main content',
+  de: 'Zum Hauptinhalt springen',
+  it: 'Vai al contenuto principale',
+};
+
+const ogImagePath = meta.ogImage ? `${base}${meta.ogImage}` : `${base}/images/javier-saez.jpg`;
+const ogImageUrl = new URL(ogImagePath, siteUrl).href;
 
 // Schema.org Person metadata
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Javier Sáez",
-  "jobTitle": jobTitleMap[currentLocale] || jobTitleMap.en,
+  "jobTitle": jobTitleMap[currentLocale] || jobTitleMap.es,
   "url": "https://www.javisaez.com",
+  "image": new URL(`${base}/images/javier-saez.jpg`, siteUrl).href,
   "sameAs": [
     "https://instagram.com/javi_trombone",
     "https://youtube.com/@javi_trombone"
   ],
+  "worksFor": {
+    "@type": "EducationalOrganization",
+    "name": "Escuela-Conservatorio Profesional de Música «Manuel Rodríguez Sales» de Leganés"
+  },
   "knowsAbout": [
     "Trombone Performance",
-    "Euphonium",
-    "Tuba",
+    "Euphonium Performance",
     "Music Pedagogy",
     "Instrumental Teaching",
     "Symphonic Music"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Máster Universitario en Pedagogía Instrumental (UAX)"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Máster Universitario en Pedagogía Musical (UNIR)"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Máster en Formación del Profesorado (UCM)"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Título Superior de Música en Trombón - Matrícula de Honor (RCSMM)"
+    }
   ],
   "alumniOf": [
     {
@@ -98,9 +131,10 @@ const personSchema = {
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Javier Sáez" />
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={meta.description} />
-    <meta property="og:image" content={meta.ogImage ? `${base}${meta.ogImage}` : `${base}/images/javier-saez.jpg`} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content={ogLocaleMap[currentLocale] || 'es_ES'} />
     
@@ -108,20 +142,31 @@ const personSchema = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
-    <meta name="twitter:image" content={meta.ogImage ? `${base}${meta.ogImage}` : `${base}/images/javier-saez.jpg`} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
-    <!-- Google Fonts: Inter, Cinzel & Libre Baskerville for editorial elegance -->
+    <!-- Google Fonts: Inter & Libre Baskerville for editorial elegance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4af37'><circle cx='6' cy='18' r='3'/><circle cx='18' cy='16' r='3'/><path d='M9 18V5l12-2v13'/></svg>" />
+
+    <!-- Astro View Transitions / ClientRouter -->
+    <ClientRouter />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   </head>
   <body class="bg-dark-950 text-slate-100 font-sans antialiased selection:bg-gold-500/30 selection:text-gold-200 min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Accessible Skip Link (WCAG 2.4.1) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-xl focus:bg-gold-500 focus:px-4 focus:py-2.5 focus:text-xs focus:font-bold focus:text-dark-950 focus:shadow-2xl focus:outline-none"
+    >
+      {skipLabelMap[currentLocale] || skipLabelMap.es}
+    </a>
+
     <!-- Atmospheric background lighting effects -->
     <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
       <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-radial from-amber-500/10 via-gold-500/5 to-transparent blur-3xl rounded-full"></div>
@@ -134,7 +179,7 @@ const personSchema = {
     <Header nav={nav} currentLocale={currentLocale} />
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
       <slot />
     </main>
 
@@ -159,7 +204,17 @@ const personSchema = {
     border-image: linear-gradient(to bottom right, #d4af37, #aa820a, #34455c) 1;
   }
 
-  .font-serif {
-    font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>

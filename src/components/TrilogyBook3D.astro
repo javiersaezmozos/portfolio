@@ -274,24 +274,40 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
               </div>
 
               <!-- Portada definitiva real del Volumen 1 -->
-              <img
+              <picture
                 data-vol1-front-img
-                src={`${base}/images/metodos/vol1-portada.jpg`}
-                alt="Portada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental"
-                class={`pointer-events-none absolute inset-0 h-full w-full object-cover z-30 ${initialVolume === 1 ? '' : 'hidden'}`}
-                loading="eager"
-                decoding="async"
-              />
+                transition:name="book-cover-vol1"
+                class={`pointer-events-none absolute inset-0 block h-full w-full z-30 ${initialVolume === 1 ? '' : 'hidden'}`}
+              >
+                <source srcset={`${base}/images/metodos/vol1-portada.webp`} type="image/webp" />
+                <img
+                  src={`${base}/images/metodos/vol1-portada.jpg`}
+                  alt="Portada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental"
+                  width="800"
+                  height="1035"
+                  class="h-full w-full object-cover"
+                  loading={initialVolume === 1 ? 'eager' : 'lazy'}
+                  fetchpriority={initialVolume === 1 ? 'high' : 'auto'}
+                  decoding="async"
+                />
+              </picture>
 
               <!-- Portada definitiva real del Volumen 2 -->
-              <img
+              <picture
                 data-vol2-front-img
-                src={`${base}/images/metodos/vol2-portada.jpg`}
-                alt="Portada oficial de Flexibilidad, Método de Trombón Volumen 2 Intermedio"
-                class={`pointer-events-none absolute inset-0 h-full w-full object-cover z-30 ${initialVolume === 2 ? '' : 'hidden'}`}
-                loading="eager"
-                decoding="async"
-              />
+                class={`pointer-events-none absolute inset-0 block h-full w-full z-30 ${initialVolume === 2 ? '' : 'hidden'}`}
+              >
+                <source srcset={`${base}/images/metodos/vol2-portada.webp`} type="image/webp" />
+                <img
+                  src={`${base}/images/metodos/vol2-portada.jpg`}
+                  alt="Portada oficial de Flexibilidad, Método de Trombón Volumen 2 Intermedio"
+                  width="800"
+                  height="1035"
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
 
             </div>
 
@@ -331,24 +347,38 @@ const bindingContent = bindingSectionMap[locale] || bindingSectionMap.es;
               aria-hidden="true"
             >
               <!-- Contraportada definitiva real del Volumen 1 -->
-              <img
+              <picture
                 data-vol1-back-img
-                src={`${base}/images/metodos/vol1-contraportada.jpg`}
-                alt="Contraportada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental"
-                class={`pointer-events-none absolute inset-0 h-full w-full object-cover z-30 ${initialVolume === 1 ? '' : 'hidden'}`}
-                loading="eager"
-                decoding="async"
-              />
+                class={`pointer-events-none absolute inset-0 block h-full w-full z-30 ${initialVolume === 1 ? '' : 'hidden'}`}
+              >
+                <source srcset={`${base}/images/metodos/vol1-contraportada.webp`} type="image/webp" />
+                <img
+                  src={`${base}/images/metodos/vol1-contraportada.jpg`}
+                  alt="Contraportada oficial de Flexibilidad, Método de Trombón Volumen 1 Elemental"
+                  width="800"
+                  height="1035"
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
 
               <!-- Contraportada definitiva real del Volumen 2 -->
-              <img
+              <picture
                 data-vol2-back-img
-                src={`${base}/images/metodos/vol2-contraportada.jpg`}
-                alt="Contraportada oficial de Flexibilidad, Método de Trombón Volumen 2 Intermedio"
-                class={`pointer-events-none absolute inset-0 h-full w-full object-cover z-30 ${initialVolume === 2 ? '' : 'hidden'}`}
-                loading="eager"
-                decoding="async"
-              />
+                class={`pointer-events-none absolute inset-0 block h-full w-full z-30 ${initialVolume === 2 ? '' : 'hidden'}`}
+              >
+                <source srcset={`${base}/images/metodos/vol2-contraportada.webp`} type="image/webp" />
+                <img
+                  src={`${base}/images/metodos/vol2-contraportada.jpg`}
+                  alt="Contraportada oficial de Flexibilidad, Método de Trombón Volumen 2 Intermedio"
+                  width="800"
+                  height="1035"
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
 
           </div>

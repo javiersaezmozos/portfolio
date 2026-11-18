@@ -6,7 +6,7 @@
     "locale": "it"
   },
   "nav": {
-    "presentation": "Presentazione",
+    "presentation": "Profilo Artistico",
     "academic": "Formazione Accademica",
     "masterclasses": "Formazione Continua e Masterclass",
     "performance": "Esperienza Artistica",
@@ -19,27 +19,27 @@
     "langSwitch": "IT"
   },
   "hero": {
-    "badge": "Trombonista & Pedagogo",
+    "badge": "Trombonista · Pedagogo Musicale · Autore Editoriale",
     "name": "Javier Sáez",
-    "description": "Trombonista, docente e ricercatore musicale orientato alle nuove correnti pedagogiche e all'eccellenza esecutiva.",
-    "tagline": "Trombonista, docente e ricercatore musicale orientato alle nuove correnti pedagogiche e all'eccellenza esecutiva.",
-    "ctaPrimary": "Esplora la Carriera",
-    "ctaSecondary": "Formazione Accademica",
+    "description": "Interpretazione sinfonica, ricerca applicata e metodologia strumentale per il trombone contemporaneo. Collaboratore in grandi orchestre e produzioni per Netflix e Movistar+, docente di conservatorio e autore della collezione «Trombone · Flessibilità».",
+    "tagline": "Interpretazione sinfonica, ricerca applicata e metodologia strumentale per il trombone contemporaneo.",
+    "ctaPrimary": "Esplora il Metodo Flessibilità",
+    "ctaSecondary": "Carriera e Profilo Sinfonico",
     "ctaSocial": "Canale @javi_trombone",
     "highlights": [
       { "label": "Titolo Post-laurea", "value": "Triplo Master" },
-      { "label": "Grado Superiore", "value": "Con Lode" },
+      { "label": "Diploma Superiore (RCSMM)", "value": "Con Lode" },
       { "label": "Esperienza Didattica", "value": "+12 Anni" },
       { "label": "Specialità", "value": "Trombone & Euphonium" }
     ]
   },
   "presentation": {
-    "title": "Presentazione",
-    "subtitle": "Profilo Artistico e Pedagogico",
+    "title": "Profilo Artistico e Pedagogico",
+    "subtitle": "Palcoscenico, Ricerca e Docenza",
     "paragraphs": [
-      "Javier Sáez ha iniziato i suoi studi di trombone con Félix García presso l'Ateneo Musical «Schola Cantorum» di la Vall d'Uixó (Castellón, Spagna). Nel 2009 ha concluso gli Studi Professionali di Musica nella specialità Trombone presso il conservatorio della stessa città con il Premio Straordinario di Fine Corso (Premio Fin de Grado).",
-      "Nel 2013 ha conseguito il Titolo Superiore di Musica in Interpretazione presso il Real Conservatorio Superior de Música de Madrid (RCSMM) sotto la guida di José Enrique Cotolí, ottenendo il massimo dei voti e la Lode (Matrícula de Honor) nel recital finale. Nel 2018 ha inoltre completato gli Studi Professionali nella specialità Tuba con l'euphonium presso il Conservatorio Profesional de Música «Manuel de Falla» di Alcorcón, ricevendo ancora una volta il Premio Fin de Grado.",
-      "Il suo profilo didattico e di ricerca si fonda su un triplo master universitario: Master in Formazione Docenti (UCM, 2015), Master in Pedagogia Musicale (UNIR, 2022) e Master in Pedagogia Strumentale (UAX, 2025). In ambito professionale, ha partecipato alla registrazione di importanti colonne sonore come «Otros Mundos» per Movistar+ e «Klaus» per Netflix, nonché ad album in studio come «Incendios» di Conchita con Mad4Strings, coniugando collaborazioni orchestrali con l'insegnamento nei conservatori. Il suo percorso comprende collaborazioni con orchestre professionali come OSRTVE e ORCAM, la membership in And The Brass, un'esperienza didattica attiva dal 2013 e la sua attuale cattedra come docente presso la Escuela-Conservatorio «Manuel Rodríguez Sales» di Leganés (Madrid)."
+      "L'attività artistica di Javier Sáez abbraccia il repertorio sinfonico, la musica contemporanea e la registrazione di colonne sonore internazionali. Ha collaborato come trombonista ed euphoniumista con prestigiose istituzioni quali l'Orchestra Sinfonica di RTVE (ORTVE), l'Orchestra Sinfonica di Madrid (Titolare del Teatro Real), l'ORCAM e il Plural Ensemble, partecipando inoltre con Mad4Strings all'incisione di produzioni per Netflix («Klaus»), Movistar+ («Otros Mundos») e album in studio come «Incendios». In ambito cameristico è membro di And The Brass e della Madrid Brass Band.",
+      "Con oltre dodici anni di esperienza didattica, è docente di ottoni e Segretario Accademico presso la Escuela-Conservatorio Profesional de Música «Manuel Rodríguez Sales» di Leganés (Madrid). Il suo lavoro pedagogico si fonda su un Triplo Master universitario — Pedagogia Strumentale (UAX, 2025), Pedagogia Musicale (UNIR, 2022) e Formazione Docenti (UCM, 2015) — e si proietta a livello internazionale attraverso la sua collana editoriale «Trombone · Flessibilità» e l'ecosistema divulgativo @javi_trombone.",
+      "Diplomato Superiore in Trombone presso il Real Conservatorio Superior de Música de Madrid (RCSMM) sotto la guida di José Enrique Cotolí, ha ottenuto il massimo dei voti e la Lode (Matrícula de Honor) nel recital finale, dopo aver conseguito un doppio Premio Straordinario di Fine Corso (Premio Fin de Grado) negli Studi Professionali di Trombone (La Vall d'Uixó, dove ha iniziato con Félix García) e nella specialità ufficiale di Tuba con l'euphonium (Conservatorio Professionale «Manuel de Falla» di Alcorcón)."
     ],
     "quote": "«La pedagogia musicale e l'eccellenza esecutiva sono due discipline inseparabili che si arricchiscono a vicenda sul palco e in aula.»"
   },
@@ -206,15 +206,15 @@
     "positions": [
       {
         "period": "2023 – Presente",
-        "role": "Docente di Musica",
+        "role": "Docente di Ottoni e Segretario Accademico",
         "institution": "Scuola-Conservatorio Professionale di Musica «Manuel Rodríguez Sales» di Leganés",
-        "description": "Insegnamento ufficiale di ottoni, perfezionamento tecnico degli studenti e direzione di formazioni strumentali."
+        "description": "Insegnamento ufficiale di trombone e ottoni nei corsi Elementari e Professionali, direzione di ensemble strumentali e coordinamento nella Segreteria Accademica dell'istituto."
       },
       {
         "period": "2017 – 2023",
         "role": "Docente di Ottoni",
         "institution": "Scuola Civica di Musica del Comune di Pinto",
-        "description": "Lezioni individuali e collettive di trombone, euphonium e tuba, promuovendo la musica d'insieme."
+        "description": "Lezioni individuali e collettive di trombone ed euphonium, promuovendo la musica d'insieme."
       },
       {
         "period": "2013 – 2016",

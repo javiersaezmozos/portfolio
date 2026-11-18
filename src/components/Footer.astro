@@ -2,6 +2,7 @@
 import SocialIcons from './SocialIcons.astro';
 import {
   getAlternateLocalePath,
+  getMethodsPaths,
   getSectionPaths,
   type SupportedLocale,
 } from '../utils/i18n-routes';
@@ -24,17 +25,41 @@ interface Props {
 
 const { footer, nav, currentLocale } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const currentYear = 2026;
+const currentYear = new Date().getFullYear();
 const sectionPaths = getSectionPaths(currentLocale, base);
+const methodsPaths = getMethodsPaths(currentLocale, base);
 const localeHome = sectionPaths.home;
 const careerHref = sectionPaths.career;
 const contactHref = sectionPaths.contact;
 
 const careerHeadingMap: Record<SupportedLocale, string> = {
-  es: 'Trayectoria',
-  en: 'Career',
-  de: 'Werdegang',
-  it: 'Carriera',
+  es: 'Trayectoria y Ediciones',
+  en: 'Career & Editions',
+  de: 'Werdegang & Ausgaben',
+  it: 'Carriera ed Edizioni',
+};
+
+const methodsLinksMap: Record<SupportedLocale, { trilogy: string; vol1: string; catalog: string }> = {
+  es: {
+    trilogy: 'Método Flexibilidad (Vol. 1–2)',
+    vol1: 'Volumen 1 · Elemental',
+    catalog: 'Catálogo de Publicaciones',
+  },
+  en: {
+    trilogy: 'Flexibility Method (Vol. 1–2)',
+    vol1: 'Volume 1 · Elementary',
+    catalog: 'Publications Catalog',
+  },
+  de: {
+    trilogy: 'Flexibilitätsmethode (Bd. 1–2)',
+    vol1: 'Band 1 · Elementarstufe',
+    catalog: 'Publikationskatalog',
+  },
+  it: {
+    trilogy: 'Metodo Flessibilità (Vol. 1–2)',
+    vol1: 'Volume 1 · Elementare',
+    catalog: 'Catalogo Pubblicazioni',
+  },
 };
 
 const contactLabelMap: Record<SupportedLocale, string> = {
@@ -50,9 +75,11 @@ const channelLabelMap: Record<SupportedLocale, string> = {
   de: 'Offizieller Kanal:',
   it: 'Canale Ufficiale:',
 };
+
+const methodsLabels = methodsLinksMap[currentLocale] || methodsLinksMap.es;
 ---
 
-<footer class="bg-dark-950 border-t border-dark-800/80 pt-16 pb-12 relative overflow-hidden">
+<footer class="bg-dark-950 border-t border-dark-800/80 pt-16 pb-10 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-dark-850">
@@ -68,7 +95,7 @@ const channelLabelMap: Record<SupportedLocale, string> = {
           <span class="font-serif text-xl font-bold text-white">Javier Sáez</span>
         </a>
         
-        <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+        <p class="text-sm text-slate-300 max-w-sm leading-relaxed">
           {footer.tagline}
         </p>
 
@@ -78,7 +105,7 @@ const channelLabelMap: Record<SupportedLocale, string> = {
             href="https://instagram.com/javi_trombone"
             target="_blank"
             rel="noopener noreferrer"
-            class="p-2.5 rounded-xl bg-dark-900 text-slate-300 hover:text-pink-400 hover:bg-dark-850 border border-dark-800 transition-all"
+            class="p-2.5 rounded-xl bg-dark-900 text-slate-300 hover:text-gold-300 hover:bg-dark-850 border border-dark-800 transition-colors"
             aria-label="Instagram @javi_trombone"
           >
             <SocialIcons name="instagram" class="w-5 h-5" />
@@ -87,7 +114,7 @@ const channelLabelMap: Record<SupportedLocale, string> = {
             href="https://youtube.com/@javi_trombone"
             target="_blank"
             rel="noopener noreferrer"
-            class="p-2.5 rounded-xl bg-dark-900 text-slate-300 hover:text-red-500 hover:bg-dark-850 border border-dark-800 transition-all"
+            class="p-2.5 rounded-xl bg-dark-900 text-slate-300 hover:text-gold-300 hover:bg-dark-850 border border-dark-800 transition-colors"
             aria-label="YouTube @javi_trombone"
           >
             <SocialIcons name="youtube" class="w-5 h-5" />
@@ -98,67 +125,76 @@ const channelLabelMap: Record<SupportedLocale, string> = {
       <!-- Quick Navigation -->
       <div class="space-y-3">
         <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{footer.quickLinks}</h4>
-        <ul class="space-y-2 text-sm text-slate-400">
+        <ul class="space-y-2 text-sm text-slate-300/90">
           <li><a href={`${localeHome}#presentacion`} class="hover:text-gold-400 transition-colors">{nav.presentation}</a></li>
           <li><a href={`${careerHref}#formacion-academica`} class="hover:text-gold-400 transition-colors">{nav.academic}</a></li>
           <li><a href={`${careerHref}#masterclasses`} class="hover:text-gold-400 transition-colors">{nav.masterclasses}</a></li>
           <li><a href={`${careerHref}#experiencia-interpretativa`} class="hover:text-gold-400 transition-colors">{nav.performance}</a></li>
+          <li><a href={`${careerHref}#trayectoria-docente`} class="hover:text-gold-400 transition-colors">{nav.teaching}</a></li>
         </ul>
       </div>
 
-      <!-- More Links -->
+      <!-- Methods & Contact Links -->
       <div class="space-y-3">
-        <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{careerHeadingMap[currentLocale] || 'Career'}</h4>
-        <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href={`${careerHref}#trayectoria-docente`} class="hover:text-gold-400 transition-colors">{nav.teaching}</a></li>
+        <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{careerHeadingMap[currentLocale] || 'Career & Editions'}</h4>
+        <ul class="space-y-2 text-sm text-slate-300/90">
+          <li><a href={methodsPaths.trilogy} class="text-gold-300 hover:text-gold-200 font-medium transition-colors">{methodsLabels.trilogy}</a></li>
+          <li><a href={methodsPaths.vol1} class="hover:text-gold-400 transition-colors">{methodsLabels.vol1}</a></li>
+          <li><a href={methodsPaths.catalog} class="hover:text-gold-400 transition-colors">{methodsLabels.catalog}</a></li>
           <li><a href={`${careerHref}#premios`} class="hover:text-gold-400 transition-colors">{nav.awards}</a></li>
           <li><a href={contactHref} class="hover:text-gold-400 transition-colors">{nav.contact || contactLabelMap[currentLocale] || 'Contacto'}</a></li>
         </ul>
       </div>
 
-      <!-- Language & Connect -->
+      <!-- Typographic Language Capsules (Cross-Platform Windows/macOS Safe) -->
       <div class="space-y-3">
         <h4 class="font-serif font-bold text-sm text-slate-200 uppercase tracking-wider">{footer.languages}</h4>
         <div class="flex flex-col space-y-2 text-sm">
-          <a
-            href={getAlternateLocalePath(Astro.url.pathname, 'es', base)}
-            class={`flex items-center gap-2 ${currentLocale === 'es' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
-          >
-            <span>🇪🇸</span>
-            <span>{footer.spanish || 'Español'}</span>
-          </a>
-          <a
-            href={getAlternateLocalePath(Astro.url.pathname, 'en', base)}
-            class={`flex items-center gap-2 ${currentLocale === 'en' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
-          >
-            <span>🇬🇧</span>
-            <span>{footer.english || 'English'}</span>
-          </a>
-          <a
-            href={getAlternateLocalePath(Astro.url.pathname, 'de', base)}
-            class={`flex items-center gap-2 ${currentLocale === 'de' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
-          >
-            <span>🇩🇪</span>
-            <span>{footer.german || 'Deutsch'}</span>
-          </a>
-          <a
-            href={getAlternateLocalePath(Astro.url.pathname, 'it', base)}
-            class={`flex items-center gap-2 ${currentLocale === 'it' ? 'text-gold-400 font-bold' : 'text-slate-400 hover:text-slate-200'}`}
-          >
-            <span>🇮🇹</span>
-            <span>{footer.italian || 'Italiano'}</span>
-          </a>
+          {([
+            { code: 'es', label: footer.spanish || 'Español' },
+            { code: 'en', label: footer.english || 'English' },
+            { code: 'de', label: footer.german || 'Deutsch' },
+            { code: 'it', label: footer.italian || 'Italiano' },
+          ] as const).map((lang) => {
+            const isCurrent = currentLocale === lang.code;
+            return (
+              <a
+                href={getAlternateLocalePath(Astro.url.pathname, lang.code, base)}
+                class={`inline-flex items-center gap-2.5 w-fit ${
+                  isCurrent ? 'text-gold-300 font-bold' : 'text-slate-300/90 hover:text-white'
+                }`}
+              >
+                <span
+                  class={`inline-flex items-center justify-center rounded-md px-1.5 py-0.5 font-mono text-[11px] uppercase border ${
+                    isCurrent
+                      ? 'bg-gold-500/20 border-gold-400/60 text-gold-300'
+                      : 'bg-dark-900 border-dark-750 text-slate-400'
+                  }`}
+                >
+                  {lang.code}
+                </span>
+                <span>{lang.label}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
 
     </div>
 
     <!-- Bottom copyright -->
-    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
       <p>© {currentYear} Javier Sáez. {footer.rights}</p>
       <p class="flex items-center gap-2">
         <span>{channelLabelMap[currentLocale] || 'Official Channel:'}</span>
-        <a href="https://youtube.com/@javi_trombone" class="text-gold-400/90 hover:underline">@javi_trombone</a>
+        <a href="https://youtube.com/@javi_trombone" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:underline">@javi_trombone</a>
+      </p>
+    </div>
+
+    <!-- Monumental Sculptural Serif Signature Closure (Alternative B) -->
+    <div class="mt-8 pt-8 border-t border-dark-900/80 select-none pointer-events-none overflow-hidden text-center" aria-hidden="true">
+      <p class="font-serif font-bold uppercase tracking-[0.14em] text-[clamp(2.25rem,8.5vw,7.75rem)] leading-[1.08] pt-2 text-white/[0.04] whitespace-nowrap">
+        JAVIER SÁEZ
       </p>
     </div>
 

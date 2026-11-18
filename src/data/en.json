@@ -6,7 +6,7 @@
     "locale": "en"
   },
   "nav": {
-    "presentation": "Presentation",
+    "presentation": "Artistic Profile",
     "academic": "Academic Background",
     "masterclasses": "Continuing Education & Masterclasses",
     "performance": "Performance Experience",
@@ -19,27 +19,27 @@
     "langSwitch": "ES"
   },
   "hero": {
-    "badge": "Trombonist & Pedagogue",
+    "badge": "Trombonist · Music Pedagogue · Method Author",
     "name": "Javier Sáez",
-    "description": "Trombonist, educator, and music researcher focused on modern pedagogical approaches and performance excellence.",
-    "tagline": "Trombonist, educator, and music researcher focused on modern pedagogical approaches and performance excellence.",
-    "ctaPrimary": "Explore Career",
-    "ctaSecondary": "Academic Background",
+    "description": "Symphonic performance, applied music research, and progressive brass methodology. Orchestral collaborator on Netflix and Movistar+ scores, conservatory faculty member, and author of the «Trombone · Flexibility» collection.",
+    "tagline": "Symphonic performance, applied music research, and progressive brass methodology.",
+    "ctaPrimary": "Explore Flexibility Method",
+    "ctaSecondary": "Career & Symphonic Dossier",
     "ctaSocial": "@javi_trombone Channel",
     "highlights": [
       { "label": "Postgraduate Education", "value": "Triple Master's" },
-      { "label": "Higher Degree", "value": "Graduated with Honors" },
+      { "label": "BMus Performance (RCSMM)", "value": "Highest Honors" },
       { "label": "Teaching Experience", "value": "+12 Years" },
       { "label": "Specialties", "value": "Trombone & Euphonium" }
     ]
   },
   "presentation": {
-    "title": "Presentation",
-    "subtitle": "Artistic and Pedagogical Profile",
+    "title": "Artistic & Pedagogical Profile",
+    "subtitle": "Stage, Research & Conservatory Faculty",
     "paragraphs": [
-      "Javier Sáez began his trombone studies under Félix García at the Ateneo Musical «Schola Cantorum» in la Vall d'Uixó (Castellón, Spain). In 2009, he completed his Professional Music Studies in Trombone at the local conservatory, graduating with the Extraordinary Graduation Prize (Premio Fin de Grado).",
-      "In 2013, he earned his Bachelor of Music (Higher Degree) in Trombone Performance at the Real Conservatorio Superior de Música de Madrid (RCSMM) under José Enrique Cotolí, graduating with Honors (Matrícula de Honor) in his final degree recital. In 2018, he further completed his Professional Music Studies in Tuba and Euphonium at the «Manuel de Falla» Professional Music Conservatory in Alcorcón, once again receiving the Extraordinary Graduation Prize.",
-      "His pedagogical and research profile is built upon a triple university master's degree: Master's in Teacher Training (UCM, 2015), Master's in Music Pedagogy (UNIR, 2022), and Master's in Instrumental Pedagogy (UAX, 2025). In the professional circuit, he has participated in the recording of prominent soundtracks such as «Otros Mundos» for Movistar+ and «Klaus» for Netflix, as well as studio albums including «Incendios» by Conchita with Mad4Strings, while balancing symphonic orchestral collaborations with an established teaching career. His career highlights include collaborations with leading professional orchestras such as OSRTVE and ORCAM, membership in And The Brass, extensive teaching experience since 2013, and his current position as a professor at the Escuela-Conservatorio «Manuel Rodríguez Sales» in Leganés (Madrid)."
+      "Javier Sáez's performance career spans symphonic repertoire, contemporary chamber music, and international film scoring. He has performed as a trombonist and euphonium player with Spain's leading ensembles—including the RTVE Symphony Orchestra (ORTVE), the Madrid Symphony Orchestra (resident at Teatro Real), ORCAM, and Plural Ensemble—and recorded motion picture and television soundtracks with Mad4Strings for Netflix («Klaus»), Movistar+ («Otros Mundos»), and studio albums such as «Incendios». An active chamber musician, he performs with low-brass ensemble And The Brass and the Madrid Brass Band.",
+      "Bringing over twelve years of conservatory teaching experience, he currently serves on the brass faculty and as Academic Secretary at the «Manuel Rodríguez Sales» Professional Music Conservatory in Leganés (Madrid). His methodology is grounded in three postgraduate master's degrees—Instrumental Pedagogy (UAX, 2025), Music Pedagogy (UNIR, 2022), and Music Education (UCM, 2015)—culminating in his published method series «Trombone · Flexibility» and his international educational platform @javi_trombone.",
+      "He holds a Bachelor of Music (Higher Conservatory Degree) in Trombone Performance from the Royal Higher Conservatory of Music of Madrid (RCSMM) under José Enrique Cotolí, graduating with Highest Honors (Matrícula de Honor) in his final degree recital, after earning two First Prizes at Graduation (Premio Fin de Grado) in his Professional Music Studies in Trombone (La Vall d'Uixó, where he began under Félix García) and in the official Tuba specialization on euphonium («Manuel de Falla» Conservatory of Alcorcón)."
     ],
     "quote": "«Music pedagogy and artistic performance excellence are inseparable disciplines that nurture each other on the concert stage and in the classroom.»"
   },
@@ -206,15 +206,15 @@
     "positions": [
       {
         "period": "2023 – Present",
-        "role": "Music Professor",
+        "role": "Brass Faculty & Academic Secretary",
         "institution": "«Manuel Rodríguez Sales» Professional Music School & Conservatory of Leganés",
-        "description": "Official brass instruction, technical training of advanced students and ensemble direction."
+        "description": "Official trombone and low-brass instruction across Elementary and Professional Conservatory grades, brass ensemble conducting, and institutional academic leadership."
       },
       {
         "period": "2017 – 2023",
         "role": "Brass Instructor",
         "institution": "Pinto Municipal Music School",
-        "description": "Individual and group instruction in trombone, euphonium, and tuba, fostering ensemble performance."
+        "description": "Individual and group instruction in trombone and euphonium, fostering brass chamber and ensemble performance."
       },
       {
         "period": "2013 – 2016",
@@ -269,7 +269,7 @@
   "social": {
     "title": "Digital Channels & Media",
     "subtitle": "Audiovisual Broadcast & Community (@javi_trombone)",
-    "description": "Follow official performances, pedagogical insights, rehearsal streams, and updates on Javier Sáez's platforms.",
+    "description": "Live performances, orchestral excerpt breakdowns, guided video-scores, and daily brass pedagogy resources on @javi_trombone.",
     "handle": "@javi_trombone",
     "channels": [
       {
