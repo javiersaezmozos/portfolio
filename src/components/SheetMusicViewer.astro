@@ -30,11 +30,11 @@ const copyMap: Record<SupportedLocale, {
 }> = {
   es: {
     eyebrow: 'Muestra interactiva · Partitura y Audio',
-    heading: 'Lectura clara en papel o iPad y prueba de audio',
-    desc: 'Alterna entre la edición impresa (Amazon KDP) y la lectura digital en iPad, reproduce el ejercicio completo o pulsa cualquier nota para escuchar su afinación.',
+    heading: 'Lectura clara en papel o pantalla y prueba de audio',
+    desc: 'Alterna entre la edición impresa y la edición digital, reproduce el ejercicio completo o pulsa cualquier nota para escuchar su afinación.',
     modeAria: 'Modo de edición',
-    printMode: 'Edición Impresa (KDP)',
-    ipadMode: 'Edición Digital (iPad)',
+    printMode: 'Edición Impresa',
+    ipadMode: 'Edición Digital',
     playBtn: '▶ Escuchar ejercicio',
     playingBtn: '■ Detener',
     tabsAria: 'Muestras de partitura del Volumen 1',
@@ -51,11 +51,11 @@ const copyMap: Record<SupportedLocale, {
   },
   en: {
     eyebrow: 'Interactive Sample · Score & Audio',
-    heading: 'Clear reading in print or iPad & audio preview',
-    desc: 'Switch between the Amazon KDP print edition and iPad digital reading, play the full exercise, or click any note to hear its pitch.',
+    heading: 'Clear reading in print or screen & audio preview',
+    desc: 'Switch between the print edition and digital edition, play the full exercise, or click any note to hear its pitch.',
     modeAria: 'Edition mode',
-    printMode: 'Print Edition (KDP)',
-    ipadMode: 'Digital Edition (iPad)',
+    printMode: 'Print Edition',
+    ipadMode: 'Digital Edition',
     playBtn: '▶ Play exercise',
     playingBtn: '■ Stop',
     tabsAria: 'Volume 1 score samples',
@@ -72,11 +72,11 @@ const copyMap: Record<SupportedLocale, {
   },
   de: {
     eyebrow: 'Interaktive Vorschau · Partitur & Audio',
-    heading: 'Klare Lesbarkeit auf Papier oder iPad & Audiovorschau',
-    desc: 'Wechseln Sie zwischen der Amazon KDP-Druckausgabe und dem digitalen Lesen auf dem iPad, spielen Sie die Übung ab oder klicken Sie auf einzelne Noten.',
+    heading: 'Klare Lesbarkeit auf Papier oder Bildschirm & Audiovorschau',
+    desc: 'Wechseln Sie zwischen Druckausgabe und Digitalausgabe, spielen Sie die Übung ab oder klicken Sie auf einzelne Noten.',
     modeAria: 'Ausgabenmodus',
-    printMode: 'Druckausgabe (KDP)',
-    ipadMode: 'Digitalausgabe (iPad)',
+    printMode: 'Druckausgabe',
+    ipadMode: 'Digitalausgabe',
     playBtn: '▶ Übung anhören',
     playingBtn: '■ Stopp',
     tabsAria: 'Partiturbeispiele Band 1',
@@ -93,11 +93,11 @@ const copyMap: Record<SupportedLocale, {
   },
   it: {
     eyebrow: 'Anteprima interattiva · Spartito e Audio',
-    heading: 'Lettura chiara su carta o iPad e anteprima audio',
-    desc: 'Alterna tra l\'edizione cartacea Amazon KDP e la lettura digitale su iPad, ascolta l\'intero esercizio o clicca su qualsiasi nota per udirne l\'altezza.',
+    heading: 'Lettura chiara su carta o schermo e anteprima audio',
+    desc: 'Alterna tra l\'edizione cartacea e l\'edizione digitale, ascolta l\'intero esercizio o clicca su qualsiasi nota per udirne l\'altezza.',
     modeAria: 'Modalità edizione',
-    printMode: 'Edizione Cartacea (KDP)',
-    ipadMode: 'Edizione Digitale (iPad)',
+    printMode: 'Edizione Cartacea',
+    ipadMode: 'Edizione Digitale',
     playBtn: '▶ Ascolta esercizio',
     playingBtn: '■ Ferma',
     tabsAria: 'Estratti dello spartito Volume 1',
@@ -224,10 +224,10 @@ const copy = copyMap[locale] || copyMap.es;
         data-theme-mode="print"
         class="sheet-paper-surface relative mx-auto max-w-4xl rounded-md transition-all duration-300 p-6 sm:p-10 shadow-xl"
       >
-        <!-- Barra superior sutil de cámara/estado visible solo en modo iPad -->
-        <div data-ipad-bar class="hidden items-center justify-between pb-4 mb-4 border-b border-white/10 text-[10px] font-mono text-slate-400">
-          <span>iPad · Lectura en atril</span>
-          <span class="inline-block h-2 w-2 rounded-full bg-slate-600" aria-hidden="true"></span>
+        <!-- Barra superior sutil de cámara/estado visible solo en modo digital -->
+        <div data-ipad-bar class="hidden items-center justify-between pb-4 mb-4 border-b border-slate-200 text-[10px] font-mono text-slate-500">
+          <span>Lectura digital en atril</span>
+          <span class="inline-block h-2 w-2 rounded-full bg-slate-400" aria-hidden="true"></span>
           <span>100% · Kindle / PDF</span>
         </div>
 
@@ -533,12 +533,12 @@ const copy = copyMap[locale] || copyMap.es;
   }
 
   .sheet-paper-surface[data-theme-mode="ipad"] {
-    color-scheme: only dark;
-    background-color: #121418;
-    color: #e2e8f0;
+    color-scheme: only light;
+    background-color: #ffffff;
+    color: #111111;
     border: 12px solid #272b33;
     border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
   }
 
   /* Indicador de pestaña activa con borde en pseudo-elemento (modern-web-guidance: tabs) */
