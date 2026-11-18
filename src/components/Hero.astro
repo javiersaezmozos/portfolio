@@ -40,7 +40,7 @@ const sectionPaths = getSectionPaths(currentLocale, base);
       
       <!-- Left Column: Artistic Portrait Image -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative group w-full max-w-md">
+        <div class="relative group w-full max-w-[360px]">
           
           <!-- Subtle sculptural frame -->
           <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-gold-500/20 via-amber-400/10 to-transparent blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -50,12 +50,12 @@ const sectionPaths = getSectionPaths(currentLocale, base);
             <img
               src={`${base}/images/javier-saez.jpg`}
               alt="Javier Sáez - Trombonista y Pedagogo Musical"
-              class="w-full h-auto object-cover object-center aspect-[3/4] transform group-hover:scale-[1.015] transition-transform duration-500 ease-out"
+              class="w-full h-auto object-cover object-[50%_75%] aspect-[3/4] transform group-hover:scale-[1.015] transition-transform duration-500 ease-out"
               loading="eager"
               fetchpriority="high"
               decoding="async"
-              width="864"
-              height="1024"
+              width="1200"
+              height="900"
             />
           </div>
         </div>
