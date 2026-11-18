@@ -11,66 +11,106 @@ const copyMap: Record<SupportedLocale, {
   eyebrow: string;
   heading: string;
   desc: string;
-  paperAria: string;
-  ivory: string;
-  white: string;
-  night: string;
-  margins: string;
+  modeAria: string;
+  printMode: string;
+  ipadMode: string;
+  playBtn: string;
+  playingBtn: string;
   tabsAria: string;
   tab1: string;
   tab2: string;
+  svgTitle1: string;
+  svgTitle2: string;
+  svgSub: string;
+  trombotTitle: string;
+  trombotDefault: string;
+  folioLabel: string;
+  playingNotePrefix: string;
+  playingNoteSuffix: string;
 }> = {
   es: {
     eyebrow: 'Muestra interactiva · Partitura y Audio',
-    heading: 'Lectura clara en el atril y prueba de audio',
-    desc: 'Explora una muestra del método y haz clic sobre cualquier nota del pentagrama para escuchar su afinación real.',
-    paperAria: 'Modo de papel',
-    ivory: 'Papel Marfil',
-    white: 'Blanco puro',
-    night: 'Modo Foso (Tablet)',
-    margins: 'Ver márgenes',
+    heading: 'Lectura clara en papel o iPad y prueba de audio',
+    desc: 'Alterna entre la edición impresa (Amazon KDP) y la lectura digital en iPad, reproduce el ejercicio completo o pulsa cualquier nota para escuchar su afinación.',
+    modeAria: 'Modo de edición',
+    printMode: 'Edición Impresa (KDP)',
+    ipadMode: 'Edición Digital (iPad)',
+    playBtn: '▶ Escuchar ejercicio',
+    playingBtn: '■ Detener',
     tabsAria: 'Muestras de partitura del Volumen 1',
-    tab1: 'Muestra 1 · Nivel 1, Lección 1 (Ejercicios en Espejo Sib₂–Fa₃–Sib₃)',
-    tab2: 'Muestra 2 · Nivel 3, Estudio Integrador (Extensión hasta Fa₄)',
+    tab1: 'Muestra 1 · Nivel 1, Lección 1 (Sib₂–Fa₃–Sib₃)',
+    tab2: 'Muestra 2 · Nivel 3, Ampliación: Retos finales (Hasta Fa₄)',
+    svgTitle1: 'NIVEL 1 · LECCIÓN 1: TOMA DE CONTACTO',
+    svgTitle2: 'NIVEL 3 · AMPLIACIÓN: RETOS FINALES (HASTA Fa₄)',
+    svgSub: 'CONEXIÓN EN ESPEJO Sib₂ — Fa₃ — Sib₃ · PULSA CUALQUIER NOTA PARA ESCUCHARLA',
+    trombotTitle: 'TromBot recuerda:',
+    trombotDefault: '«Conecta cada nota como una sirena de aire continuo: al subir de Sib₂ a Sib₃ tu lengua pronuncia suavemente Ah → Eh → Ee sin que los labios se tensen.»',
+    folioLabel: 'Muestra · Pág. 9',
+    playingNotePrefix: 'Sonando:',
+    playingNoteSuffix: 'Mantén el aire continuo y la embocadura estable.',
   },
   en: {
     eyebrow: 'Interactive Sample · Score & Audio',
-    heading: 'Clear music-stand reading & audio preview',
-    desc: 'Explore a sample from the method and click any note on the staff to hear its real pitch.',
-    paperAria: 'Paper mode',
-    ivory: 'Ivory Paper',
-    white: 'Pure White',
-    night: 'Pit Dark Mode',
-    margins: 'Show margins',
+    heading: 'Clear reading in print or iPad & audio preview',
+    desc: 'Switch between the Amazon KDP print edition and iPad digital reading, play the full exercise, or click any note to hear its pitch.',
+    modeAria: 'Edition mode',
+    printMode: 'Print Edition (KDP)',
+    ipadMode: 'Digital Edition (iPad)',
+    playBtn: '▶ Play exercise',
+    playingBtn: '■ Stop',
     tabsAria: 'Volume 1 score samples',
-    tab1: 'Sample 1 · Level 1, Lesson 1 (Mirror Exercises B♭₂–F₃–B♭₃)',
-    tab2: 'Sample 2 · Level 3, Integrative Etude (Extension up to F₄)',
+    tab1: 'Sample 1 · Level 1, Lesson 1 (Bb₂–F₃–Bb₃)',
+    tab2: 'Sample 2 · Level 3, Extension: Final Challenges (Up to F₄)',
+    svgTitle1: 'LEVEL 1 · LESSON 1: FIRST STEPS',
+    svgTitle2: 'LEVEL 3 · EXTENSION: FINAL CHALLENGES (UP TO F₄)',
+    svgSub: 'MIRROR CONNECTION Bb₂ — F₃ — Bb₃ · CLICK ANY NOTE TO HEAR IT',
+    trombotTitle: 'TromBot reminder:',
+    trombotDefault: '"Connect each note on a continuous airstream: as you ascend from Bb₂ to Bb₃, shape your tongue gently Ah → Eh → Ee without lip tension."',
+    folioLabel: 'Sample · Page 9',
+    playingNotePrefix: 'Playing:',
+    playingNoteSuffix: 'Keep steady airflow and a relaxed embouchure.',
   },
   de: {
     eyebrow: 'Interaktive Vorschau · Partitur & Audio',
-    heading: 'Klare Lesbarkeit auf dem Pult & Audiovorschau',
-    desc: 'Entdecken Sie eine Beispielseite der Methode und klicken Sie auf eine beliebige Note, um ihre reale Tonhöhe zu hören.',
-    paperAria: 'Papiermodus',
-    ivory: 'Elfenbeinpapier',
-    white: 'Reinweiß',
-    night: 'Nachtmodus (Tablet)',
-    margins: 'Ränder anzeigen',
+    heading: 'Klare Lesbarkeit auf Papier oder iPad & Audiovorschau',
+    desc: 'Wechseln Sie zwischen der Amazon KDP-Druckausgabe und dem digitalen Lesen auf dem iPad, spielen Sie die Übung ab oder klicken Sie auf einzelne Noten.',
+    modeAria: 'Ausgabenmodus',
+    printMode: 'Druckausgabe (KDP)',
+    ipadMode: 'Digitalausgabe (iPad)',
+    playBtn: '▶ Übung anhören',
+    playingBtn: '■ Stopp',
     tabsAria: 'Partiturbeispiele Band 1',
-    tab1: 'Beispiel 1 · Stufe 1, Lektion 1 (Spiegelübungen B♭₂–F₃–B♭₃)',
-    tab2: 'Beispiel 2 · Stufe 3, Etüde (Erweiterung bis F₄)',
+    tab1: 'Beispiel 1 · Stufe 1, Lektion 1 (B₂–F₃–B₃)',
+    tab2: 'Beispiel 2 · Stufe 3, Erweiterung: Abschlussübungen (Bis F₄)',
+    svgTitle1: 'STUFE 1 · LEKTION 1: EINSTIEG',
+    svgTitle2: 'STUFE 3 · ERWEITERUNG: ABSCHLUSSÜBUNGEN (BIS F₄)',
+    svgSub: 'SPIEGELÜBUNG B₂ — F₃ — B₃ · NOTE ANKLICKEN ZUM ANHÖREN',
+    trombotTitle: 'TromBot-Tipp:',
+    trombotDefault: '„Verbinde jeden Ton auf einem ruhigen Luftstrom: Beim Aufstieg von B₂ nach B₃ formt die Zunge sanft Ah → Eh → Ih ohne Druck auf die Lippen.“',
+    folioLabel: 'Vorschau · S. 9',
+    playingNotePrefix: 'Es erklingt:',
+    playingNoteSuffix: 'Halte den Luftstrom gleichmäßig und den Ansatz stabil.',
   },
   it: {
     eyebrow: 'Anteprima interattiva · Spartito e Audio',
-    heading: 'Lettura chiara sul leggio e anteprima audio',
-    desc: 'Esplora un estratto del metodo e clicca su qualsiasi nota sul pentagramma per ascoltarne l\'intonazione reale.',
-    paperAria: 'Modalità carta',
-    ivory: 'Carta Avorio',
-    white: 'Bianco puro',
-    night: 'Modalità Notturna (Tablet)',
-    margins: 'Mostra margini',
+    heading: 'Lettura chiara su carta o iPad e anteprima audio',
+    desc: 'Alterna tra l\'edizione cartacea Amazon KDP e la lettura digitale su iPad, ascolta l\'intero esercizio o clicca su qualsiasi nota per udirne l\'altezza.',
+    modeAria: 'Modalità edizione',
+    printMode: 'Edizione Cartacea (KDP)',
+    ipadMode: 'Edizione Digitale (iPad)',
+    playBtn: '▶ Ascolta esercizio',
+    playingBtn: '■ Ferma',
     tabsAria: 'Estratti dello spartito Volume 1',
-    tab1: 'Estratto 1 · Livello 1, Lezione 1 (Esercizi a specchio Sib₂–Fa₃–Sib₃)',
-    tab2: 'Estratto 2 · Livello 3, Studio integrativo (Estensione fino a Fa₄)',
+    tab1: 'Estratto 1 · Livello 1, Lezione 1 (Sib₂–Fa₃–Sib₃)',
+    tab2: 'Estratto 2 · Livello 3, Ampliamento: Sfide finali (Fino a Fa₄)',
+    svgTitle1: 'LIVELLO 1 · LEZIONE 1: PRIMO CONTATTO',
+    svgTitle2: 'LIVELLO 3 · AMPLIAMENTO: SFIDE FINALI (FINO A Fa₄)',
+    svgSub: 'CONNESSIONE A SPECCHIO Sib₂ — Fa₃ — Sib₃ · CLICCA SU UNA NOTA PER ASCOLTARLA',
+    trombotTitle: 'Promemoria TromBot:',
+    trombotDefault: '«Collega ogni nota con un flusso d\'aria continuo: salendo dal Sib₂ al Sib₃ la lingua passa dolcemente da Ah → Eh → Ee senza tendere le labbra.»',
+    folioLabel: 'Estratto · Pag. 9',
+    playingNotePrefix: 'In ascolto:',
+    playingNoteSuffix: 'Mantieni il flusso d\'aria continuo e l\'imboccatura stabile.',
   },
 };
 
@@ -81,6 +121,12 @@ const copy = copyMap[locale] || copyMap.es;
   class="sheet-music-inspector relative w-full py-12"
   data-sheet-viewer-root
   data-locale={locale}
+  data-title-1={copy.svgTitle1}
+  data-title-2={copy.svgTitle2}
+  data-play-label={copy.playBtn}
+  data-stop-label={copy.playingBtn}
+  data-note-prefix={copy.playingNotePrefix}
+  data-note-suffix={copy.playingNoteSuffix}
 >
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     
@@ -98,45 +144,34 @@ const copy = copyMap[locale] || copyMap.es;
         </p>
       </div>
 
-      <!-- Barra de Herramientas del Atril Digital -->
+      <!-- Barra de Herramientas: Edición Impresa KDP vs Edición Digital iPad + Audio + Zoom -->
       <div class="flex flex-wrap items-center gap-2 bg-graphite-surface border border-graphite-border rounded-xl p-1.5">
-        
-        <!-- Selector de iluminación del papel (Atril Marfil / Blanco Puro / Foso Nocturno) -->
-        <div role="group" aria-label={copy.paperAria} class="flex items-center gap-1 border-r border-white/10 pr-2">
+        <div role="group" aria-label={copy.modeAria} class="flex items-center gap-1 border-r border-white/10 pr-2">
           <button
             type="button"
-            data-paper-theme="ivory"
+            data-paper-theme="print"
             aria-pressed="true"
-            class="paper-theme-btn rounded-lg px-2.5 py-1.5 text-xs font-medium bg-copper/20 text-copper-light border border-copper/40 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+            class="paper-theme-btn rounded-lg px-3 py-1.5 text-xs font-medium bg-copper/20 text-copper-light border border-copper/40 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
           >
-            {copy.ivory}
+            {copy.printMode}
           </button>
           <button
             type="button"
-            data-paper-theme="studio"
+            data-paper-theme="ipad"
             aria-pressed="false"
-            class="paper-theme-btn rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+            class="paper-theme-btn rounded-lg px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
           >
-            {copy.white}
-          </button>
-          <button
-            type="button"
-            data-paper-theme="night"
-            aria-pressed="false"
-            class="paper-theme-btn rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
-          >
-            {copy.night}
+            {copy.ipadMode}
           </button>
         </div>
 
-        <!-- Conmutador de Márgenes -->
         <button
           type="button"
-          data-toggle-rulers
+          data-play-sequence
           aria-pressed="false"
-          class="rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:text-white border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+          class="rounded-lg px-3 py-1.5 text-xs font-semibold bg-gold-500/20 text-gold-300 border border-gold-400/40 hover:bg-gold-500/30 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
         >
-          {copy.margins}
+          {copy.playBtn}
         </button>
 
         <!-- Control de Zoom Vectorial -->
@@ -151,7 +186,7 @@ const copy = copyMap[locale] || copyMap.es;
       </div>
     </div>
 
-    <!-- PESTAÑAS DE MUESTRA DE LECCIÓN (Cumpliendo modern-web-guidance `tabs`) -->
+    <!-- PESTAÑAS DE MUESTRA DE LECCIÓN -->
     <div
       role="tablist"
       aria-label={copy.tabsAria}
@@ -182,35 +217,18 @@ const copy = copyMap[locale] || copyMap.es;
       </button>
     </div>
 
-    <!-- CONTENEDOR DEL PLIEGO EDITORIAL -->
+    <!-- CONTENEDOR DEL PLIEGO EDITORIAL / MARCO IPAD -->
     <div class="overflow-x-auto rounded-2xl border border-graphite-border shadow-2xl bg-[#0e1014] p-3 sm:p-6">
       <div
         data-sheet-paper
-        data-theme-mode="ivory"
+        data-theme-mode="print"
         class="sheet-paper-surface relative mx-auto max-w-4xl rounded-md transition-all duration-300 p-6 sm:p-10 shadow-xl"
       >
-        <!-- SUPERPOSICIÓN DE COTAS EDITORIALES (Oculta por defecto, activable con botón) -->
-        <div
-          data-rulers-overlay
-          class="pointer-events-none absolute inset-0 z-30 hidden border-2 border-dashed border-amber-600/60"
-          aria-hidden="true"
-        >
-          <!-- Margen interior de lomo 20 mm -->
-          <div class="absolute inset-y-0 left-0 w-8 sm:w-12 bg-amber-500/15 border-r border-amber-600/70 flex items-center justify-center">
-            <span class="rotate-[-90deg] whitespace-nowrap font-mono text-[9px] font-bold uppercase tracking-widest text-amber-800 dark:text-amber-300 bg-amber-100/90 px-1.5 py-0.5 rounded">
-              LOMO / ESPIRAL · 20,0 MM LIBRES
-            </span>
-          </div>
-          <!-- Margen exterior 15 mm -->
-          <div class="absolute inset-y-0 right-0 w-6 sm:w-9 bg-cyan-500/10 border-l border-cyan-600/60 flex items-center justify-center">
-            <span class="rotate-90 whitespace-nowrap font-mono text-[9px] font-bold uppercase tracking-widest text-cyan-900 bg-cyan-100/90 px-1.5 py-0.5 rounded">
-              EXTERIOR · 15,0 MM
-            </span>
-          </div>
-          <!-- Etiqueta superior de caja útil -->
-          <div class="absolute top-2 right-12 rounded bg-amber-600 px-2 py-0.5 font-mono text-[10px] font-bold text-white shadow">
-            CAJA ÚTIL: 180,9 × 247,4 MM · PENTAGRAMA: 7,0 MM (SPATIUM 1,75 MM)
-          </div>
+        <!-- Barra superior sutil de cámara/estado visible solo en modo iPad -->
+        <div data-ipad-bar class="hidden items-center justify-between pb-4 mb-4 border-b border-white/10 text-[10px] font-mono text-slate-400">
+          <span>iPad · Lectura en atril</span>
+          <span class="inline-block h-2 w-2 rounded-full bg-slate-600" aria-hidden="true"></span>
+          <span>100% · Kindle / PDF</span>
         </div>
 
         <!-- CABECERA OFICIAL DE VARA ENMARCADORA + CÓDIGO QR DE LECCIÓN -->
@@ -230,10 +248,10 @@ const copy = copyMap[locale] || copyMap.es;
                 <line x1="105" y1="28" x2="620" y2="28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
                 <path d="M 620 25 L 635 23 L 642 18 L 645 18 L 645 38 L 642 38 L 635 33 L 620 31 Z" fill="currentColor"/>
                 <text data-svg-header-title x="360" y="48" font-family="Baskerville, Georgia, serif" font-size="18" font-weight="bold" letter-spacing="3.5" fill="currentColor" text-anchor="middle">
-                  NIVEL 1 · LECCIÓN 1: TOMA DE CONTACTO
+                  {copy.svgTitle1}
                 </text>
                 <text data-svg-header-sub x="360" y="62" font-family="Baskerville, Georgia, serif" font-size="9.5" font-style="italic" letter-spacing="1.2" fill="currentColor" opacity="0.75" text-anchor="middle">
-                  CONEXIÓN EN ESPEJO Sib₂ — Fa₃ — Sib₃ · PULSA CUALQUIER NOTA PARA ESCUCHARLA
+                  {copy.svgSub}
                 </text>
                 <line x1="105" y1="68" x2="600" y2="68" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
                 <path d="M 600 68 Q 618 68 618 78 Q 618 86 600 86 L 105 86" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6,4"/>
@@ -489,26 +507,14 @@ const copy = copyMap[locale] || copyMap.es;
               ^ ^
             </div>
             <p class="font-serif italic text-xs sm:text-sm leading-relaxed">
-              <strong class="not-italic uppercase tracking-wider">TromBot Recuerda (Pose 3B):</strong>{' '}
+              <strong class="not-italic uppercase tracking-wider">{copy.trombotTitle}</strong>{' '}
               <span data-score-feedback>
-                «Conecta cada nota como una sirena de aire continuo: al subir de Sib₂ a Sib₃ tu lengua pronuncia suavemente Ah → Eh → Ee sin que los labios se tensen.»
+                {copy.trombotDefault}
               </span>
             </p>
           </div>
           <span class="font-mono text-[10px] uppercase tracking-widest opacity-75 flex-shrink-0">
-            Folio Muestra · Pág. 9
-          </span>
-        </div>
-
-        <!-- ESTAMPADO DINÁMICO SOCIAL DRM (Demostración de la licencia PDF Digital) -->
-        <div class="mt-5 pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-2 font-sans text-[10px] opacity-65">
-          <span>
-            {locale === 'es'
-              ? 'Vista previa del blindaje Social DRM (Edición PDF Digital para forScore / MobileSheets):'
-              : 'Social DRM Watermark Preview (Digital PDF Edition for forScore / MobileSheets):'}
-          </span>
-          <span class="font-mono">
-            «Copia autorizada para [Alumno / Conservatorio] · Pedido #JSM-2026 · Prohibida su difusión»
+            {copy.folioLabel}
           </span>
         </div>
 
@@ -519,26 +525,20 @@ const copy = copyMap[locale] || copyMap.es;
 </section>
 
 <style>
-  /*
-   * Temas de papel específicos por componente con fondo y color explícitos
-   * (Cumpliendo modern-web-guidance: component-specific-light-dark-theme)
-   */
-  .sheet-paper-surface[data-theme-mode="ivory"] {
-    color-scheme: only light;
-    background-color: #fbf8f1;
-    color: #161616;
-  }
-
-  .sheet-paper-surface[data-theme-mode="studio"] {
+  .sheet-paper-surface[data-theme-mode="print"] {
     color-scheme: only light;
     background-color: #ffffff;
-    color: #000000;
+    color: #111111;
+    border: 1px solid #e2e8f0;
   }
 
-  .sheet-paper-surface[data-theme-mode="night"] {
+  .sheet-paper-surface[data-theme-mode="ipad"] {
     color-scheme: only dark;
     background-color: #121418;
     color: #e2e8f0;
+    border: 12px solid #272b33;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   }
 
   /* Indicador de pestaña activa con borde en pseudo-elemento (modern-web-guidance: tabs) */
@@ -574,9 +574,9 @@ const copy = copyMap[locale] || copyMap.es;
         root.dataset.initialized = 'true';
 
         const paper = root.querySelector<HTMLElement>('[data-sheet-paper]');
+        const ipadBar = root.querySelector<HTMLElement>('[data-ipad-bar]');
         const themeBtns = root.querySelectorAll<HTMLButtonElement>('[data-paper-theme]');
-        const rulersBtn = root.querySelector<HTMLButtonElement>('[data-toggle-rulers]');
-        const rulersOverlay = root.querySelector<HTMLElement>('[data-rulers-overlay]');
+        const playBtn = root.querySelector<HTMLButtonElement>('[data-play-sequence]');
         const zoomBtn = root.querySelector<HTMLButtonElement>('[data-toggle-zoom]');
         const zoomLabel = root.querySelector<HTMLElement>('[data-zoom-label]');
 
@@ -586,15 +586,40 @@ const copy = copyMap[locale] || copyMap.es;
         const scoreFeedback = root.querySelector<HTMLElement>('[data-score-feedback]');
         const notes = root.querySelectorAll<SVGGElement>('.score-note');
 
-        let isZoomed = false;
-        let showRulers = false;
+        const title1 = root.dataset.title1 || 'NIVEL 1 · LECCIÓN 1: TOMA DE CONTACTO';
+        const title2 = root.dataset.title2 || 'NIVEL 3 · AMPLIACIÓN: RETOS FINALES (HASTA Fa₄)';
+        const playLabel = root.dataset.playLabel || '▶ Escuchar ejercicio';
+        const stopLabel = root.dataset.stopLabel || '■ Detener';
+        const notePrefix = root.dataset.notePrefix || 'Sonando:';
+        const noteSuffix = root.dataset.noteSuffix || '';
 
-        // Cambio de modo de lectura (Papel Marfil / Impresión K=100% / Modo Foso Nocturno)
+        let isZoomed = false;
+        let sequenceTimers: number[] = [];
+        let isPlayingSequence = false;
+
+        const stopSequence = () => {
+          sequenceTimers.forEach((t) => window.clearTimeout(t));
+          sequenceTimers = [];
+          isPlayingSequence = false;
+          if (playBtn) {
+            playBtn.textContent = playLabel;
+            playBtn.setAttribute('aria-pressed', 'false');
+          }
+          notes.forEach((n) => {
+            n.style.opacity = '';
+          });
+        };
+
+        // Cambio de modo: Edición Impresa KDP vs Edición Digital iPad
         themeBtns.forEach((btn) => {
           btn.addEventListener('click', () => {
             try {
-              const mode = btn.dataset.paperTheme || 'ivory';
+              const mode = btn.dataset.paperTheme || 'print';
               if (paper) paper.dataset.themeMode = mode;
+              if (ipadBar) {
+                ipadBar.classList.toggle('hidden', mode !== 'ipad');
+                ipadBar.classList.toggle('flex', mode === 'ipad');
+              }
 
               themeBtns.forEach((b) => {
                 const active = b === btn;
@@ -606,21 +631,53 @@ const copy = copyMap[locale] || copyMap.es;
                 b.classList.toggle('border-transparent', !active);
               });
             } catch (err) {
-              console.error('[SheetMusicViewer] Error cambiando tema del papel:', err);
+              console.error('[SheetMusicViewer] Error cambiando modo de edición:', err);
             }
           });
         });
 
-        // Mostrar / ocultar cotas de maquetación (20 mm interior / 15 mm exterior)
-        rulersBtn?.addEventListener('click', () => {
+        // Reproducir ejercicio completo en secuencia
+        playBtn?.addEventListener('click', () => {
           try {
-            showRulers = !showRulers;
-            rulersBtn.setAttribute('aria-pressed', String(showRulers));
-            rulersBtn.classList.toggle('bg-amber-500/20', showRulers);
-            rulersBtn.classList.toggle('text-amber-300', showRulers);
-            rulersOverlay?.classList.toggle('hidden', !showRulers);
+            if (isPlayingSequence) {
+              stopSequence();
+              return;
+            }
+            const activePanel = root.querySelector<HTMLElement>('[role="tabpanel"]:not([hidden])');
+            const activeNotes = activePanel
+              ? Array.from(activePanel.querySelectorAll<SVGGElement>('.score-note'))
+              : [];
+            if (!activeNotes.length) return;
+
+            isPlayingSequence = true;
+            playBtn.textContent = stopLabel;
+            playBtn.setAttribute('aria-pressed', 'true');
+
+            const globalWin = window as unknown as {
+              __tromboneEngine?: { playBrassTone: (f: number, d: number) => void };
+            };
+
+            activeNotes.forEach((noteEl, idx) => {
+              const t = window.setTimeout(() => {
+                activeNotes.forEach((n) => (n.style.opacity = ''));
+                noteEl.style.opacity = '0.55';
+                const freq = parseFloat(noteEl.dataset.noteFreq || '233.08');
+                const label = noteEl.dataset.noteLabel || '';
+                if (globalWin.__tromboneEngine) {
+                  globalWin.__tromboneEngine.playBrassTone(freq, 0.55);
+                }
+                if (scoreFeedback && label) {
+                  scoreFeedback.textContent = `${notePrefix} ${label} (${freq.toFixed(1)} Hz). ${noteSuffix}`;
+                }
+              }, idx * 540);
+              sequenceTimers.push(t);
+            });
+
+            const endTimer = window.setTimeout(stopSequence, activeNotes.length * 540 + 400);
+            sequenceTimers.push(endTimer);
           } catch (err) {
-            console.error('[SheetMusicViewer] Error alternando cotas:', err);
+            console.error('[SheetMusicViewer] Error reproduciendo secuencia:', err);
+            stopSequence();
           }
         });
 
@@ -659,11 +716,12 @@ const copy = copyMap[locale] || copyMap.es;
               }
             });
 
+            stopSequence();
             if (targetPanelId === 'panel-score-n3') {
-              if (headerTitle) headerTitle.textContent = 'NIVEL 3 · ESTUDIO INTEGRADOR (HASTA Fa₄)';
+              if (headerTitle) headerTitle.textContent = title2;
               if (qrCodeLabel) qrCodeLabel.textContent = '/e/v1-n3-amp';
             } else {
-              if (headerTitle) headerTitle.textContent = 'NIVEL 1 · LECCIÓN 1: TOMA DE CONTACTO';
+              if (headerTitle) headerTitle.textContent = title1;
               if (qrCodeLabel) qrCodeLabel.textContent = '/e/v1-n1-l1';
             }
           } catch (err) {
@@ -700,7 +758,7 @@ const copy = copyMap[locale] || copyMap.es;
                 globalWin.__tromboneEngine.playBrassTone(freq, 0.75);
               }
               if (scoreFeedback && label) {
-                scoreFeedback.textContent = `Sonando en atril: ${label} (${freq.toFixed(1)} Hz). Mantén el aire continuo y la embocadura estable.`;
+                scoreFeedback.textContent = `${notePrefix} ${label} (${freq.toFixed(1)} Hz). ${noteSuffix}`;
               }
             } catch (err) {
               console.warn('[SheetMusicViewer] Error reproduciendo nota del pentagrama:', err);
