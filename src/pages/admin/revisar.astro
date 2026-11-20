@@ -1,0 +1,103 @@
+---
+import { getRuntimeEnv } from '../../lib/env';
+import { verifyApprovalSignature } from '../../lib/crypto';
+import { getRegistrationById, getSql, type RegistrationRow } from '../../lib/db';
+
+export const prerender = false;
+
+const idParam = Number(Astro.url.searchParams.get('id'));
+const expParam = Number(Astro.url.searchParams.get('exp'));
+const sigParam = Astro.url.searchParams.get('sig') || '';
+const doneParam = Astro.url.searchParams.get('done') || '';
+
+let authorized = false;
+let record: RegistrationRow | null = null;
+let loadError = '';
+
+try {
+  const env = getRuntimeEnv(Astro.locals);
+  if (!env.DATABASE_URL || !env.APPROVAL_SECRET) {
+    loadError = 'Faltan variables de entorno en el servidor.';
+  } else {
+    authorized = await verifyApprovalSignature(env.APPROVAL_SECRET, idParam, expParam, sigParam);
+    if (authorized) {
+      const sql = getSql(env.DATABASE_URL);
+      record = await getRegistrationById(sql, idParam);
+      if (!record) {
+        loadError = 'No existe ningún registro con ese identificador.';
+      }
+    } else {
+      loadError = 'El enlace de revisión ha caducado o la firma no es válida.';
+    }
+  }
+} catch (err) {
+  console.error('[admin/revisar] Error cargando ficha:', err);
+  loadError = 'Error al consultar la base de datos.';
+}
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Revisión de Ticket · Javier Sáez</title>
+  </head>
+  <body class="bg-graphite-base text-slate-100 font-sans antialiased min-h-screen flex items-center justify-center p-4 bg-gradient-auditorium">
+    <main class="w-full max-w-lg rounded-2xl bg-graphite-surface/95 border border-copper/35 p-6 sm:p-8 shadow-2xl space-y-5">
+      <div class="inline-flex items-center rounded-full border border-copper/40 bg-copper/10 px-3 py-1 font-mono text-xs text-copper-light uppercase tracking-wider">
+        Revisión Editorial · Flexibilidad Vol. 1
+      </div>
+
+      {loadError ? (
+        <div class="rounded-xl border border-red-500/40 bg-red-950/30 p-4 text-sm text-red-200">
+          {loadError}
+        </div>
+      ) : record && (
+        <div class="space-y-4">
+          {doneParam && (
+            <div class="rounded-xl border border-emerald-500/40 bg-emerald-950/35 p-3 text-sm text-emerald-200">
+              Estado actualizado correctamente a <strong>{doneParam}</strong>.
+              {doneParam === 'approved' && ' Se ha enviado el correo de confirmación al alumno.'}
+            </div>
+          )}
+
+          <div class="rounded-xl bg-graphite-deep border border-graphite-border p-4 text-sm space-y-2">
+            <p><span class="text-slate-400">ID:</span> #{record.id}</p>
+            <p><span class="text-slate-400">Nombre:</span> {record.name}</p>
+            <p><span class="text-slate-400">Email:</span> {record.email}</p>
+            <p><span class="text-slate-400">Pedido:</span> <code>{record.order_id}</code> ({record.channel})</p>
+            <p><span class="text-slate-400">Idioma:</span> {record.lang.toUpperCase()}</p>
+            <p><span class="text-slate-400">Estado actual:</span> <strong class="text-copper-light">{record.status}</strong></p>
+            <p><span class="text-slate-400">Diagnóstico IA:</span> {record.ai_verdict} — {record.ai_reason}</p>
+            {record.notes && <p><span class="text-slate-400">Notas:</span> {record.notes}</p>}
+          </div>
+
+          <form method="POST" action="/api/admin/review" class="flex flex-col sm:flex-row gap-3 pt-2">
+            <input type="hidden" name="id" value={record.id} />
+            <input type="hidden" name="exp" value={expParam} />
+            <input type="hidden" name="sig" value={sigParam} />
+
+            <button
+              type="submit"
+              name="action"
+              value="approve"
+              class="flex-1 rounded-xl bg-gradient-copper px-5 py-3 text-sm font-bold text-dark-950 shadow-metal-copper hover:opacity-95 transition-opacity"
+            >
+              Aprobar y enviar acceso
+            </button>
+            <button
+              type="submit"
+              name="action"
+              value="reject"
+              class="rounded-xl border border-red-500/40 bg-red-950/30 px-5 py-3 text-sm font-semibold text-red-200 hover:bg-red-900/40 transition-colors"
+            >
+              Rechazar
+            </button>
+          </form>
+        </div>
+      )}
+    </main>
+  </body>
+</html>

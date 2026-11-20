@@ -1,5 +1,10 @@
 ---
 import qrRedirects from '../../data/qr-redirects.json';
+import { getRuntimeEnv } from '../../lib/env';
+import { SESSION_COOKIE_NAME, verifySessionToken } from '../../lib/crypto';
+import { getSql, isEmailApproved } from '../../lib/db';
+
+export const prerender = false;
 
 interface QrEntry {
   volume: number;
@@ -10,22 +15,35 @@ interface QrEntry {
   status: string;
 }
 
-export function getStaticPaths() {
-  const entries = Object.entries(qrRedirects as Record<string, QrEntry>);
-  return entries.map(([codigo, info]) => ({
-    params: { codigo },
-    props: { codigo, info },
-  }));
+const codigo = String(Astro.params.codigo || '').trim();
+const info = (qrRedirects as Record<string, QrEntry>)[codigo];
+
+if (!info) {
+  return new Response('Código QR no encontrado', { status: 404 });
 }
 
-interface Props {
-  codigo: string;
-  info: QrEntry;
-}
-
-const { codigo, info } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const hasTarget = Boolean(info.targetUrl && info.targetUrl.trim().length > 0);
+const env = getRuntimeEnv(Astro.locals);
+
+let authorizedEmail: string | null = null;
+try {
+  const sessionCookie = Astro.cookies.get(SESSION_COOKIE_NAME)?.value;
+  if (sessionCookie && env.SESSION_SECRET && env.DATABASE_URL) {
+    const email = await verifySessionToken(env.SESSION_SECRET, sessionCookie);
+    if (email) {
+      const sql = getSql(env.DATABASE_URL);
+      const approved = await isEmailApproved(sql, email);
+      if (approved) {
+        authorizedEmail = email;
+      }
+    }
+  }
+} catch (err) {
+  console.error('[e/codigo] Error verificando sesión:', err);
+}
+
+const isAuthorized = Boolean(authorizedEmail);
+const hasTarget = isAuthorized && Boolean(info.targetUrl && info.targetUrl.trim().length > 0);
 ---
 
 <!doctype html>
@@ -35,12 +53,6 @@ const hasTarget = Boolean(info.targetUrl && info.targetUrl.trim().length > 0);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>{info.title} · Trombón Flexibilidad</title>
-    {hasTarget && <meta http-equiv="refresh" content={`0;url=${info.targetUrl}`} />}
-    {hasTarget && (
-      <script is:inline define:vars={{ targetUrl: info.targetUrl }}>
-        window.location.replace(targetUrl);
-      </script>
-    )}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -49,48 +61,225 @@ const hasTarget = Boolean(info.targetUrl && info.targetUrl.trim().length > 0);
     />
   </head>
   <body class="bg-graphite-base text-slate-100 font-sans antialiased min-h-screen flex items-center justify-center p-4 bg-gradient-auditorium">
-    <main class="w-full max-w-lg rounded-2xl bg-graphite-surface/95 border border-copper/35 p-6 sm:p-8 shadow-2xl text-center space-y-5">
-      <div class="inline-flex items-center gap-2 rounded-full border border-copper/40 bg-copper/10 px-3 py-1 font-mono text-xs text-copper-light uppercase tracking-wider">
-        Código QR · {codigo}
+    <main class="w-full max-w-3xl rounded-2xl bg-graphite-surface/95 border border-copper/35 p-6 sm:p-8 shadow-2xl space-y-6">
+      <div class="text-center space-y-3">
+        <div class="inline-flex items-center gap-2 rounded-full border border-copper/40 bg-copper/10 px-3 py-1 font-mono text-xs text-copper-light uppercase tracking-wider">
+          Código QR · {codigo}
+        </div>
+
+        <h1 class="font-serif text-xl sm:text-2xl font-bold text-white leading-snug">
+          {info.title}
+        </h1>
       </div>
 
-      <h1 class="font-serif text-xl sm:text-2xl font-bold text-white leading-snug">
-        {info.title}
-      </h1>
-
-      {hasTarget ? (
-        <div class="space-y-4">
-          <p class="text-sm text-slate-300">
-            Redirigiendo a la videopartitura interactiva en la plataforma oficial...
-          </p>
-          <a
-            href={info.targetUrl}
-            class="inline-flex items-center justify-center rounded-xl bg-gradient-copper px-5 py-3 text-sm font-bold text-dark-950 shadow-metal-copper"
-          >
-            Abrir videopartitura ahora
-          </a>
-        </div>
+      {isAuthorized ? (
+        hasTarget ? (
+          <div class="space-y-4">
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-copper/30 shadow-xl">
+              <iframe
+                src={info.targetUrl}
+                title={info.title}
+                class="w-full h-full border-0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+              <span>Sesión verificada: <strong class="text-slate-200">{authorizedEmail}</strong></span>
+              <a href={`${base}/es/metodos/flexibilidad`} class="text-copper-light hover:underline">
+                Volver a la colección →
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div class="text-center space-y-4 max-w-lg mx-auto">
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Tu ejemplar ya está activado ({authorizedEmail}). La videopartitura de este código se está terminando de publicar en la plataforma oficial y quedará disponible automáticamente aquí en cuanto se suba.
+            </p>
+            <a
+              href={`${base}/es/metodos/flexibilidad`}
+              class="inline-flex items-center justify-center rounded-xl border border-graphite-border bg-graphite-deep px-5 py-2.5 text-sm font-medium text-slate-200 hover:border-copper/50 transition-colors"
+            >
+              Explorar laboratorio del método
+            </a>
+          </div>
+        )
       ) : (
-        <div class="space-y-4">
-          <p class="text-sm text-slate-300 leading-relaxed">
-            Este recurso interactivo está vinculado al <strong>Volumen 1 · Elemental</strong>. Para acceder a las videopartituras con tu ejemplar de Amazon KDP o Kindle, valida primero tu compra en el portal oficial de registro.
+        <div class="max-w-lg mx-auto space-y-6">
+          <p class="text-sm text-slate-300 leading-relaxed text-center">
+            Este recurso pertenece al <strong>Volumen 1 · Elemental</strong>. Si ya has registrado tu ejemplar, valida este dispositivo con tu correo. Si aún no lo has activado, registra tu compra de Amazon KDP o Kindle.
           </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+
+          <!-- Acceso rápido con código de 6 dígitos por email -->
+          <div class="rounded-xl bg-graphite-deep border border-graphite-border p-5 space-y-4">
+            <h2 class="text-sm font-semibold text-white">Ya tengo mi ejemplar registrado</h2>
+
+            <form id="otp-request-form" class="space-y-3" data-api-base={base}>
+              <div>
+                <label for="otp-email" class="sr-only">Correo electrónico</label>
+                <input
+                  id="otp-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="tu@correo.com"
+                  class="w-full rounded-xl bg-graphite-surface border border-graphite-border px-4 py-2.5 text-sm text-white focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+                />
+              </div>
+              <button
+                type="submit"
+                id="otp-request-btn"
+                class="w-full rounded-xl bg-gradient-copper px-5 py-2.5 text-sm font-bold text-dark-950 shadow-metal-copper hover:opacity-95 transition-opacity"
+              >
+                Enviar código de acceso de 6 dígitos
+              </button>
+            </form>
+
+            <form id="otp-verify-form" hidden class="space-y-3 pt-2 border-t border-white/10">
+              <p class="text-xs text-slate-300">
+                Introduce el código de 6 dígitos que acabamos de enviarte a tu correo:
+              </p>
+              <input
+                id="otp-code"
+                name="otp"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]{6}"
+                maxlength="6"
+                required
+                placeholder="123456"
+                class="w-full rounded-xl bg-graphite-surface border border-graphite-border px-4 py-2.5 text-center font-mono text-lg tracking-widest text-white focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/40"
+              />
+              <button
+                type="submit"
+                id="otp-verify-btn"
+                class="w-full rounded-xl bg-emerald-500 hover:bg-emerald-400 px-5 py-2.5 text-sm font-bold text-dark-950 transition-colors"
+              >
+                Activar dispositivo
+              </button>
+            </form>
+
+            <p id="otp-status" hidden class="text-xs leading-relaxed"></p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href={`${base}/registro`}
-              class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-gradient-copper px-5 py-2.5 text-sm font-bold text-dark-950 shadow-metal-copper"
+              class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-copper/50 bg-copper/10 px-5 py-2.5 text-sm font-semibold text-copper-light hover:bg-copper/20 transition-colors"
             >
-              Activar mi ejemplar
+              Registrar nuevo ejemplar
             </a>
             <a
               href={`${base}/es/metodos/flexibilidad`}
               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-graphite-border bg-graphite-deep px-5 py-2.5 text-sm font-medium text-slate-200 hover:border-copper/50 transition-colors"
             >
-              Explorar laboratorio del método
+              Ver colección
             </a>
           </div>
         </div>
       )}
     </main>
+
+    {!isAuthorized && (
+      <script>
+        function initQrAuth() {
+          const reqForm = document.getElementById('otp-request-form') as HTMLFormElement | null;
+          const verForm = document.getElementById('otp-verify-form') as HTMLFormElement | null;
+          const emailInput = document.getElementById('otp-email') as HTMLInputElement | null;
+          const codeInput = document.getElementById('otp-code') as HTMLInputElement | null;
+          const reqBtn = document.getElementById('otp-request-btn') as HTMLButtonElement | null;
+          const verBtn = document.getElementById('otp-verify-btn') as HTMLButtonElement | null;
+          const statusEl = document.getElementById('otp-status');
+          if (!reqForm || !verForm) return;
+
+          const apiBase = reqForm.dataset.apiBase || '';
+          let activeEmail = '';
+
+          const showStatus = (msg: string, isError: boolean) => {
+            if (!statusEl) return;
+            statusEl.textContent = msg;
+            statusEl.className = `text-xs leading-relaxed ${isError ? 'text-red-300' : 'text-emerald-300'}`;
+            statusEl.removeAttribute('hidden');
+          };
+
+          reqForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            activeEmail = String(emailInput?.value || '').trim().toLowerCase();
+            if (!activeEmail) return;
+
+            if (reqBtn) {
+              reqBtn.disabled = true;
+              reqBtn.textContent = 'Enviando código...';
+            }
+
+            try {
+              const lang = (navigator.language || 'es').slice(0, 2).toLowerCase();
+              const res = await fetch(`${apiBase}/api/auth/request-otp`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: activeEmail, lang }),
+              });
+              const data = (await res.json().catch(() => ({}))) as { ok?: boolean; status?: string };
+
+              if (res.ok && data.ok) {
+                verForm.removeAttribute('hidden');
+                showStatus('Código enviado. Revisa tu bandeja de entrada o spam.', false);
+                codeInput?.focus();
+              } else if (res.status === 403 && data.status === 'pending') {
+                showStatus('Tu ejemplar sigue pendiente de revisión manual. Recibirás un email en cuanto se apruebe.', false);
+              } else if (res.status === 403) {
+                showStatus('No encontramos ningún ejemplar aprobado con ese correo. Regístralo primero abajo.', true);
+              } else if (res.status === 429) {
+                showStatus('Has solicitado demasiados códigos hoy. Inténtalo más tarde.', true);
+              } else {
+                showStatus('No pudimos enviar el código ahora mismo. Inténtalo de nuevo.', true);
+              }
+            } catch {
+              showStatus('Error de conexión. Revisa tu red e inténtalo de nuevo.', true);
+            } finally {
+              if (reqBtn) {
+                reqBtn.disabled = false;
+                reqBtn.textContent = 'Enviar código de acceso de 6 dígitos';
+              }
+            }
+          });
+
+          verForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const otp = String(codeInput?.value || '').replace(/\D/g, '');
+            if (!activeEmail || otp.length !== 6) return;
+
+            if (verBtn) {
+              verBtn.disabled = true;
+              verBtn.textContent = 'Verificando...';
+            }
+
+            try {
+              const res = await fetch(`${apiBase}/api/auth/verify-otp`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: activeEmail, otp }),
+              });
+              if (res.ok) {
+                window.location.reload();
+              } else {
+                showStatus('Código incorrecto o caducado. Comprueba los 6 dígitos.', true);
+              }
+            } catch {
+              showStatus('Error de conexión verificando el código.', true);
+            } finally {
+              if (verBtn) {
+                verBtn.disabled = false;
+                verBtn.textContent = 'Activar dispositivo';
+              }
+            }
+          });
+        }
+
+        initQrAuth();
+      </script>
+    )}
   </body>
 </html>

@@ -2,7 +2,7 @@
 import registroI18n from '../data/registro-i18n.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const webhookUrl = import.meta.env.PUBLIC_REGISTRO_WEBHOOK_URL || '';
+const registerApiUrl = `${base}/api/register`;
 const defaultCopy = registroI18n.es;
 ---
 
@@ -87,7 +87,7 @@ const defaultCopy = registroI18n.es;
           </div>
 
           <!-- Formulario Accesible de Activación -->
-          <form id="registro-form" class="mt-6 space-y-5" data-webhook-url={webhookUrl}>
+          <form id="registro-form" class="mt-6 space-y-5" data-api-url={registerApiUrl}>
             <!-- Nombre completo -->
             <div class="field">
               <label for="reg-name" data-i18n="nameLabel" class="block text-sm font-medium text-slate-100">
@@ -360,15 +360,15 @@ const defaultCopy = registroI18n.es;
 
     <script>
       interface CompressedReceipt {
-        receiptBase64: string;
-        receiptMime: string;
-        receiptName: string;
+        blob: Blob;
+        fileName: string;
+        mimeType: string;
         sizeKb: number;
       }
 
       /**
        * Comprime la captura/foto del recibo en navegador (máx 1400 px JPEG) para asegurar
-       * envíos rápidos desde móvil y compatibilidad con Apps Script + Gemini Vision.
+       * envíos binarios rápidos desde móvil y mínimo consumo de CPU en servidor.
        */
       async function compressReceiptImage(file: File): Promise<CompressedReceipt> {
         if (!file.type.startsWith('image/')) {
@@ -425,31 +425,34 @@ const defaultCopy = registroI18n.es;
             ctx.drawImage(imgEl, 0, 0, targetW, targetH);
           }
 
-          const jpegDataUrl = canvas.toDataURL('image/jpeg', 0.78);
-          const base64 = jpegDataUrl.split(',')[1] || '';
-          const sizeKb = Math.max(1, Math.round((base64.length * 3) / 4 / 1024));
+          const blob = await new Promise<Blob>((resolve, reject) => {
+            canvas.toBlob(
+              (result) => (result ? resolve(result) : reject(new Error('Canvas toBlob failed'))),
+              'image/jpeg',
+              0.78
+            );
+          });
 
+          const sizeKb = Math.max(1, Math.round(blob.size / 1024));
           if (sizeKb > 4096) {
             throw new Error('Compressed image exceeds 4 MB limit');
           }
 
           return {
-            receiptBase64: base64,
-            receiptMime: 'image/jpeg',
-            receiptName: safeName,
+            blob,
+            fileName: safeName,
+            mimeType: 'image/jpeg',
             sizeKb,
           };
         } catch (compressionErr) {
-          console.warn('[Registro] Compresión en canvas no disponible, usando lectura directa:', compressionErr);
-          if (file.size > 3 * 1024 * 1024) {
+          console.warn('[Registro] Compresión en canvas no disponible, usando archivo directo:', compressionErr);
+          if (file.size > 4 * 1024 * 1024) {
             throw compressionErr;
           }
-          const rawDataUrl = await readAsDataUrl(file);
-          const base64 = rawDataUrl.split(',')[1] || '';
           return {
-            receiptBase64: base64,
-            receiptMime: file.type || 'image/jpeg',
-            receiptName: file.name || 'recibo.jpg',
+            blob: file,
+            fileName: file.name || 'recibo.jpg',
+            mimeType: file.type || 'image/jpeg',
             sizeKb: Math.max(1, Math.round(file.size / 1024)),
           };
         }
@@ -490,7 +493,13 @@ const defaultCopy = registroI18n.es;
             document.documentElement.lang = safeLang;
 
             if (backLink) {
-              backLink.href = safeLang === 'en' ? '/en/methods/flexibility' : '/es/metodos/flexibilidad';
+              const methodRoutes: Record<string, string> = {
+                es: '/es/metodos/flexibilidad',
+                en: '/en/methods/flexibility',
+                de: '/de/methoden/flexibilitaet',
+                it: '/it/metodi/flessibilita',
+              };
+              backLink.href = methodRoutes[safeLang] || methodRoutes.es;
             }
 
             document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
@@ -608,61 +617,56 @@ const defaultCopy = registroI18n.es;
               }
 
               const receiptData = cachedReceipt || (await compressReceiptImage(file));
+              const buyerName = String(formData.get('name') || '');
+              const buyerEmail = String(formData.get('email') || '');
+              const buyerChannel = String(formData.get('channel') || 'amazon-kdp');
+              const buyerOrderId = String(formData.get('orderId') || '');
+              const buyerNotes = String(formData.get('notes') || '');
 
-              const payload = {
-                name: String(formData.get('name') || ''),
-                email: String(formData.get('email') || ''),
-                channel: String(formData.get('channel') || 'amazon-kdp'),
-                orderId: String(formData.get('orderId') || ''),
-                notes: String(formData.get('notes') || ''),
-                website: String(formData.get('website') || ''), // Honeypot
-                lang: currentLang,
-                submittedAt: new Date().toISOString(),
-                receiptBase64: receiptData.receiptBase64,
-                receiptMime: receiptData.receiptMime,
-                receiptName: receiptData.receiptName,
-              };
+              const submitData = new FormData();
+              submitData.set('name', buyerName);
+              submitData.set('email', buyerEmail);
+              submitData.set('channel', buyerChannel);
+              submitData.set('orderId', buyerOrderId);
+              submitData.set('notes', buyerNotes);
+              submitData.set('website', String(formData.get('website') || ''));
+              submitData.set('lang', currentLang);
+              submitData.set('receipt', receiptData.blob, receiptData.fileName);
 
               // Preparar siempre el enlace mailto de respaldo
               const subject = encodeURIComponent(
-                `[Registro Vol. 1] ${payload.orderId} - ${payload.name}`
+                `[Registro Vol. 1] ${buyerOrderId} - ${buyerName}`
               );
               const body = encodeURIComponent(
-                `Nombre: ${payload.name}\nEmail: ${payload.email}\nEdición: ${payload.channel}\nPedido Amazon: ${payload.orderId}\nIdioma: ${payload.lang}\nNotas: ${payload.notes}\n\n(Adjunta aquí la captura del recibo)`
+                `Nombre: ${buyerName}\nEmail: ${buyerEmail}\nEdición: ${buyerChannel}\nPedido Amazon: ${buyerOrderId}\nIdioma: ${currentLang}\nNotas: ${buyerNotes}\n\n(Adjunta aquí la captura del recibo)`
               );
               if (mailtoLink) {
                 mailtoLink.href = `mailto:orders@javisaez.com?subject=${subject}&body=${body}`;
               }
 
-              const webhook = form.dataset.webhookUrl || '';
-              if (webhook) {
-                // text/plain evita el preflight CORS OPTIONS que Google Apps Script rechaza
-                const res = await fetch(webhook, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                  body: JSON.stringify(payload),
-                });
+              const apiUrl = form.dataset.apiUrl || '/api/register';
+              const res = await fetch(apiUrl, {
+                method: 'POST',
+                body: submitData,
+              });
 
-                if (!res.ok) {
-                  throw new Error(`HTTP ${res.status}`);
-                }
+              if (!res.ok) {
+                throw new Error(`HTTP ${res.status}`);
+              }
 
-                const result = (await res.json().catch(() => null)) as { ok?: boolean; verdict?: string; error?: string } | null;
-                if (result && result.ok === false) {
-                  throw new Error(result.error || 'Webhook error');
-                }
+              const result = (await res.json().catch(() => null)) as { ok?: boolean; verdict?: string; error?: string } | null;
+              if (result && result.ok === false) {
+                throw new Error(result.error || 'Registration error');
+              }
 
-                form.setAttribute('hidden', '');
-                const verdict = result?.verdict || 'DUDOSO';
-                if (verdict === 'APROBADO') {
-                  approvedBox?.removeAttribute('hidden');
-                } else if (verdict === 'DUPLICADO') {
-                  duplicateBox?.removeAttribute('hidden');
-                } else {
-                  successBox?.removeAttribute('hidden');
-                }
+              form.setAttribute('hidden', '');
+              const verdict = result?.verdict || 'DUDOSO';
+              if (verdict === 'APROBADO') {
+                approvedBox?.removeAttribute('hidden');
+              } else if (verdict === 'DUPLICADO') {
+                duplicateBox?.removeAttribute('hidden');
               } else {
-                fallbackBox?.removeAttribute('hidden');
+                successBox?.removeAttribute('hidden');
               }
             } catch (err) {
               console.error('[Registro] Error enviando solicitud:', err);
