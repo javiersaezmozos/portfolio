@@ -56,3 +56,9 @@ ADMIN_REVIEW_EMAIL=orders@javisaez.com
 GEMINI_API_KEY=            # Clave principal de Gemini API (Free o Pay-as-you-go)
 GEMINI_API_KEY_PAID=       # (Opcional) Clave de respaldo de pago por uso si la principal da 429
 ```
+
+---
+
+## 5. Tareas Pendientes de Infraestructura
+- [ ] **Retirar Vercel cuando proceda:** Configurar en **DonDominio** la redirección `301` del dominio raíz `javisaez.com` → `https://www.javisaez.com` (o delegar DNS a Cloudflare) antes de eliminar el proyecto en Vercel, ya que actualmente Vercel sirve esa redirección `308`.
+- [ ] **Lanzamiento Vol. 1:** Activar **Cloudflare Workers Paid (`5 $/mes`)** y `GEMINI_API_KEY_PAID` antes de publicar el libro.
